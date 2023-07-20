@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/public/scss/style.css">
+</head>
+
+<body>
+    <h1>Это страница админа</h1>
+    <div class="form_addperson_block">
+        <div class="form_addperson_block_content">
+            <p class="form_addperson_block_head_text">Регистрация</p>
+            <form class="form_addperson_style" action="/addpersone" method="post">
+                <label>ФИО</label>
+                <input type="text" name="add_fio" placeholder="fio" required>
+                <label>email</label>
+                <input type="email" name="add_email" placeholder="email" required>
+                <label>login</label>
+                <input type="text" name="add_login" placeholder="login" required>
+                <label>password</label>
+                <input type="text" name="add_password" placeholder="password" required>
+                <label>group</label>
+                <input type="number" name="add_group" placeholder="group">
+                                
+                <label><input name="add_role" type="radio" checked value="1">Обучаемый</label>
+                <label><input name="add_role" type="radio" value="2">Преподаватель</label>
+                <label><input name="add_role" type="radio" value="3">Администратор</label>
+                <label>bday</label>
+                <input type="date" name="add_bday" placeholder="bday">
+                <button class="form_addperson_button" type="submit"
+                    name="form_addperson_submit">Зарегистрировать</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
