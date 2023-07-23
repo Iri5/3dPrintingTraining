@@ -12,29 +12,34 @@ const pool = mysql.createPool({
     database: 'us',
     password: 'irina'
 });
-//app.set("view engine", "ejs");
+app.listen(3000, () => {
+    console.log('Server started: http://localhost:3000');
+})
+app.set("view engine", "ejs");
 app.use(express.static('public'))
 app.get('/', (req, res) => {
-    res.render('teac.html');
+    res.render('index');
 })
 app.get('/index.html', (req, res) => {
-    res.render('teac.html');
+    res.render('index');
+})
+app.get('/admin.html', (req, res) => {
+    res.render('admin');
 })
 app.post('/auth', urlencodedParser, (req, res) => {
     if (!req.body) return res.sendStatus(400);
-    console.log(req.body);
-    console.log(req.body.auth_login);
-    let query = "SELECT role FROM us.user where login = ? and password = ?;"
+    
+    let query = "SELECT role FROM us.user where login = ? and pass = ?;"
     pool.query(query, [req.body.auth_login, req.body.auth_pass], function (err, data) {
         if (err) return console.log(err);
-        console.log(data);
+        
         if (data.length != 0) {
             if (data[0].role == 3) {
-                res.sendFile(__dirname + '\\public\\admin.html');
+                res.render('admin');
             } else if (data[0].role == 2) {
-                res.sendFile(__dirname + '\\public\\teac.html');
+                res.render( 'teac');
             } else if (data[0].role == 1) {
-                res.sendFile(__dirname + '\\public\\user.html');
+                res.render('user');
             }
         }
         else {
@@ -46,26 +51,43 @@ app.post('/auth', urlencodedParser, (req, res) => {
 app.post('/addpersone', urlencodedParser, (req, res) => {
     if (!req.body) return res.sendStatus(400);
     console.log(req.body);
+    console.log(req.body.add_group);
     //console.log(req.body.auth_login);
-    /*let query = "SELECT role FROM us.user where login = ? and password = ?;"
-    pool.query(query, [req.body.auth_login, req.body.auth_pass], function (err, data) {
-        if (err) return console.log(err);
-        console.log(data);
-        if (data.length != 0) {
-            if (data[0].role == 3) {
-                res.sendFile(__dirname + '\\public\\admin.html');
-            } else if (data[0].role == 2) {
-                res.sendFile(__dirname + '\\public\\teac.html');
-            } else if(data[0].role == 1){
-                res.sendFile(__dirname + '\\public\\user.html');
-            }
-        }
-        else {
-            res.redirect("/")
-        }
-
-    });*/
+    
+    let query = "INSERT INTO us.user (fio, email, login, pass, gr, role, bday) VALUES (?, ?, ?, ?, ?, ?, ?);"
+    if( (req.body.add_group == '') && (req.body.add_bday == '')){
+        query = "INSERT INTO us.user (fio, email, login, pass, role) VALUES (?, ?, ?, ?, ?);"
+        pool.query(query, [req.body.add_fio, req.body.add_email, req.body.add_login, req.body.add_password, req.body.add_role], function (err, data) {
+            if (err) return console.log(err);
+            console.log(data);
+            res.end();
+        });
+    } else
+    if ( (req.body.add_group == '') && (req.body.add_bday != '')){
+        query = "INSERT INTO us.user (fio, email, login, pass, role, bday) VALUES (?, ?, ?, ?, ?, ?);";
+        pool.query(query, [req.body.add_fio, req.body.add_email, req.body.add_login, req.body.add_password, req.body.add_role, req.body.add_bday], function (err, data) {
+            if (err) return console.log(err);
+            console.log(data);
+    
+        });
+    } else
+    if ( (req.body.add_group != '') && (req.body.add_bday == '')){
+        query = "INSERT INTO us.user (fio, email, login, pass, group, role) VALUES (?, ?, ?, ?, ?, ?);";
+        pool.query(query, [req.body.add_fio, req.body.add_email, req.body.add_login, req.body.add_password, req.body.add_group, req.body.add_role], function (err, data) {
+            if (err) return console.log(err);
+            console.log(data);
+    
+        });
+    } else {
+        pool.query(query, [req.body.add_fio, req.body.add_email, req.body.add_login, req.body.add_password, req.body.add_group, req.body.add_role, req.body.add_bday], function (err, data) {
+            if (err) return console.log(err);
+            console.log(data);
+    
+        });
+    }
+    
 })
+//vet
 app.get('/chart', (req, res) => {
     let query = "select  section.sec_title, count(*) as c from click join services on click.ser_id = services.id join section on section.id = services.sec_id group by sec_title";
     pool.query(query, function (err, data) {
@@ -105,9 +127,7 @@ app.post('/password', jsonParser, (req, res) => {
     } else res.send([0]);
 })
 
-app.listen(3000, () => {
-    console.log('Server started: http://localhost:3000');
-})
+
 
 
 //////////////////////////////////
