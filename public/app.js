@@ -1,3 +1,4 @@
+//const { response } = require("express");
 
 console.log("111")
 document.querySelector('.new-button').addEventListener('click', () => {
@@ -5,19 +6,20 @@ document.querySelector('.new-button').addEventListener('click', () => {
     console.log(d);
     let myContent = tinymce.activeEditor.getContent();
     console.log(myContent);
-let a = {
     
-};
-a.text = myContent;
-    let response = fetch('/curse', {
+    let a = myContent;
+    fetch('/curse', {
 
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json;charset=utf-8'
+            'Content-Type': 'text/plain;charset=UTF-8'
         },
-        body: JSON.stringify(a)
-    });
+        body: "fufufu",
+    }).then(response => response.json())
+    .then(function (response) {
+        console.log(response);});
     console.log("mmmmmmm");
+    console.log(myContent);
 });
 tinymce.activeEditor.uploadImages().then(() => {
     document.forms[0].submit();

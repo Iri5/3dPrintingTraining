@@ -124,7 +124,7 @@ app.use(
 
 
 
-app.post('/curse', (req, res) => {
+app.post('/curse', urlencodedParser, (req, res) => {
     console.log("file");
     const file = fs.createWriteStream("file.json");
     console.log("dsdsvd");
