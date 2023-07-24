@@ -24,7 +24,29 @@ app.get('/index.html', (req, res) => {
     res.render('index');
 })
 app.get('/admin.html', (req, res) => {
-    res.render('admin');
+    let query = "SELECT fio, email, login, gr, role, bday FROM us.user;"
+    pool.query(query,  function (err, data) {
+        if (err) return console.log(err);
+        
+        let arrLogin = [];
+        data.forEach((item, index) => {
+            console.log((item.bday));
+            let date = item.bday;
+            if(date != null){
+                date = date.toISOString().split('T')[0];
+                item.bday = date;
+            }
+            
+            console.log(date);
+            /*let date = item.bday.toString.replace(/[-]/g, '/');  
+            date = Date.parse(date);
+            let jsDate = new Date(date);
+            item.bday=jsDate;
+            arrLogin.push(item.login);*/
+        });
+        res.render('admin', {goods: data, logins: arrLogin});
+
+    });
 })
 app.post('/auth', urlencodedParser, (req, res) => {
     if (!req.body) return res.sendStatus(400);
@@ -35,7 +57,7 @@ app.post('/auth', urlencodedParser, (req, res) => {
         
         if (data.length != 0) {
             if (data[0].role == 3) {
-                res.render('admin');
+                res.redirect('/admin.html');
             } else if (data[0].role == 2) {
                 res.render( 'teac');
             } else if (data[0].role == 1) {
@@ -49,18 +71,23 @@ app.post('/auth', urlencodedParser, (req, res) => {
     });
 })
 app.post('/addpersone', urlencodedParser, (req, res) => {
-    if (!req.body) return res.sendStatus(400);
+    console.log("я тут");
+    if (!req.body) {
+        console.log("я тут");
+        return res.sendStatus(400);
+    }
     console.log(req.body);
     console.log(req.body.add_group);
-    //console.log(req.body.auth_login);
+    console.log(req.body.auth_login);
     
     let query = "INSERT INTO us.user (fio, email, login, pass, gr, role, bday) VALUES (?, ?, ?, ?, ?, ?, ?);"
     if( (req.body.add_group == '') && (req.body.add_bday == '')){
         query = "INSERT INTO us.user (fio, email, login, pass, role) VALUES (?, ?, ?, ?, ?);"
         pool.query(query, [req.body.add_fio, req.body.add_email, req.body.add_login, req.body.add_password, req.body.add_role], function (err, data) {
             if (err) return console.log(err);
+
             console.log(data);
-            res.end();
+            res.redirect('/admin.html');
         });
     } else
     if ( (req.body.add_group == '') && (req.body.add_bday != '')){
@@ -68,21 +95,22 @@ app.post('/addpersone', urlencodedParser, (req, res) => {
         pool.query(query, [req.body.add_fio, req.body.add_email, req.body.add_login, req.body.add_password, req.body.add_role, req.body.add_bday], function (err, data) {
             if (err) return console.log(err);
             console.log(data);
-    
+            res.redirect('/admin.html');
         });
     } else
     if ( (req.body.add_group != '') && (req.body.add_bday == '')){
-        query = "INSERT INTO us.user (fio, email, login, pass, group, role) VALUES (?, ?, ?, ?, ?, ?);";
+        console.log("xdfcgjnkj hgfdghkljh")
+        query = "INSERT INTO us.user (fio, email, login, pass, gr, role) VALUES (?, ?, ?, ?, ?, ?);";
         pool.query(query, [req.body.add_fio, req.body.add_email, req.body.add_login, req.body.add_password, req.body.add_group, req.body.add_role], function (err, data) {
             if (err) return console.log(err);
             console.log(data);
-    
+            res.redirect('/admin.html');
         });
     } else {
         pool.query(query, [req.body.add_fio, req.body.add_email, req.body.add_login, req.body.add_password, req.body.add_group, req.body.add_role, req.body.add_bday], function (err, data) {
             if (err) return console.log(err);
             console.log(data);
-    
+            res.redirect('/admin.html');
         });
     }
     

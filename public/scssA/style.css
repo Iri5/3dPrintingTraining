@@ -157,4 +157,11 @@ label {
   color: white;
   font-size: 16px;
   margin-top: 15px;
+}
+
+.info {
+  display: none;
+  width: 100px;
+  height: 100px;
+  border-color: bisque;
 }/*# sourceMappingURL=style.css.map */

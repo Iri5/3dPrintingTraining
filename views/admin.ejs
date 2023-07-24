@@ -6,19 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="scssA/style.css">
-    
+
 </head>
 
 <body>
+   
     <h1>Это страница админа</h1>
+    <table>
+        <tr><th>Фамилия Имя Отчество</th><th>Email</th><th>Логин</th><th>Группа</th><th>Роль</th><th>Дата рождения</th></tr>
+        <% for(let i=0; i<goods.length; i++){ %>
+            <tr>
+                <td><%=goods[i].fio %></td>
+                <td><%=goods[i].email %></td>
+                <td><%=goods[i].login %></td>
+                <td><%=goods[i].gr %></td>
+                <td><%=goods[i].role %></td>
+                <td><%=goods[i].bday %></td>
+            </tr>
+        <%} %>
+        
+    </table>
+    <div class="info">
+        Успешно добавлено
+    </div>
     <div class="form_addperson_block">
         <div class="form_addperson_block_content">
             <div class="size">
                 <p id="name">Добавление нового пользователя</p>
-                <form class="form_addperson_style" action="/addpersone" method="post">
+                <form id="form" class="form_addperson_style" action="/addpersone" method="post">
                     <div class="area">
                         <label>ФИО</label>
-                        <input type="text" name="add_fio" placeholder="ФИО" required>
+                        <input type="text" name="add_fio" placeholder="ФИО" required >
                     </div>
                     <div class="area">
                         <label>Адрес электронной почты</label>
@@ -68,7 +86,37 @@
         </div>
     </div>
 </body>
-<script>
+<!--<script>
+    form.onsubmit = async (e) => {
     
+    let data = new FormData(form) // Сборка формы 
+    console.log(data);
+    let url = '/addpersone';
+    fetch(url, {
+        method: 'post',
+        
+        body: data // Отправка самой формы
+    })
+        .then(response => response.json())
+        .then((json) => { // Ответ
+            if (json.id === 101) { // Для примера проверка пройдена если id === 101
+                // Добавление поля
+                let info = document.querySelector('.info');
+                info.style.display = 'block';
+                info.innerText = 'Удачно Отправлено'
+            }
+            // Дебаг узнать что прошла форма
+            console.log(json)
+        })
+        .catch(err => console.log(err));
+        e.preventDefault();
+}
+</script>-->
+<!--<script src="test.js" defer>
+    
+</script>-->
+<script>
+
 </script>
+
 </html>
