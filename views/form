@@ -1,0 +1,56 @@
+<div class="form_addperson_block">
+        <div class="form_addperson_block_content">
+            <div class="size">
+                <p id="name">Добавление нового пользователя</p>
+                <form id="form" class="form_addperson_style" action="/addpersone" method="post">
+                    <div class="area">
+                        <label>ФИО</label>
+                        <input type="text" name="add_fio" placeholder="ФИО" required>
+                    </div>
+                    <div class="area">
+                        <label>Адрес электронной почты</label>
+                        <input type="email" name="add_email" placeholder="Эл. почта" required>
+                    </div>
+                    <div class="area">
+                        <label>Логин</label>
+                        <input type="text" name="add_login" placeholder="Логин" required>
+                    </div>
+                    <div class="area">
+                        <label>Пароль</label>
+                        <input type="text" name="add_password" placeholder="Пароль" required>
+                    </div>
+                    <div class="area">
+                        <label>Группа</label>
+                        <input type="number" name="add_group" placeholder="Группа">
+                    </div>
+
+
+
+
+                    <div class="role-date">
+                        <div class="form-radio-group">
+                            <div class="form_radio_group-item">
+                                <label>Обучаемый</label>
+                                <input name="add_role" type="radio" checked value="1">
+                            </div>
+                            <div class="form_radio_group-item">
+                                <label>Преподаватель</label>
+
+                                <input name="add_role" type="radio" value="2">
+                            </div>
+                            <div class="form_radio_group-item">
+                                <label>Администратор</label>
+                                <input name="add_role" type="radio" value="3">
+                            </div>
+                        </div>
+                        <div class="area date">
+                            <label>Дата рождения</label>
+                            <input type="date" name="add_bday" placeholder="01.01.1991">
+                        </div>
+                    </div>
+                    <button class="form_addperson_button" type="submit"
+                        name="form_addperson_submit">Зарегистрировать</button>
+            </div>
+            </form>
+        </div>
+    </div>

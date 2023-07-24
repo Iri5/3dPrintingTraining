@@ -1,253 +1,25 @@
-body{
- 
-}
-.form_auth_block{
-    width: 500px;
-    height: 500px;
-    margin: 0 auto;
-    background: url(http://www.dailycompass.org/wp-content/uploads/2013/01/Bubbles.jpg);
-    background-size: cover;
-    border-radius: 4px;
-}
-.form_auth_block_content{
-  padding-top: 15%;
-}
-.form_auth_block_head_text{
-    display: block;
-    text-align: center;
-    padding: 10px;
-    font-size: 20px;
-    font-weight: 600;
-    background: #ffffff;
-    opacity: 0.7;
-}
-.form_auth_block label{
-    display: block;
-    text-align: center;
-    padding: 10px;
-    background: #ffffff;
-    opacity: 0.7;
-    font-weight: 600;
-    margin-bottom: 10px;
-    margin-top: 10px;
-}
-.form_auth_block input{
-  display: block;
-  margin: 0 auto;
-  width: 80%;
-  height: 45px;
-  border-radius: 10px;  
-  border:none;
-  outline: none;
-}
-input:focus {
-  color: #000000;
-  border-radius: 10px;
-  border: 2px solid #436fea;
-}
-.form_auth_button{
-    display: block;
-    width: 80%;
-    margin: 0 auto;
-    margin-top: 10px;
-    border-radius: 10px;
-    height: 35px;
-    border: none;
-    cursor: pointer;
-}
-::-webkit-input-placeholder {color:#3f3f44; padding-left: 10px;} // Это стили для placeholder
-::-moz-placeholder          {color:#3f3f44; padding-left: 10px;} // Это стили для placeholder
-:-moz-placeholder           {color:#3f3f44; padding-left: 10px;} // Это стили для placeholder
-:-ms-input-placeholder      {color:#3f3f44; padding-left: 10px;} // Это стили для placeholder
-.form_addperson_block {
-  display: flex;
-  justify-content: center;
-}
-.form_addperson_block_content {
-  width: 40%;
-}
-.form_addperson_block_head_text {
-}
-.form_addperson_style {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  column-gap: 5vh;
-  row-gap: 1vh;
-}
-.form_addperson_button {
-}
-
-#editorjs{
-  background-color: pink;
-}
-
-
 $base-color: #01BAB3;
 $base-color-trans: rgba(1, 186, 179, 0.1);
 
 $font-dark: black;
 $font-light: white;
 $w-form: 500px;
-$size:414px;
+$size: 414px;
 $fsize-main: 16px;
 $fsize-small: 14px;
 $fsize-big: 20px;
 $mtop: 15px;
 $in-height: 30px;
 
-@font-face {
-    font-family: 'Nunito';
-    font-weight: 400;
-    font-style: normal;
-    src: url('../fonts/static/Nunito-Regular.ttf');
-}
-
-@font-face {
-    font-family: 'Nunito';
-    font-weight: 500;
-    font-style: normal;
-    src: url('../fonts/static/Nunito-Medium.ttf');
-}
-
-@font-face {
-    font-family: 'Nunito';
-    font-weight: 700;
-    font-style: normal;
-    src: url('../fonts/static/Nunito-Bold.ttf');
-}
-* {
-    margin: 0;
-    block-size: border-box;
-    font-family: 'Nunito', sans-serif;
-    font-weight: 400;
-}
-
-
-
-.form_addperson_block {
-
+body {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    min-width: 100%;
+    height: 100vh;
+    background: rgb(124, 220, 216);
+    background: linear-gradient(90deg, rgba(124, 220, 216, 1) 0%, rgba(255, 255, 255, 1) 17%, rgba(1, 186, 179, 1) 39%, rgba(168, 243, 255, 1) 89%, rgba(0, 212, 255, 1) 100%);
 }
-
-.form_addperson_block_content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: 3px dashed $base-color;
-    border-radius: 15px;
-    width: $w-form;
-
-}
-
-#name {
-    font-size: $fsize-big;
-    color: $base-color;
-}
-.size {
-    width: $size;
-    margin-top: $mtop;
-    margin-bottom: $mtop;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.area {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    input {
-        max-width: 100%;
-        height: $in-height;
-        border-radius: 5px;
-        border: 1px solid $base-color;
-        font-size: $fsize-main;
-        padding-left: 25px;
-        color: $font-dark;
-    
-    }
-}
-
-
-
-.form_addperson_style {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-label {
-    font-size: $fsize-main;
-    margin-top: $mtop;
-}
-
-.role-date {
-    margin-top: $mtop;
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-justify-content: space-between;
-align-self: start;
-    .date {
-        align-self: start;
-        justify-self: center;
-        min-width: 158px;
-        max-width: 158px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        input {
-            max-width: 150px;
-            height: 25px;
-        }
-        label{
-            margin-top: 0;
-            margin-bottom: $mtop;
-        }
-    }
-}
-
-
-.form-radio-group {
-    display: flex;
-    flex-direction: column;
-    row-gap: 5px;
-    
-    input {
-        
-    }
-
-    label {
-    }
-}
-.form_radio_group-item{
-    border: 1px solid $base-color;
-    border-radius: 5px;
-    height: 25px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    column-gap: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
-    background-color: $base-color-trans;
-    label{
-        margin-top: 0;
-        color: $base-color;
-    }
-    
-        input:checked{
-            background-color: red;
-        }
-    
-}
-
-
-
 
 ::placeholder {
     color: $base-color;
@@ -261,10 +33,47 @@ align-self: start;
     outline: 0;
 }
 
+.form_auth_block {
+    width: 100vw;
+    height: 50%;
+    background-color: white;
+}
+
+.form_auth_block_content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form_auth_block_head_text {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.form_auth_block label {
+    display: block;
+    text-align: center;
+    font-weight: 600;
+}
+
+.form_auth_block input {
+    display: block;
+
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    max-width: 100%;
+    height: $in-height;
+    border-radius: 5px;
+    border: 1px solid $base-color;
+    font-size: $fsize-main;
+    padding-left: 25px;
+    color: $font-dark;
+}
 
 
-.form_addperson_button {
 
+.form_auth_button {
     width: 207px;
     height: 35px;
     border-radius: 5px;
@@ -273,4 +82,26 @@ align-self: start;
     color: $font-light;
     font-size: $fsize-main;
     margin-top: $mtop;
+    cursor: pointer;
 }
+
+::-webkit-input-placeholder {
+    color: $base-color;
+}
+
+// Это стили для placeholder
+::-moz-placeholder {
+    color: $base-color;
+}
+
+// Это стили для placeholder
+:-moz-placeholder {
+    color: $base-color;
+}
+
+// Это стили для placeholder
+:-ms-input-placeholder {
+    color: $base-color;
+}
+
+// Это стили для placeholder
