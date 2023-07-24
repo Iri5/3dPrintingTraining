@@ -30,19 +30,22 @@ app.get('/admin.html', (req, res) => {
         
         let arrLogin = [];
         data.forEach((item, index) => {
-            console.log((item.bday));
             let date = item.bday;
             if(date != null){
                 date = date.toISOString().split('T')[0];
                 item.bday = date;
             }
+            if(item.role == 1){
+                item.role = "Обучаемый";
+            } 
+            else if (item.role == 2){
+                item.role = "Преподаватель";
+            }
+            else if (item.role == 3){
+                item.role = "Администратор";
+            }
             
-            console.log(date);
-            /*let date = item.bday.toString.replace(/[-]/g, '/');  
-            date = Date.parse(date);
-            let jsDate = new Date(date);
-            item.bday=jsDate;
-            arrLogin.push(item.login);*/
+            arrLogin.push(item.login);
         });
         res.render('admin', {goods: data, logins: arrLogin});
 

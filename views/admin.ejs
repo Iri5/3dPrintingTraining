@@ -10,21 +10,41 @@
 </head>
 
 <body>
-   
+
     <h1>Это страница админа</h1>
+    <button id="myBtn">Добавить нового пользователя</button>
     <table>
-        <tr><th>Фамилия Имя Отчество</th><th>Email</th><th>Логин</th><th>Группа</th><th>Роль</th><th>Дата рождения</th></tr>
+        <tr>
+            <th>Фамилия Имя Отчество</th>
+            <th>Email</th>
+            <th>Логин</th>
+            <th>Группа</th>
+            <th>Роль</th>
+            <th>Дата рождения</th>
+        </tr>
         <% for(let i=0; i<goods.length; i++){ %>
             <tr>
-                <td><%=goods[i].fio %></td>
-                <td><%=goods[i].email %></td>
-                <td><%=goods[i].login %></td>
-                <td><%=goods[i].gr %></td>
-                <td><%=goods[i].role %></td>
-                <td><%=goods[i].bday %></td>
+                <td>
+                    <%=goods[i].fio %>
+                </td>
+                <td>
+                    <%=goods[i].email %>
+                </td>
+                <td>
+                    <%=goods[i].login %>
+                </td>
+                <td>
+                    <%=goods[i].gr %>
+                </td>
+                <td>
+                    <%=goods[i].role %>
+                </td>
+                <td>
+                    <%=goods[i].bday %>
+                </td>
             </tr>
-        <%} %>
-        
+            <%} %>
+
     </table>
     <div class="info">
         Успешно добавлено
@@ -36,7 +56,7 @@
                 <form id="form" class="form_addperson_style" action="/addpersone" method="post">
                     <div class="area">
                         <label>ФИО</label>
-                        <input type="text" name="add_fio" placeholder="ФИО" required >
+                        <input type="text" name="add_fio" placeholder="ФИО" required>
                     </div>
                     <div class="area">
                         <label>Адрес электронной почты</label>
@@ -85,6 +105,99 @@
             </form>
         </div>
     </div>
+
+
+    
+
+
+    <div id="myModal" class="modal ">
+        <div class="modal-content  form_addperson_block_content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>Шапка модального окна</h2>
+            </div>
+            <div class="modal-body">
+                <!--<p>Какой-то текст в теле модального окна</p>
+                <p>Ещё другой текст...</p>-->
+                
+                    <!--<div class="form_addperson_block_content">-->
+                        <div class="size">
+                            <p id="name">Добавление нового пользователя</p>
+                            <form id="form" class="form_addperson_style" action="/addpersone" method="post">
+                                <div class="area">
+                                    <label>ФИО</label>
+                                    <input type="text" name="add_fio" placeholder="ФИО" required>
+                                </div>
+                                <div class="area">
+                                    <label>Адрес электронной почты</label>
+                                    <input type="email" name="add_email" placeholder="Эл. почта" required>
+                                </div>
+                                <div class="area">
+                                    <label>Логин</label>
+                                    <input type="text" name="add_login" placeholder="Логин" required>
+                                </div>
+                                <div class="area">
+                                    <label>Пароль</label>
+                                    <input type="text" name="add_password" placeholder="Пароль" required>
+                                </div>
+                                <div class="area">
+                                    <label>Группа</label>
+                                    <input type="number" name="add_group" placeholder="Группа">
+                                </div>
+            
+            
+            
+            
+                                <div class="role-date">
+                                    <div class="form-radio-group">
+                                        <div class="form_radio_group-item">
+                                            <label>Обучаемый</label>
+                                            <input name="add_role" type="radio" checked value="1">
+                                        </div>
+                                        <div class="form_radio_group-item">
+                                            <label>Преподаватель</label>
+            
+                                            <input name="add_role" type="radio" value="2">
+                                        </div>
+                                        <div class="form_radio_group-item">
+                                            <label>Администратор</label>
+                                            <input name="add_role" type="radio" value="3">
+                                        </div>
+                                    </div>
+                                    <div class="area date">
+                                        <label>Дата рождения</label>
+                                        <input type="date" name="add_bday" placeholder="01.01.1991">
+                                    </div>
+                                </div>
+                                <button class="form_addperson_button" type="submit"
+                                    name="form_addperson_submit">Зарегистрировать</button>
+                        </div>
+                        </form>
+                    <!--</div>-->
+                
+            </div>
+            <div class="modal-footer">
+                <h3>Футер модального окна</h3>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let modal = document.getElementById('myModal');
+        let btn = document.getElementById("myBtn");
+        let span = document.getElementsByClassName("close")[0];
+        btn.onclick = function () {
+            modal.style.display = "block";
+        }
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
 </body>
 <!--<script>
     form.onsubmit = async (e) => {
@@ -115,8 +228,7 @@
 <!--<script src="test.js" defer>
     
 </script>-->
-<script>
 
-</script>
+
 
 </html>
