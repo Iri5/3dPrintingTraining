@@ -22,11 +22,36 @@ app.use(express.static('public'))
 app.get('/', (req, res) => {
     res.render('index');
 })
-app.get('/index', (req, res) => {
+app.get('/index.html', (req, res) => {
     res.render('index');
 })
-app.get('/admin', (req, res) => {
-    res.render('admin');
+app.get('/admin.html', (req, res) => {
+    let query = "SELECT fio, email, login, gr, role, bday FROM us.user;"
+    pool.query(query,  function (err, data) {
+        if (err) return console.log(err);
+        
+        let arrLogin = [];
+        data.forEach((item, index) => {
+            let date = item.bday;
+            if(date != null){
+                date = date.toISOString().split('T')[0];
+                item.bday = date;
+            }
+            if(item.role == 1){
+                item.role = "Обучаемый";
+            } 
+            else if (item.role == 2){
+                item.role = "Преподаватель";
+            }
+            else if (item.role == 3){
+                item.role = "Администратор";
+            }
+            
+            arrLogin.push(item.login);
+        });
+        res.render('admin', {goods: data, logins: arrLogin});
+
+    });
 })
 app.get('/teac', (req, res) => {
     res.render('teac');
