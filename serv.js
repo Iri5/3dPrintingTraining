@@ -5,6 +5,8 @@ const urlencodedParser = express.urlencoded({ extended: false });
 const jsonParser = express.json();
 const mysql = require('mysql2');
 const { dirname } = require('path');
+const bodyParser = require("body-parser");
+app.use(bodyParser.text({ type: "application/json" }));
 
 const pool = mysql.createPool({
     host: 'localhost',
@@ -20,49 +22,27 @@ app.use(express.static('public'))
 app.get('/', (req, res) => {
     res.render('index');
 })
-app.get('/index.html', (req, res) => {
+app.get('/index', (req, res) => {
     res.render('index');
 })
-app.get('/admin.html', (req, res) => {
-    let query = "SELECT fio, email, login, gr, role, bday FROM us.user;"
-    pool.query(query,  function (err, data) {
-        if (err) return console.log(err);
-        
-        let arrLogin = [];
-        data.forEach((item, index) => {
-            let date = item.bday;
-            if(date != null){
-                date = date.toISOString().split('T')[0];
-                item.bday = date;
-            }
-            if(item.role == 1){
-                item.role = "Обучаемый";
-            } 
-            else if (item.role == 2){
-                item.role = "Преподаватель";
-            }
-            else if (item.role == 3){
-                item.role = "Администратор";
-            }
-            
-            arrLogin.push(item.login);
-        });
-        res.render('admin', {goods: data, logins: arrLogin});
-
-    });
+app.get('/admin', (req, res) => {
+    res.render('admin');
+})
+app.get('/teac', (req, res) => {
+    res.render('teac');
 })
 app.post('/auth', urlencodedParser, (req, res) => {
     if (!req.body) return res.sendStatus(400);
-    
+
     let query = "SELECT role FROM us.user where login = ? and pass = ?;"
     pool.query(query, [req.body.auth_login, req.body.auth_pass], function (err, data) {
         if (err) return console.log(err);
-        
+
         if (data.length != 0) {
             if (data[0].role == 3) {
-                res.redirect('/admin.html');
+                res.render('admin');
             } else if (data[0].role == 2) {
-                res.render( 'teac');
+                res.render('teac');
             } else if (data[0].role == 1) {
                 res.render('user');
             }
@@ -81,42 +61,41 @@ app.post('/addpersone', urlencodedParser, (req, res) => {
     }
     console.log(req.body);
     console.log(req.body.add_group);
-    console.log(req.body.auth_login);
-    
+    //console.log(req.body.auth_login);
+
     let query = "INSERT INTO us.user (fio, email, login, pass, gr, role, bday) VALUES (?, ?, ?, ?, ?, ?, ?);"
-    if( (req.body.add_group == '') && (req.body.add_bday == '')){
+    if ((req.body.add_group == '') && (req.body.add_bday == '')) {
         query = "INSERT INTO us.user (fio, email, login, pass, role) VALUES (?, ?, ?, ?, ?);"
         pool.query(query, [req.body.add_fio, req.body.add_email, req.body.add_login, req.body.add_password, req.body.add_role], function (err, data) {
             if (err) return console.log(err);
 
             console.log(data);
-            res.redirect('/admin.html');
+            res.send({ id: 101 });
         });
     } else
-    if ( (req.body.add_group == '') && (req.body.add_bday != '')){
-        query = "INSERT INTO us.user (fio, email, login, pass, role, bday) VALUES (?, ?, ?, ?, ?, ?);";
-        pool.query(query, [req.body.add_fio, req.body.add_email, req.body.add_login, req.body.add_password, req.body.add_role, req.body.add_bday], function (err, data) {
-            if (err) return console.log(err);
-            console.log(data);
-            res.redirect('/admin.html');
-        });
-    } else
-    if ( (req.body.add_group != '') && (req.body.add_bday == '')){
-        console.log("xdfcgjnkj hgfdghkljh")
-        query = "INSERT INTO us.user (fio, email, login, pass, gr, role) VALUES (?, ?, ?, ?, ?, ?);";
-        pool.query(query, [req.body.add_fio, req.body.add_email, req.body.add_login, req.body.add_password, req.body.add_group, req.body.add_role], function (err, data) {
-            if (err) return console.log(err);
-            console.log(data);
-            res.redirect('/admin.html');
-        });
-    } else {
-        pool.query(query, [req.body.add_fio, req.body.add_email, req.body.add_login, req.body.add_password, req.body.add_group, req.body.add_role, req.body.add_bday], function (err, data) {
-            if (err) return console.log(err);
-            console.log(data);
-            res.redirect('/admin.html');
-        });
-    }
-    
+        if ((req.body.add_group == '') && (req.body.add_bday != '')) {
+            query = "INSERT INTO us.user (fio, email, login, pass, role, bday) VALUES (?, ?, ?, ?, ?, ?);";
+            pool.query(query, [req.body.add_fio, req.body.add_email, req.body.add_login, req.body.add_password, req.body.add_role, req.body.add_bday], function (err, data) {
+                if (err) return console.log(err);
+                console.log(data);
+
+            });
+        } else
+            if ((req.body.add_group != '') && (req.body.add_bday == '')) {
+                query = "INSERT INTO us.user (fio, email, login, pass, group, role) VALUES (?, ?, ?, ?, ?, ?);";
+                pool.query(query, [req.body.add_fio, req.body.add_email, req.body.add_login, req.body.add_password, req.body.add_group, req.body.add_role], function (err, data) {
+                    if (err) return console.log(err);
+                    console.log(data);
+
+                });
+            } else {
+                pool.query(query, [req.body.add_fio, req.body.add_email, req.body.add_login, req.body.add_password, req.body.add_group, req.body.add_role, req.body.add_bday], function (err, data) {
+                    if (err) return console.log(err);
+                    console.log(data);
+
+                });
+            }
+
 })
 //vet
 app.get('/chart', (req, res) => {
@@ -181,7 +160,7 @@ app.post('/curse', urlencodedParser, (req, res) => {
     console.log("dsdsvd");
     console.log(req.body);
     let b = " " + req.body + " ";
-    let path = __dirname + '/test.txt' ;
+    let path = __dirname + '/test.txt';
     fs.writeFile(path, b, (err) => {
         if (err) {
             console.error(err)
@@ -190,6 +169,27 @@ app.post('/curse', urlencodedParser, (req, res) => {
         //файл записан успешно
     })
 
+})
+app.post('/teac', (req, res) => {
+    console.log("file");
+    let result
+    if (req.body) {
+        result = req.body;
+    }
+    else {
+        res.sendStatus(400);
+    }
+    const file = fs.createWriteStream("file.json");
+    let b = " " + req.body + " ";
+    let path = __dirname + '/test.txt';
+    fs.writeFile(path, b, (err) => {
+        if (err) {
+            console.error(err)
+            return
+        }
+        //файл записан успешно
+    })
+    res.sendStatus(200);
 })
 app.post('/upload', (req, res) => {
     console.log("here");
@@ -215,4 +215,3 @@ app.post('/upload', (req, res) => {
     //res.sendStatus(200);
     res.location = "../upload/" + req.files.file.name;
 });
-
