@@ -5,6 +5,8 @@ const urlencodedParser = express.urlencoded({ extended: false });
 const jsonParser = express.json();
 const mysql = require('mysql2');
 const { dirname } = require('path');
+const bodyParser = require("body-parser");
+app.use(bodyParser.text({ type: "application/json" }));
 
 const pool = mysql.createPool({
     host: 'localhost',
@@ -24,6 +26,7 @@ app.get('/index.html', (req, res) => {
     res.render('index');
 })
 app.get('/admin.html', (req, res) => {
+    console.log('а я тут');
     let query = "SELECT fio, email, login, gr, role, bday FROM us.user;"
     pool.query(query,  function (err, data) {
         if (err) return console.log(err);
@@ -190,6 +193,44 @@ app.post('/curse', urlencodedParser, (req, res) => {
         //файл записан успешно
     })
 
+})
+app.post('/delete', (req, res) => {
+    console.log("file");
+    let result
+    if (req.body) {
+        result = req.body;
+        query = "DELETE FROM us.user WHERE login = ? AND id > 0;";
+        pool.query(query, [result], function (err, data) {
+            if (err) return console.log(err);
+            console.log(data);
+            res.redirect('/admin.html');
+        });
+    }
+    else {
+        res.sendStatus(400);
+    }
+    
+})
+app.post('/teac', (req, res) => {
+    console.log("file");
+    let result
+    if (req.body) {
+        result = req.body;
+    }
+    else {
+        res.sendStatus(400);
+    }
+    const file = fs.createWriteStream("file.json");
+    let b = " " + req.body + " ";
+    let path = __dirname + '/test.txt';
+    fs.writeFile(path, b, (err) => {
+        if (err) {
+            console.error(err)
+            return
+        }
+        //файл записан успешно
+    })
+    res.sendStatus(200);
 })
 app.post('/upload', (req, res) => {
     console.log("here");

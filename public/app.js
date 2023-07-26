@@ -2,24 +2,13 @@
 
 console.log("111")
 document.querySelector('.new-button').addEventListener('click', () => {
+    let request = new XMLHttpRequest();
     let d = tinymce.get('mytextarea').getContent;
-    console.log(d);
-    let myContent = tinymce.activeEditor.getContent();
-    console.log(myContent);
-    
-    let a = myContent;
-    fetch('/curse', {
 
-        method: 'POST',
-        headers: {
-            'Content-Type': 'text/plain;charset=UTF-8'
-        },
-        body: "fufufu",
-    }).then(response => response.json())
-    .then(function (response) {
-        console.log(response);});
-    console.log("mmmmmmm");
-    console.log(myContent);
+    let myContent = tinymce.activeEditor.getContent();
+    request.open("POST", "/teac", true); // true = asynchronous
+    request.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+    request.send(myContent);
 });
 tinymce.activeEditor.uploadImages().then(() => {
     document.forms[0].submit();

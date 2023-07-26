@@ -39,7 +39,7 @@
 }
 
 #name {
-  font-size: 20px;
+  font-size: 24px;
   color: #01BAB3;
 }
 
@@ -62,7 +62,7 @@
   height: 30px;
   border-radius: 5px;
   border: 1px solid #01BAB3;
-  font-size: 16px;
+  font-size: 20px;
   padding-left: 25px;
   color: black;
 }
@@ -75,7 +75,7 @@
 }
 
 label {
-  font-size: 16px;
+  font-size: 20px;
   margin-top: 15px;
 }
 
@@ -155,7 +155,7 @@ label {
   border: 1px solid #01BAB3;
   background: #01BAB3;
   color: white;
-  font-size: 16px;
+  font-size: 20px;
   margin-top: 15px;
 }
 
@@ -167,16 +167,15 @@ label {
 }
 
 table {
-  font-size: 14px;
+  font-size: 20px;
   border-radius: 10px;
   border-spacing: 0;
   text-align: center;
 }
 
 th {
-  background: #BCEBDD;
+  background: #01BAB3;
   color: white;
-  text-shadow: 0 1px 1px #2D2020;
   padding: 10px 20px;
 }
 
@@ -201,7 +200,7 @@ th:last-child {
 
 td {
   padding: 10px 20px;
-  background: #F8E391;
+  background: rgba(1, 186, 179, 0.1);
 }
 
 tr:last-child td:first-child {

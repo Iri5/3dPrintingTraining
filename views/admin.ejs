@@ -13,7 +13,7 @@
 
     <h1>Это страница админа</h1>
     <button id="myBtn">Добавить нового пользователя</button>
-    <table>
+    <table id="users">
         <tr>
             <th>Фамилия Имя Отчество</th>
             <th>Email</th>
@@ -42,6 +42,12 @@
                 <td>
                     <%=goods[i].bday %>
                 </td>
+                <td>
+                    <button data-action="delete">Удалить</button>
+                </td>
+                <td>
+                    <button data-action="edit">Редактировать</button>
+                </td>
             </tr>
             <%} %>
 
@@ -49,9 +55,9 @@
     <div class="info">
         Успешно добавлено
     </div>
-    
 
-    
+
+
 
 
     <div id="myModal" class="modal ">
@@ -63,59 +69,59 @@
             <div class="modal-body">
                 <!--<p>Какой-то текст в теле модального окна</p>
                 <p>Ещё другой текст...</p>-->
-                
-                    <!--<div class="form_addperson_block_content">-->
-                        <div class="size">
-                            <p id="name">Добавление нового пользователя</p>
-                            <form id="form" class="form_addperson_style" action="/addpersone" method="post">
-                                <div class="area">
-                                    <label>ФИО</label>
-                                    <input type="text" name="add_fio" placeholder="ФИО" required>
-                                </div>
-                                <div class="area">
-                                    <label>Адрес электронной почты</label>
-                                    <input type="email" name="add_email" placeholder="Эл. почта" required>
-                                </div>
-                                <div class="area">
-                                    <label>Логин</label>
-                                    <input type="text" name="add_login" placeholder="Логин" required>
-                                </div>
-                                <div class="area">
-                                    <label>Пароль</label>
-                                    <input type="text" name="add_password" placeholder="Пароль" required>
-                                </div>
-                                <div class="area">
-                                    <label>Группа</label>
-                                    <input type="number" name="add_group" placeholder="Группа">
-                                </div>
-                                <div class="role-date">
-                                    <div class="form-radio-group">
-                                        <div class="form_radio_group-item">
-                                            <label>Обучаемый</label>
-                                            <input name="add_role" type="radio" checked value="1">
-                                        </div>
-                                        <div class="form_radio_group-item">
-                                            <label>Преподаватель</label>
-            
-                                            <input name="add_role" type="radio" value="2">
-                                        </div>
-                                        <div class="form_radio_group-item">
-                                            <label>Администратор</label>
-                                            <input name="add_role" type="radio" value="3">
-                                        </div>
-                                    </div>
-                                    <div class="area date">
-                                        <label>Дата рождения</label>
-                                        <input type="date" name="add_bday" placeholder="01.01.1991">
-                                    </div>
-                                </div>
-                                <button class="form_addperson_button" type="submit"
-                                    name="form_addperson_submit">Зарегистрировать</button>
+
+                <!--<div class="form_addperson_block_content">-->
+                <div class="size">
+                    <p id="name">Добавление нового пользователя</p>
+                    <form id="form" class="form_addperson_style" action="/addpersone" method="post">
+                        <div class="area">
+                            <label>ФИО</label>
+                            <input type="text" name="add_fio" placeholder="ФИО" required>
                         </div>
-                        </form>
-                    <!--</div>-->
+                        <div class="area">
+                            <label>Адрес электронной почты</label>
+                            <input type="email" name="add_email" placeholder="Эл. почта" required>
+                        </div>
+                        <div class="area">
+                            <label>Логин</label>
+                            <input id="mylogin" type="text" name="add_login" placeholder="Логин" required value="">
+                        </div>
+                        <div class="area">
+                            <label>Пароль</label>
+                            <input type="text" name="add_password" placeholder="Пароль" required>
+                        </div>
+                        <div class="area">
+                            <label>Группа</label>
+                            <input id="mygroup" type="number" name="add_group" placeholder="Группа">
+                        </div>
+                        <div class="role-date">
+                            <div class="form-radio-group">
+                                <div class="form_radio_group-item">
+                                    <label>Обучаемый</label>
+                                    <input name="add_role" type="radio" checked value="1">
+                                </div>
+                                <div class="form_radio_group-item">
+                                    <label>Преподаватель</label>
+
+                                    <input name="add_role" type="radio" value="2">
+                                </div>
+                                <div class="form_radio_group-item">
+                                    <label>Администратор</label>
+                                    <input name="add_role" type="radio" value="3">
+                                </div>
+                            </div>
+                            <div class="area date">
+                                <label>Дата рождения</label>
+                                <input type="date" name="add_bday" placeholder="01.01.1991">
+                            </div>
+                        </div>
+                        <button class="form_addperson_button" type="submit"
+                            name="form_addperson_submit">Зарегистрировать</button>
+                </div>
+                </form>
+                <!--</div>-->
             </div>
-            
+
         </div>
     </div>
 
@@ -134,34 +140,147 @@
                 modal.style.display = "none";
             }
         }
+
     </script>
-</body>
-<!--<script>
-    form.onsubmit = async (e) => {
-    
-    let data = new FormData(form) // Сборка формы 
-    console.log(data);
-    let url = '/addpersone';
-    fetch(url, {
-        method: 'post',
-        
-        body: data // Отправка самой формы
-    })
-        .then(response => response.json())
-        .then((json) => { // Ответ
-            if (json.id === 101) { // Для примера проверка пройдена если id === 101
-                // Добавление поля
-                let info = document.querySelector('.info');
-                info.style.display = 'block';
-                info.innerText = 'Удачно Отправлено'
+    <script defer>
+        class Menu {
+            constructor(elem) {
+                this._elem = elem;
+                elem.onclick = this.onClick.bind(this); // (*)
             }
-            // Дебаг узнать что прошла форма
-            console.log(json)
-        })
-        .catch(err => console.log(err));
+
+            delete(elemPar) {
+                let login = elemPar.children[2].innerHTML
+                alert('удаляю');
+                login = login.trim();
+                console.log("_"+login+"_");
+                let request = new XMLHttpRequest();
+                request.open("POST", "/delete", true); // true = asynchronous
+                request.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+                request.send(login);
+            }
+
+            load() {
+                alert('загружаю');
+            }
+
+            search() {
+                alert('ищу');
+            }
+
+            onClick(event) {
+                let action = event.target.dataset.action;
+                let elemPar = event.target.parentElement.parentElement;
+                if (action) {
+                    this[action](elemPar);
+                }
+            }
+        }
+
+        new Menu(users);
+    </script>
+    <div id="myModal1" class="modal ">
+        <div class="modal-content  form_addperson_block_content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>Пользователь с данным логином существует</h2>
+            </div>
+            <div class="modal-body">
+                <!--<p>Какой-то текст в теле модального окна</p>
+                <p>Ещё другой текст...</p>-->
+
+
+            </div>
+
+        </div>
+    </div>
+    <div id="myModal2" class="modal ">
+        <div class="modal-content  form_addperson_block_content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>У обучаемого должна быть группа</h2>
+            </div>
+            <div class="modal-body">
+                <!--<p>Какой-то текст в теле модального окна</p>
+                <p>Ещё другой текст...</p>-->
+
+
+            </div>
+
+        </div>
+    </div>
+
+</body>
+<script>
+    form.onsubmit = async (e) => {
+        let login = document.getElementById('mylogin');
+        console.log(login.value);
+        let arrlogins = ("<%= logins %>");
+        let arrayOfStrings = arrlogins.split(",");
+        if (arrayOfStrings.includes(login.value)) {
+            console.log("я нашел");
+            let modal = document.getElementById('myModal1');
+            modal.style.display = "block";
+            let span = document.getElementsByClassName("close")[1];
+
+            span.onclick = function () {
+                modal.style.display = "none";
+            }
+            window.onclick = function (event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+        } else {
+            console.log("я не нашел");
+            let role = document.querySelector('input[name="add_role"]:checked').value;
+            console.log(role);
+            let group = document.getElementById('mygroup');
+            if ((role == '1') && (group.value == "")) {
+                alert("фуфуфу")
+                let modal = document.getElementById('myModal2');
+                modal.style.display = "block";
+                let span = document.getElementsByClassName("close")[2];
+
+                span.onclick = function () {
+                    modal.style.display = "none";
+                }
+                window.onclick = function (event) {
+                    if (event.target == modal) {
+                        modal.style.display = "none";
+                    }
+                }
+            }
+            else {
+                form.submit();
+            }
+            //form.submit();
+        }
+        console.log((arrayOfStrings));
         e.preventDefault();
-}
-</script>-->
+        /*let data = new FormData(form) // Сборка формы 
+        console.log(data);
+        let url = '/addpersone';
+        fetch(url, {
+            method: 'post',
+            
+            body: data // Отправка самой формы
+        })
+            .then(response => response.json())
+            .then((json) => { // Ответ
+                if (json.id === 101) { // Для примера проверка пройдена если id === 101
+                    // Добавление поля
+                    let info = document.querySelector('.info');
+                    info.style.display = 'block';
+                    info.innerText = 'Удачно Отправлено'
+                }
+                // Дебаг узнать что прошла форма
+                console.log(json)
+            })
+            .catch(err => console.log(err));
+            e.preventDefault();*/
+    }
+</script>
 <!--<script src="test.js" defer>
     
 </script>-->
