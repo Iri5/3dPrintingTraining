@@ -196,14 +196,16 @@ app.post('/curse', urlencodedParser, (req, res) => {
 })
 app.post('/delete', (req, res) => {
     console.log("file");
+    
     let result
     if (req.body) {
         result = req.body;
+        
         query = "DELETE FROM us.user WHERE login = ? AND id > 0;";
         pool.query(query, [result], function (err, data) {
             if (err) return console.log(err);
             console.log(data);
-            res.redirect('/admin.html');
+            res.redirect('admin.html');
         });
     }
     else {

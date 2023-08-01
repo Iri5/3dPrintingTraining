@@ -125,6 +125,8 @@
         </div>
     </div>
 
+
+
     <script>
         let modal = document.getElementById('myModal');
         let btn = document.getElementById("myBtn");
@@ -153,15 +155,71 @@
                 let login = elemPar.children[2].innerHTML
                 alert('удаляю');
                 login = login.trim();
-                console.log("_"+login+"_");
-                let request = new XMLHttpRequest();
-                request.open("POST", "/delete", true); // true = asynchronous
-                request.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
-                request.send(login);
+                console.log("_" + login + "_");
+                fetch('/delete', {
+                    method: 'POST',
+                    headers: {
+                        "Content-Type": "application/json; charset=UTF-8"
+                    },
+                    body: login
+                })
+                    .then(function () {
+                        console.log("я обновляю");
+                        document.location.reload;
+                        console.log("я обновил");
+                        fetch("/admin.html");
+                    });
+                //let request = new XMLHttpRequest();
+                //request.open("POST", "/delete", true); // true = asynchronous
+                //request.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+                //request.send(login);
             }
 
-            load() {
-                alert('загружаю');
+            edit(elemPar) {
+                let arr = {
+                    name: elemPar.children[0].innerHTML.trim(),
+                    email: elemPar.children[1].innerHTML.trim(),
+                    login: elemPar.children[2].innerHTML.trim(),
+                    group: elemPar.children[3].innerHTML.trim(),
+                    role: elemPar.children[4].innerHTML.trim(),
+                    date: elemPar.children[5].innerHTML.trim()
+                }
+                console.log(arr.name);
+                console.log(arr.email);
+                console.log(arr.login);
+                console.log(arr.group);
+                console.log(arr.role);
+                console.log(arr.date);
+
+                let modal = document.getElementById('myModal_edit');
+                let form = document.forms.my;
+                console.log(form.elements.role[0]);
+                form.elements.fio.value = arr.name;
+                form.elements.email.value = arr.email;
+                form.elements.login.value = arr.login;
+                form.elements.group.value = arr.group;
+                if (arr.role == "Обучаемый") {
+                    form.elements.role[0].checked = true;
+                } else if (arr.role == "Преподаватель") {
+                    form.elements.role[1].checked = true;
+                } else {
+                    form.elements.role[2].checked = true;
+                }
+
+
+                //form.elements.role.value = arr.role;
+                form.elements.bday.value = arr.date;
+                modal.style.display = "block";
+                let span = document.getElementsByClassName("close")[3];
+
+                span.onclick = function () {
+                    modal.style.display = "none";
+                }
+                window.onclick = function (event) {
+                    if (event.target == modal) {
+                        modal.style.display = "none";
+                    }
+                }
             }
 
             search() {
@@ -209,7 +267,67 @@
 
         </div>
     </div>
+    <div id="myModal_edit" class="modal ">
+        <div class="modal-content  form_addperson_block_content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>Шапка модального окна</h2>
+            </div>
+            <div class="modal-body">
+                <!--<p>Какой-то текст в теле модального окна</p>
+                <p>Ещё другой текст...</p>-->
 
+                <!--<div class="form_addperson_block_content">-->
+                <div class="size">
+                    <p id="name">Редактирование пользователя</p>
+                    <form id="form_ed" name="my" class="form_addperson_style" action="/addpersone" method="post">
+                        <div class="area">
+                            <label>ФИО</label>
+                            <input type="text" name="fio" placeholder="ФИО" required>
+                        </div>
+                        <div class="area">
+                            <label>Адрес электронной почты</label>
+                            <input type="email" name="email" placeholder="Эл. почта" required>
+                        </div>
+                        <div class="area">
+                            <label>Логин</label>
+                            <input id="mylogin" type="text" name="login" placeholder="Логин" required value="">
+                        </div>
+
+                        <div class="area">
+                            <label>Группа</label>
+                            <input id="mygroup" type="number" name="group" placeholder="Группа">
+                        </div>
+                        <div class="role-date">
+                            <div class="form-radio-group">
+                                <div class="form_radio_group-item">
+                                    <label>Обучаемый</label>
+                                    <input name="role" type="radio" checked value="1">
+                                </div>
+                                <div class="form_radio_group-item">
+                                    <label>Преподаватель</label>
+
+                                    <input name="role" type="radio" value="2">
+                                </div>
+                                <div class="form_radio_group-item">
+                                    <label>Администратор</label>
+                                    <input name="role" type="radio" value="3">
+                                </div>
+                            </div>
+                            <div class="area date">
+                                <label>Дата рождения</label>
+                                <input type="date" name="bday" placeholder="01.01.1991">
+                            </div>
+                        </div>
+                        <button class="form_addperson_button" type="submit"
+                            name="form_addperson_submit">Зарегистрировать</button>
+                </div>
+                </form>
+                <!--</div>-->
+            </div>
+
+        </div>
+    </div>
 </body>
 <script>
     form.onsubmit = async (e) => {
