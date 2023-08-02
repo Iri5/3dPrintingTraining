@@ -165,6 +165,9 @@ app.post('/editpersone', urlencodedParser, (req, res) => {
     }
     
 })
+app.post('/mydata', urlencodedParser, (req, res) => {
+console.log("я зашел в отправку формы")
+})
 //vet
 app.get('/chart', (req, res) => {
     let query = "select  section.sec_title, count(*) as c from click join services on click.ser_id = services.id join section on section.id = services.sec_id group by sec_title";
@@ -268,7 +271,7 @@ app.post('/teac', (req, res) => {
     }
     const file = fs.createWriteStream("file.json");
     let b = " " + req.body + " ";
-    let path = __dirname + '/test.txt';
+    let path = __dirname + '/test.ejs';
     fs.writeFile(path, b, (err) => {
         if (err) {
             console.error(err)
@@ -292,14 +295,15 @@ app.post('/upload', (req, res) => {
     // Move the uploaded image to our upload folder
     console.log("img");
     console.log(req.files.file);
-    req.files.file.mv(__dirname + '/upload/' + req.files.file.name);
+    req.files.file.mv(__dirname + '/public/upload/' + req.files.file.name);
     let ans = {
-        "location": "../upload/" + req.files.file.name,
+        "location": "/public/upload/" + req.files.file.name,
     }
     let json1 = JSON.stringify(ans);
 
     // All good
     //res.sendStatus(200);
-    res.location = "../upload/" + req.files.file.name;
+    res.send(json1);
+    ///res.location = "../upload/" + req.files.file.name;
 });
 

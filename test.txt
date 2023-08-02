@@ -1,1 +1,1 @@
- [object Object] 
+ <p><img src="public/upload/cat.jpg" alt="" width="100" height="100">Hello, World!<img src="https://avatars.mds.yandex.net/i?id=a4357d2e03de84f6ff88491b4b1793a4_l-5226442-images-thumbs&amp;n=13" width="312" height="207">&nbsp;&nbsp;</p> 
