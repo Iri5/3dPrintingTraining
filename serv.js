@@ -25,6 +25,9 @@ app.get('/', (req, res) => {
 app.get('/index.html', (req, res) => {
     res.render('index');
 })
+app.get('/addcurse', (req, res) => {
+    res.render('addcurse');
+})
 app.get('/admin.html', (req, res) => {
     console.log('а я тут');
     let query = "SELECT fio, email, login, gr, role, bday FROM us.user;"
