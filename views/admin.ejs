@@ -56,10 +56,6 @@
         Успешно добавлено
     </div>
 
-
-
-
-
     <div id="myModal" class="modal ">
         <div class="modal-content  form_addperson_block_content">
             <div class="modal-header">
@@ -124,7 +120,98 @@
 
         </div>
     </div>
+    <div id="myModal1" class="modal ">
+        <div class="modal-content  form_addperson_block_content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>Пользователь с данным логином существует</h2>
+            </div>
+            <div class="modal-body">
+                <!--<p>Какой-то текст в теле модального окна</p>
+                <p>Ещё другой текст...</p>-->
 
+
+            </div>
+
+        </div>
+    </div>
+    <div id="myModal2" class="modal ">
+        <div class="modal-content  form_addperson_block_content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>У обучаемого должна быть группа</h2>
+            </div>
+            <div class="modal-body">
+                <!--<p>Какой-то текст в теле модального окна</p>
+                <p>Ещё другой текст...</p>-->
+
+
+            </div>
+
+        </div>
+    </div>
+    <div id="myModal_edit" class="modal ">
+        <div class="modal-content  form_addperson_block_content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>Шапка модального окна</h2>
+            </div>
+            <div class="modal-body">
+                <!--<p>Какой-то текст в теле модального окна</p>
+                <p>Ещё другой текст...</p>-->
+
+                <!--<div class="form_addperson_block_content">-->
+                <div class="size">
+                    <p id="name">Редактирование пользователя</p>
+                    <form id="form_ed" name="my" class="form_addperson_style" action="/editpersone" method="post">
+                        <input id="cur_log" type="text" name="current" placeholder="ФИО" style="display: none;">
+                        <div class="area">
+                            <label>ФИО</label>
+                            <input type="text" name="fio" placeholder="ФИО" required>
+                        </div>
+                        <div class="area">
+                            <label>Адрес электронной почты</label>
+                            <input type="email" name="email" placeholder="Эл. почта" required>
+                        </div>
+                        <div class="area">
+                            <label>Логин</label>
+                            <input id="mylogin" type="text" name="login" placeholder="Логин" required value="">
+                        </div>
+
+                        <div class="area">
+                            <label>Группа</label>
+                            <input id="mygroup" type="number" name="group" placeholder="Группа">
+                        </div>
+                        <div class="role-date">
+                            <div class="form-radio-group">
+                                <div class="form_radio_group-item">
+                                    <label>Обучаемый</label>
+                                    <input name="role" type="radio" checked value="1">
+                                </div>
+                                <div class="form_radio_group-item">
+                                    <label>Преподаватель</label>
+
+                                    <input name="role" type="radio" value="2">
+                                </div>
+                                <div class="form_radio_group-item">
+                                    <label>Администратор</label>
+                                    <input name="role" type="radio" value="3">
+                                </div>
+                            </div>
+                            <div class="area date">
+                                <label>Дата рождения</label>
+                                <input type="date" name="bday" placeholder="01.01.1991">
+                            </div>
+                        </div>
+                        <button class="form_addperson_button" type="submit"
+                            name="form_addperson_submit">Зарегистрировать</button>
+                </div>
+                </form>
+                <!--</div>-->
+            </div>
+
+        </div>
+    </div>
 
 
     <script>
@@ -194,6 +281,7 @@
                 let modal = document.getElementById('myModal_edit');
                 let form = document.forms.my;
                 console.log(form.elements.role[0]);
+                form.elements.current.value = arr.login;
                 form.elements.fio.value = arr.name;
                 form.elements.email.value = arr.email;
                 form.elements.login.value = arr.login;
@@ -237,97 +325,7 @@
 
         new Menu(users);
     </script>
-    <div id="myModal1" class="modal ">
-        <div class="modal-content  form_addperson_block_content">
-            <div class="modal-header">
-                <span class="close">&times;</span>
-                <h2>Пользователь с данным логином существует</h2>
-            </div>
-            <div class="modal-body">
-                <!--<p>Какой-то текст в теле модального окна</p>
-                <p>Ещё другой текст...</p>-->
-
-
-            </div>
-
-        </div>
-    </div>
-    <div id="myModal2" class="modal ">
-        <div class="modal-content  form_addperson_block_content">
-            <div class="modal-header">
-                <span class="close">&times;</span>
-                <h2>У обучаемого должна быть группа</h2>
-            </div>
-            <div class="modal-body">
-                <!--<p>Какой-то текст в теле модального окна</p>
-                <p>Ещё другой текст...</p>-->
-
-
-            </div>
-
-        </div>
-    </div>
-    <div id="myModal_edit" class="modal ">
-        <div class="modal-content  form_addperson_block_content">
-            <div class="modal-header">
-                <span class="close">&times;</span>
-                <h2>Шапка модального окна</h2>
-            </div>
-            <div class="modal-body">
-                <!--<p>Какой-то текст в теле модального окна</p>
-                <p>Ещё другой текст...</p>-->
-
-                <!--<div class="form_addperson_block_content">-->
-                <div class="size">
-                    <p id="name">Редактирование пользователя</p>
-                    <form id="form_ed" name="my" class="form_addperson_style" action="/addpersone" method="post">
-                        <div class="area">
-                            <label>ФИО</label>
-                            <input type="text" name="fio" placeholder="ФИО" required>
-                        </div>
-                        <div class="area">
-                            <label>Адрес электронной почты</label>
-                            <input type="email" name="email" placeholder="Эл. почта" required>
-                        </div>
-                        <div class="area">
-                            <label>Логин</label>
-                            <input id="mylogin" type="text" name="login" placeholder="Логин" required value="">
-                        </div>
-
-                        <div class="area">
-                            <label>Группа</label>
-                            <input id="mygroup" type="number" name="group" placeholder="Группа">
-                        </div>
-                        <div class="role-date">
-                            <div class="form-radio-group">
-                                <div class="form_radio_group-item">
-                                    <label>Обучаемый</label>
-                                    <input name="role" type="radio" checked value="1">
-                                </div>
-                                <div class="form_radio_group-item">
-                                    <label>Преподаватель</label>
-
-                                    <input name="role" type="radio" value="2">
-                                </div>
-                                <div class="form_radio_group-item">
-                                    <label>Администратор</label>
-                                    <input name="role" type="radio" value="3">
-                                </div>
-                            </div>
-                            <div class="area date">
-                                <label>Дата рождения</label>
-                                <input type="date" name="bday" placeholder="01.01.1991">
-                            </div>
-                        </div>
-                        <button class="form_addperson_button" type="submit"
-                            name="form_addperson_submit">Зарегистрировать</button>
-                </div>
-                </form>
-                <!--</div>-->
-            </div>
-
-        </div>
-    </div>
+    
 </body>
 <script>
     form.onsubmit = async (e) => {

@@ -121,6 +121,50 @@ app.post('/addpersone', urlencodedParser, (req, res) => {
     }
     
 })
+
+app.post('/editpersone', urlencodedParser, (req, res) => {
+    console.log("я тут");
+    if (!req.body) {
+        console.log("я тут");
+        return res.sendStatus(400);
+    }
+    console.log(req.body);
+    
+    let query = "UPDATE us.user SET fio = ?, email = ?, login = ?, gr = ?, role = ?, bday = ? WHERE login = ? AND id > 0;"
+    if( (req.body.group == '') && (req.body.bday == '')){
+        query = "UPDATE us.user SET fio = ?, email = ?, login = ?, role = ? WHERE login = ? AND id > 0;"
+        pool.query(query, [req.body.fio, req.body.email, req.body.login, req.body.role, req.body.current], function (err, data) {
+            if (err) return console.log(err);
+
+            console.log(data);
+            res.redirect('/admin.html');
+        });
+    } else
+    if ( (req.body.group == '') && (req.body.bday != '')){
+        query = "UPDATE us.user SET fio = ?, email = ?, login = ?, role = ?, bday = ? WHERE login = ? AND id > 0;";
+        pool.query(query, [req.body.fio, req.body.email, req.body.login, req.body.role, req.body.bday, req.body.current], function (err, data) {
+            if (err) return console.log(err);
+            console.log(data);
+            res.redirect('/admin.html');
+        });
+    } else
+    if ( (req.body.group != '') && (req.body.bday == '')){
+        console.log("xdfcgjnkj hgfdghkljh")
+        query = "UPDATE us.user SET fio = ?, email = ?, login = ?, gr = ?, role = ? WHERE login = ? AND id > 0;";
+        pool.query(query, [req.body.fio, req.body.email, req.body.login, req.body.group, req.body.role, req.body.current], function (err, data) {
+            if (err) return console.log(err);
+            console.log(data);
+            res.redirect('/admin.html');
+        });
+    } else {
+        pool.query(query, [req.body.fio, req.body.email, req.body.login, req.body.group, req.body.role, req.body.bday, req.body.current], function (err, data) {
+            if (err) return console.log(err);
+            console.log(data);
+            res.redirect('/admin.html');
+        });
+    }
+    
+})
 //vet
 app.get('/chart', (req, res) => {
     let query = "select  section.sec_title, count(*) as c from click join services on click.ser_id = services.id join section on section.id = services.sec_id group by sec_title";
