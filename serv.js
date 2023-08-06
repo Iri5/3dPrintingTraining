@@ -69,18 +69,18 @@ app.post('/auth', urlencodedParser, (req, res) => {
                 res.redirect('/admin.html');
             } else if (data[0].role == 2) {
                 query = "SELECT title FROM us.course;"
-                pool.query(query,  function (err, data) {
+                pool.query(query, function (err, data) {
                     if (err) return console.log(err);
-            console.log(data);
+                    console.log(data);
                     if (data.length != 0) {
-                        res.render('teac', {courses: data});
+                        res.render('teac', { courses: data });
                     }
                     else {
                         res.redirect("/")
                     }
-            
+
                 });
-                
+
             } else if (data[0].role == 1) {
                 res.render('user');
             }
@@ -151,7 +151,24 @@ app.post('/addcurse', urlencodedParser, (req, res) => {
     pool.query(query, [req.body.title, req.body.description], function (err, data) {
         if (err) return console.log(err);
         console.log(data);
-        res.render('addcurse', { title: req.body.title, description: req.body.description });
+        res.render('addcurse', { title: req.body.title, description: req.body.description, currentId: data.insertId });
+    });
+
+
+})
+app.post('/getcoursebyid', urlencodedParser, (req, res) => {
+    console.log("я тут");
+    if (!req.body) {
+        console.log("я тут");
+        return res.sendStatus(400);
+    }
+
+    let query = "SELECT id FROM us.course WHERE title = ? ;"
+
+    pool.query(query, [req.body], function (err, data) {
+        if (err) return console.log(err);
+        let id = data[0].id;
+        res.send([id]);
     });
 
 
@@ -203,6 +220,7 @@ app.post('/mydata', urlencodedParser, (req, res) => {
     console.log("я зашел в отправку формы")
 })
 //vet
+
 app.get('/chart', (req, res) => {
     let query = "select  section.sec_title, count(*) as c from click join services on click.ser_id = services.id join section on section.id = services.sec_id group by sec_title";
     pool.query(query, function (err, data) {
@@ -263,7 +281,6 @@ app.post('/curse', urlencodedParser, (req, res) => {
     console.log("file");
     const file = fs.createWriteStream("file.json");
     console.log("dsdsvd");
-    console.log(req.body);
     let b = " " + req.body + " ";
     let path = __dirname + '/test.txt';
     fs.writeFile(path, b, (err) => {
@@ -294,25 +311,29 @@ app.post('/delete', (req, res) => {
     }
 
 })
-app.post('/teac', (req, res) => {
+app.post('/teac', jsonParser, (req, res) => {
     console.log("file");
     let result
     if (req.body) {
         result = req.body;
+        console.log("мне надо это1 " + result)
+        result = JSON.parse(result);
+        console.log("мне надо это " + result.content);
+        //const file = fs.createWriteStream(`${result.course}.ejs`);
+        let b = " " + req.body + " ";
+        let path = __dirname + `/${result.course}.ejs`;
+        fs.writeFile(path, result.content, (err) => {
+            if (err) {
+                console.error(err)
+                return
+            }
+            //файл записан успешно
+        })
     }
     else {
         res.sendStatus(400);
     }
-    const file = fs.createWriteStream("file.json");
-    let b = " " + req.body + " ";
-    let path = __dirname + '/test.ejs';
-    fs.writeFile(path, b, (err) => {
-        if (err) {
-            console.error(err)
-            return
-        }
-        //файл записан успешно
-    })
+
     res.sendStatus(200);
 })
 app.post('/upload', (req, res) => {
