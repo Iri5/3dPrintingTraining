@@ -17,6 +17,12 @@
         добавить новый курс
     </button>
 
+    <% for(let i=0; i<courses.length; i++){ %>
+        <div>
+            <%= courses[i].title %>
+        </div>
+        <%} %>
+
     <div id="myModal" class="modal ">
         <div class="modal-content  form_addperson_block_content">
             <div class="modal-header">

@@ -68,7 +68,19 @@ app.post('/auth', urlencodedParser, (req, res) => {
             if (data[0].role == 3) {
                 res.redirect('/admin.html');
             } else if (data[0].role == 2) {
-                res.render('teac');
+                query = "SELECT title FROM us.course;"
+                pool.query(query,  function (err, data) {
+                    if (err) return console.log(err);
+            console.log(data);
+                    if (data.length != 0) {
+                        res.render('teac', {courses: data});
+                    }
+                    else {
+                        res.redirect("/")
+                    }
+            
+                });
+                
             } else if (data[0].role == 1) {
                 res.render('user');
             }
