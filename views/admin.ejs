@@ -69,46 +69,46 @@
                 <!--<div class="form_addperson_block_content">-->
                 <div class="size">
                     <p id="name">Добавление нового пользователя</p>
-                    <form id="form" class="form_addperson_style" action="/addpersone" method="post">
+                    <form id="form" class="form_addperson_style" action="/admin/addpersone" method="post">
                         <div class="area">
                             <label>ФИО</label>
-                            <input type="text" name="add_fio" placeholder="ФИО" required>
+                            <input type="text" name="fio" placeholder="ФИО" required>
                         </div>
                         <div class="area">
                             <label>Адрес электронной почты</label>
-                            <input type="email" name="add_email" placeholder="Эл. почта" required>
+                            <input type="email" name="email" placeholder="Эл. почта" required>
                         </div>
                         <div class="area">
                             <label>Логин</label>
-                            <input id="mylogin" type="text" name="add_login" placeholder="Логин" required value="">
+                            <input id="mylogin" type="text" name="login" placeholder="Логин" required value="">
                         </div>
                         <div class="area">
                             <label>Пароль</label>
-                            <input type="text" name="add_password" placeholder="Пароль" required>
+                            <input type="text" name="password" placeholder="Пароль" required>
                         </div>
                         <div class="area">
                             <label>Группа</label>
-                            <input id="mygroup" type="number" name="add_group" placeholder="Группа">
+                            <input id="mygroup" type="number" name="group" placeholder="Группа">
                         </div>
                         <div class="role-date">
                             <div class="form-radio-group">
                                 <div class="form_radio_group-item">
                                     <label>Обучаемый</label>
-                                    <input name="add_role" type="radio" checked value="1">
+                                    <input name="role" type="radio" checked value="1">
                                 </div>
                                 <div class="form_radio_group-item">
                                     <label>Преподаватель</label>
 
-                                    <input name="add_role" type="radio" value="2">
+                                    <input name="role" type="radio" value="2">
                                 </div>
                                 <div class="form_radio_group-item">
                                     <label>Администратор</label>
-                                    <input name="add_role" type="radio" value="3">
+                                    <input name="role" type="radio" value="3">
                                 </div>
                             </div>
                             <div class="area date">
                                 <label>Дата рождения</label>
-                                <input type="date" name="add_bday" placeholder="01.01.1991">
+                                <input type="date" name="bday" placeholder="01.01.1991">
                             </div>
                         </div>
                         <button class="form_addperson_button" type="submit"
@@ -163,7 +163,7 @@
                 <!--<div class="form_addperson_block_content">-->
                 <div class="size">
                     <p id="name">Редактирование пользователя</p>
-                    <form id="form_ed" name="my" class="form_addperson_style" action="/editpersone" method="post">
+                    <form id="form_ed" name="my" class="form_addperson_style" action="/admin/editpersone" method="post">
                         <input id="cur_log" type="text" name="current" placeholder="ФИО" style="display: none;">
                         <div class="area">
                             <label>ФИО</label>
@@ -243,7 +243,7 @@
                 alert('удаляю');
                 login = login.trim();
                 console.log("_" + login + "_");
-                fetch('/delete', {
+                fetch('/admin/delete', {
                     method: 'POST',
                     headers: {
                         "Content-Type": "application/json; charset=UTF-8"
