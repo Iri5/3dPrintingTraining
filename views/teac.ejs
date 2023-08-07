@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    
+
     <link rel="stylesheet" href="scssA/style.css">
-    
+
 </head>
 
 <body>
@@ -16,12 +16,14 @@
     <button id="myBtn">
         добавить новый курс
     </button>
+    <div class="course_title">
+        <% for(let i=0; i<courses.length; i++){ %>
+            <button>
+                <%= courses[i].title %>
+            </button>
+            <%} %>
+    </div>
 
-    <% for(let i=0; i<courses.length; i++){ %>
-        <div>
-            <%= courses[i].title %>
-        </div>
-        <%} %>
 
     <div id="myModal" class="modal ">
         <div class="modal-content  form_addperson_block_content">
@@ -54,6 +56,10 @@
 
         </div>
     </div>
+
+    <form id="formshowcurse" name="formshowcurse" action="/showcurse" method="get">
+        <input type="text" name="titlecourse" >
+    </form>
     <script>
         let modal = document.getElementById('myModal');
         let btn = document.getElementById("myBtn");
@@ -69,6 +75,29 @@
                 modal.style.display = "none";
             }
         }
+        let course = document.querySelector(".course_title");
+        console.log(course);
+        course.addEventListener("click", (event) => {
+            let target = event.target;
+            if (target.tagName == "BUTTON") {
+                courseTitle = target.innerHTML;
+                courseTitle = courseTitle.trim();
+                course_form=document.getElementById('formshowcurse');
+                console.log(course_form);
+                course_form.titlecourse.value = courseTitle;
+                course_form.submit();
+                //fetch(`/test/?course=${courseTitle}`)
+                /*let request = new XMLHttpRequest();
+                request.open("POST", "/teach/course", true); // true = asynchronous
+                request.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+                request.send(JSON.stringify(courseTitle));*/
+                //.then(function (response) {
+                //    id = response[0];
+                //   console.log(response[0]);
+                //})
+            }
+
+        })
 
     </script>
 </body>

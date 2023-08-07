@@ -22,6 +22,7 @@ app.use(express.static('public'))
 app.get('/', (req, res) => {
     res.render('index');
 })
+
 app.get('/index.html', (req, res) => {
     res.render('index');
 })
@@ -173,6 +174,45 @@ app.post('/getcoursebyid', urlencodedParser, (req, res) => {
 
 
 })
+app.get('/showcurse', (req, res) =>{
+    console.log("i am here");
+    if (!req.body) {
+        console.log("я тут");
+        return res.sendStatus(400);
+    }
+    console.log(req.query.titlecourse);
+
+    let query = "SELECT * FROM us.course WHERE title = ? ;"
+
+    pool.query(query, [req.query.titlecourse], function (err, data) {
+        if (err) return console.log(err);
+        console.log(data);
+        res.render('course', {title: data[0].title, description: data[0].description, link: data[0].link})
+        //let id = data[0].id;
+        //res.send([id]);
+    });
+
+
+})
+app.post('/teachcourse', urlencodedParser, (req, res) => {
+    console.log("я тут");
+    if (!req.body) {
+        console.log("я тут");
+        return res.sendStatus(400);
+    }
+
+    let query = "SELECT * FROM us.course WHERE title = ? ;"
+
+    pool.query(query, [req.body], function (err, data) {
+        if (err) return console.log(err);
+        console.log(data);
+        res.render('course')
+        //let id = data[0].id;
+        //res.send([id]);
+    });
+
+
+})
 app.post('/editpersone', urlencodedParser, (req, res) => {
     console.log("я тут");
     if (!req.body) {
@@ -316,17 +356,19 @@ app.post('/teac', jsonParser, (req, res) => {
     let result
     if (req.body) {
         result = req.body;
-        console.log("мне надо это1 " + result)
         result = JSON.parse(result);
-        console.log("мне надо это " + result.content);
-        //const file = fs.createWriteStream(`${result.course}.ejs`);
         let b = " " + req.body + " ";
-        let path = __dirname + `/${result.course}.ejs`;
+        let path = __dirname + `/views/materials/${result.course}.ejs`;
         fs.writeFile(path, result.content, (err) => {
             if (err) {
                 console.error(err)
                 return
             }
+            let link = `/views/materials/${result.course}.ejs`;
+            let query = "UPDATE us.course SET link = ? WHERE id = ?;"
+            pool.query(query, [link, result.course], function (err, data) {
+                if (err) return console.log(err);
+            });
             //файл записан успешно
         })
     }
