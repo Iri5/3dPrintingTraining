@@ -20,38 +20,26 @@
             images_upload_url: '/teach/uploadimg',
             
         });
-        /*
-        tinymce.init({
-            selector: 'textarea',
-            plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss',
-            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
-            tinycomments_mode: 'embedded',
-            language: 'ru',
-            images_upload_url: '/upload',
-            tinycomments_author: 'Author name',
-            
-            mergetags_list: [
-                { value: 'First.Name', title: 'First Name' },
-                { value: 'Email', title: 'Email' },
-            ]
-        });
-        */
+        
         
     </script>
-    <script src="app.js" defer></script>
+    <script src="../app.js" defer></script>
 </head>
 
 <body>
 
     <h1 id="title_course"><%= title %></h1>
-    <h1><%= description %></h1>
+    <% if (description) {%>
+        <h1><%= description %></h1>
+    <%}%>
+    
     <form method="post" action="/mydata">
         <textarea id="mytextarea">Hello, World!</textarea>
     </form>
     <button class="new-button">Save new</button>
     
-    <button id="save-button">Save</button>
-    <pre id="output"></pre>
+    <!--<button id="save-button">Save</button>
+    <pre id="output"></pre>-->
     
 
             

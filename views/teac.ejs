@@ -56,7 +56,6 @@
 
         </div>
     </div>
-<a href="/teach/showcurse">rergtrgtr</a>
     <form id="formshowcurse" name="formshowcurse" action="/teach/showcurse" method="get">
         <input type="text" name="titlecourse" >
     </form>
@@ -86,15 +85,6 @@
                 console.log(course_form);
                 course_form.titlecourse.value = courseTitle;
                 course_form.submit();
-                //fetch(`/test/?course=${courseTitle}`)
-                /*let request = new XMLHttpRequest();
-                request.open("POST", "/teach/course", true); // true = asynchronous
-                request.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
-                request.send(JSON.stringify(courseTitle));*/
-                //.then(function (response) {
-                //    id = response[0];
-                //   console.log(response[0]);
-                //})
             }
 
         })

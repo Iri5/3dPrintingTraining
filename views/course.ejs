@@ -16,10 +16,20 @@
     </h2>
     <% if (link==null) { %>
         <div>Материал еще не добавлен</div>
-        <button>Добавить материал</button>
+        <button id="add_material" onclick="newPage()"><a id="myA"  ></a>Добавить
+            материал</button>
         <%} else { %>
             <%- include (link) -%>
-            <%}%>
+                <%}%>
+                    <script>
+                        function newPage() {
+                            let myA = document.getElementById("myA");
+                            let text = ("<%= title%>");
+                            console.log(text);
+                            myA.href = `/test/?q=${text}`;
+                            myA.click();
+                        }
+                    </script>
 </body>
 
 </html>

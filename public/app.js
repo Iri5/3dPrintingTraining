@@ -3,7 +3,7 @@
 console.log("111");
 let id = null;
 let title = document.querySelector('#title_course');
-console.log(title.innerHTML);
+console.log("я тут"+title.innerHTML);
 fetch('/teach/getcoursebyid', {
     method: 'POST',
     headers: {

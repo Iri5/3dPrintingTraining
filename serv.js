@@ -180,6 +180,19 @@ app.post('/teach/addcurse', urlencodedParser, (req, res) => {
     });
 })
 
+app.get('/test/', (req, res) =>{
+    if (!req.body) {
+        return res.sendStatus(400);
+    }
+    console.log(req.query.q);
+    res.render('addcurse', { title: req.query.q, description: null});
+    /*let query = 'SELECT * FROM us.course WHERE title = ? ;'
+    pool.query(query, [req.query.titlecourse], function (err, data) {
+        if (err) return console.log(err);
+        res.render('course', {title: data[0].title, description: data[0].description, link: data[0].link})
+    });*/
+})
+
 //Загрузка изображения TinyMCE
 const fileUpload = require('express-fileupload');
 app.use(
@@ -192,10 +205,10 @@ app.use(
 );
 app.post('/teach/uploadimg', (req, res) => {
     const { imaage } = req.files;
-    let res = req.files;
-    res.file.mv(__dirname + '/public/upload/' + res.file.name);
+    let result = req.files;
+    result.file.mv(__dirname + '/public/upload/' + result.file.name);
     let ans = {
-        'location': '/public/upload/' + res.file.name,
+        'location': '/public/upload/' + result.file.name,
     }
     let jsonans = JSON.stringify(ans);
     res.send(jsonans);
