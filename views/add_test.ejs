@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="scssA/style.css">
+    <style>
+        .dropbtn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+        }
+
+        /* The container <div> - needed to position the dropdown content */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Dropdown Content (Hidden by Default) */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        /* Links inside the dropdown */
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        /* Change color of dropdown links on hover */
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+        /* Show the dropdown menu on hover */
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Change the background color of the dropdown button when the dropdown content is shown */
+        .dropdown:hover .dropbtn {
+            background-color: #3e8e41;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="block">
+        <h1>
+            <%= title%>
+        </h1>
+        <div class="dropdown">
+            <button class="dropbtn" id="myBtn">Добавить вопрос</button>
+            <div class="dropdown-content">
+                <a href="#">Единичный выбор</a>
+                <a href="#">Множественный выбор</a>
+                <a href="#">Короткий ответ</a>
+            </div>
+        </div>
+        <div class="que">
+
+
+        </div>
+    </div>
+    <div id="add_que" class="modal ">
+        <div class="modal-content  form_addperson_block_content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>Шапка модального окна</h2>
+            </div>
+            <div class="modal-body">
+                <!--<p>Какой-то текст в теле модального окна</p>
+                <p>Ещё другой текст...</p>-->
+
+                <!--<div class="form_addperson_block_content">-->
+                <div class="size">
+                    <p id="name">Добавление нового вопроса с единичный выбором</p>
+                    <form id="form_add_que" name="my" class="form_addperson_style" action="" method="post">
+                        <div class="area">
+                            <label>Текст вопроса</label>
+                            <input type="text" name="text" placeholder="Введите текст" required>
+                        </div>
+                        <div class="area">
+                            <label>Число баллов</label>
+                            <input type="number" name="count" placeholder="1" value="1">
+                        </div>
+                        <div class="area">
+                            <div>
+                                <input type="radio" id="dewey" name="drone" value="dewey" />
+                                <label for="dewey">Правильный</label>
+                                
+                                <input type="text" name="ans" placeholder="Вариант ответа">
+                              </div>
+                              <div>
+                                <input type="radio" id="huey" name="drone" value="huey" checked />
+                                <label for="huey">Правильный</label>
+                                <input type="text" name="ans" placeholder="Вариант ответа">
+                              </div>
+                              <button>Добавить вариант отвеат</button>
+                        </div>
+                        
+                        <button class="form_addperson_button" type="submit"
+                            name="form_addcurse_submit">Добавить</button>
+                </div>
+                </form>
+                <!--</div>-->
+            </div>
+
+        </div>
+    </div>
+    <script>
+        let modal = document.getElementById('add_que');
+        console.log(modal);
+        let btn = document.getElementById("myBtn");
+        let span = document.getElementsByClassName("close")[0];
+        btn.onclick = function () {
+            modal.style.display = "block";
+        }
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+
+</html>

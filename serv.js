@@ -248,7 +248,7 @@ app.post('/teach/addmaterial', jsonParser, (req, res) => {
                 console.error(err);
                 return;
             }
-            let link = `/views/materials/${result.course}.ejs`;
+            let link = `materials/${result.course}`;
             let query = 'UPDATE us.course SET link = ? WHERE id = ?;'
             pool.query(query, [link, result.course], function (err, data) {
                 if (err) return console.log(err);
@@ -260,4 +260,27 @@ app.post('/teach/addmaterial', jsonParser, (req, res) => {
         res.sendStatus(400);
     }
     res.sendStatus(200);
+})
+//Создание нового теста
+app.post('/add_test', urlencodedParser, (req, res) => {
+    if (!req.body) {
+        console.log("пусто")
+        return res.sendStatus(400);
+    }
+    let ans = req.body;
+    if(ans.duration == ""){
+        ans.duration = null;
+    };
+    if(ans.start == ""){
+        ans.start = null;
+    };
+    if(ans.end == ""){
+        ans.end = null;
+    };
+    console.log(req.body);
+    let query = 'INSERT INTO us.test (title, description, start_date, end_date, duration) VALUES (?, ?, ?, ?, ?);'
+    pool.query(query, [ans.title, ans.description, ans.start, ans.end, ans.duration], function (err, data) {
+        if (err) return console.log(err);
+        res.render('add_test', { title: ans.title, description: ans.description});
+    });
 })

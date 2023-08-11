@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../scssA/style.css">
 </head>
 
 <body>
@@ -14,21 +15,91 @@
     <h2>
         <%= description %>
     </h2>
+    <div>Тест еще не добавлен</div>
+    <a href="/add_test">Добавить тест</a>
     <% if (link==null) { %>
         <div>Материал еще не добавлен</div>
-        <button id="add_material" onclick="newPage()"><a id="myA"  ></a>Добавить
+        <button id="add_material" onclick="newPage()"><a id="myA"></a>Добавить
             материал</button>
         <%} else { %>
             <%- include (link) -%>
                 <%}%>
+                    <button id="myBtn">ДОБАВИТЬ</button>
+                    <div id="myModal_test" class="modal ">
+                        <div class="modal-content  form_addperson_block_content">
+                            <div class="modal-header">
+                                <span class="close">&times;</span>
+                                <h2>Шапка модального окна</h2>
+                            </div>
+                            <div class="modal-body">
+                                <!--<p>Какой-то текст в теле модального окна</p>
+                            <p>Ещё другой текст...</p>-->
+
+                                <!--<div class="form_addperson_block_content">-->
+                                <div class="size">
+                                    <p id="name">Добавление нового теста</p>
+                                    <form id="form" class="form_addperson_style" action="/add_test" method="post">
+                                        <div class="area">
+                                            <label>Название</label>
+                                            <input type="text" name="title" placeholder="Название">
+                                        </div>
+                                        <div class="area">
+                                            <label>Описание</label>
+                                            <input type="text" name="description" placeholder="Описание">
+                                        </div>
+                                        <div class="area">
+                                            <label>Время на прохождение</label>
+                                            <input id="mylogin" type="number" name="duration" placeholder="duration"
+                                                value="">
+                                        </div>
+
+                                        <div class="role-date">
+
+                                            <div class="area date">
+                                                <label>Начало</label>
+                                                <input type="date" name="start" placeholder="01.01.1991">
+                                            </div>
+                                            <div class="area date">
+                                                <label>Конец</label>
+                                                <input type="date" name="end" placeholder="01.01.1991">
+                                            </div>
+                                        </div>
+                                        <button class="form_addperson_button" type="submit"
+                                            name="form_addtest_submit">Зарегистрировать</button>
+                                        
+                                </div>
+                                </form>
+                                <!--</div>-->
+                            </div>
+
+                        </div>
+                    </div>
                     <script>
-                        function newPage() {
-                            let myA = document.getElementById("myA");
-                            let text = ("<%= title%>");
-                            console.log(text);
-                            myA.href = `/test/?q=${text}`;
-                            myA.click();
-                        }
+                        
+                            let modal = document.getElementById('myModal_test');
+                            let btn = document.getElementById("myBtn");
+                            let span = document.getElementsByClassName("close")[0];
+                            btn.onclick = function () {
+                                modal.style.display = "block";
+                            }
+                            span.onclick = function () {
+                                modal.style.display = "none";
+                            }
+                            window.onclick = function (event) {
+                                if (event.target == modal) {
+                                    modal.style.display = "none";
+                                }
+                            }
+
+                    </script>
+                    <script>
+                            function newPage() {
+                                let myA = document.getElementById("myA");
+                                let text = ("<%= title%>");
+                                console.log(text);
+                                myA.href = `/test/?q=${text}`;
+                                myA.click();
+                            }
                     </script>
 </body>
 
