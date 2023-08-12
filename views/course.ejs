@@ -24,11 +24,11 @@
         <%} else { %>
             <%- include (link) -%>
                 <%}%>
-                    <button id="myBtn">ДОБАВИТЬ</button>
-                    <div id="myModal_test" class="modal ">
+                    <button id="btnAddNewTest">ДОБАВИТЬ</button>
+                    <div id="modalAddNewTest" class="modal ">
                         <div class="modal-content  form_addperson_block_content">
                             <div class="modal-header">
-                                <span class="close">&times;</span>
+                                <span id="closeAddNewTest"  class="close">&times;</span>
                                 <h2>Шапка модального окна</h2>
                             </div>
                             <div class="modal-body">
@@ -74,24 +74,8 @@
 
                         </div>
                     </div>
-                    <script>
-                        
-                            let modal = document.getElementById('myModal_test');
-                            let btn = document.getElementById("myBtn");
-                            let span = document.getElementsByClassName("close")[0];
-                            btn.onclick = function () {
-                                modal.style.display = "block";
-                            }
-                            span.onclick = function () {
-                                modal.style.display = "none";
-                            }
-                            window.onclick = function (event) {
-                                if (event.target == modal) {
-                                    modal.style.display = "none";
-                                }
-                            }
-
-                    </script>
+                    
+                    <script src="admin.js" defer></script>
                     <script>
                             function newPage() {
                                 let myA = document.getElementById("myA");

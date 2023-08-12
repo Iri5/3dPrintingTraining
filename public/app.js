@@ -4,7 +4,7 @@ console.log("111");
 let id = null;
 let title = document.querySelector('#title_course');
 console.log("я тут"+title.innerHTML);
-fetch('/teach/getcoursebyid', {
+fetch('/teach-getcoursebyid', {
     method: 'POST',
     headers: {
         "Content-Type": "application/json; charset=UTF-8"
@@ -25,7 +25,7 @@ document.querySelector('.new-button').addEventListener('click', () => {
     obj.content = myContent;
     obj.course = id;
     console.log("myuuyuy"+ obj.course)
-    request.open("POST", "/teach/addmaterial", true); // true = asynchronous
+    request.open("POST", "/teach-addmaterial", true); // true = asynchronous
     request.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
     request.send(JSON.stringify(obj));
 });

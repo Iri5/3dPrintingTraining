@@ -59,17 +59,13 @@
     <div id="myModal" class="modal ">
         <div class="modal-content  form_addperson_block_content">
             <div class="modal-header">
-                <span class="close">&times;</span>
+                <span id="close" class="close">&times;</span>
                 <h2>Шапка модального окна</h2>
             </div>
             <div class="modal-body">
-                <!--<p>Какой-то текст в теле модального окна</p>
-                <p>Ещё другой текст...</p>-->
-
-                <!--<div class="form_addperson_block_content">-->
                 <div class="size">
                     <p id="name">Добавление нового пользователя</p>
-                    <form id="form" class="form_addperson_style" action="/admin/addpersone" method="post">
+                    <form id="form" class="form_addperson_style" action="/admin-addpersone" method="post">
                         <div class="area">
                             <label>ФИО</label>
                             <input type="text" name="fio" placeholder="ФИО" required>
@@ -120,10 +116,10 @@
 
         </div>
     </div>
-    <div id="myModal1" class="modal ">
+    <div id="modalUserExist" class="modal ">
         <div class="modal-content  form_addperson_block_content">
             <div class="modal-header">
-                <span class="close">&times;</span>
+                <span id="closeUserExist" class="close">&times;</span>
                 <h2>Пользователь с данным логином существует</h2>
             </div>
             <div class="modal-body">
@@ -135,10 +131,10 @@
 
         </div>
     </div>
-    <div id="myModal2" class="modal ">
+    <div id="modalHasntGroup" class="modal ">
         <div class="modal-content  form_addperson_block_content">
             <div class="modal-header">
-                <span class="close">&times;</span>
+                <span id="closeHasntGroup" class="close">&times;</span>
                 <h2>У обучаемого должна быть группа</h2>
             </div>
             <div class="modal-body">
@@ -163,7 +159,7 @@
                 <!--<div class="form_addperson_block_content">-->
                 <div class="size">
                     <p id="name">Редактирование пользователя</p>
-                    <form id="form_ed" name="my" class="form_addperson_style" action="/admin/editpersone" method="post">
+                    <form id="form_ed" name="my" class="form_addperson_style" action="/admin-editpersone" method="post">
                         <input id="cur_log" type="text" name="current" placeholder="ФИО" style="display: none;">
                         <div class="area">
                             <label>ФИО</label>
@@ -214,24 +210,7 @@
     </div>
 
 
-    <script>
-        let modal = document.getElementById('myModal');
-        let btn = document.getElementById("myBtn");
-        let span = document.getElementsByClassName("close")[0];
-        btn.onclick = function () {
-            modal.style.display = "block";
-        }
-        span.onclick = function () {
-            modal.style.display = "none";
-        }
-        window.onclick = function (event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
-
-    </script>
-    <script defer>
+    <!--<script defer>
         class Menu {
             constructor(elem) {
                 this._elem = elem;
@@ -239,11 +218,9 @@
             }
 
             delete(elemPar) {
-                let login = elemPar.children[2].innerHTML
-                alert('удаляю');
+                let login = elemPar.children[2].innerHTML;
                 login = login.trim();
-                console.log("_" + login + "_");
-                fetch('/admin/delete', {
+                fetch('/admin-delete', {
                     method: 'POST',
                     headers: {
                         "Content-Type": "application/json; charset=UTF-8"
@@ -251,15 +228,8 @@
                     body: login
                 })
                     .then(function () {
-                        console.log("я обновляю");
                         document.location.reload;
-                        console.log("я обновил");
-                        fetch("/admin.html");
                     });
-                //let request = new XMLHttpRequest();
-                //request.open("POST", "/delete", true); // true = asynchronous
-                //request.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
-                //request.send(login);
             }
 
             edit(elemPar) {
@@ -271,16 +241,9 @@
                     role: elemPar.children[4].innerHTML.trim(),
                     date: elemPar.children[5].innerHTML.trim()
                 }
-                console.log(arr.name);
-                console.log(arr.email);
-                console.log(arr.login);
-                console.log(arr.group);
-                console.log(arr.role);
-                console.log(arr.date);
 
                 let modal = document.getElementById('myModal_edit');
                 let form = document.forms.my;
-                console.log(form.elements.role[0]);
                 form.elements.current.value = arr.login;
                 form.elements.fio.value = arr.name;
                 form.elements.email.value = arr.email;
@@ -324,48 +287,25 @@
         }
 
         new Menu(users);
-    </script>
+    </script>-->
     
 </body>
 <script>
     form.onsubmit = async (e) => {
+        e.preventDefault();
         let login = document.getElementById('mylogin');
         console.log(login.value);
         let arrlogins = ("<%= logins %>");
         let arrayOfStrings = arrlogins.split(",");
         if (arrayOfStrings.includes(login.value)) {
-            console.log("я нашел");
-            let modal = document.getElementById('myModal1');
-            modal.style.display = "block";
-            let span = document.getElementsByClassName("close")[1];
-
-            span.onclick = function () {
-                modal.style.display = "none";
-            }
-            window.onclick = function (event) {
-                if (event.target == modal) {
-                    modal.style.display = "none";
-                }
-            }
+            ModalWorkWithoutBtn('modalUserExist', "closeUserExist");
+            
         } else {
-            console.log("я не нашел");
             let role = document.querySelector('input[name="add_role"]:checked').value;
-            console.log(role);
             let group = document.getElementById('mygroup');
             if ((role == '1') && (group.value == "")) {
-                alert("фуфуфу")
-                let modal = document.getElementById('myModal2');
-                modal.style.display = "block";
-                let span = document.getElementsByClassName("close")[2];
-
-                span.onclick = function () {
-                    modal.style.display = "none";
-                }
-                window.onclick = function (event) {
-                    if (event.target == modal) {
-                        modal.style.display = "none";
-                    }
-                }
+                ModalWorkWithoutBtn('modalHasntGroup', "closeHasntGroup");
+                
             }
             else {
                 form.submit();
@@ -373,34 +313,9 @@
             //form.submit();
         }
         console.log((arrayOfStrings));
-        e.preventDefault();
-        /*let data = new FormData(form) // Сборка формы 
-        console.log(data);
-        let url = '/addpersone';
-        fetch(url, {
-            method: 'post',
-            
-            body: data // Отправка самой формы
-        })
-            .then(response => response.json())
-            .then((json) => { // Ответ
-                if (json.id === 101) { // Для примера проверка пройдена если id === 101
-                    // Добавление поля
-                    let info = document.querySelector('.info');
-                    info.style.display = 'block';
-                    info.innerText = 'Удачно Отправлено'
-                }
-                // Дебаг узнать что прошла форма
-                console.log(json)
-            })
-            .catch(err => console.log(err));
-            e.preventDefault();*/
+        
+        
     }
 </script>
-<!--<script src="test.js" defer>
-    
-</script>-->
-
-
-
+<script src="admin.js" defer></script>
 </html>

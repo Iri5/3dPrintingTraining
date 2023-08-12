@@ -84,7 +84,7 @@ app.get('/admin', (req, res) => {
     });
 })
 //Добавление новой учетной записи
-app.post('/admin/addpersone', urlencodedParser, (req, res) => {
+app.post('/admin-addpersone', urlencodedParser, (req, res) => {
     if (!req.body) {
         return res.sendStatus(400);
     }
@@ -118,7 +118,7 @@ app.post('/admin/addpersone', urlencodedParser, (req, res) => {
             }
 })
 //Удаление учетной записи
-app.post('/admin/delete', (req, res) => {
+app.post('/admin-delete', (req, res) => {
     if (req.body) {
         let ans = req.body;
         query = 'DELETE FROM us.user WHERE login = ? AND id > 0;';
@@ -132,7 +132,7 @@ app.post('/admin/delete', (req, res) => {
     }
 })
 //Изменение учетных записей
-app.post('/admin/editpersone', urlencodedParser, (req, res) => {
+app.post('/admin-editpersone', urlencodedParser, (req, res) => {
     if (!req.body) {
         return res.sendStatus(400);
     }
@@ -168,7 +168,7 @@ app.post('/admin/editpersone', urlencodedParser, (req, res) => {
 
 //ПРЕПОДАВАТЕЛЬ
 //Создание нового курса (название, описание, ссылка нулевая)
-app.post('/teach/addcurse', urlencodedParser, (req, res) => {
+app.post('/teach-addcurse', urlencodedParser, (req, res) => {
     if (!req.body) {
         return res.sendStatus(400);
     }
@@ -203,7 +203,7 @@ app.use(
         abortOnLimit: true,
     })
 );
-app.post('/teach/uploadimg', (req, res) => {
+app.post('/teach-uploadimg', (req, res) => {
     const { imaage } = req.files;
     let result = req.files;
     result.file.mv(__dirname + '/public/upload/' + result.file.name);
@@ -215,7 +215,7 @@ app.post('/teach/uploadimg', (req, res) => {
 });
 
 //Найти курс по ИД
-app.post('/teach/getcoursebyid', urlencodedParser, (req, res) => {
+app.post('/teach-getcoursebyid', urlencodedParser, (req, res) => {
     if (!req.body) {
         return res.sendStatus(400);
     }
@@ -227,7 +227,7 @@ app.post('/teach/getcoursebyid', urlencodedParser, (req, res) => {
     });
 })
 //Переход на страницу с информацией о курсе
-app.get('/teach/showcurse', (req, res) =>{
+app.get('/teach-showcurse', (req, res) =>{
     if (!req.body) {
         return res.sendStatus(400);
     }
@@ -238,7 +238,7 @@ app.get('/teach/showcurse', (req, res) =>{
     });
 })
 //Добавление материала к курсу
-app.post('/teach/addmaterial', jsonParser, (req, res) => {
+app.post('/teach-addmaterial', jsonParser, (req, res) => {
     if (req.body) {
         let result = req.body;
         result = JSON.parse(result);
@@ -283,4 +283,18 @@ app.post('/add_test', urlencodedParser, (req, res) => {
         if (err) return console.log(err);
         res.render('add_test', { title: ans.title, description: ans.description});
     });
+})
+app.post('/add-question-one', jsonParser, (req, res) => {
+    if (!req.body) {
+        console.log("пусто")
+        return res.sendStatus(400);
+    }
+    let ans = req.body;
+    ans = JSON.parse(ans);
+    console.log(ans.type);
+    /*let query = 'INSERT INTO us.test (title, description, start_date, end_date, duration) VALUES (?, ?, ?, ?, ?);'
+    pool.query(query, [ans.title, ans.description, ans.start, ans.end, ans.duration], function (err, data) {
+        if (err) return console.log(err);
+        res.render('add_test', { title: ans.title, description: ans.description});
+    });*/
 })

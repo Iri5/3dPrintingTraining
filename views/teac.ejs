@@ -13,7 +13,7 @@
 <body>
 
     <h1>Это страница преподаы</h1>
-    <button id="myBtn">
+    <button id="btnAddNewCourse">
         добавить новый курс
     </button>
     <div class="course_title">
@@ -25,10 +25,10 @@
     </div>
 
 
-    <div id="myModal" class="modal ">
+    <div id="modalAddNewCourse" class="modal ">
         <div class="modal-content  form_addperson_block_content">
             <div class="modal-header">
-                <span class="close">&times;</span>
+                <span id="closeAddNewCourse" class="close">&times;</span>
                 <h2>Шапка модального окна</h2>
             </div>
             <div class="modal-body">
@@ -38,7 +38,7 @@
                 <!--<div class="form_addperson_block_content">-->
                 <div class="size">
                     <p id="name">Добавление нового курса</p>
-                    <form id="form_ed" name="my" class="form_addperson_style" action="/teach/addcurse" method="post">
+                    <form id="form_ed" name="my" class="form_addperson_style" action="/teach-addcurse" method="post">
                         <div class="area">
                             <label>Название</label>
                             <input type="text" name="title" placeholder="Название курса" required>
@@ -56,24 +56,12 @@
 
         </div>
     </div>
-    <form id="formshowcurse" name="formshowcurse" action="/teach/showcurse" method="get">
+    <form id="formshowcurse" name="formshowcurse" action="/teach-showcurse" method="get">
         <input type="text" name="titlecourse" >
     </form>
+    <script src="admin.js" defer></script>
     <script>
-        let modal = document.getElementById('myModal');
-        let btn = document.getElementById("myBtn");
-        let span = document.getElementsByClassName("close")[0];
-        btn.onclick = function () {
-            modal.style.display = "block";
-        }
-        span.onclick = function () {
-            modal.style.display = "none";
-        }
-        window.onclick = function (event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
+        
         let course = document.querySelector(".course_title");
         console.log(course);
         course.addEventListener("click", (event) => {

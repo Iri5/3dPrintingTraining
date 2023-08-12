@@ -62,7 +62,7 @@
             <%= title%>
         </h1>
         <div class="dropdown">
-            <button class="dropbtn" id="myBtn">Добавить вопрос</button>
+            <button class="dropbtn" id="btnAddQue">Добавить вопрос</button>
             <div class="dropdown-content">
                 <a href="#">Единичный выбор</a>
                 <a href="#">Множественный выбор</a>
@@ -74,10 +74,10 @@
 
         </div>
     </div>
-    <div id="add_que" class="modal ">
+    <div id="modalAddQue" class="modal ">
         <div class="modal-content  form_addperson_block_content">
             <div class="modal-header">
-                <span class="close">&times;</span>
+                <span id="closeAddQue" class="close">&times;</span>
                 <h2>Шапка модального окна</h2>
             </div>
             <div class="modal-body">
@@ -96,7 +96,7 @@
                             <label>Число баллов</label>
                             <input type="number" name="count" placeholder="1" value="1">
                         </div>
-                        <div class="variants" class="area" >
+                        <div class="variants" class="area">
                             <div>
 
                                 <input type="radio" name="check_ans" value="1" />
@@ -110,7 +110,7 @@
                                 <label>Правильный</label>
                                 <input type="text" name="ans_2" placeholder="Вариант ответа" autocomplete="off">
                             </div>
-                            
+
                         </div>
                         <button id="add_new_var">Добавить вариант ответа</button>
                         <button class="form_addperson_button" type="submit"
@@ -128,8 +128,9 @@
         console.log(add_var);
         let block_variants = document.querySelector(".variants");
         console.log(block_variants);
-        
-        add_var.onclick = function () {
+
+        add_var.onclick = function (e) {
+            e.preventDefault();
             count_radio++;
             let div = document.createElement('div');
             div.className = "alert";
@@ -142,7 +143,7 @@
         form_add_que.onsubmit = async (e) => {
             e.preventDefault();
             let count = block_variants.childElementCount;
-        
+
             let question = {
                 type: 1,
                 que_text: form_add_que.text.value,
@@ -150,41 +151,37 @@
                 count_var: count,
                 ans: []
             };
-            for (let div of block_variants.children){
+            for (let div of block_variants.children) {
                 let text = div.lastElementChild.value;
                 let check = null;
-                if(div.firstElementChild.checked){
+                if (div.firstElementChild.checked) {
                     check = 1;
                 } else {
                     check = 0
                 }
-                question.ans.push({text: text, val: check})
+                question.ans.push({ text: text, val: check })
 
                 console.log(div.firstElementChild.checked)
 
             }
             console.log(question);
-
+            let jsonquestion = JSON.stringify(question);
+            fetch('/add-question-one', {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json; charset=UTF-8"
+                },
+                body: jsonquestion
+            })
+                .then(function () {
+                    console.log("я обновляю");
+                    document.location.reload;
+                    console.log("я обновил");
+                });
         }
 
     </script>
-    <script>
-        let modal = document.getElementById('add_que');
-        console.log(modal);
-        let btn = document.getElementById("myBtn");
-        let span = document.getElementsByClassName("close")[0];
-        btn.onclick = function () {
-            modal.style.display = "block";
-        }
-        span.onclick = function () {
-            modal.style.display = "none";
-        }
-        window.onclick = function (event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
-    </script>
+    <script src="admin.js" defer></script>
 </body>
 
 </html>
