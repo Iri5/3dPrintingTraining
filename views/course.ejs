@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../scssA/style.css">
+    <style>
+        .dblock{
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -16,7 +21,6 @@
         <%= description %>
     </h2>
     <div>Тест еще не добавлен</div>
-    <a href="/add_test">Добавить тест</a>
     <% if (link==null) { %>
         <div>Материал еще не добавлен</div>
         <button id="add_material" onclick="newPage()"><a id="myA"></a>Добавить
@@ -24,7 +28,8 @@
         <%} else { %>
             <%- include (link) -%>
                 <%}%>
-                    <button id="btnAddNewTest">ДОБАВИТЬ</button>
+                <div class="modal-container">
+                    <button id="btnAddNewTest" class="modalBtn">ДОБАВИТЬ ТЕСТ</button>
                     <div id="modalAddNewTest" class="modal ">
                         <div class="modal-content  form_addperson_block_content">
                             <div class="modal-header">
@@ -39,6 +44,7 @@
                                 <div class="size">
                                     <p id="name">Добавление нового теста</p>
                                     <form id="form" class="form_addperson_style" action="/add_test" method="post">
+                                        <input class="dblock" type="text" name="id" value="<%=id%>">
                                         <div class="area">
                                             <label>Название</label>
                                             <input type="text" name="title" placeholder="Название">
@@ -74,9 +80,12 @@
 
                         </div>
                     </div>
+                </div>
+                    
                     
                     <script src="admin.js" defer></script>
-                    <script>
+                    <script defer>
+                        ModalWork("modalAddNewTest", "btnAddNewTest", "closeAddNewTest");
                             function newPage() {
                                 let myA = document.getElementById("myA");
                                 let text = ("<%= title%>");

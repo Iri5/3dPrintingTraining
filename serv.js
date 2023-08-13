@@ -234,7 +234,7 @@ app.get('/teach-showcurse', (req, res) =>{
     let query = 'SELECT * FROM us.course WHERE title = ? ;'
     pool.query(query, [req.query.titlecourse], function (err, data) {
         if (err) return console.log(err);
-        res.render('course', {title: data[0].title, description: data[0].description, link: data[0].link})
+        res.render('course', {title: data[0].title, description: data[0].description, link: data[0].link, id: data[0].id})
     });
 })
 //Добавление материала к курсу
@@ -281,6 +281,11 @@ app.post('/add_test', urlencodedParser, (req, res) => {
     let query = 'INSERT INTO us.test (title, description, start_date, end_date, duration) VALUES (?, ?, ?, ?, ?);'
     pool.query(query, [ans.title, ans.description, ans.start, ans.end, ans.duration], function (err, data) {
         if (err) return console.log(err);
+        console.log(data.insertId);
+        query = 'INSERT INTO us.course_test (course_id, test_id) VALUES (?, ?);';
+        pool.query(query, [ans.id, data.insertId], function(err, data){
+            if (err) return console.log(err);
+        })
         res.render('add_test', { title: ans.title, description: ans.description});
     });
 })
