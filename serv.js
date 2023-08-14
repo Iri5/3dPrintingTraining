@@ -231,11 +231,40 @@ app.get('/teach-showcurse', (req, res) =>{
     if (!req.body) {
         return res.sendStatus(400);
     }
-    let query = 'SELECT * FROM us.course WHERE title = ? ;'
+    /*let query = 'SELECT * FROM us.course WHERE title = ? ;'
     pool.query(query, [req.query.titlecourse], function (err, data) {
         if (err) return console.log(err);
         res.render('course', {title: data[0].title, description: data[0].description, link: data[0].link, id: data[0].id})
-    });
+    });*/
+    console.log(req.query.titlecourse)
+    let query = `SELECT us.test.id AS t_id, us.test.title AS t_title, us.course.title AS c_title, us.course.description 
+    AS c_desc, us.course.start_date AS c_start, us.course.end_date AS c_end, us.course.link, us.course.id AS c_id
+     FROM us.test JOIN us.course_test ON us.test.id = us.course_test.test_id JOIN us.course ON us.course.id = 
+     us.course_test.course_id WHERE course_id =  (SELECT course.id FROM us.course WHERE us.course.title = ?);`;
+     pool.query(query, [req.query.titlecourse], function(err, data){
+        if (err) return console.log(err);
+        if (data.length == 0){
+            console.log("!data");
+            query = 'SELECT * FROM us.course WHERE title = ?';
+            pool.query(query,[req.query.titlecourse], function(err, data){
+                if (err) return console.log(err);
+                res.render('course', {title: data[0].title, description: data[0].description, link: data[0].link, id: data[0].id})
+            })
+        } else {
+            console.log(data[0]);
+            let t_title = [];
+            let t_id = [];
+            data.forEach(i => {
+                t_id.push(i.t_id);
+                t_title.push(i.t_title);
+            })
+            res.render('course', {title: data[0].c_title, description: data[0].c_desc, link: data[0].link, id: data[0].c_id, 
+                t_title: t_title, t_id: t_id}, 
+            )
+        }
+        
+     })
+
 })
 //Добавление материала к курсу
 app.post('/teach-addmaterial', jsonParser, (req, res) => {
