@@ -7,7 +7,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="../scssA/style.css">
     <style>
-        .dblock{
+        .dblock {
             display: none;
         }
     </style>
@@ -20,80 +20,137 @@
     <h2>
         <%= description %>
     </h2>
-    <div>Тест еще не добавлен</div>
-    <% if (link==null) { %>
-        <div>Материал еще не добавлен</div>
-        <button id="add_material" onclick="newPage()"><a id="myA"></a>Добавить
-            материал</button>
-        <%} else { %>
-            <%- include (link) -%>
-                <%}%>
-                <div class="modal-container">
-                    <button id="btnAddNewTest" class="modalBtn">ДОБАВИТЬ ТЕСТ</button>
-                    <div id="modalAddNewTest" class="modal ">
-                        <div class="modal-content  form_addperson_block_content">
-                            <div class="modal-header">
-                                <span id="closeAddNewTest"  class="close">&times;</span>
-                                <h2>Шапка модального окна</h2>
-                            </div>
-                            <div class="modal-body">
-                                <!--<p>Какой-то текст в теле модального окна</p>
-                            <p>Ещё другой текст...</p>-->
+    <% if (t_id==null){%>
+        <div>Тест еще не добавлен</div>
+        <%} else {%>
+            <div>Тесты</div>
+            <div id="tests">
+                <% for(let i=0; i<t_title.length; i++){ %>
+                    <button data-action="test">
+                        <a id="myAtest"></a>
+                        <%= t_title[i] %>
+                    </button>
+                    <%} %>
+                        <%}%>
+            </div>
 
-                                <!--<div class="form_addperson_block_content">-->
-                                <div class="size">
-                                    <p id="name">Добавление нового теста</p>
-                                    <form id="form" class="form_addperson_style" action="/add_test" method="post">
-                                        <input class="dblock" type="text" name="id" value="<%=id%>">
-                                        <div class="area">
-                                            <label>Название</label>
-                                            <input type="text" name="title" placeholder="Название">
-                                        </div>
-                                        <div class="area">
-                                            <label>Описание</label>
-                                            <input type="text" name="description" placeholder="Описание">
-                                        </div>
-                                        <div class="area">
-                                            <label>Время на прохождение</label>
-                                            <input id="mylogin" type="number" name="duration" placeholder="duration"
-                                                value="">
-                                        </div>
-
-                                        <div class="role-date">
-
-                                            <div class="area date">
-                                                <label>Начало</label>
-                                                <input type="date" name="start" placeholder="01.01.1991">
-                                            </div>
-                                            <div class="area date">
-                                                <label>Конец</label>
-                                                <input type="date" name="end" placeholder="01.01.1991">
-                                            </div>
-                                        </div>
-                                        <button class="form_addperson_button" type="submit"
-                                            name="form_addtest_submit">Зарегистрировать</button>
-                                        
-                                </div>
-                                </form>
-                                <!--</div>-->
-                            </div>
-
+            <div class="modal-container">
+                <button id="btnAddNewTest" class="modalBtn">ДОБАВИТЬ ТЕСТ</button>
+                <div id="modalAddNewTest" class="modal ">
+                    <div class="modal-content  form_addperson_block_content">
+                        <div class="modal-header">
+                            <span id="closeAddNewTest" class="close">&times;</span>
+                            <h2>Шапка модального окна</h2>
                         </div>
+                        <div class="modal-body">
+                            <!--<p>Какой-то текст в теле модального окна</p>
+                <p>Ещё другой текст...</p>-->
+
+                            <!--<div class="form_addperson_block_content">-->
+                            <div class="size">
+                                <p id="name">Добавление нового теста</p>
+                                <form id="form" class="form_addperson_style" action="/add_test" method="post">
+                                    <input class="dblock" type="text" name="id" value="<%=id%>">
+                                    <div class="area">
+                                        <label>Название</label>
+                                        <input type="text" name="title" placeholder="Название">
+                                    </div>
+                                    <div class="area">
+                                        <label>Описание</label>
+                                        <input type="text" name="description" placeholder="Описание">
+                                    </div>
+                                    <div class="area">
+                                        <label>Время на прохождение</label>
+                                        <input id="mylogin" type="number" name="duration" placeholder="duration"
+                                            value="">
+                                    </div>
+
+                                    <div class="role-date">
+
+                                        <div class="area date">
+                                            <label>Начало</label>
+                                            <input type="date" name="start" placeholder="01.01.1991">
+                                        </div>
+                                        <div class="area date">
+                                            <label>Конец</label>
+                                            <input type="date" name="end" placeholder="01.01.1991">
+                                        </div>
+                                    </div>
+                                    <button class="form_addperson_button" type="submit"
+                                        name="form_addtest_submit">Зарегистрировать</button>
+
+                            </div>
+                            </form>
+                            <!--</div>-->
+                        </div>
+
                     </div>
                 </div>
-                    
-                    
-                    <script src="admin.js" defer></script>
-                    <script defer>
-                        ModalWork("modalAddNewTest", "btnAddNewTest", "closeAddNewTest");
-                            function newPage() {
-                                let myA = document.getElementById("myA");
-                                let text = ("<%= title%>");
-                                console.log(text);
-                                myA.href = `/test/?q=${text}`;
-                                myA.click();
-                            }
-                    </script>
+            </div>
+            <% if (link==null) { %>
+                <div>Материал еще не добавлен</div>
+                <button id="add_material" onclick="newPage()"><a id="myA"></a>Добавить
+                    материал</button>
+                <%} else { %>
+                    <%- include (link) -%>
+                        <%}%>
+
+
+
+                            <script src="admin.js" defer></script>
+                            <script defer>
+                                class Test {
+                                    constructor(elem) {
+                                        this._elem = elem;
+                                        elem.onclick = this.onClick.bind(this); // (*)
+                                    }
+
+                                    test(target) {
+                                        let login = target.textContent;
+
+                                        login = login.trim();
+                                        console.log(login)
+                                        let url = `/add_test/?title=${login}`
+                                        let myAtest = document.getElementById("myAtest");
+                                        console.log(myAtest)
+                                        myAtest.href = `/add_test/?title=${login}`;
+                                        console.log(myAtest)
+                                        myAtest.click();
+
+                                        /*fetch(url, {
+                                            method: 'GET',
+                                            headers: {
+                                                "Content-Type": "application/json; charset=UTF-8"
+                                            },
+                                        })
+                                            .then(function () {
+                                                document.location.reload;
+                                            });*/
+                                    }
+
+
+
+                                    onClick(event) {
+                                        let action = event.target.dataset.action;
+                                        let target = event.target;
+                                        if (action) {
+                                            this[action](target);
+                                        }
+                                    }
+                                }
+
+                                new Test(tests);
+                            </script>
+                            <script defer>
+                                ModalWork("modalAddNewTest", "btnAddNewTest", "closeAddNewTest");
+                                function newPage() {
+                                    let myA = document.getElementById("myA");
+                                    let text = ("<%= title%>");
+                                    console.log(text);
+                                    myA.href = `/test/?q=${text}`;
+                                    myA.click();
+                                }
+                            </script>
 </body>
 
 </html>

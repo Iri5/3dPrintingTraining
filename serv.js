@@ -226,6 +226,20 @@ app.post('/teach-getcoursebyid', urlencodedParser, (req, res) => {
         res.send([id]);
     });
 })
+app.get('/add_test/', (req, res) => {
+    console.log("i am here")
+    if (!req.body) {
+        return res.sendStatus(400);
+    }
+    console.log(req.query.title);
+    //res.render('add_test')
+    let query = 'SELECT * FROM us.test WHERE title = ? ;'
+    pool.query(query, [req.query.title], function (err, data) {
+        if (err) return console.log(err);
+        //let id = data[0].id;
+        res.render('add_test', {title: title});
+    });
+})
 //Переход на страницу с информацией о курсе
 app.get('/teach-showcurse', (req, res) =>{
     if (!req.body) {
@@ -248,7 +262,7 @@ app.get('/teach-showcurse', (req, res) =>{
             query = 'SELECT * FROM us.course WHERE title = ?';
             pool.query(query,[req.query.titlecourse], function(err, data){
                 if (err) return console.log(err);
-                res.render('course', {title: data[0].title, description: data[0].description, link: data[0].link, id: data[0].id})
+                res.render('course', {title: data[0].title, description: data[0].description, link: data[0].link, id: data[0].id, t_id: null})
             })
         } else {
             console.log(data[0]);

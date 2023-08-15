@@ -138,3 +138,5 @@ class Menu {
 }
 
 new Menu(users);
+
+
