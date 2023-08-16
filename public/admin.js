@@ -43,10 +43,10 @@ function ModalWorkWithoutBtn(modalId, closeBtnId) {
         }
     }
 }
-ModalWork("myModal", "myBtn", "close");
+/*ModalWork("myModal", "myBtn", "close");
 ModalWork("modalAddNewCourse", "btnAddNewCourse", "closeAddNewCourse");
 ModalWork("modalAddQue", "btnAddQue", "closeAddQue");
-ModalWork("modalAddNewTest", "btnAddNewTest", "closeAddNewTest");
+ModalWork("modalAddNewTest", "btnAddNewTest", "closeAddNewTest");*/
 /*
 let modal = document.getElementById('myModal');
 let btn = document.getElementById("myBtn");
@@ -137,6 +137,6 @@ class Menu {
     }
 }
 
-new Menu(users);
+//new Menu(users);
 
 

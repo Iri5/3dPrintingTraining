@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="scssA/style.css">
+    <link rel="stylesheet" href="../scssA/style.css">
     <style>
         .dropbtn {
             background-color: #4CAF50;
@@ -61,7 +61,7 @@
         <h1>
             <%= title%>
         </h1>
-        
+
         <div class="dropdown">
             <button class="dropbtn" id="btnAddQue">Добавить вопрос</button>
             <div class="dropdown-content">
@@ -75,54 +75,58 @@
 
         </div>
     </div>
-    <div id="modalAddQue" class="modal ">
-        <div class="modal-content  form_addperson_block_content">
-            <div class="modal-header">
-                <span id="closeAddQue" class="close">&times;</span>
-                <h2>Шапка модального окна</h2>
-            </div>
-            <div class="modal-body">
-                <!--<p>Какой-то текст в теле модального окна</p>
-                <p>Ещё другой текст...</p>-->
-
-                <!--<div class="form_addperson_block_content">-->
-                <div class="size">
-                    <p id="name">Добавление нового вопроса с единичный выбором</p>
-                    <form id="form_add_que" name="my" class="form_addperson_style" action="" method="post">
-                        <div class="area">
-                            <label>Текст вопроса</label>
-                            <input type="text" name="text" placeholder="Введите текст" required autocomplete="off">
-                        </div>
-                        <div class="area">
-                            <label>Число баллов</label>
-                            <input type="number" name="count" placeholder="1" value="1">
-                        </div>
-                        <div class="variants" class="area">
-                            <div>
-
-                                <input type="radio" name="check_ans" value="1" />
-                                <label>Правильный</label>
-
-                                <input type="text" name="ans_1" placeholder="Вариант ответа" autocomplete="off">
-                            </div>
-                            <div>
-
-                                <input type="radio" name="check_ans" value="2" checked />
-                                <label>Правильный</label>
-                                <input type="text" name="ans_2" placeholder="Вариант ответа" autocomplete="off">
-                            </div>
-
-                        </div>
-                        <button id="add_new_var">Добавить вариант ответа</button>
-                        <button class="form_addperson_button" type="submit"
-                            name="form_addcurse_submit">Добавить</button>
+    <div class="modal-container">
+        <button class="modalBtn" id="add_test_button" style="width: 100px;">add</button>
+        <div id="modalAddQue" class="modal ">
+            <div class="modal-content  form_addperson_block_content">
+                <div class="modal-header">
+                    <span id="closeAddQue" class="close">&times;</span>
+                    <h2>Шапка модального окна</h2>
                 </div>
-                </form>
-                <!--</div>-->
+                <div class="modal-body">
+                    <!--<p>Какой-то текст в теле модального окна</p>
+                    <p>Ещё другой текст...</p>-->
+    
+                    <!--<div class="form_addperson_block_content">-->
+                    <div class="size">
+                        <p id="name">Добавление нового вопроса с единичный выбором</p>
+                        <form id="form_add_que" name="my" class="form_addperson_style" action="" method="post">
+                            <div class="area">
+                                <label>Текст вопроса</label>
+                                <input type="text" name="text" placeholder="Введите текст" required autocomplete="off">
+                            </div>
+                            <div class="area">
+                                <label>Число баллов</label>
+                                <input type="number" name="count" placeholder="1" value="1">
+                            </div>
+                            <div class="variants" class="area">
+                                <div>
+    
+                                    <input type="radio" name="check_ans" value="1" />
+                                    <label>Правильный</label>
+    
+                                    <input type="text" name="ans_1" placeholder="Вариант ответа" autocomplete="off">
+                                </div>
+                                <div>
+    
+                                    <input type="radio" name="check_ans" value="2" checked />
+                                    <label>Правильный</label>
+                                    <input type="text" name="ans_2" placeholder="Вариант ответа" autocomplete="off">
+                                </div>
+    
+                            </div>
+                            <button id="add_new_var">Добавить вариант ответа</button>
+                            <button class="form_addperson_button" type="submit"
+                                name="form_addcurse_submit">Добавить</button>
+                    </div>
+                    </form>
+                    <!--</div>-->
+                </div>
+    
             </div>
-
         </div>
     </div>
+    
     <script defer>
         let count_radio = 2;
         let add_var = document.getElementById('add_new_var');
@@ -182,7 +186,7 @@
         }
 
     </script>
-    <script src="admin.js" defer></script>
+    <script src="../admin.js" defer></script>
 </body>
 
 </html>

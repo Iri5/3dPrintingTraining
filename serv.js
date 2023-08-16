@@ -236,8 +236,9 @@ app.get('/add_test/', (req, res) => {
     let query = 'SELECT * FROM us.test WHERE title = ? ;'
     pool.query(query, [req.query.title], function (err, data) {
         if (err) return console.log(err);
+        console.log(data);
         //let id = data[0].id;
-        res.render('add_test', {title: title});
+        res.render('add_test', {title: data[0].title});
     });
 })
 //Переход на страницу с информацией о курсе
