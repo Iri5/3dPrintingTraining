@@ -76,7 +76,7 @@
         </div>
     </div>
     <div class="modal-container">
-        <button class="modalBtn" id="add_test_button" style="width: 100px;">add</button>
+        <button class="modalBtn" id="add_test_button" style="width: 100px;">add one</button>
         <div id="modalAddQue" class="modal ">
             <div class="modal-content  form_addperson_block_content">
                 <div class="modal-header">
@@ -126,6 +126,101 @@
             </div>
         </div>
     </div>
+
+    <div class="modal-container">
+        <button class="modalBtn" id="add_test_short_button" style="width: 100px;">add short</button>
+        <div id="modalAddQueShort" class="modal ">
+            <div class="modal-content  form_addperson_block_content">
+                <div class="modal-header">
+                    <span id="closeAddQueShort" class="close">&times;</span>
+                    <h2>Шапка модального окна</h2>
+                </div>
+                <div class="modal-body">
+                    <!--<p>Какой-то текст в теле модального окна</p>
+                    <p>Ещё другой текст...</p>-->
+    
+                    <!--<div class="form_addperson_block_content">-->
+                    <div class="size">
+                        <p id="name">Добавление нового вопроса с коротким ответом</p>
+                        <form id="form_add_que" name="my" class="form_addperson_style" action="" method="post">
+                            <div class="area">
+                                <label>Текст вопроса</label>
+                                <input type="text" name="text" placeholder="Введите текст" required autocomplete="off">
+                            </div>
+                            <div class="area">
+                                <label>Число баллов</label>
+                                <input type="number" name="count" placeholder="1" value="1">
+                            </div>
+                            <div class="area">
+                                <label>Ответ</label>
+                                <input type="text" name="answer"  >
+                            </div>
+                            <div class="variants" class="area">
+                                
+    
+                            </div>
+                            <button class="form_addperson_button" type="submit"
+                                name="form_addcurse_submit">Добавить вопрос с коротким ответом</button>
+                    </div>
+                    </form>
+                    <!--</div>-->
+                </div>
+    
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-container">
+        <button class="modalBtn" id="add_test_button_more" style="width: 100px;">add more</button>
+        <div id="modalAddQueMore" class="modal ">
+            <div class="modal-content  form_addperson_block_content">
+                <div class="modal-header">
+                    <span id="closeAddQueMore" class="close">&times;</span>
+                    <h2>Шапка модального окна</h2>
+                </div>
+                <div class="modal-body">
+                    <!--<p>Какой-то текст в теле модального окна</p>
+                    <p>Ещё другой текст...</p>-->
+    
+                    <!--<div class="form_addperson_block_content">-->
+                    <div class="size">
+                        <p id="name">Добавление нового вопроса со множественным выбором</p>
+                        <form id="form_add_que_more" name="my" class="form_addperson_style" action="" method="post">
+                            <div class="area">
+                                <label>Текст вопроса</label>
+                                <input type="text" name="text" placeholder="Введите текст" required autocomplete="off">
+                            </div>
+                            <div class="area">
+                                <label>Число баллов</label>
+                                <input type="number" name="count" placeholder="1" value="1">
+                            </div>
+                            <div class="variants_more" class="area">
+                                <div>
+    
+                                    <input type="checkbox" name="check_ans" value="1" />
+                                    <label>Правильный</label>
+    
+                                    <input type="text" name="ans_1" placeholder="Вариант ответа" autocomplete="off">
+                                </div>
+                                <div>
+    
+                                    <input type="checkbox" name="check_ans" value="2" checked />
+                                    <label>Правильный</label>
+                                    <input type="text" name="ans_2" placeholder="Вариант ответа" autocomplete="off">
+                                </div>
+    
+                            </div>
+                            <button id="add_new_var_more">Добавить вариант ответа</button>
+                            <button class="form_addperson_button" type="submit"
+                                name="form_addcurse_submit">Добавить</button>
+                    </div>
+                    </form>
+                    <!--</div>-->
+                </div>
+    
+            </div>
+        </div>
+    </div>
     
     <script defer>
         let count_radio = 2;
@@ -143,6 +238,26 @@
             <label>Правильный</label>
             <input type='text' name='ans_${count_radio}' placeholder='Вариант ответа'>`;
             block_variants.append(div);
+        }
+        let count_check = 2;
+        let add_var_more = document.getElementById('add_new_var_more');
+        console.log(add_var_more);
+        let block_variants_check = document.querySelector(".variants_more");
+        console.log(block_variants_check);
+
+        add_var_more.onclick = function (e) {
+            e.preventDefault();
+            count_radio++;
+            let div = document.createElement('div');
+            div.className = "alert";
+            div.innerHTML = `<input type='checkbox' name='check_ans' value='${count_check}' checked /> 
+            <label>Правильный</label>
+            <input type='text' name='ans_${count_check}' placeholder='Вариант ответа'>`;
+            block_variants_check.append(div);
+        }
+        let form_add_que_more = document.getElementById('form_add_que_more');
+        form_add_que_more.onsubmit = async (e) => {
+            e.preventDefault();
         }
         let form_add_que = document.getElementById('form_add_que');
         form_add_que.onsubmit = async (e) => {
