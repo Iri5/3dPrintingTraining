@@ -258,6 +258,42 @@
         let form_add_que_more = document.getElementById('form_add_que_more');
         form_add_que_more.onsubmit = async (e) => {
             e.preventDefault();
+            let count = block_variants_check.childElementCount;
+
+            let question = {
+                type: 2,
+                que_text: form_add_que_more.text.value,
+                score: form_add_que_more.count.value,
+                count_var: count,
+                ans: []
+            };
+            for (let div of block_variants_check.children) {
+                let text = div.lastElementChild.value;
+                let check = null;
+                if (div.firstElementChild.checked) {
+                    check = 1;
+                } else {
+                    check = 0
+                }
+                question.ans.push({ text: text, val: check })
+
+                console.log(div.firstElementChild.checked)
+
+            }
+            console.log(question);
+            let jsonquestion = JSON.stringify(question);
+            /*fetch('/add-question-more', {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json; charset=UTF-8"
+                },
+                body: jsonquestion
+            })
+                .then(function () {
+                    console.log("я обновляю");
+                    document.location.reload;
+                    console.log("я обновил");
+                });*/
         }
         let form_add_que = document.getElementById('form_add_que');
         form_add_que.onsubmit = async (e) => {

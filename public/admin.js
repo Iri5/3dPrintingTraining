@@ -136,7 +136,10 @@ class Menu {
         }
     }
 }
-
+let users = document.querySelector(".menu");
+if (users){
+    new Menu(users);
+}
 //new Menu(users);
 
 

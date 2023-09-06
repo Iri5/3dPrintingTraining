@@ -12,8 +12,8 @@
 <body>
 
     <h1>Это страница админа</h1>
-    <button id="myBtn">Добавить нового пользователя</button>
-    <table id="users">
+    
+    <table id="users" class="menu">
         <tr>
             <th>Фамилия Имя Отчество</th>
             <th>Email</th>
@@ -55,8 +55,10 @@
     <div class="info">
         Успешно добавлено
     </div>
-
+<div class="modal-container">
+    <button id="myBtn" class="modalBtn">Добавить нового пользователя</button>
     <div id="myModal" class="modal ">
+
         <div class="modal-content  form_addperson_block_content">
             <div class="modal-header">
                 <span id="close" class="close">&times;</span>
@@ -116,6 +118,8 @@
 
         </div>
     </div>
+</div>
+    
     <div id="modalUserExist" class="modal ">
         <div class="modal-content  form_addperson_block_content">
             <div class="modal-header">
@@ -301,8 +305,10 @@
             ModalWorkWithoutBtn('modalUserExist', "closeUserExist");
             
         } else {
-            let role = document.querySelector('input[name="add_role"]:checked').value;
+            console.log("проверка группы");
+            let role = document.querySelector('input[name="role"]:checked').value;
             let group = document.getElementById('mygroup');
+            console.log("проверка группы")
             if ((role == '1') && (group.value == "")) {
                 ModalWorkWithoutBtn('modalHasntGroup', "closeHasntGroup");
                 
