@@ -26,7 +26,7 @@ app.get('/index.html', (req, res) => {
     res.render('index');
 })
 
-//авторизация
+//АВТОРИЗАЦИЯ
 app.post('/auth', urlencodedParser, (req, res) => {
     if (!req.body) return res.sendStatus(400);
     let query = 'SELECT role FROM us.user where login = ? and pass = ?;'
@@ -330,17 +330,34 @@ app.post('/add_test', urlencodedParser, (req, res) => {
         pool.query(query, [ans.id, data.insertId], function(err, data){
             if (err) return console.log(err);
         })
+        
         res.render('add_test', { title: ans.title, description: ans.description});
     });
 })
 app.post('/add-question-one', jsonParser, (req, res) => {
+    console.log("addddddddd")
     if (!req.body) {
         console.log("пусто")
         return res.sendStatus(400);
     }
     let ans = req.body;
+    console.log(ans);
     ans = JSON.parse(ans);
-    console.log(ans.type);
+    console.log(ans.que);
+    let title = ans.title;
+    console.log(title);
+    let question = JSON.stringify(ans.que);
+    
+    let query = 'INSERT INTO us.question (que, t_id) VALUES (?, ( SELECT id FROM us.test WHERE title = ?));'
+    pool.query(query, [question, title], function (err, data) {
+        if (err) return console.log(err);
+        res.render('add_test', { title: ans.title, description: ans.description});
+    });
+    /*let query = 'INSERT INTO us.test (title, description, start_date, end_date, duration) VALUES (?, ?, ?, ?, ?);'
+    pool.query(query, [ans.title, ans.description, ans.start, ans.end, ans.duration], function (err, data) {
+        if (err) return console.log(err);
+        res.render('add_test', { title: ans.title, description: ans.description});
+    });*/
     /*let query = 'INSERT INTO us.test (title, description, start_date, end_date, duration) VALUES (?, ?, ?, ?, ?);'
     pool.query(query, [ans.title, ans.description, ans.start, ans.end, ans.duration], function (err, data) {
         if (err) return console.log(err);

@@ -1,0 +1,129 @@
+@font-face {
+  font-family: "Mont";
+  font-weight: 400;
+  font-style: normal;
+  src: url("/fonts/Montserrat/static/Montserrat-Regular.ttf");
+}
+@font-face {
+  font-family: "Mont";
+  font-weight: 600;
+  font-style: normal;
+  src: url("/fonts/Montserrat/static/Montserrat-SemiBold.ttf");
+}
+* {
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Mont";
+  font-weight: 400;
+  font-style: normal;
+}
+
+.auth {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.information {
+  background-color: #03045E;
+  margin-left: -50vw;
+  width: 100vw;
+  transform: skewX(-20deg);
+  z-index: -1;
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  align-items: center;
+}
+
+.inf-cont {
+  transform: skewX(20deg);
+  color: white;
+  width: 30%;
+  margin-right: 10%;
+}
+.inf-cont h1 {
+  font-size: 30px;
+  font-family: "Mont";
+  font-weight: 600;
+  font-style: normal;
+  margin-bottom: 20px;
+}
+.inf-cont p {
+  font-size: 20px;
+  font-family: "Mont";
+  font-weight: 400;
+  font-style: normal;
+}
+
+.auth__container {
+  width: 50vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.auth__container .auth__title {
+  margin-bottom: 30px;
+  color: #03045E;
+  font-size: 24px;
+}
+
+.auth__form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+.auth__input-cont {
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+}
+
+.auth__input {
+  width: 400px;
+  height: 40px;
+  border-radius: 5px;
+  border: 1px solid #03045E;
+  font-size: 20px;
+  padding: 20px;
+  color: #03045E;
+}
+.auth__input::-moz-placeholder {
+  color: #03045E;
+}
+.auth__input::placeholder {
+  color: #03045E;
+}
+.auth__input:focus {
+  background-color: rgba(1, 186, 179, 0.1);
+  border: 1px solid #03045E;
+  border-color: #03045E;
+  border-radius: 5px;
+  outline: 0;
+}
+
+.auth__button {
+  margin-top: 10px;
+  height: 50px;
+  width: 400px;
+  background-color: #03045E;
+  color: white;
+  border: 0px;
+  border-radius: 5px;
+  font-size: 24px;
+  font-family: "Mont";
+  font-weight: 600;
+  font-style: normal;
+}
+.auth__button:hover {
+  background-color: #0077B6;
+  cursor: pointer;
+}
+.auth__button:disabled {
+  background-color: #CAF0F8;
+}/*# sourceMappingURL=style.css.map */

@@ -6,7 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="scssA/style.css">
-
+<style>
+    .open{
+        display: block;
+    }
+</style>
 </head>
 
 <body>
@@ -119,6 +123,71 @@
         </div>
     </div>
 </div>
+
+<!--<div class="modal-container">
+    <button id="myBtn" class="modalBtn">Добавить нового пользователя</button>
+    <div id="myModal" class="modal open">
+
+        <div class="modal-content  form_addperson_block_content">
+            <div class="modal-header">
+                <span id="close" class="close">&times;</span>
+                <h2>Шапка модального окна</h2>
+            </div>
+            <div class="modal-body">
+                <div class="size">
+                    <p id="name">Добавление нового пользователя</p>
+                    <form id="form" class="form_addperson_style" action="/admin-addpersone" method="post">
+                        <div class="area">
+                            <label>ФИО</label>
+                            <input type="text" name="fio" placeholder="ФИО" required>
+                        </div>
+                        <div class="area">
+                            <label>Адрес электронной почты</label>
+                            <input type="email" name="email" placeholder="Эл. почта" required>
+                        </div>
+                        <div class="area">
+                            <label>Логин</label>
+                            <input id="mylogin" type="text" name="login" placeholder="Логин" required value="">
+                        </div>
+                        <div class="area">
+                            <label>Пароль</label>
+                            <input type="text" name="password" placeholder="Пароль" required>
+                        </div>
+                        <div class="area">
+                            <label>Группа</label>
+                            <input id="mygroup" type="number" name="group" placeholder="Группа">
+                        </div>
+                        <div class="role-date">
+                            <div class="form-radio-group">
+                                <div class="form_radio_group-item">
+                                    <label>Обучаемый</label>
+                                    <input name="role" type="radio" checked value="1">
+                                </div>
+                                <div class="form_radio_group-item">
+                                    <label>Преподаватель</label>
+
+                                    <input name="role" type="radio" value="2">
+                                </div>
+                                <div class="form_radio_group-item">
+                                    <label>Администратор</label>
+                                    <input name="role" type="radio" value="3">
+                                </div>
+                            </div>
+                            <div class="area date">
+                                <label>Дата рождения</label>
+                                <input type="date" name="bday" placeholder="01.01.1991">
+                            </div>
+                        </div>
+                        <button class="form_addperson_button" type="submit"
+                            name="form_addperson_submit">Зарегистрировать</button>
+                </div>
+                </form>-->
+                <!--</div>-->
+            <!--</div>
+
+        </div>
+    </div>
+</div>-->
     
     <div id="modalUserExist" class="modal ">
         <div class="modal-content  form_addperson_block_content">

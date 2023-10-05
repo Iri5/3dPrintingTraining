@@ -10,6 +10,13 @@
         .dblock {
             display: none;
         }
+        .material{
+            margin-top: 50px;
+            margin-right: auto;
+            margin-left: auto;
+            width: 80%;
+            background-color: antiquewhite;
+        }
     </style>
 </head>
 
@@ -23,8 +30,8 @@
     <% if (t_id==null){%>
         <div>Тест еще не добавлен</div>
         <%} else {%>
-            <div>Тесты</div>
-            <div id="tests">
+            <div style="margin-top: 50px;">Тесты</div>
+            <div id="tests" style="display: flex; flex-direction: column;">
                 <% for(let i=0; i<t_title.length; i++){ %>
                     <button data-action="test">
                         <a id="myAtest"></a>
@@ -35,7 +42,7 @@
             </div>
 
             <div class="modal-container">
-                <button id="btnAddNewTest" class="modalBtn">ДОБАВИТЬ ТЕСТ</button>
+                <button id="btnAddNewTest" class="modalBtn" style="margin-top: 50px; ">ДОБАВИТЬ ТЕСТ</button>
                 <div id="modalAddNewTest" class="modal ">
                     <div class="modal-content  form_addperson_block_content">
                         <div class="modal-header">
@@ -92,7 +99,10 @@
                 <button id="add_material" onclick="newPage()"><a id="myA"></a>Добавить
                     материал</button>
                 <%} else { %>
-                    <%- include (link) -%>
+                    <div class="material">
+                        <%- include (link) -%>
+                    </div>
+                    
                         <%}%>
 
 

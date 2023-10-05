@@ -7,15 +7,22 @@
     <title>Document</title>
 
     <link rel="stylesheet" href="scssA/style.css">
-
+<style>
+    .course_title{
+        display: flex;
+        flex-direction: column;
+    }
+    #btnAddNewCourse{
+        height: 50px;
+    }
+</style>
 </head>
 
 <body>
 
-    <h1>Это страница преподаы</h1>
-    <button id="btnAddNewCourse">
-        добавить новый курс
-    </button>
+    <h1>Это страница преподавателя</h1>
+    
+    <h1>Существующие курсы</h1>
     <div class="course_title">
         <% for(let i=0; i<courses.length; i++){ %>
             <button>
@@ -24,7 +31,10 @@
             <%} %>
     </div>
 
-
+<div class="modal-container">
+    <button id="btnAddNewCourse" class="modalBtn">
+        Добавить новый курс
+    </button>
     <div id="modalAddNewCourse" class="modal ">
         <div class="modal-content  form_addperson_block_content">
             <div class="modal-header">
@@ -56,8 +66,10 @@
 
         </div>
     </div>
+</div>
+    
     <form id="formshowcurse" name="formshowcurse" action="/teach-showcurse" method="get">
-        <input type="text" name="titlecourse" >
+        <input type="text" name="titlecourse" style="display: none;">
     </form>
     <script src="admin.js" defer></script>
     <script>

@@ -58,7 +58,7 @@
 
 <body>
     <div class="block">
-        <h1>
+        <h1 id="title_test">
             <%= title%>
         </h1>
 
@@ -74,6 +74,9 @@
 
 
         </div>
+    </div>
+    <div class="win_test">
+        
     </div>
     <div class="modal-container">
         <button class="modalBtn" id="add_test_button" style="width: 100px;">add one</button>
@@ -320,8 +323,14 @@
                 console.log(div.firstElementChild.checked)
 
             }
+            let t = document.querySelector("#title_test");
+            console.log(t.innerHTML.trim());
+            let toSend = {
+                title: t.innerHTML.trim(),
+            }
+            toSend.que = question;
             console.log(question);
-            let jsonquestion = JSON.stringify(question);
+            let jsonquestion = JSON.stringify(toSend);
             fetch('/add-question-one', {
                 method: 'POST',
                 headers: {
