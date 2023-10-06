@@ -12,30 +12,78 @@
 
   <div class="auth">
     <div class="information">
-        <div class="inf-cont">
-            <h1>Простая печать</h1>
-            <p>Данный комплекс предназначен для обучения 3D-печати на филаментном 3D-принтере. Здесь можно изучать теоретические материала по FDM печати и закрепляь полученные знания, проходя тестирования</p>
-        </div>
-        
+      <div class="inf-cont">
+        <h1>Простая печать</h1>
+        <p>Данный комплекс предназначен для обучения 3D-печати на филаментном 3D-принтере. Здесь можно изучать
+          теоретические материала по FDM печати и закрепляь полученные знания, проходя тестирования</p>
+      </div>
+
     </div>
     <div class="auth__container">
-        <div class="align-cont">
-            <div class="auth__title">Вход в учетную запись</div>
+      <div class="align-cont">
+        <div class="auth__title">Вход в учетную запись</div>
         <form class="auth__form" action="/auth" method="post">
-            <div class="auth__input-cont">
-                <label class="auth__input-label">Логин</label>
-                <input class="auth__input" type="text" name="auth_login" required>
-            </div>
-            <div class="auth__input-cont">
-                <label class="auth__input-label">Пароль</label>
-                <input class="auth__input" type="password" name="auth_pass" required>
-            </div>
-            <button class="auth__button" type="submit" name="form_auth_submit">Войти</button>
+          <div class="auth__input-cont">
+            <label class="auth__input-label">Логин</label>
+            <input class="auth__input" type="text" name="auth_login" required>
+          </div>
+          <div class="auth__input-cont">
+            <label class="auth__input-label">Пароль</label>
+            <input class="auth__input" type="password" name="auth_pass" required>
+          </div>
+          <button class="auth__button" type="submit">Войти</button>
         </form>
-        </div>
-        
+      </div>
     </div>
-</div>
+    <div id="my-modal-auth" class="modal " style="z-index: 5;">
+      <div class="modal-content">
+        <div id="close-auth" class="close"></div>
+        <div class="modal-body">
+          <p>Пользователь не найден</p>
+          <p>Попробуйте снова</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="/admin.js">
+
+  </script>
+  <script>
+    function serializeForm(formNode) {
+      let dataToServer = {};
+      dataToServer.login = formNode.auth_login.value;
+      dataToServer.pass = formNode.auth_pass.value;
+      dataToServer = JSON.stringify(dataToServer);
+      return dataToServer;
+    }
+    async function sendData(data) {
+      return await fetch('/auth', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+          sendData: data
+        },
+      })
+    }
+    function onError() {
+      ModalWorkWithoutBtn("my-modal-auth", "close-auth");
+    }
+    async function handleFormSubmit(event) {
+      event.preventDefault();
+
+      const data = serializeForm(event.target);
+      const { redirected, url, status, error } = await sendData(data);
+      if (status === 403) {
+        onError()
+      } else if (status === 200) {
+        if (redirected) {
+          window.location.href = url;
+        }
+      }
+    }
+    const form = document.querySelector(".auth__form");
+    form.addEventListener("submit", handleFormSubmit);
+  </script>
 </body>
 
 </html>
