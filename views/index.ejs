@@ -70,11 +70,10 @@
     }
     async function handleFormSubmit(event) {
       event.preventDefault();
-
       const data = serializeForm(event.target);
       const { redirected, url, status, error } = await sendData(data);
       if (status === 403) {
-        onError()
+        onError();
       } else if (status === 200) {
         if (redirected) {
           window.location.href = url;

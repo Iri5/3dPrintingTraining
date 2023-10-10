@@ -1,0 +1,38 @@
+//mixin buttons
+@mixin buttonDefault($height: $buttonHeight, $width: $buttonWidth, $fsize: $fsizeH2) {
+    height: $height;
+    width: $width;
+    background-color: $base-color;
+    color: $font-light;
+    border: 0px;
+    border-radius: 5px;
+    font-size: $fsize;
+
+    &:hover {
+        background-color: $dark-thirdly;
+        cursor: pointer;
+    }
+
+    &:disabled {
+        background-color: $light-secondary-color;
+    }
+}
+
+@mixin buttonOutline($height: $buttonHeight, $width: $buttonWidth, $fsize: $fsizeH2) {
+    height: $height;
+    width: $width;
+    background-color: $font-light;
+    color: $base-color;
+    border: 0px;
+    border-radius: 5px;
+    font-size: $fsize;
+
+    &:hover {
+        background-color: $light-secondary-color;
+        cursor: pointer;
+    }
+
+    &:disabled {
+        color: $light-secondary-color;
+    }
+}

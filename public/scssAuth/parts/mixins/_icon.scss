@@ -1,0 +1,13 @@
+@mixin icon($height: 20px, $width:20px) {
+    height: $height;
+    width: $width;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+
+    &:hover,
+    &:focus {
+        cursor: pointer;
+        transform: scale(1.2);
+    }
+}

@@ -1,0 +1,40 @@
+@mixin radioGroup($width: 180px, $height: 30px, $fs: $fsizeText, $gap: 10px) {
+    display: flex;
+    flex-direction: column;
+    .form_radio_group-item{
+        @include radio($width, $height, $fs, $gap);
+    }
+    
+}
+
+@mixin radio($width: 180px, $height: 30px, $fs: $fsizeText, $mb: 10px) {
+    display: block;
+    margin-bottom: $mb;
+    input[type=radio] {
+        display: none;
+        &:checked+label {
+            background-color: $base-color;
+            color: $font-light;
+        }
+    }
+
+    label {
+        display: block;
+        width: $width;
+        height: $height;
+        user-select: none;
+        cursor: pointer;
+        text-align: center;
+        line-height: $height;
+        background-color: $font-light;
+        color: $base-color;
+        border: 1px solid $base-color;
+        border-radius: 5px;
+        font-size: $fs;
+
+        &:hover {
+            background-color: $light-secondary-color;
+        }
+    }
+
+}

@@ -1,0 +1,33 @@
+//mixin input text
+@mixin inputText($width: $widthInputText, $height: $heightInputText, $fs: $fsizeText) {
+    width: $width;
+    height: $height;
+    border-radius: 5px;
+    border: 1px solid $base-color;
+    font-size: $fs;
+    padding: 20px;
+    color: $base-color;
+
+    &::placeholder {
+        color: $base-color;
+    }
+
+    &:focus {
+        background-color: $base-color-trans;
+        border: 1px solid $base-color;
+        border-color: $base-color;
+        border-radius: 5px;
+        outline: 0;
+    }
+
+}
+
+@mixin inputAndLabel($width: $widthInputText, $height: $heightInputText, $fs: $fsizeText){
+    font-size: $fs;
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    input {
+        @include inputText($width, $height, $fs)
+    }
+}

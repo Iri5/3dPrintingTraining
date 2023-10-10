@@ -1,0 +1,24 @@
+.head {
+    background-color: $base-color;
+    width: 100%;
+    height: 50px;
+    color: $font-light;
+    @include fontReg();
+    font-size: $fsizeText;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    .role {
+        margin-left: 50px;
+        cursor: default;
+    }
+
+    .logout {
+        margin-right: 50px;
+        @include icon(30px, 30px);
+        background-image: url(/img/Exit.svg);
+        
+    }
+}

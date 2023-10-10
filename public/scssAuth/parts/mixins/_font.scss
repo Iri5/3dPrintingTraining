@@ -1,0 +1,12 @@
+//mixin font
+@mixin fontReg() {
+    font-family: 'Mont';
+    font-weight: 400;
+    font-style: normal;
+}
+
+@mixin fontSemiBold() {
+    font-family: 'Mont';
+    font-weight: 600;
+    font-style: normal;
+}

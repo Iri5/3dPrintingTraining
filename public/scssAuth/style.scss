@@ -1,101 +1,12 @@
-//colors
-$base-color: #03045E;
-$base-color-trans: rgba(1, 186, 179, 0.1);
-$dark-thirdly: #0077B6;
-$light-secondary-color: #CAF0F8;
-
-$font-dark: black;
-$font-light: white;
-
-//text size
-$fsizeH2: 24px;
-$fsizeH1: 30px;
-$fsizeText: 20px;
-//box size
-$heightInputText: 40px;
-$widthInputText: 400px;
-$buttonHeight:40px;
-$buttonWidth: 400px;
-//fonts
-@font-face {
-    font-family: "Mont";
-    font-weight: 400;
-    font-style: normal;
-    src: url("/fonts/Montserrat/static/Montserrat-Regular.ttf");
-}
-
-@font-face {
-    font-family: "Mont";
-    font-weight: 600;
-    font-style: normal;
-    src: url("/fonts/Montserrat/static/Montserrat-SemiBold.ttf");
-}
-//mixin font
-@mixin fontReg() {
-    font-family: 'Mont';
-    font-weight: 400;
-    font-style: normal;
-}
-
-@mixin fontSemiBold() {
-    font-family: 'Mont';
-    font-weight: 600;
-    font-style: normal;
-}
-//mixin buttons
-@mixin buttonDefault($height: $buttonHeight, $width: $buttonWidth, $fsize: $fsizeH2) {
-    height: $height;
-    width: $width;
-    background-color: $base-color;
-    color: $font-light;
-    border: 0px;
-    border-radius: 5px;
-    font-size: $fsize;
-    &:hover{
-        background-color: $dark-thirdly;
-        cursor: pointer;
-    }
-    &:disabled{
-        background-color: $light-secondary-color;
-    }
-}
-@mixin buttonOutline($height: $buttonHeight, $width: $buttonWidth, $fsize: $fsizeH2) {
-    height: $height;
-    width: $width;
-    background-color: $font-light;
-    color: $base-color;
-    border: 0px;
-    border-radius: 5px;
-    font-size: $fsize;
-    &:hover{
-        background-color: $light-secondary-color;
-        cursor: pointer;
-    }
-    &:disabled{
-        color: $light-secondary-color;
-    }
-}
-//mixin input text
-@mixin inputText($width: $widthInputText, $height: $heightInputText) {
-    width: $width;
-    height: $heightInputText;
-    border-radius: 5px;
-    border: 1px solid $base-color;
-    font-size: $fsizeText;
-    padding: 20px;
-    color: $base-color;
-    &::placeholder {
-        color: $base-color;
-    }
-    &:focus {
-        background-color: $base-color-trans;
-        border: 1px solid $base-color;
-        border-color: $base-color;
-        border-radius: 5px;
-        outline: 0;
-    }
-    
-}
+@import 'parts/vars';
+@import 'parts/fonts';
+@import 'parts/mixins/font';
+@import 'parts/mixins/buttons';
+@import 'parts/mixins/input';
+@import 'parts/mixins/icon';
+@import 'parts/pages/auth';
+@import 'parts/modal';
+@import 'parts/header';
 //all css
 * {
     margin: 0;
@@ -103,173 +14,55 @@ $buttonWidth: 400px;
     @include fontReg();
 }
 
+//table
 
-.auth {
+.admin-container{
+    margin-top: 50px;
+    width: 100%;
+    padding-right: 50px;
+    padding-left: 50px;
+    display: flex;
+    flex-direction: column
+}
+.cont-admin_head{
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    height: 100vh;
-    width: 100vw;
-}
-
-.information {
-    background-color: $base-color;
-    margin-left: -50vw;
-    width: 100vw;
-    transform: skewX(-20deg);
-    z-index: -1;
-    display: flex;
-    flex-direction: row;
-    justify-content: end;
+    justify-content: space-between;
     align-items: center;
 }
-.inf-cont{
-    transform: skewX(20deg);
-    color: $font-light;
-    width: 30%;
-    margin-right: 10%;
-    h1{
-        font-size: $fsizeH1;
-        @include fontSemiBold();
-        margin-bottom: 20px;
-    }
-    p{
-        font-size: $fsizeText;
-        @include fontReg();
-    }
+table{
+    margin-top: 20px;
+    border: 1px solid $base-color;
+    border-radius: 15px;
+    border-spacing: 0;
+    text-align: left;
+    font-size: $fsizeTable;
 }
-.auth__container {
-    width: 50vw;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    .auth__title {
-        margin-bottom: 30px;
-        color: $base-color;
-        font-size: $fsizeH2;
-    }
-}
-
-.auth__form {
-    display: flex;
-    flex-direction: column;
-    row-gap: 20px;
-}
-
-.auth__input-cont {
-    font-size: $fsizeText;
-    display: flex;
-    flex-direction: column;
-    row-gap: 5px;
-}
-
-.auth__input {
-    @include inputText();
-}
-
-.auth__button {
-    margin-top: 10px;
-    @include buttonDefault(50px, 400px, $fsizeH2);
+th{
     @include fontSemiBold();
+    color: $base-color;
+}
+td,th{
+    height: 40px;
+    box-shadow: 0px -1px 0px 0px rgba(0, 0, 0, 0.25) inset;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.delete-icon{
+    @include icon(20px, 20px);
+    background-image: url(/img/Delete.svg);
 }
 
-
-
-.modal {
-    /* Hidden by default */
-   position: fixed;
-   /* Stay in place */
-   z-index: 1;
-   /* Sit on top */
-   //padding-top: 100px; /* Location of the box */
-   left: 0;
-   top: 0;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   width: 100%;
-   /* Full width */
-   height: 100%;
-   /* Full height */
-   overflow: auto;
-   /* Enable scroll if needed */
-   background-color: rgb(0, 0, 0);
-   /* Fallback color */
-   background-color: rgba(0, 0, 0, 0.4);
-   /* Black w/ opacity */
-   display: none;
+.edit-icon{
+    @include icon(20px, 20px);
+    background-image: url(/img/Edit.svg);
+    background-image: url(./img/Edit.svg);
 }
-
-
-.modal-content {
-   background-color: $font-light;
-   position: relative;
-   margin: auto;
-   margin-bottom: auto;
-   margin-top: 10%;
-   width: 450px;
-   height: 250px;
-   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-   -webkit-animation-name: animatetop;
-   -webkit-animation-duration: 0.4s;
-   animation-name: animatetop;
-   animation-duration: 0.4s
+.table_name {
+    @include fontSemiBold();
+    font-size: $fsizeH2;
+    color: $base-color;
 }
-
-
-@-webkit-keyframes animatetop {
-   from {
-       top: -300px;
-       opacity: 0
-   }
-   to {
-       top: 0;
-       opacity: 1
-   }
-}
-
-@keyframes animatetop {
-   from {
-       top: -300px;
-       opacity: 0
-   }
-
-   to {
-       top: 0;
-       opacity: 1
-   }
-}
-
-.close {
-   position: relative;
-   top: 10px;
-   right: 10px;
-   float: right;
-   width: 20px;
-   height: 20px;
-   background-image: url("/img/CloseModal.svg");
-   background-repeat: no-repeat;
-   background-size: contain;
-   &:hover,&:focus{
-       cursor: pointer;
-       transform: scale(1.2);
-   }
-}
-
-
-
-.modal-body {
-   height: 100%;
-   display: flex;
-   flex-direction: column;
-   justify-content: center;
-   padding-left: 30px;
-   row-gap: 10px;
-   p{
-       @include fontReg();
-       color: $base-color;
-       font-size: $fsizeH2;
-   }
+.add-user_button {
+    @include buttonDefault(40px, 200px, $fsizeText)
 }

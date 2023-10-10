@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="scssA/style.css">
+    <link rel="stylesheet" href="scssAuth/style.css">
 <style>
     .open{
         display: block;
@@ -14,48 +14,62 @@
 </head>
 
 <body>
+    <header class="head">
+        <div class="role">
+            Администратор
+        </div>
+        <div class="logout">
 
-    <h1>Это страница админа</h1>
-    
-    <table id="users" class="menu">
-        <tr>
-            <th>Фамилия Имя Отчество</th>
-            <th>Email</th>
-            <th>Логин</th>
-            <th>Группа</th>
-            <th>Роль</th>
-            <th>Дата рождения</th>
-        </tr>
-        <% for(let i=0; i<goods.length; i++){ %>
+        </div>
+    </header>
+    <div class="admin-container">
+        <div class="cont-admin_head">
+            <div class="table_name">Пользователи системы</div>
+            <button class="add-user_button">Добавить</button>
+        </div>
+        <table id="users" class="menu">
             <tr>
-                <td>
-                    <%=goods[i].fio %>
-                </td>
-                <td>
-                    <%=goods[i].email %>
-                </td>
-                <td>
-                    <%=goods[i].login %>
-                </td>
-                <td>
-                    <%=goods[i].gr %>
-                </td>
-                <td>
-                    <%=goods[i].role %>
-                </td>
-                <td>
-                    <%=goods[i].bday %>
-                </td>
-                <td>
-                    <button data-action="delete">Удалить</button>
-                </td>
-                <td>
-                    <button data-action="edit">Редактировать</button>
-                </td>
+                <th>Фамилия Имя Отчество</th>
+                <th>Email</th>
+                <th>Логин</th>
+                <th>Группа</th>
+                <th>Роль</th>
+                <th>Дата рождения</th>
+                <th></th>
+                <th></th>
             </tr>
-            <%} %>
-
-    </table>
+            <% for(let i=0; i<goods.length; i++){ %>
+                <tr>
+                    <td>
+                        <%=goods[i].fio %>
+                    </td>
+                    <td>
+                        <%=goods[i].email %>
+                    </td>
+                    <td>
+                        <%=goods[i].login %>
+                    </td>
+                    <td>
+                        <%=goods[i].gr %>
+                    </td>
+                    <td>
+                        <%=goods[i].role %>
+                    </td>
+                    <td>
+                        <%=goods[i].bday %>
+                    </td>
+                    <td>
+                        <div data-action="delete" class="delete-icon" title="Удалить"></div>
+                    </td>
+                    <td>
+                        <div data-action="edit" class="edit-icon" title="Редактировать"></div>
+                    </td>
+                </tr>
+                <%} %>
+    
+        </table>
+    </div>
+    
     <div class="info">
         Успешно добавлено
     </div>
