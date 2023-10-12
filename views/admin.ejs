@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="scssAuth/style.css">
-<style>
-    .open{
-        display: block;
-    }
-</style>
+    <style>
+        .open {
+            display: block;
+        }
+    </style>
 </head>
 
 <body>
@@ -25,9 +25,71 @@
     <div class="admin-container">
         <div class="cont-admin_head">
             <div class="table_name">Пользователи системы</div>
-            <button class="add-user_button">Добавить</button>
+
+            <div class="modal-container">
+                <button id="myBtn" class="modalBtn add-user_button">Добавить</button>
+                <div id="myModal" class="modal admin-new-persone">
+                    <div class="modal-content-formUser  form_addperson_block_content">
+                        <div class="modal-header">
+                            <div id="close" class="close close_white"></div>
+                            Добавление нового пользователя
+                        </div>
+                        <div class="modal_body">
+                            <form id="form" class="form_addperson_style" action="/admin-addpersone" method="post">
+                                <div class="input-area">
+                                    <label>ФИО</label>
+                                    <input type="text" name="fio" placeholder="Иванов Иван Иванович" required>
+                                </div>
+                                <div class="input-area">
+                                    <label>Адрес электронной почты</label>
+                                    <input type="email" name="email" placeholder="ivanov@mail.ru" required>
+                                </div>
+                                <div class="input-area">
+                                    <label>Логин</label>
+                                    <input id="mylogin" type="text" name="login" placeholder="ivanov123" required
+                                        value="">
+                                </div>
+                                <div class="input-area">
+                                    <label>Пароль</label>
+                                    <input type="text" name="password" placeholder="Введите пароль" required>
+                                </div>
+                                <div class="input-area">
+                                    <label>Группа</label>
+                                    <input id="mygroup" type="number" name="group" placeholder="101">
+                                </div>
+                                <div class="role-date">
+                                    <div class="form-radio-group">
+                                        <div class="form_radio_group-item">
+
+                                            <input id="radio-1" name="role" type="radio" checked value="1">
+                                            <label for="radio-1">Обучаемый</label>
+                                        </div>
+                                        <div class="form_radio_group-item">
+
+                                            <input id="radio-2" name="role" type="radio" value="2">
+                                            <label for="radio-2">Преподаватель</label>
+                                        </div>
+                                        <div class="form_radio_group-item">
+
+                                            <input id="radio-3" name="role" type="radio" value="3">
+                                            <label class="test" for="radio-3">Администратор</label>
+                                        </div>
+                                    </div>
+                                    <div class="input-area-date date">
+                                        <label>Дата рождения</label>
+                                        <input type="date" name="bday" placeholder="01.01.1991">
+                                    </div>
+                                </div>
+                                <button class="form_addperson_button form_button" type="submit"
+                                    name="form_addperson_submit">Зарегистрировать
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <table id="users" class="menu">
+        <table id="users" class="menu table">
             <tr>
                 <th>Фамилия Имя Отчество</th>
                 <th>Email</th>
@@ -66,79 +128,16 @@
                     </td>
                 </tr>
                 <%} %>
-    
+
         </table>
     </div>
-    
+
     <div class="info">
         Успешно добавлено
     </div>
-<div class="modal-container">
-    <button id="myBtn" class="modalBtn">Добавить нового пользователя</button>
-    <div id="myModal" class="modal ">
 
-        <div class="modal-content  form_addperson_block_content">
-            <div class="modal-header">
-                <span id="close" class="close">&times;</span>
-                <h2>Шапка модального окна</h2>
-            </div>
-            <div class="modal-body">
-                <div class="size">
-                    <p id="name">Добавление нового пользователя</p>
-                    <form id="form" class="form_addperson_style" action="/admin-addpersone" method="post">
-                        <div class="area">
-                            <label>ФИО</label>
-                            <input type="text" name="fio" placeholder="ФИО" required>
-                        </div>
-                        <div class="area">
-                            <label>Адрес электронной почты</label>
-                            <input type="email" name="email" placeholder="Эл. почта" required>
-                        </div>
-                        <div class="area">
-                            <label>Логин</label>
-                            <input id="mylogin" type="text" name="login" placeholder="Логин" required value="">
-                        </div>
-                        <div class="area">
-                            <label>Пароль</label>
-                            <input type="text" name="password" placeholder="Пароль" required>
-                        </div>
-                        <div class="area">
-                            <label>Группа</label>
-                            <input id="mygroup" type="number" name="group" placeholder="Группа">
-                        </div>
-                        <div class="role-date">
-                            <div class="form-radio-group">
-                                <div class="form_radio_group-item">
-                                    <label>Обучаемый</label>
-                                    <input name="role" type="radio" checked value="1">
-                                </div>
-                                <div class="form_radio_group-item">
-                                    <label>Преподаватель</label>
 
-                                    <input name="role" type="radio" value="2">
-                                </div>
-                                <div class="form_radio_group-item">
-                                    <label>Администратор</label>
-                                    <input name="role" type="radio" value="3">
-                                </div>
-                            </div>
-                            <div class="area date">
-                                <label>Дата рождения</label>
-                                <input type="date" name="bday" placeholder="01.01.1991">
-                            </div>
-                        </div>
-                        <button class="form_addperson_button" type="submit"
-                            name="form_addperson_submit">Зарегистрировать</button>
-                </div>
-                </form>
-                <!--</div>-->
-            </div>
-
-        </div>
-    </div>
-</div>
-
-<!--<div class="modal-container">
+    <!--<div class="modal-container">
     <button id="myBtn" class="modalBtn">Добавить нового пользователя</button>
     <div id="myModal" class="modal open">
 
@@ -196,99 +195,78 @@
                             name="form_addperson_submit">Зарегистрировать</button>
                 </div>
                 </form>-->
-                <!--</div>-->
-            <!--</div>
+    <!--</div>-->
+    <!--</div>
 
         </div>
     </div>
 </div>-->
-    
+
     <div id="modalUserExist" class="modal ">
-        <div class="modal-content  form_addperson_block_content">
-            <div class="modal-header">
-                <span id="closeUserExist" class="close">&times;</span>
-                <h2>Пользователь с данным логином существует</h2>
+        <div class="modal-content-warning  form_addperson_block_content">
+            <div id="closeUserExist" class="close"></div>
+            <div class="modal-body-confirm">
+                <p>Пользователь с данным логином существует</p>
             </div>
-            <div class="modal-body">
-                <!--<p>Какой-то текст в теле модального окна</p>
-                <p>Ещё другой текст...</p>-->
-
-
-            </div>
-
         </div>
     </div>
     <div id="modalHasntGroup" class="modal ">
-        <div class="modal-content  form_addperson_block_content">
-            <div class="modal-header">
-                <span id="closeHasntGroup" class="close">&times;</span>
-                <h2>У обучаемого должна быть группа</h2>
+        <div class="modal-content-warning  form_addperson_block_content">
+            <div id="closeHasntGroup" class="close"></div>
+            <div class="modal-body-confirm">
+                <p>У обучаемого должна быть группа</p>
             </div>
-            <div class="modal-body">
-                <!--<p>Какой-то текст в теле модального окна</p>
-                <p>Ещё другой текст...</p>-->
-
-
-            </div>
-
         </div>
     </div>
     <div id="myModal_edit" class="modal ">
-        <div class="modal-content  form_addperson_block_content">
+        <div class="modal-content-formUserEdit  form_addperson_block_content">
             <div class="modal-header">
-                <span class="close">&times;</span>
-                <h2>Шапка модального окна</h2>
+                <div class="close close_white"></div>
+                Редактирование пользователя
             </div>
-            <div class="modal-body">
-                <!--<p>Какой-то текст в теле модального окна</p>
-                <p>Ещё другой текст...</p>-->
+            <div class="modal_body">
+                <form id="form_ed" name="my" class="form_addperson_style" action="/admin-editpersone" method="post">
+                    <input id="cur_log" type="text" name="current" placeholder="ФИО" style="display: none;">
+                    <div class="input-area">
+                        <label>ФИО</label>
+                        <input type="text" name="fio" placeholder="ФИО" required>
+                    </div>
+                    <div class="input-area">
+                        <label>Адрес электронной почты</label>
+                        <input type="email" name="email" placeholder="Эл. почта" required>
+                    </div>
+                    <div class="input-area">
+                        <label>Логин</label>
+                        <input id="mylogin" type="text" name="login" placeholder="Логин" required value="">
+                    </div>
 
-                <!--<div class="form_addperson_block_content">-->
-                <div class="size">
-                    <p id="name">Редактирование пользователя</p>
-                    <form id="form_ed" name="my" class="form_addperson_style" action="/admin-editpersone" method="post">
-                        <input id="cur_log" type="text" name="current" placeholder="ФИО" style="display: none;">
-                        <div class="area">
-                            <label>ФИО</label>
-                            <input type="text" name="fio" placeholder="ФИО" required>
-                        </div>
-                        <div class="area">
-                            <label>Адрес электронной почты</label>
-                            <input type="email" name="email" placeholder="Эл. почта" required>
-                        </div>
-                        <div class="area">
-                            <label>Логин</label>
-                            <input id="mylogin" type="text" name="login" placeholder="Логин" required value="">
-                        </div>
-
-                        <div class="area">
-                            <label>Группа</label>
-                            <input id="mygroup" type="number" name="group" placeholder="Группа">
-                        </div>
-                        <div class="role-date">
-                            <div class="form-radio-group">
-                                <div class="form_radio_group-item">
-                                    <label>Обучаемый</label>
-                                    <input name="role" type="radio" checked value="1">
-                                </div>
-                                <div class="form_radio_group-item">
-                                    <label>Преподаватель</label>
-
-                                    <input name="role" type="radio" value="2">
-                                </div>
-                                <div class="form_radio_group-item">
-                                    <label>Администратор</label>
-                                    <input name="role" type="radio" value="3">
-                                </div>
+                    <div class="input-area">
+                        <label>Группа</label>
+                        <input id="mygroup" type="number" name="group" placeholder="Группа">
+                    </div>
+                    <div class="role-date">
+                        <div class="form-radio-group">
+                            <div class="form_radio_group-item">
+                                <input id="radio-11" name="role" type="radio" checked value="1">
+                                <label for="radio-11">Обучаемый</label>
                             </div>
-                            <div class="area date">
-                                <label>Дата рождения</label>
-                                <input type="date" name="bday" placeholder="01.01.1991">
+                            <div class="form_radio_group-item">
+                                <input id="radio-22" name="role" type="radio" value="2">
+                                <label for="radio-22">Преподаватель</label>
+                            </div>
+                            <div class="form_radio_group-item">
+                                <input id="radio-33" name="role" type="radio" value="3">
+                                <label for="radio-33">Администратор</label>
                             </div>
                         </div>
-                        <button class="form_addperson_button" type="submit"
-                            name="form_addperson_submit">Зарегистрировать</button>
-                </div>
+                        <div class="input-area-date date">
+                            <label>Дата рождения</label>
+                            <input type="date" name="bday" placeholder="01.01.1991">
+                        </div>
+                    </div>
+                    <button class="form_addperson_button form_button" type="submit"
+                        name="form_addperson_submit">Сохранить</button>
+
                 </form>
                 <!--</div>-->
             </div>
@@ -375,7 +353,7 @@
 
         new Menu(users);
     </script>-->
-    
+
 </body>
 <script>
     form.onsubmit = async (e) => {
@@ -386,7 +364,7 @@
         let arrayOfStrings = arrlogins.split(",");
         if (arrayOfStrings.includes(login.value)) {
             ModalWorkWithoutBtn('modalUserExist', "closeUserExist");
-            
+
         } else {
             console.log("проверка группы");
             let role = document.querySelector('input[name="role"]:checked').value;
@@ -394,7 +372,7 @@
             console.log("проверка группы")
             if ((role == '1') && (group.value == "")) {
                 ModalWorkWithoutBtn('modalHasntGroup', "closeHasntGroup");
-                
+
             }
             else {
                 form.submit();
@@ -402,9 +380,10 @@
             //form.submit();
         }
         console.log((arrayOfStrings));
-        
-        
+
+
     }
 </script>
 <script src="admin.js" defer></script>
+
 </html>

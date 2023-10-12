@@ -1,0 +1,39 @@
+.admin-container{
+    margin-top: 50px;
+    width: 100%;
+    padding-right: 50px;
+    padding-left: 50px;
+    display: flex;
+    flex-direction: column
+}
+.cont-admin_head{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.table{
+    @include table();
+}
+
+.delete-icon{
+    @include icon(20px, 20px);
+    background-image: url(/img/Delete.svg);
+}
+
+.edit-icon{
+    @include icon(20px, 20px);
+    background-image: url(/img/Edit.svg);
+}
+.table_name {
+    @include fontSemiBold();
+    font-size: $fsizeH2;
+    color: $base-color;
+}
+.add-user_button {
+    @include buttonDefault(40px, 200px, $fsizeText)
+}
+.modal-content-formUserEdit{
+    @include modalContent(525px, 85%, 2.5%);
+}

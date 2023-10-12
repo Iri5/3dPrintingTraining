@@ -82,7 +82,7 @@
   border-radius: 5px;
   border: 1px solid #03045E;
   font-size: 20px;
-  padding: 20px;
+  padding-left: 20px;
   color: #03045E;
 }
 .auth__input::-moz-placeholder {
@@ -119,7 +119,16 @@
 .auth__button:disabled {
   background-color: #CAF0F8;
 }
-
+@keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
 .modal {
   /* Hidden by default */
   position: fixed;
@@ -144,30 +153,6 @@
   display: none;
 }
 
-.modal-content {
-  background-color: white;
-  position: relative;
-  margin: auto;
-  margin-bottom: auto;
-  margin-top: 10%;
-  width: 450px;
-  height: 250px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  -webkit-animation-name: animatetop;
-  -webkit-animation-duration: 0.4s;
-  animation-name: animatetop;
-  animation-duration: 0.4s;
-}
-@keyframes animatetop {
-  from {
-    top: -300px;
-    opacity: 0;
-  }
-  to {
-    top: 0;
-    opacity: 1;
-  }
-}
 .close {
   height: 20px;
   width: 20px;
@@ -185,7 +170,11 @@
   transform: scale(1.2);
 }
 
-.modal-body {
+.close_white {
+  background-image: url("/img/CloseModalWhite.svg");
+}
+
+.modal-body-confirm {
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -193,12 +182,261 @@
   padding-left: 30px;
   row-gap: 10px;
 }
-.modal-body p {
+.modal-body-confirm p {
   font-family: "Mont";
   font-weight: 400;
   font-style: normal;
   color: #03045E;
   font-size: 24px;
+}
+
+.modal-content-warning {
+  background-color: white;
+  position: relative;
+  margin: auto;
+  margin-bottom: auto;
+  margin-top: 10%;
+  width: 450px;
+  height: 250px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+}
+
+.modal-content-question {
+  background-color: white;
+  position: relative;
+  margin: auto;
+  margin-bottom: auto;
+  margin-top: 10%;
+  width: 450px;
+  height: 250px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+}
+
+.modal-content-formUser {
+  background-color: white;
+  position: relative;
+  margin: auto;
+  margin-bottom: auto;
+  margin-top: 1.5%;
+  width: 525px;
+  height: 95%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+}
+
+.yes {
+  height: 40px;
+  width: 100px;
+  background-color: #03045E;
+  color: white;
+  border: 0px;
+  border-radius: 5px;
+  font-size: 24px;
+}
+.yes:hover {
+  background-color: #0077B6;
+  cursor: pointer;
+}
+.yes:disabled {
+  background-color: #CAF0F8;
+}
+
+.no {
+  height: 40px;
+  width: 100px;
+  background-color: white;
+  color: #03045E;
+  border: 0px;
+  border-radius: 5px;
+  font-size: 24px;
+}
+.no:hover {
+  background-color: #CAF0F8;
+  cursor: pointer;
+}
+.no:disabled {
+  color: #CAF0F8;
+}
+
+.modal-confirm {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding-top: 10%;
+  padding-bottom: 10%;
+  justify-self: end;
+  align-self: end;
+  justify-content: space-around;
+}
+
+.buttons-confirm {
+  width: 100%;
+  margin-top: 20px;
+  align-self: end;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.modal-header {
+  width: 100%;
+  height: 40px;
+  background-color: #03045E;
+  color: white;
+  font-family: "Mont";
+  font-weight: 400;
+  font-style: normal;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 40px;
+  font-size: 20px;
+}
+
+.modal form {
+  width: 80%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+.input-area {
+  font-size: 18px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+}
+.input-area input {
+  width: 100%;
+  height: 35px;
+  border-radius: 5px;
+  border: 1px solid #03045E;
+  font-size: 18px;
+  padding-left: 20px;
+  color: #03045E;
+}
+.input-area input::-moz-placeholder {
+  color: #03045E;
+}
+.input-area input::placeholder {
+  color: #03045E;
+}
+.input-area input:focus {
+  background-color: rgba(1, 186, 179, 0.1);
+  border: 1px solid #03045E;
+  border-color: #03045E;
+  border-radius: 5px;
+  outline: 0;
+}
+
+.modal_body {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.role-date {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.input-area-date {
+  font-size: 18px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+  align-items: start;
+}
+.input-area-date input {
+  width: 180px;
+  height: 30px;
+  border-radius: 5px;
+  border: 1px solid #03045E;
+  font-size: 18px;
+  padding-left: 20px;
+  color: #03045E;
+}
+.input-area-date input::-moz-placeholder {
+  color: #03045E;
+}
+.input-area-date input::placeholder {
+  color: #03045E;
+}
+.input-area-date input:focus {
+  background-color: rgba(1, 186, 179, 0.1);
+  border: 1px solid #03045E;
+  border-color: #03045E;
+  border-radius: 5px;
+  outline: 0;
+}
+
+.form-radio-group {
+  display: flex;
+  flex-direction: column;
+}
+.form-radio-group .form_radio_group-item {
+  display: block;
+  margin-bottom: 10px;
+}
+.form-radio-group .form_radio_group-item input[type=radio] {
+  display: none;
+}
+.form-radio-group .form_radio_group-item input[type=radio]:checked + label {
+  background-color: #03045E;
+  color: white;
+}
+.form-radio-group .form_radio_group-item label {
+  display: block;
+  width: 180px;
+  height: 30px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  cursor: pointer;
+  text-align: center;
+  line-height: 30px;
+  background-color: white;
+  color: #03045E;
+  border: 1px solid #03045E;
+  border-radius: 5px;
+  font-size: 18px;
+}
+.form-radio-group .form_radio_group-item label:hover {
+  background-color: #CAF0F8;
+}
+
+.form_button {
+  height: 40px;
+  width: 250px;
+  background-color: #03045E;
+  color: white;
+  border: 0px;
+  border-radius: 5px;
+  font-size: 20px;
+  align-self: center;
+}
+.form_button:hover {
+  background-color: #0077B6;
+  cursor: pointer;
+}
+.form_button:disabled {
+  background-color: #CAF0F8;
 }
 
 .head {
@@ -231,14 +469,6 @@
 .head .logout:hover, .head .logout:focus {
   cursor: pointer;
   transform: scale(1.2);
-}
-
-* {
-  margin: 0;
-  box-sizing: border-box;
-  font-family: "Mont";
-  font-weight: 400;
-  font-style: normal;
 }
 
 .admin-container {
@@ -329,4 +559,27 @@ td, th {
 }
 .add-user_button:disabled {
   background-color: #CAF0F8;
+}
+
+.modal-content-formUserEdit {
+  background-color: white;
+  position: relative;
+  margin: auto;
+  margin-bottom: auto;
+  margin-top: 2.5%;
+  width: 525px;
+  height: 85%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+}
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Mont";
+  font-weight: 400;
+  font-style: normal;
 }/*# sourceMappingURL=style.css.map */

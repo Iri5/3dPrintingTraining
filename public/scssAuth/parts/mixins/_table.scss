@@ -1,0 +1,18 @@
+@mixin table($mt: 20px, $fs:$fsizeTable, $tdHeight:40px){
+    margin-top: $mt;
+    border: 1px solid $base-color;
+    border-radius: 15px;
+    border-spacing: 0;
+    text-align: left;
+    font-size: $fs;
+    th{
+        @include fontSemiBold();
+        color: $base-color;
+    }
+    td,th{
+        height: $tdHeight;
+        box-shadow: 0px -1px 0px 0px rgba(0, 0, 0, 0.25) inset;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}

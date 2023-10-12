@@ -1,4 +1,5 @@
 @import 'mixins/radio';
+
 @-webkit-keyframes animatetop {
     from {
         top: -300px;
@@ -126,7 +127,7 @@
     justify-content: space-around;
 }
 
-.buttons {
+.buttons-confirm {
     width: 100%;
     margin-top: 20px;
     align-self: end;
@@ -146,17 +147,20 @@
     line-height: 40px;
     font-size: $fsizeText;
 }
-
-form {
-    width: 80%;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    display: flex;
-    flex-direction: column;
+.modal{
+    form {
+        width: 80%;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        display: flex;
+        flex-direction: column;
+        row-gap: 10px;
+    }
 }
 
+
 .input-area {
-    @include inputAndLabel();
+    @include inputAndLabel(100%, 35px, 18px);
 
 }
 
@@ -172,14 +176,18 @@ form {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    margin-top: 10px;
 }
 
 .input-area-date {
-    @include inputAndLabel(180px, 40px, 12px);
-
+    @include inputAndLabel(180px, 30px, 18px);
+    align-items: start;
 }
 
 .form-radio-group {
-    @include radioGroup();
+    @include radioGroup(180px, 30px, 18px);
 }
-
+.form_button{
+    @include buttonDefault(40px, 250px, $fsizeText);
+    align-self: center;
+}

@@ -7,6 +7,8 @@
 @import 'parts/pages/auth';
 @import 'parts/modal';
 @import 'parts/header';
+@import 'parts/pages/admin';
+@import 'parts/mixins/table';
 //all css
 * {
     margin: 0;
@@ -16,53 +18,3 @@
 
 //table
 
-.admin-container{
-    margin-top: 50px;
-    width: 100%;
-    padding-right: 50px;
-    padding-left: 50px;
-    display: flex;
-    flex-direction: column
-}
-.cont-admin_head{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-}
-table{
-    margin-top: 20px;
-    border: 1px solid $base-color;
-    border-radius: 15px;
-    border-spacing: 0;
-    text-align: left;
-    font-size: $fsizeTable;
-}
-th{
-    @include fontSemiBold();
-    color: $base-color;
-}
-td,th{
-    height: 40px;
-    box-shadow: 0px -1px 0px 0px rgba(0, 0, 0, 0.25) inset;
-    padding-left: 10px;
-    padding-right: 10px;
-}
-.delete-icon{
-    @include icon(20px, 20px);
-    background-image: url(/img/Delete.svg);
-}
-
-.edit-icon{
-    @include icon(20px, 20px);
-    background-image: url(/img/Edit.svg);
-    background-image: url(./img/Edit.svg);
-}
-.table_name {
-    @include fontSemiBold();
-    font-size: $fsizeH2;
-    color: $base-color;
-}
-.add-user_button {
-    @include buttonDefault(40px, 200px, $fsizeText)
-}
