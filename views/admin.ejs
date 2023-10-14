@@ -35,7 +35,7 @@
                             Добавление нового пользователя
                         </div>
                         <div class="modal_body">
-                            <form id="form" class="form_addperson_style" action="/admin-addpersone" method="post">
+                            <form id="add-form" class="form_addperson_style" action="/admin-addpersone" method="post">
                                 <div class="input-area">
                                     <label>ФИО</label>
                                     <input type="text" name="fio" placeholder="Иванов Иван Иванович" required>
@@ -46,7 +46,7 @@
                                 </div>
                                 <div class="input-area">
                                     <label>Логин</label>
-                                    <input id="mylogin" type="text" name="login" placeholder="ivanov123" required
+                                    <input  type="text" name="login" placeholder="ivanov123" required
                                         value="">
                                 </div>
                                 <div class="input-area">
@@ -55,7 +55,7 @@
                                 </div>
                                 <div class="input-area">
                                     <label>Группа</label>
-                                    <input id="mygroup" type="number" name="group" placeholder="101">
+                                    <input type="number" name="group" placeholder="101">
                                 </div>
                                 <div class="role-date">
                                     <div class="form-radio-group">
@@ -108,7 +108,7 @@
                     <td>
                         <%=goods[i].email %>
                     </td>
-                    <td>
+                    <td class="logins">
                         <%=goods[i].login %>
                     </td>
                     <td>
@@ -137,70 +137,9 @@
     </div>
 
 
-    <!--<div class="modal-container">
-    <button id="myBtn" class="modalBtn">Добавить нового пользователя</button>
-    <div id="myModal" class="modal open">
 
-        <div class="modal-content  form_addperson_block_content">
-            <div class="modal-header">
-                <span id="close" class="close">&times;</span>
-                <h2>Шапка модального окна</h2>
-            </div>
-            <div class="modal-body">
-                <div class="size">
-                    <p id="name">Добавление нового пользователя</p>
-                    <form id="form" class="form_addperson_style" action="/admin-addpersone" method="post">
-                        <div class="area">
-                            <label>ФИО</label>
-                            <input type="text" name="fio" placeholder="ФИО" required>
-                        </div>
-                        <div class="area">
-                            <label>Адрес электронной почты</label>
-                            <input type="email" name="email" placeholder="Эл. почта" required>
-                        </div>
-                        <div class="area">
-                            <label>Логин</label>
-                            <input id="mylogin" type="text" name="login" placeholder="Логин" required value="">
-                        </div>
-                        <div class="area">
-                            <label>Пароль</label>
-                            <input type="text" name="password" placeholder="Пароль" required>
-                        </div>
-                        <div class="area">
-                            <label>Группа</label>
-                            <input id="mygroup" type="number" name="group" placeholder="Группа">
-                        </div>
-                        <div class="role-date">
-                            <div class="form-radio-group">
-                                <div class="form_radio_group-item">
-                                    <label>Обучаемый</label>
-                                    <input name="role" type="radio" checked value="1">
-                                </div>
-                                <div class="form_radio_group-item">
-                                    <label>Преподаватель</label>
 
-                                    <input name="role" type="radio" value="2">
-                                </div>
-                                <div class="form_radio_group-item">
-                                    <label>Администратор</label>
-                                    <input name="role" type="radio" value="3">
-                                </div>
-                            </div>
-                            <div class="area date">
-                                <label>Дата рождения</label>
-                                <input type="date" name="bday" placeholder="01.01.1991">
-                            </div>
-                        </div>
-                        <button class="form_addperson_button" type="submit"
-                            name="form_addperson_submit">Зарегистрировать</button>
-                </div>
-                </form>-->
-    <!--</div>-->
-    <!--</div>
 
-        </div>
-    </div>
-</div>-->
 
     <div id="modalUserExist" class="modal ">
         <div class="modal-content-warning  form_addperson_block_content">
@@ -216,6 +155,24 @@
             <div class="modal-body-confirm">
                 <p>У обучаемого должна быть группа</p>
             </div>
+        </div>
+    </div>
+    <div id="modalQueDelete" class="modal " >
+        <div class="modal-content-question">
+            <div id="close-que-delete" class="close"></div>
+            <div class="modal-confirm">
+                <div class="modal-body-confirm">
+                    <p>Вы уверены что хотите удалить пользователя?</p>
+                    
+
+                </div>
+                <div class="buttons-confirm">
+                    <button id="no-delete" class="no">Нет</button>
+                    <button id="yes-delete" class="yes">Да</button>
+
+                </div>
+            </div>
+
         </div>
     </div>
     <div id="myModal_edit" class="modal ">
@@ -275,115 +232,10 @@
     </div>
 
 
-    <!--<script defer>
-        class Menu {
-            constructor(elem) {
-                this._elem = elem;
-                elem.onclick = this.onClick.bind(this); // (*)
-            }
-
-            delete(elemPar) {
-                let login = elemPar.children[2].innerHTML;
-                login = login.trim();
-                fetch('/admin-delete', {
-                    method: 'POST',
-                    headers: {
-                        "Content-Type": "application/json; charset=UTF-8"
-                    },
-                    body: login
-                })
-                    .then(function () {
-                        document.location.reload;
-                    });
-            }
-
-            edit(elemPar) {
-                let arr = {
-                    name: elemPar.children[0].innerHTML.trim(),
-                    email: elemPar.children[1].innerHTML.trim(),
-                    login: elemPar.children[2].innerHTML.trim(),
-                    group: elemPar.children[3].innerHTML.trim(),
-                    role: elemPar.children[4].innerHTML.trim(),
-                    date: elemPar.children[5].innerHTML.trim()
-                }
-
-                let modal = document.getElementById('myModal_edit');
-                let form = document.forms.my;
-                form.elements.current.value = arr.login;
-                form.elements.fio.value = arr.name;
-                form.elements.email.value = arr.email;
-                form.elements.login.value = arr.login;
-                form.elements.group.value = arr.group;
-                if (arr.role == "Обучаемый") {
-                    form.elements.role[0].checked = true;
-                } else if (arr.role == "Преподаватель") {
-                    form.elements.role[1].checked = true;
-                } else {
-                    form.elements.role[2].checked = true;
-                }
-
-
-                //form.elements.role.value = arr.role;
-                form.elements.bday.value = arr.date;
-                modal.style.display = "block";
-                let span = document.getElementsByClassName("close")[3];
-
-                span.onclick = function () {
-                    modal.style.display = "none";
-                }
-                window.onclick = function (event) {
-                    if (event.target == modal) {
-                        modal.style.display = "none";
-                    }
-                }
-            }
-
-            search() {
-                alert('ищу');
-            }
-
-            onClick(event) {
-                let action = event.target.dataset.action;
-                let elemPar = event.target.parentElement.parentElement;
-                if (action) {
-                    this[action](elemPar);
-                }
-            }
-        }
-
-        new Menu(users);
-    </script>-->
+    
 
 </body>
-<script>
-    form.onsubmit = async (e) => {
-        e.preventDefault();
-        let login = document.getElementById('mylogin');
-        console.log(login.value);
-        let arrlogins = ("<%= logins %>");
-        let arrayOfStrings = arrlogins.split(",");
-        if (arrayOfStrings.includes(login.value)) {
-            ModalWorkWithoutBtn('modalUserExist', "closeUserExist");
-
-        } else {
-            console.log("проверка группы");
-            let role = document.querySelector('input[name="role"]:checked').value;
-            let group = document.getElementById('mygroup');
-            console.log("проверка группы")
-            if ((role == '1') && (group.value == "")) {
-                ModalWorkWithoutBtn('modalHasntGroup', "closeHasntGroup");
-
-            }
-            else {
-                form.submit();
-            }
-            //form.submit();
-        }
-        console.log((arrayOfStrings));
-
-
-    }
-</script>
-<script src="admin.js" defer></script>
+<script src="modal.js" defer></script>
+<script src="admin1.js" defer></script>
 
 </html>

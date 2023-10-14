@@ -86,10 +86,10 @@
   color: #03045E;
 }
 .auth__input::-moz-placeholder {
-  color: #03045E;
+  color: #0077B6;
 }
 .auth__input::placeholder {
-  color: #03045E;
+  color: #0077B6;
 }
 .auth__input:focus {
   background-color: rgba(1, 186, 179, 0.1);
@@ -328,10 +328,10 @@
   color: #03045E;
 }
 .input-area input::-moz-placeholder {
-  color: #03045E;
+  color: #0077B6;
 }
 .input-area input::placeholder {
-  color: #03045E;
+  color: #0077B6;
 }
 .input-area input:focus {
   background-color: rgba(1, 186, 179, 0.1);
@@ -373,10 +373,10 @@
   color: #03045E;
 }
 .input-area-date input::-moz-placeholder {
-  color: #03045E;
+  color: #0077B6;
 }
 .input-area-date input::placeholder {
-  color: #03045E;
+  color: #0077B6;
 }
 .input-area-date input:focus {
   background-color: rgba(1, 186, 179, 0.1);
@@ -487,7 +487,7 @@
   align-items: center;
 }
 
-table {
+.table {
   margin-top: 20px;
   border: 1px solid #03045E;
   border-radius: 15px;
@@ -495,15 +495,13 @@ table {
   text-align: left;
   font-size: 16px;
 }
-
-th {
+.table th {
   font-family: "Mont";
   font-weight: 600;
   font-style: normal;
   color: #03045E;
 }
-
-td, th {
+.table td, .table th {
   height: 40px;
   box-shadow: 0px -1px 0px 0px rgba(0, 0, 0, 0.25) inset;
   padding-left: 10px;
