@@ -25,7 +25,7 @@ async function User(e) {
             ModalWorkWithoutBtn('modalHasntGroup');
         }
         else {
-            addForm.submit();
+            editForm.submit();
         }
         //form.submit();
     }
@@ -48,31 +48,61 @@ async function ModalWorkConfirm(modalId, func, ...params) {
             modal.style.display = 'none';
         }
     }
-    confirm.onclick = function(login){
+    confirm.onclick = function (login) {
         func(params);
         modal.style.display = 'none';
     }
 }
-function Delete(login) {
-    alert("func")
-    alert(login);
-    fetch('/admin-delete', {
-        method: 'POST',
+let editForm = document.querySelector('#edit_form');
+editForm.addEventListener('submit', UserEdit);
+async function UserEdit(e) {
+    e.preventDefault();
+    let form = e.target;
+    console.log(form);
+    let dataToSend = {};
+    dataToSend.currentLogin = form.current.value;
+    dataToSend.fio = form.fio.value;
+    dataToSend.email = form.email.value;
+    dataToSend.login = form.email.value;
+    dataToSend.group = form.group.value;
+    dataToSend.role = form.role.value;
+    dataToSend.bday = form.bday.value;
+    console.log(dataToSend);
+    fetch('/admin', {
+        method: 'PUT',
         headers: {
-            'Content-Type': 'application/json; charset=UTF-8'
+            "Content-Type": "application/json; charset=UTF-8"
         },
-        body: login
+        body: JSON.stringify(dataToSend)
+    });
+    let modal = document.querySelector("#myModal_edit");
+    modal.style.display = 'none';
+}
+async function Delete(login) {
+    let lJson = JSON.stringify(login);
+    fetch('/admin', {
+        method: 'DELETE',
+        headers: {
+            "Content-Type": "application/json; charset=UTF-8"
+        },
+        body: JSON.stringify(login)
     })
-        .then(function () {
+        .then(function (res) {
+            if (res.status == 500) {
+                ModalWorkWithoutBtn("modalServerError");
+            } else if (res.status == 200) {
+                location.reload();
+
+            }
             document.location.reload;
         });
 
 }
-function Edit(userData, modalId){
+function Edit(userData, modalId) {
     let modal = document.getElementById(`${modalId}`);
 
     let editForm = modal.querySelector("form");
-    editForm.current.value = userData.logins;
+    editForm.current.value = userData.login;
     editForm.fio.value = userData.name;
     editForm.email.value = userData.email;
     editForm.login.value = userData.login;
@@ -84,7 +114,6 @@ function Edit(userData, modalId){
     } else {
         editForm.elements.role[2].checked = true;
     }
-
     editForm.elements.bday.value = userData.bday;
 }
 document.querySelector("#users");
@@ -96,23 +125,22 @@ users.addEventListener('click', (e) => {
         let tr = target.parentElement.parentElement;
         let login = tr.querySelector(".login").innerHTML.trim();
         ModalWorkConfirm("modalQueDelete", Delete, login);
-    } else if (target.dataset.action == "edit"){
-        
-        console.log(target.parentElement.parentElement);
+    } else if (target.dataset.action == "edit") {
+
         let userFields = target.parentElement.parentElement.children;
         let userData = {};
-        for (key in userFields){
+        for (key in userFields) {
             let clasName = userFields[key].className;
-            if (clasName != null){
+            if (clasName != null) {
                 let userInner = userFields[key].innerHTML;
                 let userTrim;
-                if (userInner != undefined){
+                if (userInner != undefined) {
                     userTrim = userInner.trim();
                     userData[clasName] = userTrim;
                 }
             }
         }
-        Edit(userData, 'myModal_edit' );
-        ModalWorkWithoutBtn('myModal_edit' ) 
+        Edit(userData, 'myModal_edit');
+        ModalWorkWithoutBtn('myModal_edit')
     }
 })

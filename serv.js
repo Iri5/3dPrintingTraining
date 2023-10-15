@@ -86,11 +86,11 @@ app.get('/admin', (req, res) => {
             }
             logins.push(item.login);
         });
-        res.render('admin', { goods: data, logins: logins });
+        res.render('admin', { goods: data });
     });
 })
 //Добавление новой учетной записи
-app.post('/admin-addpersone', urlencodedParser, (req, res) => {
+app.post('/admin', urlencodedParser, (req, res) => {
     if (!req.body) {
         return res.sendStatus(400);
     }
@@ -124,13 +124,18 @@ app.post('/admin-addpersone', urlencodedParser, (req, res) => {
             }
 })
 //Удаление учетной записи
-app.post('/admin-delete', (req, res) => {
+app.delete('/admin', jsonParser, (req, res) => {
     if (req.body) {
-        let ans = req.body;
+        
         query = 'DELETE FROM us.user WHERE login = ? AND id > 0;';
-        pool.query(query, [ans], function (err, data) {
-            if (err) return console.log(err);
-            res.redirect('/admin');
+        pool.query(query, [req.body[0]], function (err, data) {
+            if (err) {
+                res.sendStatus(500);
+                console.log("error");
+                return console.log(err);
+            }
+            res.sendStatus(200);
+            //res.redirect('/admin');
         });
     }
     else {
@@ -138,34 +143,36 @@ app.post('/admin-delete', (req, res) => {
     }
 })
 //Изменение учетных записей
-app.post('/admin-editpersone', urlencodedParser, (req, res) => {
+app.put('/admin', jsonParser, (req, res) => {
+    
     if (!req.body) {
         return res.sendStatus(400);
     }
     let ans = req.body;
+    console.log(ans.fio);
     let query = 'UPDATE us.user SET fio = ?, email = ?, login = ?, gr = ?, role = ?, bday = ? WHERE login = ? AND id > 0;';
     if ((ans.group == '') && (ans.bday == '')) {
         query = 'UPDATE us.user SET fio = ?, email = ?, login = ?, role = ? WHERE login = ? AND id > 0;';
-        pool.query(query, [ans.fio, ans.email, ans.login, ans.role, ans.current], function (err, data) {
+        pool.query(query, [ans.fio, ans.email, ans.login, ans.role, ans.currentLogin], function (err, data) {
             if (err) return console.log(err);
             res.redirect('/admin');
         });
     } else
         if ((ans.group == '') && (ans.bday != '')) {
             query = 'UPDATE us.user SET fio = ?, email = ?, login = ?, role = ?, bday = ? WHERE login = ? AND id > 0;';
-            pool.query(query, [ans.fio, ans.email, ans.login, ans.role, ans.bday, ans.current], function (err, data) {
+            pool.query(query, [ans.fio, ans.email, ans.login, ans.role, ans.bday, ans.currentLogin], function (err, data) {
                 if (err) return console.log(err);
                 res.redirect('/admin');
             });
         } else
             if ((ans.group != '') && (ans.bday == '')) {
                 query = 'UPDATE us.user SET fio = ?, email = ?, login = ?, gr = ?, role = ? WHERE login = ? AND id > 0;';
-                pool.query(query, [ans.fio, ans.email, ans.login, ans.group, ans.role, ans.current], function (err, data) {
+                pool.query(query, [ans.fio, ans.email, ans.login, ans.group, ans.role, ans.currentLogin], function (err, data) {
                     if (err) return console.log(err);
                     res.redirect('/admin');
                 });
             } else {
-                pool.query(query, [ans.fio, ans.email, ans.login, ans.group, ans.role, ans.bday, ans.current], function (err, data) {
+                pool.query(query, [ans.fio, ans.email, ans.login, ans.group, ans.role, ans.bday, ans.currentLogin], function (err, data) {
                     if (err) return console.log(err);
                     res.redirect('/admin');
                 });
