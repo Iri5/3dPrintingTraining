@@ -6,11 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="scssAuth/style.css">
-    <style>
-        .open {
-            display: block;
-        }
-    </style>
 </head>
 
 <body>
@@ -23,19 +18,19 @@
         </div>
     </header>
     <div class="admin-container">
-        <div class="cont-admin_head">
-            <div class="table_name">Пользователи системы</div>
+        <div class="admin-container_head">
+            <div class="admin-table_name">Пользователи системы</div>
 
-            <div class="modal-container">
+            <div class="modal_container">
                 <button id="myBtn" class="modalBtn add-user_button">Добавить</button>
-                <div id="myModal" class="modal admin-new-persone">
-                    <div class="modal-content-formUser  form_addperson_block_content">
-                        <div class="modal-header">
-                            <div id="close" class="close close_white"></div>
+                <div class="modal">
+                    <div class="modal_content-form">
+                        <div class="modal_header">
+                            <div class="modal_close modal_close_white"></div>
                             Добавление нового пользователя
                         </div>
                         <div class="modal_body">
-                            <form id="add-form" class="form_addperson_style" action="/admin-addpersone" method="post">
+                            <form id="add-form" action="/admin-addpersone" method="post">
                                 <div class="input-area">
                                     <label>ФИО</label>
                                     <input type="text" name="fio" placeholder="Иванов Иван Иванович" required>
@@ -102,22 +97,22 @@
             </tr>
             <% for(let i=0; i<goods.length; i++){ %>
                 <tr>
-                    <td>
+                    <td class="name">
                         <%=goods[i].fio %>
                     </td>
-                    <td>
+                    <td class="email">
                         <%=goods[i].email %>
                     </td>
-                    <td class="logins">
+                    <td class="login">
                         <%=goods[i].login %>
                     </td>
-                    <td>
+                    <td class="group">
                         <%=goods[i].gr %>
                     </td>
-                    <td>
+                    <td class="role">
                         <%=goods[i].role %>
                     </td>
-                    <td>
+                    <td class="bday">
                         <%=goods[i].bday %>
                     </td>
                     <td>
@@ -142,26 +137,26 @@
 
 
     <div id="modalUserExist" class="modal ">
-        <div class="modal-content-warning  form_addperson_block_content">
-            <div id="closeUserExist" class="close"></div>
-            <div class="modal-body-confirm">
+        <div class="modal_content-warning  form_addperson_block_content">
+            <div  class="modal_close"></div>
+            <div class="modal_body-confirm">
                 <p>Пользователь с данным логином существует</p>
             </div>
         </div>
     </div>
     <div id="modalHasntGroup" class="modal ">
-        <div class="modal-content-warning  form_addperson_block_content">
-            <div id="closeHasntGroup" class="close"></div>
-            <div class="modal-body-confirm">
+        <div class="modal_content-warning  form_addperson_block_content">
+            <div  class="modal_close"></div>
+            <div class="modal_body-confirm">
                 <p>У обучаемого должна быть группа</p>
             </div>
         </div>
     </div>
     <div id="modalQueDelete" class="modal " >
-        <div class="modal-content-question">
-            <div id="close-que-delete" class="close"></div>
+        <div class="modal_content-question">
+            <div  class="modal_close"></div>
             <div class="modal-confirm">
-                <div class="modal-body-confirm">
+                <div class="modal_body-confirm">
                     <p>Вы уверены что хотите удалить пользователя?</p>
                     
 
@@ -176,13 +171,13 @@
         </div>
     </div>
     <div id="myModal_edit" class="modal ">
-        <div class="modal-content-formUserEdit  form_addperson_block_content">
-            <div class="modal-header">
-                <div class="close close_white"></div>
+        <div class="modal_content-formUserEdit  form_addperson_block_content">
+            <div class="modal_header">
+                <div class="modal_close modal_close_white"></div>
                 Редактирование пользователя
             </div>
             <div class="modal_body">
-                <form id="form_ed" name="my" class="form_addperson_style" action="/admin-editpersone" method="post">
+                <form  class="form_addperson_style" action="/admin-editpersone" method="post">
                     <input id="cur_log" type="text" name="current" placeholder="ФИО" style="display: none;">
                     <div class="input-area">
                         <label>ФИО</label>
@@ -236,6 +231,6 @@
 
 </body>
 <script src="modal.js" defer></script>
-<script src="admin1.js" defer></script>
+<script src="admin.js" defer></script>
 
 </html>

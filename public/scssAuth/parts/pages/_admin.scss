@@ -7,7 +7,7 @@
     display: flex;
     flex-direction: column
 }
-.cont-admin_head{
+.admin-container_head{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -27,7 +27,7 @@
     @include icon(20px, 20px);
     background-image: url(/img/Edit.svg);
 }
-.table_name {
+.admin-table_name {
     @include fontSemiBold();
     font-size: $fsizeH2;
     color: $base-color;
@@ -35,6 +35,6 @@
 .add-user_button {
     @include buttonDefault(40px, 200px, $fsizeText)
 }
-.modal-content-formUserEdit{
+.modal_content-formUserEdit{
     @include modalContent(525px, 85%, 2.5%);
 }

@@ -1,26 +1,19 @@
 document.addEventListener('DOMContentLoaded', ready);
 function ready(){
-    let modal_containers = document.querySelectorAll('.modal-container');
+    let modal_containers = document.querySelectorAll('.modal_container');
     for (let div of modal_containers){
         let modal = div.querySelector('.modal');
         let button = div.querySelector('.modalBtn');
-        let close = div.querySelector('.close');
-        let modalId = modal.id;
-        let buttonId = button.id;
-        let closeId = close.id;
-        ModalWork(modalId, buttonId, closeId);
+        ModalWork(modal, button);
     }
     
 }
-function ModalWork(modalId, openBtnId, closeBtnId) {
-    let modal = document.getElementById(`${modalId}`);
-    console.log(modal);
-    let btn = document.getElementById(`${openBtnId}`);
-    let span = document.getElementById(`${closeBtnId}`);
-    btn.onclick = function () {
+function ModalWork(modal, openBtn) {
+    let close = modal.querySelector(".modal_close");
+    openBtn.onclick = function () {
         modal.style.display = 'block';
     }
-    span.onclick = function () {
+    close.onclick = function () {
         modal.style.display = 'none';
     }
     window.onclick = function (event) {
@@ -29,11 +22,11 @@ function ModalWork(modalId, openBtnId, closeBtnId) {
         }
     }
 }
-function ModalWorkWithoutBtn(modalId, closeBtnId) {
+function ModalWorkWithoutBtn(modalId) {
     let modal = document.getElementById(`${modalId}`);
-    let span = document.getElementById(`${closeBtnId}`);
+    let close = modal.querySelector(".modal_close");
     modal.style.display = 'block';
-    span.onclick = function () {
+    close.onclick = function () {
         modal.style.display = 'none';
     }
     window.onclick = function (event) {

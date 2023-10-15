@@ -153,7 +153,7 @@
   display: none;
 }
 
-.close {
+.modal_close {
   height: 20px;
   width: 20px;
   background-repeat: no-repeat;
@@ -165,16 +165,16 @@
   float: right;
   background-image: url("/img/CloseModal.svg");
 }
-.close:hover, .close:focus {
+.modal_close:hover, .modal_close:focus {
   cursor: pointer;
   transform: scale(1.2);
 }
 
-.close_white {
+.modal_close_white {
   background-image: url("/img/CloseModalWhite.svg");
 }
 
-.modal-body-confirm {
+.modal_body-confirm {
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -182,7 +182,7 @@
   padding-left: 30px;
   row-gap: 10px;
 }
-.modal-body-confirm p {
+.modal_body-confirm p {
   font-family: "Mont";
   font-weight: 400;
   font-style: normal;
@@ -190,7 +190,7 @@
   font-size: 24px;
 }
 
-.modal-content-warning {
+.modal_content-warning {
   background-color: white;
   position: relative;
   margin: auto;
@@ -205,7 +205,7 @@
   animation-duration: 0.4s;
 }
 
-.modal-content-question {
+.modal_content-question {
   background-color: white;
   position: relative;
   margin: auto;
@@ -220,7 +220,7 @@
   animation-duration: 0.4s;
 }
 
-.modal-content-formUser {
+.modal_content-form {
   background-color: white;
   position: relative;
   margin: auto;
@@ -289,7 +289,7 @@
   justify-content: space-around;
 }
 
-.modal-header {
+.modal_header {
   width: 100%;
   height: 40px;
   background-color: #03045E;
@@ -480,7 +480,7 @@
   flex-direction: column;
 }
 
-.cont-admin_head {
+.admin-container_head {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -534,7 +534,7 @@
   transform: scale(1.2);
 }
 
-.table_name {
+.admin-table_name {
   font-family: "Mont";
   font-weight: 600;
   font-style: normal;
@@ -559,7 +559,7 @@
   background-color: #CAF0F8;
 }
 
-.modal-content-formUserEdit {
+.modal_content-formUserEdit {
   background-color: white;
   position: relative;
   margin: auto;
