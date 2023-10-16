@@ -35,3 +35,25 @@ function ModalWorkWithoutBtn(modalId) {
         }
     }
 }
+async function ModalWorkConfirm(modalId, func, ...params) {
+    let modal = document.getElementById(`${modalId}`);
+    let span = modal.querySelector(".modal_close");
+    let cancel = modal.querySelector(".no");
+    let confirm = modal.querySelector(".yes");
+    modal.style.display = 'block';
+    span.onclick = async function () {
+        modal.style.display = 'none';
+    }
+    cancel.onclick = async function () {
+        modal.style.display = 'none';
+    }
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    }
+    confirm.onclick = function (login) {
+        func(params);
+        modal.style.display = 'none';
+    }
+}
