@@ -6,90 +6,166 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-    <link rel="stylesheet" href="scssA/style.css">
-<style>
-    .course_title{
-        display: flex;
-        flex-direction: column;
-    }
-    #btnAddNewCourse{
-        height: 50px;
-    }
-</style>
+    <link rel="stylesheet" href="scssAuth/style.css">
+    <style>
+        .course_title {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #btnAddNewCourse {
+            height: 50px;
+        }
+    </style>
 </head>
 
 <body>
+    <%- include ("blocks/header.ejs", {title:"Преподаватель"})%>
 
-    <h1>Это страница преподавателя</h1>
-    
-    <h1>Существующие курсы</h1>
-    <div class="course_title">
-        <% for(let i=0; i<courses.length; i++){ %>
-            <button>
-                <%= courses[i].title %>
-            </button>
-            <%} %>
-    </div>
+        <nav>
+            <div class="nav_item">Курсы</div>
+            <div class="nav_item">Ученики</div>
+        </nav>
+        <div class="teach__content">
+            <div class="course-table__container">
+                <div class="course-table__head">
+                    <div class="course-table__name">Курсы</div>
 
-<div class="modal-container">
-    <button id="btnAddNewCourse" class="modalBtn">
-        Добавить новый курс
-    </button>
-    <div id="modalAddNewCourse" class="modal ">
-        <div class="modal-content  form_addperson_block_content">
-            <div class="modal-header">
-                <span id="closeAddNewCourse" class="close">&times;</span>
-                <h2>Шапка модального окна</h2>
-            </div>
-            <div class="modal-body">
-                <!--<p>Какой-то текст в теле модального окна</p>
-                <p>Ещё другой текст...</p>-->
+                    <div class="modal_container">
+                        <button id="myBtn" class="modalBtn add-user_button">Добавить</button>
+                        <div class="modal">
+                            <div class="modal_content-form">
+                                <div class="modal_header">
+                                    <div class="modal_close modal_close_white"></div>
+                                    Добавление нового курса
+                                </div>
+                                <div class="modal_body">
+                                    <form id="add-form" action="/admin" method="post">
+                                        <div class="input-area">
+                                            <label>Название</label>
+                                            <input type="text" name="title" placeholder="Введите название курса"
+                                                required>
+                                        </div>
+                                        <div class="input-area">
+                                            <label>Описание</label>
+                                            <input type="text" name="description" placeholder="Введите описание курса"
+                                                required>
+                                        </div>
 
-                <!--<div class="form_addperson_block_content">-->
-                <div class="size">
-                    <p id="name">Добавление нового курса</p>
-                    <form id="form_ed" name="my" class="form_addperson_style" action="/teach-addcurse" method="post">
-                        <div class="area">
-                            <label>Название</label>
-                            <input type="text" name="title" placeholder="Название курса" required>
+
+                                        <button class="form_addperson_button form_button" type="submit"
+                                            name="form_addperson_submit">Сохранить
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
-                        <div class="area">
-                            <label>Описание</label>
-                            <textarea name="description" placeholder="Описание курса" required></textarea>
-                        </div>
-                        <button class="form_addperson_button" type="submit"
-                            name="form_addcurse_submit">Добавить</button>
+                    </div>
                 </div>
-                </form>
-                <!--</div>-->
+                <table id="courses" class="menu table">
+                    <tr>
+                        <th>Название</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <% for(let i=0; i<courses.length; i++){ %>
+                        <tr userId="<%= courses[i].id %>">
+                            <td  class="name">
+                                <%= courses[i].title %>
+                            </td>
+                            <td>
+                                <div data-action="show" class="eye-icon" title="Редактировать"></div>
+                            </td>
+                            <td>
+                                <div data-action="delete" class="delete-icon" title="Удалить"></div>
+                            </td>
+
+                        </tr>
+                        <%} %>
+                </table>
+            </div>
+            <div class="course-info">
+                <div class="course-info__title">
+                    
+                </div>
+                <div class="course-info__description"></div>
+                <button class="course-info__button course-info__button_hidden">Страница курса</button>
+            </div>
+            <!--
+            <h1>Существующие курсы</h1>
+            <div class="course_title">
+                <% for(let i=0; i<courses.length; i++){ %>
+                    <button>
+                        <%= courses[i].title %>
+                    </button>
+                    <%} %>
             </div>
 
+            <div class="modal-container">
+                <button id="btnAddNewCourse" class="modalBtn">
+                    Добавить новый курс
+                </button>
+                <div id="modalAddNewCourse" class="modal ">
+                    <div class="modal-content  form_addperson_block_content">
+                        <div class="modal-header">
+                            <span id="closeAddNewCourse" class="close">&times;</span>
+                            <h2>Шапка модального окна</h2>
+                        </div>
+                        <div class="modal-body">
+                           
+                            <div class="size">
+                                <p id="name">Добавление нового курса</p>
+                                <form id="form_ed" name="my" class="form_addperson_style" action="/teach-addcurse"
+                                    method="post">
+                                    <div class="area">
+                                        <label>Название</label>
+                                        <input type="text" name="title" placeholder="Название курса" required>
+                                    </div>
+                                    <div class="area">
+                                        <label>Описание</label>
+                                        <textarea name="description" placeholder="Описание курса" required></textarea>
+                                    </div>
+                                    <button class="form_addperson_button" type="submit"
+                                        name="form_addcurse_submit">Добавить</button>
+                            </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <form id="formshowcurse" name="formshowcurse" action="/teach-showcurse" method="get">
+                <input type="text" name="titlecourse" style="display: none;">
+            </form>
+             -->
         </div>
-    </div>
-</div>
-    
-    <form id="formshowcurse" name="formshowcurse" action="/teach-showcurse" method="get">
-        <input type="text" name="titlecourse" style="display: none;">
-    </form>
-    <script src="admin.js" defer></script>
-    <script>
         
-        let course = document.querySelector(".course_title");
-        console.log(course);
-        course.addEventListener("click", (event) => {
-            let target = event.target;
-            if (target.tagName == "BUTTON") {
-                courseTitle = target.innerHTML;
-                courseTitle = courseTitle.trim();
-                course_form=document.getElementById('formshowcurse');
-                console.log(course_form);
-                course_form.titlecourse.value = courseTitle;
-                course_form.submit();
-            }
+        <script src="admin.js" defer></script>
+        <script defer>
+            let course = document.querySelector(".course_title");
+            console.log(course);
+            course.addEventListener("click", (event) => {
+                let target = event.target;
+                if (target.tagName == "BUTTON") {
+                    courseTitle = target.innerHTML;
+                    courseTitle = courseTitle.trim();
+                    course_form = document.getElementById('formshowcurse');
+                    console.log(course_form);
+                    course_form.titlecourse.value = courseTitle;
+                    course_form.submit();
+                }
 
-        })
+            })
 
-    </script>
+        </script>
+
+        <script src="js/common/modal.js" defer></script>
+        <script src="js/common/logout.js"></script>
+        
+        <script src="js/teach/clickInUsers.js" defer></script>
+        <script src="js/teach/fillCourseInfo.js" defer></script>
+        
 </body>
 
 </html>

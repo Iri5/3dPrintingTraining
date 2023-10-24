@@ -1,5 +1,3 @@
-
-
 let editForm = document.querySelector('#edit_form');
 editForm.addEventListener('submit', UserEdit);
 async function UserEdit(e) {

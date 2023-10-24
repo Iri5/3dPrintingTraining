@@ -6,7 +6,6 @@ function ready(){
         let button = div.querySelector('.modalBtn');
         ModalWork(modal, button);
     }
-    
 }
 function ModalWork(modal, openBtn) {
     let close = modal.querySelector(".modal_close");

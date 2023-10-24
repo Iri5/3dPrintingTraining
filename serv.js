@@ -8,7 +8,7 @@ const { dirname } = require('path');
 const bodyParser = require('body-parser');
 const router = express.Router();
 
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 const pool = mysql.createPool({
     host: 'localhost',
@@ -35,7 +35,8 @@ app.get('/auth', jsonParser, (req, res) => {
     pool.query(query, [user.login, user.pass], function (err, data) {
         if (err) return console.log(err);
         if (data.length == 0) {
-            res.sendStatus(403)}
+            res.sendStatus(403)
+        }
         else {
             switch (data[0].role) {
                 case '3':
@@ -44,15 +45,8 @@ app.get('/auth', jsonParser, (req, res) => {
                     res.redirect('/admin');
                     break;
                 case '2':
-                    query = 'SELECT title FROM us.course;'
-                    pool.query(query, function (err, data) {
-                        if (err) return console.log(err);
-                        if (data.length != 0) {
-                            res.status = 200;
-                            res.render('teac', { courses: data });
-                        }
-                        else  res.sendStatus(403);
-                    });
+                    res.status = 200;
+                    res.redirect('/teach');
                     break;
                 case '1':
                     res.status = 200;
@@ -62,6 +56,8 @@ app.get('/auth', jsonParser, (req, res) => {
         }
     });
 })
+
+
 //АДМИНИСТРАТОР
 //Загрузка данных учетных записей
 app.get('/admin', (req, res) => {
@@ -126,7 +122,7 @@ app.post('/admin', urlencodedParser, (req, res) => {
 //Удаление учетной записи
 app.delete('/admin', jsonParser, (req, res) => {
     if (req.body) {
-        
+
         query = 'DELETE FROM us.user WHERE login = ? AND id > 0;';
         pool.query(query, [req.body[0]], function (err, data) {
             if (err) {
@@ -144,7 +140,7 @@ app.delete('/admin', jsonParser, (req, res) => {
 })
 //Изменение учетных записей
 app.put('/admin', jsonParser, (req, res) => {
-    
+
     if (!req.body) {
         return res.sendStatus(400);
     }
@@ -180,6 +176,32 @@ app.put('/admin', jsonParser, (req, res) => {
 })
 
 //ПРЕПОДАВАТЕЛЬ
+
+app.get('/teach', (req, res) => {
+    let query = 'SELECT id, title, description FROM us.course;'
+    pool.query(query, function (err, data) {
+        if (err) return console.log(err);
+        if (data.length != 0) {
+            res.status = 200;
+            res.render('teac',{ courses: data });
+        }
+        else res.sendStatus(403);
+    })
+})
+
+app.get('/course-info', (req, res) => {
+    console.log(req.headers.currentid);
+    let query = 'SELECT title, description FROM us.course WHERE id=?;'
+    pool.query(query, req.headers.currentid, function (err, data) {
+        if (err) return console.log(err);
+        if (data.length != 0) {
+            res.status = 200;
+            let Jdata = JSON.stringify(data);
+            res.send(Jdata);
+        }
+        else res.sendStatus(403);
+    })
+})
 //Создание нового курса (название, описание, ссылка нулевая)
 app.post('/teach-addcurse', urlencodedParser, (req, res) => {
     if (!req.body) {

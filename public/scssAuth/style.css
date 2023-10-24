@@ -440,6 +440,8 @@
 }
 
 .head {
+  position: fixed;
+  top: 0;
   background-color: #03045E;
   width: 100%;
   height: 50px;
@@ -472,7 +474,7 @@
 }
 
 .admin-container {
-  margin-top: 50px;
+  margin-top: 100px;
   width: 100%;
   padding-right: 50px;
   padding-left: 50px;
@@ -572,6 +574,119 @@
   -webkit-animation-duration: 0.4s;
   animation-name: animatetop;
   animation-duration: 0.4s;
+}
+
+nav {
+  background-color: #03045E;
+  height: calc(100vh - 50px);
+  width: 20%;
+  position: fixed;
+  top: 50px;
+}
+
+.nav_item {
+  width: 100%;
+  height: 40px;
+  padding-left: 20px;
+  line-height: 40px;
+  vertical-align: middle;
+  color: white;
+  border-top: 1px solid white;
+}
+.nav_item:hover {
+  cursor: pointer;
+  background-color: #0507a4;
+}
+
+.teach__content {
+  margin-left: 20%;
+  margin-top: 50px;
+  padding-top: 20px;
+  padding-right: 20px;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: row;
+  -moz-column-gap: 50px;
+       column-gap: 50px;
+}
+
+.course-table__container {
+  width: 50%;
+}
+.course-table__container table {
+  width: 100%;
+}
+
+.course-table__head {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.eye-icon {
+  height: 20px;
+  width: 20px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-image: url(/img/Eye.svg);
+}
+.eye-icon:hover, .eye-icon:focus {
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
+.course-table__name {
+  font-family: "Mont";
+  font-weight: 600;
+  font-style: normal;
+  font-size: 24px;
+  color: #03045E;
+}
+
+.course-info {
+  padding-top: 50px;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 30px;
+}
+
+.course-info__title {
+  font-family: "Mont";
+  font-weight: 400;
+  font-style: normal;
+  font-size: 24px;
+}
+
+.course-info__description {
+  font-family: "Mont";
+  font-weight: 400;
+  font-style: normal;
+  font-size: 20px;
+}
+
+.course-info__button {
+  height: 50px;
+  width: 200px;
+  background-color: #03045E;
+  color: white;
+  border: 0px;
+  border-radius: 5px;
+  font-size: 20px;
+}
+.course-info__button:hover {
+  background-color: #0077B6;
+  cursor: pointer;
+}
+.course-info__button:disabled {
+  background-color: #CAF0F8;
+}
+
+.course-info__button_hidden {
+  display: none;
 }
 
 * {

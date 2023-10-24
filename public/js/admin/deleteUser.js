@@ -1,5 +1,3 @@
-
-
 async function Delete(login) {
     let lJson = JSON.stringify(login);
     fetch('/admin', {
@@ -14,9 +12,7 @@ async function Delete(login) {
                 ModalWorkWithoutBtn("modalServerError");
             } else if (res.status == 200) {
                 location.reload();
-
             }
             document.location.reload;
         });
-
 }

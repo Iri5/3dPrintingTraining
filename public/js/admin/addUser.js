@@ -1,8 +1,5 @@
 let addForm = document.querySelector('#add-form');
 addForm.addEventListener('submit', UserAdd);
-
-
-
 async function UserAdd(e) {
     e.preventDefault();
     let currentLogin = e.target.login.value;
