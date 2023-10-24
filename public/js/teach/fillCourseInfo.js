@@ -19,5 +19,5 @@ function fillCourseInfo(title, description){
     let btn = document.querySelector('.course-info__button_hidden');
     btn.style.display = "block";
     divTitle.innerHTML = title;
-    divDesc.innerHTML =description;
+    divDesc.innerHTML = description;
 }

@@ -202,6 +202,22 @@ app.get('/course-info', (req, res) => {
         else res.sendStatus(403);
     })
 })
+//удаление курса
+app.delete('/course', (req, res) => {
+    if (req.headers.currentid) {
+        query = 'DELETE FROM us.course WHERE id = ?;';
+        pool.query(query, [req.headers.currentid], function (err, data) {
+            if (err) {
+                res.sendStatus(500);
+                return console.log(err);
+            }
+            res.sendStatus(200);
+        });
+    }
+    else {
+        res.sendStatus(500);
+    }
+})
 //Создание нового курса (название, описание, ссылка нулевая)
 app.post('/teach-addcurse', urlencodedParser, (req, res) => {
     if (!req.body) {

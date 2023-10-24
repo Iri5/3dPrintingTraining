@@ -24,6 +24,7 @@ courseTable.addEventListener('click', (e) => {
         else {
             localStorage.currentId = id;
         }
+        DeleteCourse(id);
         alert("delete");
     }
 })
