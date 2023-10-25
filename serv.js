@@ -190,7 +190,6 @@ app.get('/teach', (req, res) => {
 })
 
 app.get('/course-info', (req, res) => {
-    console.log(req.headers.currentid);
     let query = 'SELECT title, description FROM us.course WHERE id=?;'
     pool.query(query, req.headers.currentid, function (err, data) {
         if (err) return console.log(err);
@@ -218,6 +217,46 @@ app.delete('/course', (req, res) => {
         res.sendStatus(500);
     }
 })
+app.post('/course', urlencodedParser, (req, res) => {
+    if (!req.body) {
+        return res.sendStatus(400);
+    }
+    let ans = req.body;
+    let query = 'INSERT INTO us.course (title, description) VALUES (?, ?);'
+    pool.query(query, [ans.title, ans.description], function (err, data) {
+        if (err) return console.log(err);
+        res.redirect('/teach');
+    });
+})
+app.get('/course/:courseID', urlencodedParser, (req, res) => {
+    console.log("ge" + req.params['courseID']);
+    res.render('teach');
+})
+app.get('/course',urlencodedParser, (req, res) =>{
+    console.log(req.query.courseID);
+    /*let query = 'SELECT title, description, link FROM us.course WHERE id=?;'
+    pool.query(query, req.headers.currentid, function (err, data) {
+        if (err) return console.log(err);
+        if (data.length != 0) {
+            res.status = 200;
+            let Jdata = JSON.stringify(data);
+            res.send(Jdata);
+        }
+        else res.sendStatus(403);
+    })
+    query = 'SELECT title, description FROM us.test WHERE id = (SELECT test_id FROM us.course_test WHERE course_id = ?);'
+    pool.query(query, req.headers.currentid, function (err, data) {
+        if (err) return console.log(err);
+        if (data.length != 0) {
+            res.status = 200;
+            let Jdata = JSON.stringify(data);
+            res.send(Jdata);
+        }
+        else res.sendStatus(403);
+    })*/
+    res.render('course1',);
+})
+
 //Создание нового курса (название, описание, ссылка нулевая)
 app.post('/teach-addcurse', urlencodedParser, (req, res) => {
     if (!req.body) {

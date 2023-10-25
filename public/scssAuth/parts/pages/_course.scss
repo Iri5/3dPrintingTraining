@@ -1,0 +1,63 @@
+body{
+    width: 100vw;
+}
+.course {
+    display: flex;
+    flex-direction: row;
+    width: 95%;
+    margin-top: 100px;
+    margin-right: auto;
+    margin-left: auto;
+    justify-content: space-between;
+}
+
+.course__info {
+    width: 32%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+.course__title{
+    @include fontSemiBold();
+    font-size: $fsizeH2;
+    color: $base-color;
+}
+.course-material {
+    width: 32%;
+}
+
+.course-test {
+    background-color: blue;
+    width: 32%;
+}
+.course-material__icons{
+    display: flex;
+    flex-direction: row;
+    column-gap: 16px;
+}
+.course-material__edit-icon {
+    @include icon();
+    background-image: url(/img/Edit.svg);
+}
+.course-material__show-icon {
+    @include icon();
+    background-image: url(/img/Eye.svg);
+}
+.course-material__delete-icon {
+    @include icon();
+    background-image: url(/img/Delete.svg);
+}
+.course-material__add-icon {
+    @include icon();
+    background-image: url(/img/Add.svg);
+}
+.course-material__title-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.course-material__title{
+    @include fontSemiBold();
+    font-size: $fsizeText;
+    color: $base-color;
+}

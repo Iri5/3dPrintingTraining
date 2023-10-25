@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../scssAuth/style.css">
+    <style>
+        .dblock {
+            display: none;
+        }
+
+        .material {
+            margin-top: 50px;
+            margin-right: auto;
+            margin-left: auto;
+            width: 80%;
+            background-color: antiquewhite;
+        }
+    </style>
+</head>
+
+<body>
+    <%- include ("blocks/header.ejs", {title:"Преподаватель"})%>
+
+        <div class="course">
+            <div class="course__info">
+                <div class="course__title">Название</div>
+                <div class="course__description">Описание аошоргпгрсшгукнупанцурв цуппцнаиуцга аевцпнгуцпануцап
+                    гнацуанпуцша</div>
+            </div>
+            <div class="course-material">
+                <div class="course-material__title-container">
+                    <div class="course-material__title">Материалы</div>
+                    <div class="course-material__icons">
+                        <div class="course-material__edit-icon"></div>
+                        <div class="course-material__show-icon"></div>
+                        <div class="course-material__delete-icon"></div>
+                        <div class="course-material__add-icon"></div>
+                    </div>
+                </div>
+                
+
+                <div class="pdf-container">
+                    <div class="pdf">
+                        <div class="pdf__icon"></div>
+                        <div class="pdf__title"></div>
+                        <div class="pdf__delete-icon"></div>
+                    </div>
+                    <div class="addpdf"></div>
+                </div>
+                
+            </div>
+            <div class="course-test">klkhkufyjfk</div>
+        </div>
+        <script src="js/common/modal.js" defer></script>
+        <script src="js/common/logout.js"></script>
+</body>
+
+</html>

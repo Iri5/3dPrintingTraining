@@ -1,4 +1,6 @@
 let courseTable = document.querySelector('#courses');
+
+let btnClick = document.querySelector('.course-info__button');
 courseTable.addEventListener('click', (e) => {
     let target = e.target;
     if (target.tagName != 'DIV') {
@@ -13,7 +15,8 @@ courseTable.addEventListener('click', (e) => {
         else {
             localStorage.currentId = id;
         }
-       
+       let a = btnClick.querySelector('a');
+       a.href = `/course?courseID=${localStorage.currentId}`;
         GetDescAndTitleCourse(id);
         
     } else if (target.dataset.action == "delete") {

@@ -32,29 +32,27 @@
                     <div class="course-table__name">Курсы</div>
 
                     <div class="modal_container">
-                        <button id="myBtn" class="modalBtn add-user_button">Добавить</button>
+                        <button id="add-course" class="modalBtn add-course_button">Добавить</button>
                         <div class="modal">
-                            <div class="modal_content-form">
+                            <div class="modal_content-form modal__new-course">
                                 <div class="modal_header">
                                     <div class="modal_close modal_close_white"></div>
                                     Добавление нового курса
                                 </div>
                                 <div class="modal_body">
-                                    <form id="add-form" action="/admin" method="post">
+                                    <form id="add-form" action="/course" method="post">
                                         <div class="input-area">
                                             <label>Название</label>
                                             <input type="text" name="title" placeholder="Введите название курса"
-                                                required>
+                                                required maxlength="255">
                                         </div>
                                         <div class="input-area">
                                             <label>Описание</label>
-                                            <input type="text" name="description" placeholder="Введите описание курса"
-                                                required>
+                                            <textarea name="description" placeholder="Введите описание курса"
+                                                required> </textarea>
                                         </div>
-
-
-                                        <button class="form_addperson_button form_button" type="submit"
-                                            name="form_addperson_submit">Сохранить
+                                        <button class="form_addcourse_button form_button" type="submit"
+                                            name="form_addcourse_submit">Сохранить
                                         </button>
                                     </form>
                                 </div>
@@ -89,83 +87,26 @@
                     
                 </div>
                 <div class="course-info__description"></div>
-                <button class="course-info__button course-info__button_hidden">Страница курса</button>
+                <button class="course-info__button course-info__button_hidden"><a href="#"></a>Страница курса</button>
             </div>
-            <!--
-            <h1>Существующие курсы</h1>
-            <div class="course_title">
-                <% for(let i=0; i<courses.length; i++){ %>
-                    <button>
-                        <%= courses[i].title %>
-                    </button>
-                    <%} %>
-            </div>
-
-            <div class="modal-container">
-                <button id="btnAddNewCourse" class="modalBtn">
-                    Добавить новый курс
-                </button>
-                <div id="modalAddNewCourse" class="modal ">
-                    <div class="modal-content  form_addperson_block_content">
-                        <div class="modal-header">
-                            <span id="closeAddNewCourse" class="close">&times;</span>
-                            <h2>Шапка модального окна</h2>
-                        </div>
-                        <div class="modal-body">
-                           
-                            <div class="size">
-                                <p id="name">Добавление нового курса</p>
-                                <form id="form_ed" name="my" class="form_addperson_style" action="/teach-addcurse"
-                                    method="post">
-                                    <div class="area">
-                                        <label>Название</label>
-                                        <input type="text" name="title" placeholder="Название курса" required>
-                                    </div>
-                                    <div class="area">
-                                        <label>Описание</label>
-                                        <textarea name="description" placeholder="Описание курса" required></textarea>
-                                    </div>
-                                    <button class="form_addperson_button" type="submit"
-                                        name="form_addcurse_submit">Добавить</button>
-                            </div>
-                            </form>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-            <form id="formshowcurse" name="formshowcurse" action="/teach-showcurse" method="get">
-                <input type="text" name="titlecourse" style="display: none;">
-            </form>
-             -->
+            
         </div>
         
         <script src="admin.js" defer></script>
-        <script defer>
-            let course = document.querySelector(".course_title");
-            console.log(course);
-            course.addEventListener("click", (event) => {
-                let target = event.target;
-                if (target.tagName == "BUTTON") {
-                    courseTitle = target.innerHTML;
-                    courseTitle = courseTitle.trim();
-                    course_form = document.getElementById('formshowcurse');
-                    console.log(course_form);
-                    course_form.titlecourse.value = courseTitle;
-                    course_form.submit();
-                }
-
-            })
-
-        </script>
+        
 
         <script src="js/common/modal.js" defer></script>
         <script src="js/common/logout.js"></script>
         <script src="js/teach/deleteCourse.js"></script>
         <script src="js/teach/clickInUsers.js" defer></script>
         <script src="js/teach/fillCourseInfo.js" defer></script>
-        
+        <script>
+            let btn = document.querySelector('.course-info__button');
+            let a = btn.querySelector('a');
+            btn.addEventListener('click', (e) => {
+                a.click();
+            })
+        </script>
 </body>
 
 </html>

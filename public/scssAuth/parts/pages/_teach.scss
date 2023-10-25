@@ -54,3 +54,14 @@
 .course-info__button_hidden{
     display: none;
 }
+.add-course_button{
+    @include buttonDefault(40px, 200px, $fsizeText);
+}
+.modal__new-course{
+    @include modalContent(525px, 55%, 1.5%);
+    textarea{
+        height: 150px;
+        resize: none;
+        @include inputText(100%, 150px, $fsizeText)
+    }
+}

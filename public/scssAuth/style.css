@@ -689,6 +689,173 @@ nav {
   display: none;
 }
 
+.add-course_button {
+  height: 40px;
+  width: 200px;
+  background-color: #03045E;
+  color: white;
+  border: 0px;
+  border-radius: 5px;
+  font-size: 20px;
+}
+.add-course_button:hover {
+  background-color: #0077B6;
+  cursor: pointer;
+}
+.add-course_button:disabled {
+  background-color: #CAF0F8;
+}
+
+.modal__new-course {
+  background-color: white;
+  position: relative;
+  margin: auto;
+  margin-bottom: auto;
+  margin-top: 1.5%;
+  width: 525px;
+  height: 55%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+}
+.modal__new-course textarea {
+  height: 150px;
+  resize: none;
+  width: 100%;
+  height: 150px;
+  border-radius: 5px;
+  border: 1px solid #03045E;
+  font-size: 20px;
+  padding-left: 20px;
+  color: #03045E;
+}
+.modal__new-course textarea::-moz-placeholder {
+  color: #0077B6;
+}
+.modal__new-course textarea::placeholder {
+  color: #0077B6;
+}
+.modal__new-course textarea:focus {
+  background-color: rgba(1, 186, 179, 0.1);
+  border: 1px solid #03045E;
+  border-color: #03045E;
+  border-radius: 5px;
+  outline: 0;
+}
+
+body {
+  width: 100vw;
+}
+
+.course {
+  display: flex;
+  flex-direction: row;
+  width: 95%;
+  margin-top: 100px;
+  margin-right: auto;
+  margin-left: auto;
+  justify-content: space-between;
+}
+
+.course__info {
+  width: 32%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+.course__title {
+  font-family: "Mont";
+  font-weight: 600;
+  font-style: normal;
+  font-size: 24px;
+  color: #03045E;
+}
+
+.course-material {
+  width: 32%;
+}
+
+.course-test {
+  background-color: blue;
+  width: 32%;
+}
+
+.course-material__icons {
+  display: flex;
+  flex-direction: row;
+  -moz-column-gap: 16px;
+       column-gap: 16px;
+}
+
+.course-material__edit-icon {
+  height: 20px;
+  width: 20px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-image: url(/img/Edit.svg);
+}
+.course-material__edit-icon:hover, .course-material__edit-icon:focus {
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
+.course-material__show-icon {
+  height: 20px;
+  width: 20px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-image: url(/img/Eye.svg);
+}
+.course-material__show-icon:hover, .course-material__show-icon:focus {
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
+.course-material__delete-icon {
+  height: 20px;
+  width: 20px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-image: url(/img/Delete.svg);
+}
+.course-material__delete-icon:hover, .course-material__delete-icon:focus {
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
+.course-material__add-icon {
+  height: 20px;
+  width: 20px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-image: url(/img/Add.svg);
+}
+.course-material__add-icon:hover, .course-material__add-icon:focus {
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
+.course-material__title-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.course-material__title {
+  font-family: "Mont";
+  font-weight: 600;
+  font-style: normal;
+  font-size: 20px;
+  color: #03045E;
+}
+
 * {
   margin: 0;
   box-sizing: border-box;
