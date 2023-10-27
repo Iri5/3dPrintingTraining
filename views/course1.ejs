@@ -26,36 +26,124 @@
 
         <div class="course">
             <div class="course__info">
-                <div class="course__title">Название</div>
-                <div class="course__description">Описание аошоргпгрсшгукнупанцурв цуппцнаиуцга аевцпнгуцпануцап
-                    гнацуанпуцша</div>
+                <div class="course__title">
+                    <%= title %>
+                </div>
+                <div class="course__description">
+                    <%= description %>
+                </div>
+                <div class="modal_container">
+                    <button id="edit-course" class="modalBtn edit-course_button">Редактировать</button>
+                    <div id="editCourse" class="modal">
+                        <div class="modal_content-form modal__new-course">
+                            <div class="modal_header">
+                                <div class="modal_close modal_close_white"></div>
+                                Изменение информации курса
+                            </div>
+                            <div class="modal_body">
+                                <form id="edit-form" action="/course" method="put">
+                                    <div class="input-area">
+                                        <label>Название</label>
+                                        <input type="text" name="title" placeholder="Введите название курса" required
+                                            maxlength="255">
+                                    </div>
+                                    <div class="input-area">
+                                        <label>Описание</label>
+                                        <textarea name="description" placeholder="Введите описание курса"
+                                            required> </textarea>
+                                    </div>
+                                    <button class="form_addcourse_button form_button" type="submit"
+                                        name="form_addcourse_submit">Сохранить
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="course-material">
                 <div class="course-material__title-container">
                     <div class="course-material__title">Материалы</div>
                     <div class="course-material__icons">
-                        <div class="course-material__edit-icon"></div>
-                        <div class="course-material__show-icon"></div>
-                        <div class="course-material__delete-icon"></div>
-                        <div class="course-material__add-icon"></div>
+                        <!--if link {-->
+                        <% if (link!=null) { %>
+                            <div link="<%=link%>" class="course-material__edit-icon"></div>
+                            <div class="course-material__show-icon"></div>
+                            <div class="course-material__delete-icon"></div>
+                            <%} else { %>
+                                <!--} else {-->
+                                <div class="course-material__add-icon"></div>
+                                <!--}-->
+                                <%}%>
                     </div>
                 </div>
-                
 
+                <!--if pdf {-->
                 <div class="pdf-container">
                     <div class="pdf">
                         <div class="pdf__icon"></div>
-                        <div class="pdf__title"></div>
+                        <div class="pdf__title">text.pdf</div>
                         <div class="pdf__delete-icon"></div>
                     </div>
-                    <div class="addpdf"></div>
+                    <div class="pdf">
+                        <div class="pdf__icon"></div>
+                        <div class="pdf__title">text.pdf</div>
+                        <div class="pdf__delete-icon"></div>
+                    </div>
+
+                    <div class="pdf-add">
+                        <div class="pdf-add__title">Добавить pdf</div>
+                        <div class="pdf-add__icon"></div>
+                    </div>
                 </div>
-                
+                <!--}-->
             </div>
-            <div class="course-test">klkhkufyjfk</div>
+            <div class="course-test">
+                <div class="courese-test__title-container">
+                    <div class="course-test__title">Тесты</div>
+                    <div class="course-test__addbtn"></div>
+                </div>
+                <% if (t_id!=null){%>
+
+                    <table class="table course-test__table">
+                        <tr>
+                            <th>Название</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        <% for(let i=0; i<t_title.length; i++){ %>
+                            <tr testId="<%=t_id[i]%>">
+                                <td>
+                                    <%= t_title[i] %>
+                                </td>
+                                <td class="td20px">
+                                    <div data-action="show" class="eye-icon"></div>
+                                </td>
+                                <td class="td20px">
+                                    <div data-action="delete" class="delete-icon"></div>
+                                </td>
+                            </tr>
+                            </button>
+                            <%} %>
+
+                    </table>
+                    <%}%>
+            </div>
+
         </div>
         <script src="js/common/modal.js" defer></script>
         <script src="js/common/logout.js"></script>
+        <script src="js/teach/course/editCourse.js"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", ready);
+            function ready() {
+                let editForm = document.querySelector("#edit-form");
+                editForm.title.value = '<%= title %>';
+                editForm.description.value = '<%= description %>';
+            }
+
+            
+        </script>
 </body>
 
 </html>

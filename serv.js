@@ -183,7 +183,7 @@ app.get('/teach', (req, res) => {
         if (err) return console.log(err);
         if (data.length != 0) {
             res.status = 200;
-            res.render('teac',{ courses: data });
+            res.render('teac', { courses: data });
         }
         else res.sendStatus(403);
     })
@@ -200,6 +200,20 @@ app.get('/course-info', (req, res) => {
         }
         else res.sendStatus(403);
     })
+})
+app.put('/course', jsonParser, (req, res) => {
+    console.log('put');
+    if (!req.body) {
+        return res.sendStatus(400);
+    }
+    let ans = req.body;
+    console.log(ans);
+    let query = 'UPDATE us.course SET title = ?, description = ? WHERE id = ?;';
+    pool.query(query, [ans.title, ans.description, ans.id], function (err, data) {
+        if (err) return console.log(err);
+        res.sendStatus(200);
+    });
+
 })
 //удаление курса
 app.delete('/course', (req, res) => {
@@ -232,8 +246,46 @@ app.get('/course/:courseID', urlencodedParser, (req, res) => {
     console.log("ge" + req.params['courseID']);
     res.render('teach');
 })
-app.get('/course',urlencodedParser, (req, res) =>{
+app.get('/course', urlencodedParser, (req, res) => {
     console.log(req.query.courseID);
+    if (!req.body) {
+        return res.sendStatus(400);
+    }
+    /*let query = 'SELECT * FROM us.course WHERE title = ? ;'
+    pool.query(query, [req.query.titlecourse], function (err, data) {
+        if (err) return console.log(err);
+        res.render('course', {title: data[0].title, description: data[0].description, link: data[0].link, id: data[0].id})
+    });*/
+    let query = `SELECT us.test.id AS t_id, us.test.title AS t_title, us.course.title AS c_title, us.course.description 
+    AS c_desc, us.course.start_date AS c_start, us.course.end_date AS c_end, us.course.link, us.course.id AS c_id
+     FROM us.test JOIN us.course_test ON us.test.id = us.course_test.test_id JOIN us.course ON us.course.id = 
+     us.course_test.course_id WHERE course_id = ?;`;
+    pool.query(query, [req.query.courseID], function (err, data) {
+        if (err) return console.log(err);
+        if (data.length == 0) {
+            console.log("!data");
+            query = 'SELECT * FROM us.course WHERE id = ?';
+            pool.query(query, [req.query.courseID], function (err, data) {
+                if (err) return console.log(err);
+                res.render('course1', { title: data[0].title, description: data[0].description, link: data[0].link, id: data[0].id, t_id: null })
+            })
+        } else {
+            console.log(data[0]);
+            let t_title = [];
+            let t_id = [];
+            data.forEach(i => {
+                t_id.push(i.t_id);
+                t_title.push(i.t_title);
+            })
+            res.render('course1', {
+                title: data[0].c_title, description: data[0].c_desc, link: data[0].link, id: data[0].c_id,
+                t_title: t_title, t_id: t_id
+            },
+            )
+        }
+
+    })
+
     /*let query = 'SELECT title, description, link FROM us.course WHERE id=?;'
     pool.query(query, req.headers.currentid, function (err, data) {
         if (err) return console.log(err);
@@ -254,7 +306,7 @@ app.get('/course',urlencodedParser, (req, res) =>{
         }
         else res.sendStatus(403);
     })*/
-    res.render('course1',);
+    //res.render('course1',);
 })
 
 //Создание нового курса (название, описание, ссылка нулевая)

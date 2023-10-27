@@ -760,10 +760,12 @@ body {
 }
 
 .course__info {
-  width: 32%;
+  width: 33%;
   display: flex;
   flex-direction: column;
   row-gap: 20px;
+  padding-right: 20px;
+  border-right: 1px solid #03045E;
 }
 
 .course__title {
@@ -775,12 +777,14 @@ body {
 }
 
 .course-material {
-  width: 32%;
+  width: 25%;
+  padding-right: 20px;
+  border-right: 1px solid #03045E;
 }
 
 .course-test {
-  background-color: blue;
-  width: 32%;
+  width: 33%;
+  padding-right: 20px;
 }
 
 .course-material__icons {
@@ -830,8 +834,8 @@ body {
 }
 
 .course-material__add-icon {
-  height: 20px;
-  width: 20px;
+  height: 25px;
+  width: 25px;
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -854,6 +858,133 @@ body {
   font-style: normal;
   font-size: 20px;
   color: #03045E;
+}
+
+.pdf__icon {
+  height: 25px;
+  width: 25px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-image: url(/img/PDF.svg);
+}
+.pdf__icon:hover, .pdf__icon:focus {
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
+.pdf__delete-icon {
+  height: 20px;
+  width: 20px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-image: url(/img/Delete.svg);
+  margin-left: 8px;
+}
+.pdf__delete-icon:hover, .pdf__delete-icon:focus {
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
+.pdf {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  -moz-column-gap: 8px;
+       column-gap: 8px;
+}
+
+.pdf-container {
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+  margin-top: 20px;
+}
+
+.pdf-add {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  -moz-column-gap: 8px;
+       column-gap: 8px;
+  border-bottom: 1px solid #03045E;
+}
+.pdf-add:hover {
+  cursor: pointer;
+}
+
+.pdf-add__icon {
+  height: 20px;
+  width: 20px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-image: url(/img/Add.svg);
+}
+.pdf-add__icon:hover, .pdf-add__icon:focus {
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
+.course-test__title {
+  font-family: "Mont";
+  font-weight: 600;
+  font-style: normal;
+  font-size: 20px;
+  color: #03045E;
+}
+
+.courese-test__title-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.course-test__addbtn {
+  height: 25px;
+  width: 25px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-image: url(/img/Add.svg);
+}
+.course-test__addbtn:hover, .course-test__addbtn:focus {
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
+.course-test__table {
+  width: 100%;
+}
+
+.td20px {
+  width: 20px;
+}
+
+.edit-course_button {
+  height: 40px;
+  width: 200px;
+  background-color: #03045E;
+  color: white;
+  border: 0px;
+  border-radius: 5px;
+  font-size: 20px;
+}
+.edit-course_button:hover {
+  background-color: #0077B6;
+  cursor: pointer;
+}
+.edit-course_button:disabled {
+  background-color: #CAF0F8;
+}
+
+#edit-form textarea {
+  font-size: 18px;
 }
 
 * {
