@@ -1,11 +1,180 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Modeling</title>
+    <link rel="stylesheet" href="scss/style.css">
+    <link rel="stylesheet" href="scssCommon/style.css">
+    <script src="../js/math.js"></script>
+    <script src='https://cdn.plot.ly/plotly-2.27.0.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js'></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src='https://cdn.plot.ly/plotly-2.27.0.min.js'></script>
 </head>
+
 <body>
+    <header class="head">
+        <div class="role">
+            Моделирование
+        </div>
+        <div class="logout">
+
+        </div>
+    </header>
+    <div class="modeling-content">
+        <div class="settings-container">
+            <div class="params settings_parameters">
+                <div class="parameter">
+                    <h1>Филамент:</h1>
+                    <select id="filament">
+                        <% for(let i=0; i<goods.fil.length; i++){ %>
+                            <option filament-id="<%=goods.fil[i].id%>" value="<%=goods.fil[i].id%>">
+                                <%=goods.fil[i].title%>
+                            </option>
+                            <%} %>
+                    </select>
+                </div>
+                <div class="parameter">
+                    <h1>Принтер:</h1>
+                    <select id="printer">
+                        <% for(let i=0; i<goods.pr.length; i++){ %>
+                            <option printer-id="<%=goods.pr[i].id%>" value="<%=goods.pr[i].id%>">
+                                <%=goods.pr[i].title%>
+                            </option>
+                            <%} %>
+                    </select>
+                </div>
+                <div class="parameter">
+                    <h1>Модель:</h1>
+                    <select id="models">
+                    </select>
+                </div>
+            </div>
+            <div class="settings-user"></div>
+
+        </div>
+        <div class="visual-container">
+
+            <div class="d2graph chart-container">
+                <button class="show-2dgraph chart_show-form-btn">Показать 2D график</button>
+                <div class="chart-form_container">
+                    <form action="#" class="d2-form chart_form">
+                        <fieldset>
+                            <legend>Построение графиков</legend>
+                            <fieldset>
+                                <legend>Первый график</legend>
+                                <fieldset class="first-factor-2d-fix fieldset__grey">
+                                    <legend class="legend-first-factor">Температура экструзии</legend>
+                                    <div class="inter ">
+                                        <label for="">Значение</label>
+                                        <input type="text" name="firstfactorfix" id="" required>
     
+                                    </div>
+                                </fieldset>
+                                <fieldset class="second-factor-2d fieldset__grey">
+                                    <legend class="legend-second-factor">Процент заполнения</legend>
+                                    <div class="inter ">
+                                        <label for="">От</label>
+                                        <input type="text" name="secondvarfrom" id="" required>
+                                        <label for="">до</label>
+                                        <input type="text" name="secondvarto" id="" required>
+                                    </div>
+                                    <label for="">Шаг</label>
+                                    <input type="text" name="secondvarstep" required>
+                                </fieldset>
+                            </fieldset>
+                            <fieldset>
+                                <legend>Второй график</legend>
+                                <fieldset class="second-factor-2d fieldset__grey">
+                                    <legend class="legend-second-factor">Процент заполнения</legend>
+                                    <div class="inter ">
+                                        <label for="">Значение</label>
+                                        <input type="text" name="secondfactorfix" id="" required>
+    
+                                    </div>
+                                </fieldset>
+                                <fieldset class="first-factor-2d fieldset__grey">
+                                    <legend class="legend-first-factor"></legend>
+                                    <div class="inter ">
+                                        <label for="">От</label>
+                                        <input type="text" name="firstvarfrom" id="" required>
+                                        <label for="">до</label>
+                                        <input type="text" name="firstvarto" id="" required>
+                                    </div>
+                                    <label for="">Шаг</label>
+                                    <input type="text" name="firstvarstep" required>
+                                </fieldset>
+                            </fieldset>
+                            <button id="btn-d2graph">Построить графики</button>
+                            <button id="btn-d2graph-delete" disabled>Очистить</button>
+                        </fieldset>
+                    </form>
+                </div>
+                
+                <div class="chart_visual-container">
+                    <div style="width: 800px;"><canvas id="acquisitions"></canvas></div>
+                    <div style="width: 800px;"><canvas id="second-graph-plot"></canvas></div>
+                </div>
+            </div>
+            <div class="math-table_container">
+                <button class="math-table_show-form-btn">Построение таблицы</button>
+                <div class="math-table_form-container">
+                    <form action="#" class="math-table_form">
+                        <fieldset>
+                            <legend>Построение таблицы</legend>
+                            <fieldset class="first-factor">
+                                <legend>Температура экструзии</legend>
+                                <div class="inter ">
+                                    <label for="">От</label>
+                                    <input type="text" name="firstfrom" id="" required>
+                                    <label for="">до</label>
+                                    <input type="text" name="firstto" id="" required>
+                                </div>
+                                <label for="">Шаг</label>
+                                <input type="text" name="firststep" required>
+                            </fieldset>
+                            <fieldset class="second-factor">
+                                <legend>Процент заполнения</legend>
+                                <div class="inter ">
+                                    <label for="">От</label>
+                                    <input type="text" name="secondfrom" id="" required>
+                                    <label for="">до</label>
+                                    <input type="text" name="secondto" id="" required>
+                                </div>
+                                <label for="">Шаг</label>
+                                <input type="text" name="secondstep" required>
+                            </fieldset>
+                            <button id="btn-table">Построить таблицу</button>
+                            <button id="btn-table-clear" disabled>Очистить таблицу</button>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+            <div class="surface-plot_container">
+                <button class="surface-plot_show-btn">Показать 3D график</button>
+                <div class="surface-plot_wrapper">
+                    <div id='myDiv' style="width: 600px; display: none;">
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+
+        <script src="js/common/logout.js"></script>
+        <script defer src="js/graph.js"></script>
+        <script defer src="js/table.js"></script>
+        <script defer src="js/dotable.js"></script>
+        <script defer src="js/charts.js"></script>
+        <script defer src="js/mainFunctions.js"></script>
+
+
 </body>
+
 </html>
