@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tiny.cloud/1/ytqbq5zd4935d6hk3g64gxi2hs08ogl4wlrfheojpv3sz66k/tinymce/6/tinymce.min.js"
+        referrerpolicy="origin" referrerpolicy="origin"></script>
+
+
+    <link rel="stylesheet" href="../scssAuth/style.css">
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'charmap image link lists media table visualblocks',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | image media table | align lineheight | numlist bullist indent outdent | charmap | removeformat',
+
+            language: 'ru',
+            images_upload_url: '/teach-uploadimg',
+
+        });
+
+
+    </script>
+    <script src="js/teach/app.js" defer></script>
+</head>
+
+<body>
+    <%- include ("blocks/header.ejs", {title:"Преподаватель"})%>
+
+        <div class="add-material__content">
+            <h1 class="add-material__title">Название</h1>
+            <div class="add-files">
+                <!--<div class="add-files__title">Файлы к курсу</div>-->
+            </div>
+
+
+            <form id='form-tiny' method="post" action="/mydata">
+                <textarea id="mytextarea">Hello, World!</textarea>
+            </form>
+            <button id="tiny-button" class="new-button">Сохранить</button>
+        </div>
+
+
+        <!--<button id="save-button">Save</button>
+    <pre id="output"></pre>-->
+    <script src="js/common/modal.js" defer></script>
+    <script src="js/common/logout.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", ready);
+            function ready() {
+                let title = document.querySelector(".add-material__title");
+                title.innerHTML = localStorage.titleCourse;
+            }
+    </script>
+
+
+</body>
+
+</html>

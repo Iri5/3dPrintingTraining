@@ -16,13 +16,17 @@ const pool = mysql.createPool({
     database: 'us',
     password: 'irina'
 });
-app.listen(3000, () => {
-    console.log('Server started: http://localhost:3000');
+app.listen(3001, () => {
+    console.log('Server started: http://localhost:3001');
 })
 app.set('view engine', 'ejs');
 app.use(express.static('public'))
 app.get('/', (req, res) => {
     res.render('index');
+})
+app.get('/material', (req, res) => {
+    console.log("mat");
+    res.render('addMaterial');
 })
 app.get('/index.html', (req, res) => {
     res.render('index');
@@ -50,7 +54,7 @@ app.get('/auth', jsonParser, (req, res) => {
                     break;
                 case '1':
                     res.status = 200;
-                    res.render('user');
+                    res.redirect('/user');
                     break;
             }
         }
@@ -231,6 +235,7 @@ app.delete('/course', (req, res) => {
         res.sendStatus(500);
     }
 })
+
 app.post('/course', urlencodedParser, (req, res) => {
     if (!req.body) {
         return res.sendStatus(400);
@@ -427,9 +432,10 @@ app.get('/teach-showcurse', (req, res) => {
 })
 //Добавление материала к курсу
 app.post('/teach-addmaterial', jsonParser, (req, res) => {
+    console.log('teach-addmaterial');
     if (req.body) {
         let result = req.body;
-        result = JSON.parse(result);
+        console.log(result);
         let path = __dirname + `/views/materials/${result.course}.ejs`;
         fs.writeFile(path, result.content, (err) => {
             if (err) {
@@ -507,4 +513,17 @@ app.post('/add-question-one', jsonParser, (req, res) => {
         if (err) return console.log(err);
         res.render('add_test', { title: ans.title, description: ans.description});
     });*/
+})
+
+//ОБУЧАЕМЫЙ
+app.get('/user', (req, res) => {
+    let query = 'SELECT id, fio, email, login, gr, bday FROM us.user;'
+    pool.query(query, function (err, data) {
+        if (err) return console.log(err);
+        if (data.length != 0) {
+            res.status = 200;
+            res.render('user', { courses: data });
+        }
+        else res.sendStatus(403);
+    })
 })

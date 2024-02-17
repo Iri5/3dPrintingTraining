@@ -72,19 +72,21 @@
                             <div class="course-material__delete-icon"></div>
                             <%} else { %>
                                 <!--} else {-->
-                                <div class="course-material__add-icon"></div>
+                                <div class="course-material__add-icon"><a href="/material"></a></div>
                                 <!--}-->
                                 <%}%>
                     </div>
                 </div>
 
                 <!--if pdf {-->
+                    
                 <div class="pdf-container">
-                    <div class="pdf">
+                    <!--<div class="pdf">
                         <div class="pdf__icon"></div>
                         <div class="pdf__title">text.pdf</div>
                         <div class="pdf__delete-icon"></div>
                     </div>
+                    
                     <div class="pdf">
                         <div class="pdf__icon"></div>
                         <div class="pdf__title">text.pdf</div>
@@ -94,7 +96,7 @@
                     <div class="pdf-add">
                         <div class="pdf-add__title">Добавить pdf</div>
                         <div class="pdf-add__icon"></div>
-                    </div>
+                    </div>-->
                 </div>
                 <!--}-->
             </div>
@@ -134,6 +136,7 @@
         <script src="js/common/modal.js" defer></script>
         <script src="js/common/logout.js"></script>
         <script src="js/teach/course/editCourse.js"></script>
+        <script src="js/teach/addMaterial.js"></script>
         <script>
             document.addEventListener("DOMContentLoaded", ready);
             function ready() {
@@ -142,7 +145,16 @@
                 editForm.description.value = '<%= description %>';
             }
 
-            
+            let addMaterial = document.querySelector('.course-material__add-icon');
+            addMaterial.addEventListener('click', () =>{
+                let titleCourse = document.querySelector('.course__title');
+                titleCourse = titleCourse.innerHTML.trim();
+                alert(titleCourse);
+                localStorage.titleCourse = titleCourse;
+                let a = addMaterial.querySelector('a');
+                a.click();
+            })
+
         </script>
 </body>
 

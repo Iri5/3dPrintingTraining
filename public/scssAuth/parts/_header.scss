@@ -11,14 +11,13 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    padding: 0 50px;
 
     .role {
-        margin-left: 50px;
         cursor: default;
     }
 
     .logout {
-        margin-right: 50px;
         @include icon(30px, 30px);
         background-image: url(/img/Exit.svg);
         

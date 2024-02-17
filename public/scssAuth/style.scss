@@ -12,11 +12,26 @@
 @import 'parts/nav';
 @import 'parts/pages/teach';
 @import 'parts/pages/course';
+@import 'parts/pages/addMaterial';
+@import 'parts/pages/userHeader';
+
 //all css
 * {
     margin: 0;
     box-sizing: border-box;
     @include fontReg();
+}
+#form-tiny{
+    margin-top: 50px;
+}
+.add-material__content{
+    display: flex;
+    flex-direction: column;
+}
+#tiny-button{
+    @include buttonDefault($height: 50px, $width: 200px, $fsize: $fsizeH2);
+    align-self: flex-end;
+    justify-self: left;
 }
 
 //table

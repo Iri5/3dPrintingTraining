@@ -1,0 +1,10 @@
+.add-material__content{
+    margin-top: 70px;
+    margin-right: 50px;
+    margin-left: 50px;
+}
+.add-material__title{
+    @include fontSemiBold();
+    font-size: $fsizeH1;
+    color: $base-color;
+}

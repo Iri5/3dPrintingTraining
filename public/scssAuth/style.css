@@ -454,13 +454,12 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  padding: 0 50px;
 }
 .head .role {
-  margin-left: 50px;
   cursor: default;
 }
 .head .logout {
-  margin-right: 50px;
   height: 30px;
   width: 30px;
   background-repeat: no-repeat;
@@ -987,10 +986,77 @@ body {
   font-size: 18px;
 }
 
+.add-material__content {
+  margin-top: 70px;
+  margin-right: 50px;
+  margin-left: 50px;
+}
+
+.add-material__title {
+  font-family: "Mont";
+  font-weight: 600;
+  font-style: normal;
+  font-size: 30px;
+  color: #03045E;
+}
+
+.menu-user-header {
+  list-style-type: none;
+  color: white;
+  display: flex;
+  -moz-column-gap: 40px;
+       column-gap: 40px;
+  padding-right: 0;
+  padding-inline-start: 0;
+  font-size: 16px;
+  justify-self: start;
+  padding-right: 20px;
+}
+.menu-user-header li a {
+  color: white;
+  text-decoration: none;
+}
+.menu-user-header li a:hover {
+  color: #0077B6;
+}
+
+.container-user-header {
+  display: flex;
+  align-items: center;
+}
+
 * {
   margin: 0;
   box-sizing: border-box;
   font-family: "Mont";
   font-weight: 400;
   font-style: normal;
+}
+
+#form-tiny {
+  margin-top: 50px;
+}
+
+.add-material__content {
+  display: flex;
+  flex-direction: column;
+}
+
+#tiny-button {
+  height: 50px;
+  width: 200px;
+  background-color: #03045E;
+  color: white;
+  border: 0px;
+  border-radius: 5px;
+  font-size: 24px;
+  align-self: flex-end;
+  justify-self: left;
+}
+#tiny-button:hover {
+  background-color: #0077B6;
+  cursor: pointer;
+}
+#tiny-button:disabled {
+  background-color: #CAF0F8;
 }/*# sourceMappingURL=style.css.map */
