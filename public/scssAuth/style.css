@@ -455,6 +455,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 50px;
+  z-index: 50;
 }
 .head .role {
   cursor: default;
