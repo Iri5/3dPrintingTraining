@@ -527,3 +527,37 @@ app.get('/user', (req, res) => {
         else res.sendStatus(403);
     })
 })
+
+const poolModeling = mysql.createPool({
+    host: 'localhost',
+    user: 'root',
+    database: 'models',
+    password: 'irina'
+});
+app.get('/modeling', (req, res) => {
+    let query = 'SELECT id, title FROM models.filament;'
+    poolModeling.query(query, function (err, data) {
+        if (err) return console.log(err);
+        if (data.length != 0) {
+            query = 'SELECT id, title FROM models.printer;';
+            poolModeling.query(query, function (err, print) {
+                if (err) return console.log(err);
+                if (data.length != 0) {
+                    let resInfo = { fil: data, pr: print };
+                    res.status = 200;
+                    res.render("modeling", { goods: resInfo });
+                } else res.sendStatus(403);
+            });
+        } else res.sendStatus(403);
+
+    });
+    //let query = 'SELECT id, fio, email, login, gr, bday FROM us.user;'
+    //pool.query(query, function (err, data) {
+    //  if (err) return console.log(err);
+    //if (data.length != 0) {
+    //res.status = 200;
+    //res.render('modeling');
+    //}
+    //else res.sendStatus(403);
+    //})
+})
