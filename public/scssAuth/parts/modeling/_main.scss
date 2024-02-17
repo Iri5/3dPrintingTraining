@@ -1,0 +1,17 @@
+
+@import 'settingsContainer';
+@import 'table';
+@import 'plot';
+@import 'generated';
+@import 'chart';
+
+.modeling-content {
+    margin: 50px;
+    margin-top: 80px;
+}
+
+.visual-container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}

@@ -1,0 +1,13 @@
+.surface-plot_show-btn {
+    @include buttonOutline($height: 40px, $width: 250px, $fsize: 18px);
+    border: 1px solid $base-color;
+    #myDiv {
+      z-index: 0;
+      position: static;
+    }
+  }
+  .surface-plot_wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }

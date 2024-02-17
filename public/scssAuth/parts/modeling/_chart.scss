@@ -1,0 +1,64 @@
+.chart-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  .chart_show-form-btn {
+    @include buttonOutline($height: 40px, $width: 250px, $fsize: 18px);
+    border: 1px solid $base-color;
+  }
+  .chart-form_container{
+    width: 27%;
+    display: none;
+  }
+  .chart-form {
+    display: flex;
+    flex-direction: column;
+    align-content: space-around;
+    
+    height: 600px;
+
+    label {
+      margin-bottom: 15px;
+    }
+
+    input {
+      @include inputText($width: 60px, $height: 20px, $fs: 16px);
+      padding-left: 10px;
+
+    }
+
+    button {
+      @include buttonDefault($height: 40px, $width: 100%, $fsize: 14px)
+    }
+
+    fieldset:first-child {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+    }
+
+    div {
+      padding-top: 10px;
+    }
+
+    .fieldset__grey {
+      border-color: #808080;
+    }
+  }
+
+  
+
+  canvas {
+    display: none;
+  }
+}
+.chart_visual-container {
+  display: flex;
+  flex-direction: column;
+}
+.inter {
+  display: flex;
+  column-gap: 10px;
+}
