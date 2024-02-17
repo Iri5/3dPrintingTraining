@@ -7,7 +7,7 @@
     <title>Modeling</title>
     <link rel="stylesheet" href="scssAuth/style.css">
     <link rel="stylesheet" href="scssCommon/style.css">
-    <script src="../js/math.js"></script>
+    <script src="../js/modeling/math.js"></script>
     <script src='https://cdn.plot.ly/plotly-2.27.0.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js'></script>
     <script src="https://d3js.org/d3.v7.min.js"></script>
@@ -21,12 +21,25 @@
 <body>
     <header class="head">
         <div class="role">
+            Обучаемый
+        </div>
+        <div class="container-user-header">
+            <ul class="menu-user-header">
+                <li><a href="/user">Главная</a></li>
+                <li><a href="/modeling">Моделирование</a></li>
+            </ul>
+            <div class="logout"></div>
+        </div>
+        
+    </header>
+    <!--<header class="head">
+        <div class="role">
             Моделирование
         </div>
         <div class="logout">
 
         </div>
-    </header>
+    </header>-->
     <div class="modeling-content">
         <div class="settings-container">
             <div class="params settings_parameters">
@@ -168,11 +181,11 @@
 
 
         <script src="js/common/logout.js"></script>
-        <script defer src="js/graph.js"></script>
-        <script defer src="js/table.js"></script>
-        <script defer src="js/dotable.js"></script>
-        <script defer src="js/charts.js"></script>
-        <script defer src="js/mainFunctions.js"></script>
+        <script defer src="js/modeling/graph.js"></script>
+        <script defer src="js/modeling/table.js"></script>
+        <script defer src="js/modeling/dotable.js"></script>
+        <script defer src="js/modeling/charts.js"></script>
+        <script defer src="js/modeling/mainFunctions.js"></script>
 
 
 </body>

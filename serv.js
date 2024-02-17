@@ -7,7 +7,7 @@ const mysql = require('mysql2');
 const { dirname } = require('path');
 const bodyParser = require('body-parser');
 const router = express.Router();
-
+let currentUserLogin = null;
 app.use(bodyParser.urlencoded({ extended: false }));
 
 const pool = mysql.createPool({
@@ -53,6 +53,7 @@ app.get('/auth', jsonParser, (req, res) => {
                     res.redirect('/teach');
                     break;
                 case '1':
+                    currentUserLogin = user.login;
                     res.status = 200;
                     res.redirect('/user');
                     break;
@@ -549,15 +550,281 @@ app.get('/modeling', (req, res) => {
                 } else res.sendStatus(403);
             });
         } else res.sendStatus(403);
-
     });
-    //let query = 'SELECT id, fio, email, login, gr, bday FROM us.user;'
-    //pool.query(query, function (err, data) {
-    //  if (err) return console.log(err);
-    //if (data.length != 0) {
-    //res.status = 200;
-    //res.render('modeling');
-    //}
-    //else res.sendStatus(403);
-    //})
+})
+app.get("/show-models", (request, response) => {
+    let query = 'SELECT * FROM models.model;'
+    poolModeling.query(query, function (err, data) {
+        if (err) return console.log(err);
+        query = 'SELECT * FROM models.component;';
+        poolModeling.query(query, function (err, print) {
+            if (err) return console.log(err);
+            let resInfo = { models: data, components: print };
+            let JresInfo = JSON.stringify(resInfo);
+            //console.log(JresInfo);
+            // отправляем ответ
+            response.send(JresInfo);
+        });
+    });
+})
+app.get("/printers-filaments", (request, response) => {
+    let query = 'SELECT * FROM models.printer;'
+    poolModeling.query(query, function (err, data) {
+        if (err) return console.log(err);
+        query = 'SELECT * FROM models.filament;';
+        poolModeling.query(query, function (err, filament) {
+            if (err) return console.log(err);
+            let resInfo = { printers: data, filaments: filament };
+            let JresInfo = JSON.stringify(resInfo);
+            //console.log(JresInfo);
+            // отправляем ответ
+            response.send(JresInfo);
+        });
+    });
+})
+app.post("/addPrinter", urlencodedParser, (request, response) => {
+    let ans = request.body;
+
+    for (key in ans) {
+        if (ans[key] == '') {
+            ans[key] = null;
+        }
+    }
+    console.log(request.body.title);
+    if (!request.body) {
+        return response.sendStatus(400);
+    }
+    let query = 'INSERT INTO models.printer (title, extruder_heating_temp, table_heating_temp, print_speed, power, size, materials) VALUES (?, ?, ?, ?, ?, ?, ?);';
+    poolModeling.query(query, [ans.title, ans.extra, ans.table, ans.speed, ans.power, ans.size, ans.materials], function (err, data) {
+        if (err) return console.log(err);
+        response.redirect('/admin');
+    });
+})
+app.delete("/printer", jsonParser, (req, res) => {
+    console.log("ffeerfe")
+    console.log(req.body.myId)
+
+    if (req.body) {
+
+        query = 'DELETE FROM models.model WHERE printer_id = ?;';
+        poolModeling.query(query, [req.body.myId], function (err, data) {
+            if (err) {
+                res.sendStatus(500);
+                console.log("error");
+                return console.log(err);
+            }
+            query = 'DELETE FROM models.printer WHERE id = ?;';
+            poolModeling.query(query, [req.body.myId], function (err, data) {
+                if (err) {
+                    res.sendStatus(500);
+                    console.log("error");
+                    return console.log(err);
+                }
+                res.sendStatus(200);
+            })
+
+            //res.redirect('/admin');
+        });
+    }
+    else {
+        res.sendStatus(400);
+    }
+})
+app.put('/printer', jsonParser, (req, res) => {
+    console.log("done")
+    if (!req.body) {
+        return res.sendStatus(400);
+    }
+    let ans = req.body;
+    console.log(ans.title);
+    console.log(ans);
+
+    let query = 'UPDATE models.printer SET title = ?, extruder_heating_temp = ?, table_heating_temp = ?, print_speed = ?, power = ?, size = ?, materials = ? WHERE id = ?;';
+    poolModeling.query(query, [ans.title, ans.extra, ans.table, ans.speed, ans.power, ans.size, ans.materials, ans.current], function (err, data) {
+        if (err) return console.log(err);
+        res.sendStatus(200);
+    });
+})
+
+app.post("/addFilament", urlencodedParser, (request, response) => {
+    console.log(request.body.title);
+    if (!request.body) {
+        return response.sendStatus(400);
+    }
+    let ans = request.body;
+    for (key in ans) {
+        if (ans[key] == '') {
+            ans[key] = null;
+        }
+    }
+    let query = 'INSERT INTO models.filament (title, melting_point, extrusion_temp, shrinkage, density, flexural_strength, tensile_strength, elasticity) VALUES (?, ?, ?, ?, ?, ?, ?, ?);';
+    poolModeling.query(query, [ans.title, ans.melting, ans.extra, ans.shrinkage, ans.density, ans.flexural_strength, ans.tensile_strength, ans.elasticity], function (err, data) {
+        if (err) return console.log(err);
+        response.redirect('/admin');
+    });
+})
+app.delete("/filament", jsonParser, (req, res) => {
+    console.log("зашел")
+    console.log(req.body.myId)
+    if (req.body) {
+
+        query = 'DELETE FROM models.model WHERE filament_id = ?;';
+        poolModeling.query(query, [req.body.myId], function (err, data) {
+            if (err) {
+                res.sendStatus(500);
+                console.log("error");
+                return console.log(err);
+            }
+            query = 'DELETE FROM models.filament WHERE id = ?;';
+            poolModeling.query(query, [req.body.myId], function (err, data) {
+                if (err) {
+                    res.sendStatus(500);
+                    console.log("error");
+                    return console.log(err);
+                }
+                res.sendStatus(200);
+            })
+
+            //res.redirect('/admin');
+        });
+    }
+    else {
+        res.sendStatus(400);
+    }
+})
+app.put('/filament', jsonParser, (req, res) => {
+    console.log("done1")
+    if (!req.body) {
+        return res.sendStatus(400);
+    }
+    let ans = req.body;
+    console.log(ans.title);
+    console.log(ans);
+
+    for (key in ans) {
+        if (ans[key] == '') {
+            ans[key] = null;
+        }
+    }
+    let query = 'UPDATE models.filament SET title = ?, melting_point = ?, extrusion_temp = ?, shrinkage = ?, density = ?, flexural_strength = ?, tensile_strength = ?, elasticity = ? WHERE id = ?;';
+    poolModeling.query(query, [ans.title, ans.melting, ans.extra, ans.shrinkage, ans.density, ans.flexural_strength, ans.tensile_strength, ans.elasticity, ans.current], function (err, data) {
+        if (err) return console.log(err);
+        res.sendStatus(200);
+    });
+})
+app.post("/addComponent", urlencodedParser, (request, response) => {
+    console.log(request.body);
+    if (!request.body) {
+        return response.sendStatus(400);
+    }
+    let ans = request.body;
+    for (key in ans) {
+        if (ans[key] == '') {
+            ans[key] = null;
+        }
+    }
+    let query = 'INSERT INTO models.component (title, designation, units, type, max) VALUES (?, ?, ?, ?, ?);';
+    poolModeling.query(query, [ans.title, ans.designation, ans.units, ans.type, ans.max], function (err, data) {
+        if (err) return console.log(err);
+        response.redirect('/admin');
+    });
+})
+app.delete("/component", jsonParser, (req, res) => {
+
+    if (req.body) {
+
+        query = 'DELETE FROM models.model WHERE  (id > 0)  AND ( (firstFactor = ?) OR (secondFactor = ?) OR (response = ?) );';
+        poolModeling.query(query, [req.body.myId, req.body.myId, req.body.myId], function (err, data) {
+            if (err) {
+                res.sendStatus(500);
+                console.log("error");
+                return console.log(err);
+            }
+            query = 'DELETE FROM models.component WHERE id = ?;';
+            poolModeling.query(query, [req.body.myId], function (err, data) {
+                if (err) {
+                    res.sendStatus(500);
+                    console.log("error");
+                    return console.log(err);
+                }
+                res.sendStatus(200);
+            })
+
+            //res.redirect('/admin');
+        });
+    }
+    else {
+        res.sendStatus(400);
+    }
+})
+app.put('/component', jsonParser, (req, res) => {
+    console.log("done2")
+    if (!req.body) {
+        return res.sendStatus(400);
+    }
+    let ans = req.body;
+    console.log(ans.title);
+    console.log(ans);
+
+    for (key in ans) {
+        if (ans[key] == '') {
+            ans[key] = null;
+        }
+    }
+    let query = 'UPDATE models.component SET title = ?, designation = ?, units = ?, type = ?, max = ? WHERE id = ?;';
+    poolModeling.query(query, [ans.title, ans.designation, ans.units, ans.type, ans.max, ans.current], function (err, data) {
+        if (err) return console.log(err);
+        res.sendStatus(200);
+    });
+})
+
+app.delete("/model", jsonParser, (req, res) => {
+
+    if (req.body) {
+
+        query = 'DELETE FROM models.model WHERE  id = ?;';
+        poolModeling.query(query, [req.body.myId], function (err, data) {
+            if (err) {
+                res.sendStatus(500);
+                console.log("error");
+                return console.log(err);
+            }
+            //res.redirect('/admin');
+        });
+        res.sendStatus(200);
+    }
+    else {
+        res.sendStatus(400);
+    }
+})
+app.put('/model', jsonParser, (req, res) => {
+    if (!req.body) {
+        return res.sendStatus(400);
+    }
+    let ans = req.body;
+    console.log(ans.title);
+    console.log(ans);
+
+    for (key in ans) {
+        if (ans[key] == '') {
+            ans[key] = null;
+        }
+    }
+    let query = 'UPDATE models.model SET title = ?, equation = ?, filament_id = ?, printer_id = ?, R2 = ?, F = ?, SD = ? WHERE id = ?;';
+    poolModeling.query(query, [ans.title, ans.equation, ans.filament, ans.printer, ans.r2, ans.f, ans.sd, ans.current], function (err, data) {
+        if (err) return console.log(err);
+        res.sendStatus(200);
+    });
+})
+app.post("/model", urlencodedParser, (request, response) => {
+    console.log(request.body.title);
+    if (!request.body) {
+        return response.sendStatus(400);
+    }
+    let ans = request.body;
+    let query = 'INSERT INTO models.model (title, equation, filament_id, printer_id, firstFactor, secondFactor, response, R2, F, SD) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);';
+    poolModeling.query(query, [ans.title, ans.equation, ans.filament, ans.printer, ans.firstFactor, ans.secondFactor, ans.response, ans.r2, ans.f, ans.sd], function (err, data) {
+        if (err) return console.log(err);
+        response.redirect('/admin');
+    });
 })
