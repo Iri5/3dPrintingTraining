@@ -133,7 +133,7 @@
   /* Hidden by default */
   position: fixed;
   /* Stay in place */
-  z-index: 1;
+  z-index: 51;
   /* Sit on top */
   left: 0;
   top: 0;
@@ -197,7 +197,6 @@
   margin-bottom: auto;
   margin-top: 10%;
   width: 450px;
-  height: 250px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   -webkit-animation-name: animatetop;
   -webkit-animation-duration: 0.4s;
@@ -212,7 +211,6 @@
   margin-bottom: auto;
   margin-top: 10%;
   width: 450px;
-  height: 250px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   -webkit-animation-name: animatetop;
   -webkit-animation-duration: 0.4s;
@@ -227,7 +225,6 @@
   margin-bottom: auto;
   margin-top: 1.5%;
   width: 525px;
-  height: 95%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   -webkit-animation-name: animatetop;
   -webkit-animation-duration: 0.4s;
@@ -568,7 +565,6 @@
   margin-bottom: auto;
   margin-top: 2.5%;
   width: 525px;
-  height: 85%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   -webkit-animation-name: animatetop;
   -webkit-animation-duration: 0.4s;
@@ -717,7 +713,6 @@ nav {
   margin-bottom: auto;
   margin-top: 1.5%;
   width: 525px;
-  height: 55%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   -webkit-animation-name: animatetop;
   -webkit-animation-duration: 0.4s;
@@ -1057,7 +1052,7 @@ body {
 
 .math-admin {
   margin-top: 80px;
-  width: 100%;
+  width: 100vw;
   overflow: hidden;
   display: flex;
   flex-direction: column;
