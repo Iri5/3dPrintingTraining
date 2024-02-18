@@ -598,6 +598,10 @@ nav {
   background-color: #0507a4;
 }
 
+.nav_item[select=true] {
+  background-color: #0507a4;
+}
+
 .teach__content {
   margin-left: 20%;
   margin-top: 50px;
@@ -1024,6 +1028,158 @@ body {
 .container-user-header {
   display: flex;
   align-items: center;
+}
+
+.menu-teach-header {
+  list-style-type: none;
+  color: white;
+  display: flex;
+  -moz-column-gap: 40px;
+       column-gap: 40px;
+  padding-right: 0;
+  padding-inline-start: 0;
+  font-size: 16px;
+  justify-self: start;
+  padding-right: 20px;
+}
+.menu-teach-header li a {
+  color: white;
+  text-decoration: none;
+}
+.menu-teach-header li a:hover {
+  color: #0077B6;
+}
+
+.container-teach-header {
+  display: flex;
+  align-items: center;
+}
+
+.math-admin {
+  margin-top: 80px;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.math-admin .table-container_head {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.math-admin .table_name {
+  font-family: "Mont";
+  font-weight: 600;
+  font-style: normal;
+  font-size: 20px;
+  color: #03045E;
+}
+.math-admin .add-mm_button {
+  height: 30px;
+  width: 150px;
+  background-color: #03045E;
+  color: white;
+  border: 0px;
+  border-radius: 5px;
+  font-size: 18px;
+}
+.math-admin .add-mm_button:hover {
+  background-color: #0077B6;
+  cursor: pointer;
+}
+.math-admin .add-mm_button:disabled {
+  background-color: #CAF0F8;
+}
+.math-admin .tableM {
+  margin-top: 10px;
+  border: 1px solid #03045E;
+  border-radius: 15px;
+  border-spacing: 0;
+  text-align: left;
+  font-size: 20px;
+}
+.math-admin .tableM th {
+  font-family: "Mont";
+  font-weight: 600;
+  font-style: normal;
+  color: #03045E;
+}
+.math-admin .tableM td, .math-admin .tableM th {
+  height: 40px;
+  box-shadow: 0px -1px 0px 0px rgba(0, 0, 0, 0.25) inset;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.math-admin .tableM th {
+  font-size: 14px;
+  min-height: 50px;
+}
+.math-admin .tableM td {
+  font-size: 12px;
+  min-height: 50px;
+  overflow: hidden;
+}
+.math-admin .model-table-container {
+  overflow-x: scroll;
+}
+.math-admin .modelsTable {
+  position: relative;
+}
+
+.math-admin_table-container {
+  padding-top: 20px;
+  width: 90%;
+  padding-right: 50px;
+  padding-left: 50px;
+  display: flex;
+  flex-direction: column;
+}
+.math-admin_table-container input {
+  height: 100%;
+  width: 100%;
+}
+
+.modal select {
+  background-color: #03045E;
+  color: white;
+  padding: 12px;
+  width: 100%;
+  height: 40px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  -webkit-appearance: button;
+  -moz-appearance: button;
+       appearance: button;
+  outline: none;
+}
+.modal select option {
+  padding: 30px;
+}
+.modal textarea {
+  width: 100%;
+  height: 50px;
+  border-radius: 5px;
+  border: 1px solid #03045E;
+  font-size: 16px;
+  padding-left: 20px;
+  color: #03045E;
+}
+.modal textarea::-moz-placeholder {
+  color: #0077B6;
+}
+.modal textarea::placeholder {
+  color: #0077B6;
+}
+.modal textarea:focus {
+  background-color: rgba(1, 186, 179, 0.1);
+  border: 1px solid #03045E;
+  border-color: #03045E;
+  border-radius: 5px;
+  outline: 0;
 }
 
 .settings-container {

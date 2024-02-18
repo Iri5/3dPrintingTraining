@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="scssAuth/style.css">
+    <link rel="stylesheet" href="scssCommon/style.css">
+</head>
+
+<body>
+    <!--ЗАГОЛОВОК-->
+    <header class="head">
+        <div class="role">
+            Редактирование БД
+        </div>
+        <div class="logout">
+        </div>
+    </header>
+    <!--ОСНОВНОЙ КОНТЕНТ-->
+    <div class="math-admin">
+        <!--ПРИНТЕРЫ-->
+        <div class="math-admin_table-container table-container">
+            <div class="table-container_head">
+                <div class="table_name">Принтеры</div>
+                <!--ДОБАВЛЕНИЕ НОВОГО ПРИНТЕРА-->
+                <div class="modal_container">
+                    <button class="modalBtn add-mm_button">Добавить</button>
+                    <div class="modal">
+                        <div class="modal_content-form">
+                            <div class="modal_header">
+                                <div class="modal_close modal_close_white"></div>
+                                Добавление нового принтера
+                            </div>
+                            <div class="modal_body">
+                                <form action="/addPrinter" method="post">
+                                    <div class="input-area">
+                                        <label>Название</label>
+                                        <input type="text" name="title" placeholder="Printer 123" required>
+                                    </div>
+                                    <div class="input-area">
+                                        <label>Диапазон температуры экстракции, &#176C</label>
+                                        <input type="text" name="extra" placeholder="100-200">
+                                    </div>
+                                    <div class="input-area">
+                                        <label>Диапазон температуры нагрева стола, &#176C</label>
+                                        <input type="text" name="table" placeholder="100-200" value="">
+                                    </div>
+                                    <div class="input-area">
+                                        <label>Диапазон скорости печати, мм/с</label>
+                                        <input type="text" name="speed" placeholder="100-200">
+                                    </div>
+                                    <div class="input-area">
+                                        <label>Мощность, Вт</label>
+                                        <input type="text" name="power" placeholder="700">
+                                    </div>
+                                    <div class="input-area">
+                                        <label>Габариты</label>
+                                        <input type="text" name="size" placeholder="100*100*100">
+                                    </div>
+                                    <div class="input-area">
+                                        <label>Поддерживаемые материалы печати</label>
+                                        <input type="text" name="materials" placeholder="ABS, PLA">
+                                    </div>
+                                    <button class="form_button" type="submit">Сохранить
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--ТАБЛИЦА ПРИНТЕРЫ-->
+            <table class="tableM adminMMtable">
+                <tr>
+                    <th>Название</th>
+                    <th title="Диапазон температуры экструзии">Te, &#176C</th>
+                    <th title="Диапазон температуры нагрева стола">Tt, &#176C</th>
+                    <th title="Диапазон скорости печати">Vp, мм/с</th>
+                    <th title="Мощность">N, Вт</th>
+                    <th title="Габариты">Габариты</th>
+                    <th title="Поддерживаемые материалы печати">Материалы</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                <% for(let i=0; i<goods.printers.length; i++){ %>
+                    <tr>
+                        <td atrname="title">
+                            <%=goods.printers[i].title %>
+                        </td>
+                        <td atrname="extra">
+                            <%=goods.printers[i].extruder_heating_temp %>
+
+                        </td>
+                        <td atrname="table">
+                            <%=goods.printers[i].table_heating_temp %>
+                        </td>
+                        <td atrname="speed">
+                            <%=goods.printers[i].print_speed %>
+
+                        </td>
+                        <td atrname="power">
+                            <%=goods.printers[i].power %>
+                        </td>
+                        <td atrname="size">
+                            <%=goods.printers[i].size %>
+                        </td>
+                        <td atrname="materials">
+                            <%=goods.printers[i].materials %>
+                        </td>
+
+                        <td>
+                            <div printer-id="<%=goods.printers[i].id %>" data-action="delete" class="delete-icon"
+                                title="Удалить"></div>
+                        </td>
+                        <td>
+                            <div printer-id="<%=goods.printers[i].id %>" data-action="edit" class="edit-icon"
+                                title="Редактировать"></div>
+                        </td>
+                    </tr>
+                    <%} %>
+            </table>
+        </div>
+        <!--ФИЛАМЕНТЫ-->
+        <div class="math-admin_table-container table-container">
+            <div class="table-container_head">
+                <div class="table_name">Филаменты</div>
+                <!--ДОБАВЛЕНИЕ ФИЛАМЕНТА-->
+                <div class="modal_container">
+                    <button class="modalBtn add-mm_button">Добавить</button>
+                    <div class="modal">
+                        <div class="modal_content-form">
+                            <div class="modal_header">
+                                <div class="modal_close modal_close_white"></div>
+                                Добавление нового филамента
+                            </div>
+                            <div class="modal_body">
+                                <form id="" action="/addFilament" method="post">
+                                    <div class="input-area">
+                                        <label>Название</label>
+                                        <input type="text" name="title" placeholder="Filament 123" required>
+                                    </div>
+                                    <div class="input-area">
+                                        <label>Температура плавления, &#176C</label>
+                                        <input type="text" name="melting" placeholder="210">
+                                    </div>
+                                    <div class="input-area">
+                                        <label>Температура экструзии, &#176C</label>
+                                        <input type="text" name="extra" placeholder="220" value="">
+                                    </div>
+                                    <div class="input-area">
+                                        <label>Усадка, %</label>
+                                        <input type="text" name="shrinkage" placeholder="0.8">
+                                    </div>
+                                    <div class="input-area">
+                                        <label>Плотность, г/см&sup3;</label>
+                                        <input type="text" name="density" placeholder="1.05">
+                                    </div>
+                                    <div class="input-area">
+                                        <label>Прочность на изгиб, МПа</label>
+                                        <input type="text" name="flexural_strength" placeholder="41">
+                                    </div>
+                                    <div class="input-area">
+                                        <label>Предел прочности при разрыве, МПа</label>
+                                        <input type="text" name="tensile_strength" placeholder="22">
+                                    </div>
+                                    <div class="input-area">
+                                        <label>Модуль упругости при растяжении, МПа</label>
+                                        <input type="text" name="elasticity" placeholder="1628">
+                                    </div>
+
+                                    <button class="form_button" type="submit">Сохранить
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--ТАБЛИЦА ФИЛАМЕНТЫ-->
+            <table class="tableM adminMMtable">
+                <tr>
+                    <th>Название</th>
+                    <th title="Температура плавления">Tm, &#176C</th>
+                    <th title="Температура экструзии">Te, &#176C</th>
+                    <th>Усадка, %</th>
+                    <th title="Плотность">&#961, г/см&sup3;</th>
+                    <th title="Прочность на изгиб">&#963 изгиб, МПа</th>
+                    <th title="Предел прочности при разрыве">&#963 разрыв, МПа</th>
+                    <th title="Модуль упругости при растяжении">|Fупр|, МПа</th>
+
+                    <th></th>
+                    <th></th>
+                </tr>
+                <% for(let i=0; i<goods.filaments.length; i++){ %>
+                    <tr>
+                        <td atrname="title">
+                            <%=goods.filaments[i].title %>
+                        </td>
+                        <td atrname="melting">
+                            <%=goods.filaments[i].melting_point %>
+                        </td>
+                        <td atrname="extra">
+                            <%=goods.filaments[i].extrusion_temp %>
+                        </td>
+                        <td atrname="shrinkage">
+                            <%=goods.filaments[i].shrinkage %>
+                        </td>
+                        <td atrname="density">
+                            <%=goods.filaments[i].density %>
+                        </td>
+                        <td atrname="flexural_strength">
+                            <%=goods.filaments[i].flexural_strength %>
+                        </td>
+                        <td atrname="tensile_strength">
+                            <%=goods.filaments[i].tensile_strength %>
+                        </td>
+                        <td atrname="elasticity">
+                            <%=goods.filaments[i].elasticity %>
+                        </td>
+
+                        <td>
+                            <div filament-id="<%=goods.filaments[i].id %>" data-action="delete" class="delete-icon"
+                                title="Удалить"></div>
+                        </td>
+                        <td>
+                            <div filament-id="<%=goods.filaments[i].id %>" data-action="edit" class="edit-icon"
+                                title="Редактировать"></div>
+                        </td>
+                    </tr>
+                    <%} %>
+
+            </table>
+        </div>
+        <!--КОМПОНЕНТЫ-->
+        <div class="math-admin_table-container table-container">
+            <div class="table-container_head">
+                <div class="table_name">Компоненты</div>
+                <!--ДОБАВЛЕНИЕ КОМПОНЕНТА-->
+                <div class="modal_container">
+                    <button class="modalBtn add-mm_button">Добавить</button>
+                    <div class="modal">
+                        <div class="modal_content-form">
+                            <div class="modal_header">
+                                <div class="modal_close modal_close_white"></div>
+                                Добавление нового компонента
+                            </div>
+                            <div class="modal_body">
+                                <form action="/addComponent" method="post">
+                                    <div class="input-area">
+                                        <label>Название</label>
+                                        <input type="text" name="title" placeholder="Процент заполнения" required>
+                                    </div>
+                                    <div class="input-area">
+                                        <label>Обозначение</label>
+                                        <input type="text" name="designation" placeholder="Pf">
+                                    </div>
+                                    <div class="input-area">
+                                        <label>Единицы измерения</label>
+                                        <input type="text" name="units" placeholder="%" value="">
+                                    </div>
+                                    <div class="input-area">
+                                        <label>Тип</label>
+                                        <select name="type">
+                                            <option value="1">Фактор</option>
+                                            <option value="0">Отклик</option>
+
+                                        </select>
+
+                                    </div>
+                                    <div class="input-area">
+                                        <label>Max</label>
+                                        <input type="text" name="max" placeholder="240" value="">
+                                    </div>
+                                    <button class="form_button" type="submit">Сохранить
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--ТАБЛИЦА КОМПОНЕНТЫ-->
+            <table class="tableM adminMMtable">
+                <tr>
+                    <th>Название</th>
+                    <th>Обозначение</th>
+                    <th title="Максимальное занчение">Vmax</th>
+                    <th title="Минимальное занчение">Vmin</th>
+                    <th title="Рекомендуемое занчение">Vrec</th>
+                    <th>Ед. изм.</th>
+                    <th>Тип</th>
+
+
+                    <th></th>
+                    <th></th>
+                </tr>
+                <% for(let i=0; i<goods.components.length; i++){ %>
+                    <tr>
+                        <td atrname="title">
+                            <%=goods.components[i].title %>
+                        </td>
+                        <td atrname="designation">
+                            <%=goods.components[i].designation %>
+                        </td>
+                        <td atrname="max">
+                            <%=goods.components[i].max %>
+                        </td>
+                        <td atrname="min">
+                            <%=goods.components[i].min %>
+                        </td>
+                        <td atrname="rec">
+                            <%=goods.components[i].rec %>
+                        </td>
+                        <td atrname="units">
+                            <%=goods.components[i].units %>
+                        </td>
+                        <td atrname="type">
+
+                            <% if (goods.components[i].type==1) {%>
+                                Фактор
+                                <% } else { %>
+                                    Отклик
+                                    <% } %>
+
+
+                        </td>
+
+                        <td>
+                            <div component-id="<%=goods.components[i].id %>" data-action="delete" class="delete-icon"
+                                title="Удалить"></div>
+                        </td>
+                        <td>
+                            <div component-id="<%=goods.components[i].id %>" data-action="edit" class="edit-icon"
+                                title="Редактировать"></div>
+                        </td>
+                    </tr>
+                    <%} %>
+
+            </table>
+        </div>
+        <!--МОДЕЛИ-->
+        <div class="math-admin_table-container table-container table-container__model">
+            <div class="table-container_head">
+                <div class="table_name">Модели</div>
+                <!--ДОБАВЛЕНИЕ МОДЕЛИ-->
+                <div class="modal_container">
+                    <button class="modalBtn add-mm_button">Добавить</button>
+                    <div class="modal" id="addModel">
+                        <div class="modal_content-form">
+                            <div class="modal_header">
+                                <div class="modal_close modal_close_white"></div>
+                                Добавление новой модели
+                            </div>
+                            <div class="modal_body">
+                                <form action="/model" method="post">
+                                    <div class="input-area">
+                                        <label>Название</label>
+                                        <input type="text" name="title"
+                                            placeholder="Зависимость прочности от температуры" required>
+                                    </div>
+                                    <div class="input-area">
+                                        <label>Уравнение</label>
+                                        <textarea name="equation"></textarea>
+                                    </div>
+                                    <div class="input-area">
+                                        <label>Филамент</label>
+                                        <select name="filament" id="select_filament_add"></select>
+                                    </div>
+                                    <div class="input-area">
+                                        <label>Принтер</label>
+                                        <select name="printer" id="select_printer_add"></select>
+
+                                    </div>
+                                    <div class="input-area">
+                                        <label>1 фактор</label>
+                                        <select name="firstFactor" id="select_firstfactor_add"></select>
+
+                                    </div>
+                                    <div class="input-area">
+                                        <label>2 фактор</label>
+                                        <select name="secondFactor" id="select_secondfactor_add"></select>
+                                    </div>
+                                    <div class="input-area">
+                                        <label>Отклик</label>
+                                        <select name="response" id="select_response_add"></select>
+                                    </div>
+                                    <div class="input-area">
+                                        <label>Коэффициент детерминации</label>
+                                        <input type="text" name="r2">
+                                    </div>
+                                    <div class="input-area">
+                                        <label>Критерий Фишера</label>
+                                        <input type="text" name="f">
+                                    </div>
+                                    <div class="input-area">
+                                        <label>Табличный критерий Фишера</label>
+                                        <input type="text" name="ft">
+                                    </div>
+                                    <div class="input-area">
+                                        <label>Среднеквадратичное отклонение</label>
+                                        <input type="text" name="sd">
+                                    </div>
+                                    <button class=" form_button" type="submit"
+                                        >Сохранить
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--ТАБЛИЦА МОДЕЛИ-->
+            <div class="model-table-container">
+                <table class="tableM adminMMtable modelsTable">
+                    <tr>
+                        <th>Название</th>
+                        <th>Уравнение</th>
+                        <th>Филамент</th>
+                        <th>Принтер</th>
+                        <th title="Коэффициент детерминации">R&sup2;</th>
+                        <th title="Расчетный критерий Фишера">F</th>
+                        <th title="Табличный критерий Фишера">Ft</th>
+                        <th title="Среднеквадратичное отклонение">SD</th>
+    
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <% for(let i=0; i<goods.models.length; i++){ %>
+                        <tr>
+                            <td atrname="title">
+                                <%=goods.models[i].title %>
+    
+                            </td>
+                            <td atrname="equation">
+                                <%=goods.models[i].equation %>
+                            </td>
+                            <td atrname="filamentmodel" atrmodid="<%=goods.models[i].filament_id %>">
+                                <%=goods.models[i].filament_id %>
+                            </td>
+                            <td atrname="printermodel" atrmodid="<%=goods.models[i].printer_id %>">
+                                <%=goods.models[i].printer_id %>
+                            </td>
+                            <td atrname="r2">
+                                <%=goods.models[i].R2 %>
+                            </td>
+                            <td atrname="f">
+                                <%=goods.models[i].F %>
+                            </td>
+                            <td atrname="ft">
+                                <%=goods.models[i].Ft %>
+                            </td>
+                            <td atrname="sd">
+                                <%=goods.models[i].SD %>
+                            </td>
+    
+    
+                            <td>
+                                <div model-id="<%=goods.models[i].id %>" data-action="delete" class="delete-icon"
+                                    title="Удалить"></div>
+                            </td>
+                            <td>
+                                <div model-id="<%=goods.models[i].id %>" data-action="edit" class="edit-icon"
+                                    title="Редактировать"></div>
+                            </td>
+                        </tr>
+                        <%} %>
+    
+                </table>
+            </div>
+            
+        </div>
+        <div id="modalQueDelete" class="modal ">
+            <div class="modal_content-question">
+                <div class="modal_close"></div>
+                <div class="modal-confirm">
+                    <div class="modal_body-confirm">
+                        <p>Модели, связанные с записью будут удалены.</p>
+                        <p>Вы уверены что хотите удалить запись?</p>
+                    </div>
+                    <div class="buttons-confirm">
+                        <button id="no-delete" class="no">Нет</button>
+                        <button id="yes-delete" class="yes">Да</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--РЕДАКТИРОВАНИЕ ПРИНТЕРА-->
+        <div class="modal_container">
+            <div class="modal" id="editPrinter">
+                <div class="modal_content-form">
+                    <div class="modal_header">
+                        <div class="modal_close modal_close_white"></div>
+                        Редактирование принтера
+                    </div>
+                    <div class="modal_body">
+                        <form action="/editPrinter" method="post">
+                            <input type="text" name="current" style="display: none;">
+                            <div class="input-area">
+                                <label>Название</label>
+                                <input type="text" name="title" placeholder="Printer 123" required>
+                            </div>
+                            <div class="input-area">
+                                <label>Диапазон температуры экстракции, &#176C</label>
+                                <input type="text" name="extra" placeholder="100-200">
+                            </div>
+                            <div class="input-area">
+                                <label>Диапазон температуры нагрева стола, &#176C</label>
+                                <input type="text" name="table" placeholder="100-200" value="">
+                            </div>
+                            <div class="input-area">
+                                <label>Диапазон скорости печати, мм/с</label>
+                                <input type="text" name="speed" placeholder="100-200">
+                            </div>
+                            <div class="input-area">
+                                <label>Мощность, Вт</label>
+                                <input type="text" name="power" placeholder="700">
+                            </div>
+                            <div class="input-area">
+                                <label>Габариты</label>
+                                <input type="text" name="size" placeholder="100*100*100">
+                            </div>
+                            <div class="input-area">
+                                <label>Поддерживаемые материалы печати</label>
+                                <input type="text" name="materials" placeholder="100-200">
+                            </div>
+                            <button class="form_button" type="submit">Сохранить
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--РЕДАКТИРОВАНИЕ ФИЛАМЕНТА-->
+        <div class="modal_container">
+            <div class="modal" id="editFilament">
+                <div class="modal_content-form">
+                    <div class="modal_header">
+                        <div class="modal_close modal_close_white"></div>
+                        Редактирование филамента
+                    </div>
+                    <div class="modal_body">
+                        <form id="" action="/edit" method="post">
+                            <input type="text" name="current" style="display: none;">
+                            <div class="input-area">
+                                <label>Название</label>
+                                <input type="text" name="title" placeholder="Filament 123" required>
+                            </div>
+                            <div class="input-area">
+                                <label>Температура плавления, &#176C</label>
+                                <input type="text" name="melting" placeholder="210">
+                            </div>
+                            <div class="input-area">
+                                <label>Температура экструзии, &#176C</label>
+                                <input type="text" name="extra" placeholder="220" value="">
+                            </div>
+                            <div class="input-area">
+                                <label>Усадка, %</label>
+                                <input type="text" name="shrinkage" placeholder="0.8">
+                            </div>
+                            <div class="input-area">
+                                <label>Плотность г/см&sup3;</label>
+                                <input type="text" name="density" placeholder="1.05">
+                            </div>
+                            <div class="input-area">
+                                <label>Прочность на изгиб, МПа</label>
+                                <input type="text" name="flexural_strength" placeholder="41">
+                            </div>
+                            <div class="input-area">
+                                <label>Предел прочности при разрыве, МПа</label>
+                                <input type="text" name="tensile_strength" placeholder="22">
+                            </div>
+                            <div class="input-area">
+                                <label>Модуль упругости при растяжении, МПа</label>
+                                <input type="text" name="elasticity" placeholder="1628">
+                            </div>
+
+                            <button class="form_button" type="submit">Сохранить
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--РЕДАКТИРОВАНИЕ КОМПОНЕНТА-->
+        <div class="modal_container">
+            <div class="modal" id="editComponent">
+                <div class="modal_content-form">
+                    <div class="modal_header">
+                        <div class="modal_close modal_close_white"></div>
+                        Редактирование компонента
+                    </div>
+                    <div class="modal_body">
+                        <form action="/addComponent" method="post">
+                            <input type="text" name="current" style="display: none;">
+                            <div class="input-area">
+                                <label>Название</label>
+                                <input type="text" name="title" placeholder="Процент заполнения" required>
+                            </div>
+                            <div class="input-area">
+                                <label>Обозначение</label>
+                                <input type="text" name="designation" placeholder="Pf">
+                            </div>
+                            <div class="input-area">
+                                <label>Единицы измерения</label>
+                                <input type="text" name="units" placeholder="%" value="">
+                            </div>
+                            <div class="input-area">
+                                <label>Тип</label>
+                                <select name="type">
+                                    <option value="1">Фактор</option>
+                                    <option value="0">Отклик</option>
+                                </select>
+                            </div>
+                            <div class="input-area">
+                                <label>Максимальное значение</label>
+                                <input type="text" name="max" placeholder="240" value="">
+                            </div>
+                            <div class="input-area">
+                                <label>Минимальное значение</label>
+                                <input type="text" name="min" placeholder="240" value="">
+                            </div>
+                            <div class="input-area">
+                                <label>Рекомендуемое значение</label>
+                                <input type="text" name="rec" placeholder="240" value="">
+                            </div>
+                            <button class="form_button" type="submit">Сохранить
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--РЕДАКТИРОВАНИЕ МОДЕЛИ-->
+        <div class="modal_container">
+            <div class="modal" id="editModel">
+                <div class="modal_content-form">
+                    <div class="modal_header">
+                        <div class="modal_close modal_close_white"></div>
+                        Редактирование модели
+                    </div>
+                    <div class="modal_body">
+                        <form action="/addModal" method="post">
+                            <input type="text" name="current" style="display: none;">
+                            <div class="input-area">
+                                <label>Название</label>
+                                <input type="text" name="title" placeholder="Зависимость" required>
+                            </div>
+                            <div class="input-area">
+                                <label>Уравнение</label>
+                                <textarea type="textarea" name="equation"> </textarea>
+                            </div>
+                            <div class="input-area">
+                                <label>Принтер</label>
+                                <select id="select-printer" name="printer"></select>
+                            </div>
+                            <div class="input-area">
+                                <label>Филамент</label>
+                                <select id="select-filament" name="filament"></select>
+                            </div>
+                            <div class="input-area">
+                                <label>Коэффициент детерминации</label>
+                                <input type="text" name="r2">
+                            </div>
+                            <div class="input-area">
+                                <label>Критерий Фишера</label>
+                                <input type="text" name="f">
+                            </div>
+                            <div class="input-area">
+                                <label>Табличный критерий Фишера</label>
+                                <input type="text" name="ft">
+                            </div>
+                            <div class="input-area">
+                                <label>Среднеквадратичное отклонение</label>
+                                <input type="text" name="sd">
+                            </div>
+                            <button class="form_button" type="submit">Сохранить</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="js/common/modal.js" defer></script>
+        <script src="js/common/logout.js"></script>
+        <script src="js/admin/editBase.js"></script>
+        <script src="js/admin/delete.js"></script>
+        <script defer src="js/admin/fillSelectInModelAdd.js"></script>
+        <script defer src="js/admin/fillSelectInModelEdit.js"></script>
+        <script defer src="js/admin/getInfoDataBase.js"></script>
+        <script src="js/click_buttons.js"></script>
+
+</body>
+
+</html>

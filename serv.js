@@ -535,6 +535,30 @@ const poolModeling = mysql.createPool({
     database: 'models',
     password: 'irina'
 });
+app.get("/modeling_admin", (req, res) => {
+    let query = 'SELECT * from models.printer';
+    let infoToClient = {};
+    poolModeling.query(query, function (err, printers) {
+        if (err) return console.log(err);
+        infoToClient.printers = printers;
+        query = 'SELECT * FROM models.filament';
+        poolModeling.query(query, function (err, filaments) {
+            if (err) return console.log(err);
+            infoToClient.filaments = filaments;
+            query = 'SELECT * FROM models.component';
+            poolModeling.query(query, function (err, components) {
+                if (err) return console.log(err);
+                infoToClient.components = components;
+                query = 'SELECT * FROM models.model';
+                poolModeling.query(query, function (err, models) {
+                    if (err) return console.log(err);
+                    infoToClient.models = models;
+                    res.render('modeling_admin', { goods: infoToClient })
+                })
+            })
+        })
+    })
+})
 app.get('/modeling', (req, res) => {
     let query = 'SELECT id, title FROM models.filament;'
     poolModeling.query(query, function (err, data) {
