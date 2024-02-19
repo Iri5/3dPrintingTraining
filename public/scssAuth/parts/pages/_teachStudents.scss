@@ -1,0 +1,60 @@
+.teach__content_students{
+    display: none;
+    
+    .students-table__container{
+        width: 50%;
+        table{
+            width: 100%;
+        }
+    }
+    .students-table__head{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        
+    }
+    .eye-icon{
+        @include icon(20px, 20px);
+        background-image: url(/img/Eye.svg);
+    }
+    .students-table__name{
+        @include fontSemiBold();
+        font-size: $fsizeH2;
+        color: $base-color;
+    }
+    
+    .students-info {
+        padding-top: 50px;
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        row-gap: 30px;
+    }
+    .students-info__title {
+        @include fontReg();
+        font-size: $fsizeH2;
+    }
+    .students-info__description {
+        @include fontReg();
+        font-size: $fsizeText
+    }
+    .students-info__button {
+        @include buttonDefault(50px, 200px, $fsizeText);
+    }
+    .students-info__button_hidden{
+        display: none;
+    }
+    .add-course_button{
+        @include buttonDefault(40px, 200px, $fsizeText);
+    }
+    .modal__new-course{
+        @include modalContent(525px, 55%, 1.5%);
+        textarea{
+            height: 150px;
+            resize: none;
+            @include inputText(100%, 150px, $fsizeText)
+        }
+    }
+}

@@ -187,8 +187,17 @@ app.get('/teach', (req, res) => {
     pool.query(query, function (err, data) {
         if (err) return console.log(err);
         if (data.length != 0) {
-            res.status = 200;
-            res.render('teac', { courses: data });
+            let infoClient = {};
+            infoClient.courses = data;
+            query = 'SELECT id, fio, gr FROM us.user WHERE role = 1';
+            pool.query(query, function(err, data) {
+                if (err) return console.log(err);
+                if (data.length != 0) {
+                    infoClient.students = data;
+                    res.status = 200;
+                    res.render('teac', { info: infoClient });
+                }
+            })
         }
         else res.sendStatus(403);
     })

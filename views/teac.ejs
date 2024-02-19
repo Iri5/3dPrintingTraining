@@ -31,95 +31,161 @@
             </ul>
             <div class="logout"></div>
         </div>
-        
+
     </header>
 
-        <nav>
-            <div class="nav_item" select="true">Курсы</div>
-            <div class="nav_item" select="false">Ученики</div>
-            <div class="nav_item" select="false">Библиотека ММ</div>
-        </nav>
-        <div class="teach__content">
-            <div class="course-table__container">
-                <div class="course-table__head">
-                    <div class="course-table__name">Курсы</div>
+    <nav class="teach__nav">
+        <div class="nav__item nav__item_course" selectnav>Курсы</div>
+        <div class="nav__item nav__item_students">Ученики</div>
+    </nav>
+    <div class="teach__content teach__content_course">
+        <div class="course-table__container">
+            <div class="course-table__head">
+                <div class="course-table__name">Курсы</div>
 
-                    <div class="modal_container">
-                        <button id="add-course" class="modalBtn add-course_button">Добавить</button>
-                        <div class="modal">
-                            <div class="modal_content-form modal__new-course">
-                                <div class="modal_header">
-                                    <div class="modal_close modal_close_white"></div>
-                                    Добавление нового курса
-                                </div>
-                                <div class="modal_body">
-                                    <form id="add-form" action="/course" method="post">
-                                        <div class="input-area">
-                                            <label>Название</label>
-                                            <input type="text" name="title" placeholder="Введите название курса"
-                                                required maxlength="255">
-                                        </div>
-                                        <div class="input-area">
-                                            <label>Описание</label>
-                                            <textarea name="description" placeholder="Введите описание курса"
-                                                required> </textarea>
-                                        </div>
-                                        <button class="form_addcourse_button form_button" type="submit"
-                                            name="form_addcourse_submit">Сохранить
-                                        </button>
-                                    </form>
-                                </div>
+                <div class="modal_container">
+                    <button id="add-course" class="modalBtn add-course_button">Добавить</button>
+                    <div class="modal">
+                        <div class="modal_content-form modal__new-course">
+                            <div class="modal_header">
+                                <div class="modal_close modal_close_white"></div>
+                                Добавление нового курса
+                            </div>
+                            <div class="modal_body">
+                                <form id="add-form" action="/course" method="post">
+                                    <div class="input-area">
+                                        <label>Название</label>
+                                        <input type="text" name="title" placeholder="Введите название курса" required
+                                            maxlength="255">
+                                    </div>
+                                    <div class="input-area">
+                                        <label>Описание</label>
+                                        <textarea name="description" placeholder="Введите описание курса"
+                                            required> </textarea>
+                                    </div>
+                                    <button class="form_addcourse_button form_button" type="submit"
+                                        name="form_addcourse_submit">Сохранить
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
-                <table id="courses" class="menu table">
-                    <tr>
-                        <th>Название</th>
-                        <th></th>
-                        <th></th>
+            </div>
+            <table id="courses" class="menu table">
+                <tr>
+                    <th>Название</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                <% for(let i=0; i<info.courses.length; i++){ %>
+                    <tr userId="<%= info.courses[i].id %>">
+                        <td class="name">
+                            <%= info.courses[i].title %>
+                        </td>
+                        <td>
+                            <div data-action="show" class="eye-icon" title="Редактировать"></div>
+                        </td>
+                        <td>
+                            <div data-action="delete" class="delete-icon" title="Удалить"></div>
+                        </td>
+
                     </tr>
-                    <% for(let i=0; i<courses.length; i++){ %>
-                        <tr userId="<%= courses[i].id %>">
-                            <td  class="name">
-                                <%= courses[i].title %>
-                            </td>
-                            <td>
-                                <div data-action="show" class="eye-icon" title="Редактировать"></div>
-                            </td>
-                            <td>
-                                <div data-action="delete" class="delete-icon" title="Удалить"></div>
-                            </td>
-
-                        </tr>
-                        <%} %>
-                </table>
-            </div>
-            <div class="course-info">
-                <div class="course-info__title">
-                    
-                </div>
-                <div class="course-info__description"></div>
-                <button class="course-info__button course-info__button_hidden"><a href="#"></a>Страница курса</button>
-            </div>
-            
+                    <%} %>
+            </table>
         </div>
-        
-        <script src="admin.js" defer></script>
-        
+        <div class="course-info">
+            <div class="course-info__title">
 
-        <script src="js/common/modal.js" defer></script>
-        <script src="js/common/logout.js"></script>
-        <script src="js/teach/deleteCourse.js"></script>
-        <script src="js/teach/clickInUsers.js" defer></script>
-        <script src="js/teach/fillCourseInfo.js" defer></script>
-        <script>
-            let btn = document.querySelector('.course-info__button');
-            let a = btn.querySelector('a');
-            btn.addEventListener('click', (e) => {
-                a.click();
-            })
-        </script>
+            </div>
+            <div class="course-info__description"></div>
+            <button class="course-info__button course-info__button_hidden"><a href="#"></a>Страница курса</button>
+        </div>
+
+    </div>
+
+    <div class="teach__content teach__content_students">
+        <div class="students-table__container">
+            <div class="students-table__head">
+                <div class="students-table__name">Ученики</div>
+
+                <!--<div class="modal_container">
+                    <button id="add-course" class="modalBtn add-course_button">Добавить</button>
+                    <div class="modal">
+                        <div class="modal_content-form modal__new-course">
+                            <div class="modal_header">
+                                <div class="modal_close modal_close_white"></div>
+                                Добавление нового курса
+                            </div>
+                            <div class="modal_body">
+                                <form id="add-form" action="/course" method="post">
+                                    <div class="input-area">
+                                        <label>Название</label>
+                                        <input type="text" name="title" placeholder="Введите название курса" required
+                                            maxlength="255">
+                                    </div>
+                                    <div class="input-area">
+                                        <label>Описание</label>
+                                        <textarea name="description" placeholder="Введите описание курса"
+                                            required> </textarea>
+                                    </div>
+                                    <button class="form_addcourse_button form_button" type="submit"
+                                        name="form_addcourse_submit">Сохранить
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
+            </div>
+            <table id="students" class="menu table">
+                <tr>
+                    <th>ФИО</th>
+                    <th>Группа</th>
+                    <th></th>
+                </tr>
+                <% for(let i=0; i<info.students.length; i++){ %>
+                    <tr userId="<%= info.students[i].id %>">
+                        <td class="fio">
+                            <%= info.students[i].fio %>
+                        </td>
+                        <td class="gr">
+                            <%= info.students[i].gr %>
+                        </td>
+                        <td>
+                            <div data-action="show" class="eye-icon" title="Редактировать"></div>
+                        </td>
+                    </tr>
+                    <%} %>
+            </table>
+        </div>
+        <div class="students-info">
+            <div class="students-info__title">
+
+            </div>
+            <div class="students-info__description"></div>
+            <button class="students-info__button students-info__button_hidden"><a href="#"></a>Страница курса</button>
+        </div>
+
+    </div>
+
+    <script src="admin.js" defer></script>
+
+
+    <script src="js/common/modal.js" defer></script>
+    <script src="js/common/logout.js"></script>
+    <script src="js/teach/deleteCourse.js"></script>
+    <script src="js/teach/navVisual.js"></script>
+
+    <script src="js/teach/clickInUsers.js" defer></script>
+    <script src="js/teach/fillCourseInfo.js" defer></script>
+    <script>
+        let btn = document.querySelector('.course-info__button');
+        let a = btn.querySelector('a');
+        btn.addEventListener('click', (e) => {
+            a.click();
+        })
+    </script>
 </body>
 
 </html>

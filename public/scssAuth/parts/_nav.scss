@@ -5,7 +5,7 @@ nav{
     position: fixed;
     top: 50px;
 }
-.nav_item{
+.nav__item{
     width: 100%;
     height: 40px;
     padding-left: 20px;
@@ -18,6 +18,6 @@ nav{
         background-color:  #0507a4;
     }
 }
-.nav_item[select='true']{
+.nav__item[selectnav]{
     background-color:  #0507a4;
 }
