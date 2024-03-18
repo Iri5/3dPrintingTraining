@@ -21,41 +21,38 @@ show.addEventListener('click', () => {
     let x = [];
     let y = [];
 
-    for (let i = +firstFactor.min; i < +firstFactor.max; i++) {
-        for (let j = +secondFactor.min; j < +secondFactor.max; j++) {
-            x.push(i);
-            y.push(j);
-            scope[firstFactor.title] = i;
-            scope[secondFactor.title] = j;
+    let newZ = [];
+    let newX = [];
+    let newY = [];
+    for (let i = +firstFactor.min; i < +firstFactor.max+1; i+=2){
+        newX.push(i);
+    }
+    for (let i = +secondFactor.min; i < +secondFactor.max+1; i+=2){
+        newY.push(i);
+    }
+    for (let i = +secondFactor.min; i < +secondFactor.max+1; i+=2) {
+        let newZOne = [];
+        for (let j = +firstFactor.min; j < +firstFactor.max+1; j+=2) {
+            
+            scope[firstFactor.title] = j;
+            scope[secondFactor.title] = i;
             let eq = localStorage.currentEquip
             let result = math.evaluate(eq, scope);
             z1 = Math.round(result * 10000) / 10000;
             //z[i].push(z1);
-            z.push(z1);
+            newZOne.push(result);
         }
+        newZ.push(newZOne);
     }
-    console.log(scope);
-    console.log('x');
-    console.log(x);
-    console.log('y');
-    console.log(y);
-    console.log('z');
-    console.log(z);
 
 
     var data_z1 = {
-        x: x,
-        y: y,
-        z: z,
-        type: 'mesh3d',
-        colorscale: [
-            ['0.0', '#051923'],
-            ['0.222222222222', '#003554'],
-            ['0.444444444444', '#006494'],
-            ['0.666666666667', '#0582ca'],
-            ['0.888888888889', '#00a6fb'],
-            ['1.0', '#07beb8']
-        ],
+        x: newX,
+        y: newY,
+        z: newZ,
+        type: 'surface',
+        opacity: 0.8,
+        colorscale: 'Viridis',
         showscale: false,
         hovertemplate:
             firstFactor.title + ": %{x}<br>" +
