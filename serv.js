@@ -7,15 +7,30 @@ const mysql = require('mysql2');
 const { dirname } = require('path');
 const bodyParser = require('body-parser');
 const router = express.Router();
+const bcrypt = require('bcrypt');
+
+
+
+/*bcrypt.hash(pass, 10, (err, hash) => {
+    if (err) {
+    } else {
+        hashpass = hash;
+        bcrypt.compare(pass, hashpass, (err, result) => {
+            if (err) {} 
+            if (result){}
+        })
+    }
+});*/
+
 let currentUserLogin = null;
 app.use(bodyParser.urlencoded({ extended: false }));
-
-const pool = mysql.createPool({
+app.use(bodyParser.json({ extended: false }));
+/*const pool = mysql.createPool({
     host: 'localhost',
     user: 'root',
     database: 'us',
     password: 'irina'
-});
+});*/
 app.listen(3001, () => {
     console.log('Server started: http://localhost:3001');
 })
@@ -31,36 +46,53 @@ app.get('/material', (req, res) => {
 app.get('/index.html', (req, res) => {
     res.render('index');
 })
-
+const authRouter = require('./api/routes/auth');
+app.use('/auth', authRouter);
 //АВТОРИЗАЦИЯ
-app.get('/auth', jsonParser, (req, res) => {
+/*app.get('/auth', jsonParser, (req, res) => {
+    console.log("Зашел в автоизацию")
     let user = JSON.parse(req.headers.senddata);
-    let query = 'SELECT role FROM us.user where login = ? and pass = ?;'
-    pool.query(query, [user.login, user.pass], function (err, data) {
+    console.log("Зашел в автоизацию")
+    let query = 'SELECT * FROM us.user where login = ?;'
+    pool.query(query, [user.login], function (err, data) {
         if (err) return console.log(err);
         if (data.length == 0) {
+            console.log("Пользователь не найден")
             res.sendStatus(403)
         }
         else {
-            switch (data[0].role) {
-                case '3':
-                    console.log("admin")
-                    res.status = 200;
-                    res.redirect('/admin');
-                    break;
-                case '2':
-                    res.status = 200;
-                    res.redirect('/teach');
-                    break;
-                case '1':
-                    currentUserLogin = user.login;
-                    res.status = 200;
-                    res.redirect('/user');
-                    break;
-            }
+            console.log("Пользователь найден")
+            console.log(data)
+            bcrypt.compare(user.pass, data[0].pass, (err, result) => {
+                if (err) {
+                    console.log("Auth failed: ")
+                    
+                } 
+                if (result){
+                    console.log("Они совпали!")
+                    res.sendStatus(403)
+                    /*switch (data[0].role) {
+                        case '3':
+                            console.log("admin")
+                            res.status = 200;
+                            res.redirect('/admin');
+                            break;
+                        case '2':
+                            res.status = 200;
+                            res.redirect('/teach');
+                            break;
+                        case '1':
+                            currentUserLogin = user.login;
+                            res.status = 200;
+                            res.redirect('/user');
+                            break;
+                    }
+                }
+            })
+            
         }
     });
-})
+})*/
 
 
 //АДМИНИСТРАТОР
@@ -190,7 +222,7 @@ app.get('/teach', (req, res) => {
             let infoClient = {};
             infoClient.courses = data;
             query = 'SELECT id, fio, gr FROM us.user WHERE role = 1';
-            pool.query(query, function(err, data) {
+            pool.query(query, function (err, data) {
                 if (err) return console.log(err);
                 if (data.length != 0) {
                     infoClient.students = data;
@@ -352,6 +384,7 @@ app.get('/test/', (req, res) => {
 
 //Загрузка изображения TinyMCE
 const fileUpload = require('express-fileupload');
+const { hash } = require('bcrypt');
 app.use(
     fileUpload({
         limits: {

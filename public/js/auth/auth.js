@@ -7,11 +7,11 @@ function serializeForm(formNode) {
 }
 async function sendData(data) {
     return await fetch('/auth', {
-        method: 'GET',
+        method: 'post',
         headers: {
             'Content-Type': 'application/json;charset=utf-8',
-            sendData: data
         },
+        body: data
     })
 }
 function onError() {
@@ -20,13 +20,19 @@ function onError() {
 async function handleFormSubmit(event) {
     event.preventDefault();
     const data = serializeForm(event.target);
-    const { redirected, url, status, error } = await sendData(data);
-    if (status === 403) {
+    
+    const response = await sendData(data);
+    if (response.status === 403) {
         onError();
-    } else if (status === 200) {
-        if (redirected) {
+    } else if (response.status === 200) {
+        let a = await response.json();
+        console.log(a);
+
+        if (response.redirected) {
             window.location.href = url;
         }
+    } else if (response.status === 205){
+        alert('Запрос прошел');
     }
 }
 const form = document.querySelector(".auth__form");

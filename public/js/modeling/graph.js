@@ -61,7 +61,7 @@ show.addEventListener('click', () => {
     };
     let unit = 'МПа'
     if(responseTitle == 'm'){
-        unit = 'кг';
+        unit = 'кг/1000 мм³';
     }
     var layout = {
         hoverlabel: { bgcolor: "#FFF" },
