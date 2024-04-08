@@ -25,8 +25,14 @@ async function handleFormSubmit(event) {
     if (response.status === 403) {
         onError();
     } else if (response.status === 200) {
-        let a = await response.json();
-        console.log(a);
+        let user = await response.json();
+        console.log(user);
+        if (user.role == 3){
+            const {url} = await fetch('/admin');
+            //console.log(redirected);
+            console.log(url);
+            window.location.href = url;
+        }
 
         if (response.redirected) {
             window.location.href = url;

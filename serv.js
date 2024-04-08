@@ -25,12 +25,12 @@ const bcrypt = require('bcrypt');
 let currentUserLogin = null;
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json({ extended: false }));
-/*const pool = mysql.createPool({
+const pool = mysql.createPool({
     host: 'localhost',
     user: 'root',
     database: 'us',
     password: 'irina'
-});*/
+});
 app.listen(3001, () => {
     console.log('Server started: http://localhost:3001');
 })
@@ -47,7 +47,9 @@ app.get('/index.html', (req, res) => {
     res.render('index');
 })
 const authRouter = require('./api/routes/auth');
+const adminRouter = require('./api/routes/admin');
 app.use('/auth', authRouter);
+app.use('/admin', adminRouter);
 //АВТОРИЗАЦИЯ
 /*app.get('/auth', jsonParser, (req, res) => {
     console.log("Зашел в автоизацию")
@@ -97,7 +99,7 @@ app.use('/auth', authRouter);
 
 //АДМИНИСТРАТОР
 //Загрузка данных учетных записей
-app.get('/admin', (req, res) => {
+/*app.get('/admin', (req, res) => {
     let query = 'SELECT fio, email, login, gr, role, bday FROM us.user;'
     pool.query(query, function (err, data) {
         if (err) return console.log(err);
@@ -121,9 +123,9 @@ app.get('/admin', (req, res) => {
         });
         res.render('admin', { goods: data });
     });
-})
+})*/
 //Добавление новой учетной записи
-app.post('/admin', urlencodedParser, (req, res) => {
+/*app.post('/admin', urlencodedParser, (req, res) => {
     if (!req.body) {
         return res.sendStatus(400);
     }
@@ -155,9 +157,9 @@ app.post('/admin', urlencodedParser, (req, res) => {
                     res.redirect('/admin');
                 });
             }
-})
+})*/
 //Удаление учетной записи
-app.delete('/admin', jsonParser, (req, res) => {
+/*app.delete('/admin', jsonParser, (req, res) => {
     if (req.body) {
 
         query = 'DELETE FROM us.user WHERE login = ? AND id > 0;';
@@ -174,9 +176,9 @@ app.delete('/admin', jsonParser, (req, res) => {
     else {
         res.sendStatus(400);
     }
-})
+})*/
 //Изменение учетных записей
-app.put('/admin', jsonParser, (req, res) => {
+/*app.put('/admin', jsonParser, (req, res) => {
 
     if (!req.body) {
         return res.sendStatus(400);
@@ -210,7 +212,7 @@ app.put('/admin', jsonParser, (req, res) => {
                     res.sendStatus(200);
                 });
             }
-})
+})*/
 
 //ПРЕПОДАВАТЕЛЬ
 
