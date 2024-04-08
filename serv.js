@@ -9,7 +9,7 @@ const bodyParser = require('body-parser');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 
-
+// this comment made by me
 
 /*bcrypt.hash(pass, 10, (err, hash) => {
     if (err) {
