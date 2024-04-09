@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router();
-const pool = require('../db')
+const pool = require('../db');
+const bcrypt = require('bcrypt');
 
 router.get('/', (req, res) => {
     let query = 'SELECT fio, email, login, gr, role, bday FROM us.user;'
@@ -37,11 +38,22 @@ router.post('/', (req, res) => {
             ans[key] = null;
         }
     }
-    let query = 'INSERT INTO us.user (fio, email, login, pass, gr, role, bday) VALUES (?, ?, ?, ?, ?, ?, ?);';
-    pool.query(query, [ans.fio, ans.email, ans.login, ans.password, ans.group, ans.role, ans.bday], function (err, data) {
-        if (err) return console.log(err);
-        res.redirect('/admin');
-    });
+    bcrypt.hash(ans.password, 10, (err, hash) => {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log('hash');
+            console.log(hash);
+            ans.password = hash;
+            console.log(ans.password);
+            let query = 'INSERT INTO us.user (fio, email, login, pass, gr, role, bday) VALUES (?, ?, ?, ?, ?, ?, ?);';
+            console.log(ans.password);
+            pool.query(query, [ans.fio, ans.email, ans.login, ans.password, ans.group, ans.role, ans.bday], function (err, data) {
+                if (err) return console.log(err);
+                res.redirect('/admin');
+            });
+        }
+    })
 })
 router.delete('/', (req, res) => {
     if (req.body) {

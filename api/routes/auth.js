@@ -7,7 +7,6 @@ const pool = require('../db')
 
 router.post('/', (req, res) => {
     let {login, pass} = req.body;
-    console.log(login);
     let query = 'SELECT * FROM us.user where login = ?;'
     pool.query(query, [login], function (err, data) {
         if (err) return console.log(err);
@@ -15,14 +14,11 @@ router.post('/', (req, res) => {
             res.sendStatus(403)
         }
         else {
-            console.log("Пользователь найден")
-            console.log(data)
             bcrypt.compare(pass, data[0].pass, (err, result) => {
                 if (err) {
                     console.log("Auth failed: ")
                 } 
                 if (result){
-                    console.log("Они совпали!")
                     res.status(200).json({
                         role: data[0].role,
                         id: data[0].id
