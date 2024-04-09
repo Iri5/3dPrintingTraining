@@ -48,8 +48,15 @@ app.get('/index.html', (req, res) => {
 })
 const authRouter = require('./api/routes/auth');
 const adminRouter = require('./api/routes/admin');
+const teacherRouter = require('./api/routes/teacher/teacher');
+const courseRouter = require('./api/routes/course');
+const detailCourseRouter = require('./api/routes/detailcourse');
+
 app.use('/auth', authRouter);
 app.use('/admin', adminRouter);
+app.use('/teach', teacherRouter);
+app.use('/course', courseRouter);
+app.use('/detailcourse', detailCourseRouter)
 //АВТОРИЗАЦИЯ
 /*app.get('/auth', jsonParser, (req, res) => {
     console.log("Зашел в автоизацию")
@@ -216,7 +223,7 @@ app.use('/admin', adminRouter);
 
 //ПРЕПОДАВАТЕЛЬ
 
-app.get('/teach', (req, res) => {
+/*app.get('/teach', (req, res) => {
     let query = 'SELECT id, title, description FROM us.course;'
     pool.query(query, function (err, data) {
         if (err) return console.log(err);
@@ -248,7 +255,7 @@ app.get('/course-info', (req, res) => {
         }
         else res.sendStatus(403);
     })
-})
+})*/
 app.put('/course', jsonParser, (req, res) => {
     console.log('put');
     if (!req.body) {
@@ -264,7 +271,7 @@ app.put('/course', jsonParser, (req, res) => {
 
 })
 //удаление курса
-app.delete('/course', (req, res) => {
+/*app.delete('/course', (req, res) => {
     if (req.headers.currentid) {
         query = 'DELETE FROM us.course WHERE id = ?;';
         pool.query(query, [req.headers.currentid], function (err, data) {
@@ -278,9 +285,9 @@ app.delete('/course', (req, res) => {
     else {
         res.sendStatus(500);
     }
-})
+})*/
 
-app.post('/course', urlencodedParser, (req, res) => {
+/*app.post('/course', urlencodedParser, (req, res) => {
     if (!req.body) {
         return res.sendStatus(400);
     }
@@ -290,22 +297,22 @@ app.post('/course', urlencodedParser, (req, res) => {
         if (err) return console.log(err);
         res.redirect('/teach');
     });
-})
+})*/
 app.get('/course/:courseID', urlencodedParser, (req, res) => {
     console.log("ge" + req.params['courseID']);
     res.render('teach');
 })
-app.get('/course', urlencodedParser, (req, res) => {
+/*app.get('/detailcourse', urlencodedParser, (req, res) => {
     console.log(req.query.courseID);
     if (!req.body) {
         return res.sendStatus(400);
-    }
+    }*/
     /*let query = 'SELECT * FROM us.course WHERE title = ? ;'
     pool.query(query, [req.query.titlecourse], function (err, data) {
         if (err) return console.log(err);
         res.render('course', {title: data[0].title, description: data[0].description, link: data[0].link, id: data[0].id})
     });*/
-    let query = `SELECT us.test.id AS t_id, us.test.title AS t_title, us.course.title AS c_title, us.course.description 
+    /*let query = `SELECT us.test.id AS t_id, us.test.title AS t_title, us.course.title AS c_title, us.course.description 
     AS c_desc, us.course.start_date AS c_start, us.course.end_date AS c_end, us.course.link, us.course.id AS c_id
      FROM us.test JOIN us.course_test ON us.test.id = us.course_test.test_id JOIN us.course ON us.course.id = 
      us.course_test.course_id WHERE course_id = ?;`;
@@ -332,8 +339,7 @@ app.get('/course', urlencodedParser, (req, res) => {
             },
             )
         }
-
-    })
+    })*/
 
     /*let query = 'SELECT title, description, link FROM us.course WHERE id=?;'
     pool.query(query, req.headers.currentid, function (err, data) {
@@ -356,10 +362,10 @@ app.get('/course', urlencodedParser, (req, res) => {
         else res.sendStatus(403);
     })*/
     //res.render('course1',);
-})
+//})
 
-//Создание нового курса (название, описание, ссылка нулевая)
-app.post('/teach-addcurse', urlencodedParser, (req, res) => {
+//Создание нового курса (название, описание, ссылка нулевая) зачем это здесь не помню
+/*app.post('/teach-addcurse', urlencodedParser, (req, res) => {
     if (!req.body) {
         return res.sendStatus(400);
     }
@@ -369,20 +375,20 @@ app.post('/teach-addcurse', urlencodedParser, (req, res) => {
         if (err) return console.log(err);
         res.render('addcurse', { title: ans.title, description: ans.description, currentId: data.insertId });
     });
-})
-
-app.get('/test/', (req, res) => {
+})*/
+//зачем это тоже не знаю
+/*app.get('/test/', (req, res) => {
     if (!req.body) {
         return res.sendStatus(400);
     }
     console.log(req.query.q);
-    res.render('addcurse', { title: req.query.q, description: null });
+    res.render('addcurse', { title: req.query.q, description: null });*/
     /*let query = 'SELECT * FROM us.course WHERE title = ? ;'
     pool.query(query, [req.query.titlecourse], function (err, data) {
         if (err) return console.log(err);
         res.render('course', {title: data[0].title, description: data[0].description, link: data[0].link})
     });*/
-})
+//})
 
 //Загрузка изображения TinyMCE
 const fileUpload = require('express-fileupload');

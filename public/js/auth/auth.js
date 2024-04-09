@@ -32,6 +32,11 @@ async function handleFormSubmit(event) {
             //console.log(redirected);
             console.log(url);
             window.location.href = url;
+        } else if (user.role == 2){
+            const {url} = await fetch('/teach');
+            //console.log(redirected);
+            console.log(url);
+            window.location.href = url;
         }
 
         if (response.redirected) {

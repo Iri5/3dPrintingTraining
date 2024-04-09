@@ -16,7 +16,7 @@ courseTable.addEventListener('click', (e) => {
             localStorage.currentId = id;
         }
        let a = btnClick.querySelector('a');
-       a.href = `/course?courseID=${localStorage.currentId}`;
+       a.href = `/detailcourse?courseID=${localStorage.currentId}`;
         GetDescAndTitleCourse(id);
         
     } else if (target.dataset.action == "delete") {
