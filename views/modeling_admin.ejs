@@ -39,7 +39,7 @@
                                 Добавление нового принтера
                             </div>
                             <div class="modal_body">
-                                <form action="/addPrinter" method="post">
+                                <form action="/printer" method="post">
                                     <div class="input-area">
                                         <label>Название</label>
                                         <input type="text" name="title" placeholder="Printer 123" required>
@@ -141,7 +141,7 @@
                                 Добавление нового филамента
                             </div>
                             <div class="modal_body">
-                                <form id="" action="/addFilament" method="post">
+                                <form id="" action="/filament" method="post">
                                     <div class="input-area">
                                         <label>Название</label>
                                         <input type="text" name="title" placeholder="Filament 123" required>
@@ -252,7 +252,7 @@
                                 Добавление нового компонента
                             </div>
                             <div class="modal_body">
-                                <form action="/addComponent" method="post">
+                                <form action="/component" method="post">
                                     <div class="input-area">
                                         <label>Название</label>
                                         <input type="text" name="title" placeholder="Процент заполнения" required>
@@ -449,16 +449,16 @@
                                 <%=goods.models[i].printer_id %>
                             </td>
                             <td atrname="r2">
-                                <%=goods.models[i].R2 %>
+                                <%=goods.models[i].r2 %>
                             </td>
                             <td atrname="f">
-                                <%=goods.models[i].F %>
+                                <%=goods.models[i].f %>
                             </td>
                             <td atrname="ft">
-                                <%=goods.models[i].Ft %>
+                                <%=goods.models[i].ft %>
                             </td>
                             <td atrname="sd">
-                                <%=goods.models[i].SD %>
+                                <%=goods.models[i].sd %>
                             </td>
     
     

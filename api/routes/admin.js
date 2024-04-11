@@ -4,7 +4,7 @@ const pool = require('../db');
 const bcrypt = require('bcrypt');
 
 router.get('/', (req, res) => {
-    let query = 'SELECT fio, email, login, gr, role, bday FROM us.user;'
+    let query = 'SELECT fio, email, login, gr, role, bday FROM mydb.user;'
     pool.query(query, function (err, data) {
         if (err) return console.log(err);
         let logins = [];
@@ -46,7 +46,7 @@ router.post('/', (req, res) => {
             console.log(hash);
             ans.password = hash;
             console.log(ans.password);
-            let query = 'INSERT INTO us.user (fio, email, login, pass, gr, role, bday) VALUES (?, ?, ?, ?, ?, ?, ?);';
+            let query = 'INSERT INTO mydb.user (fio, email, login, pass, gr, role, bday) VALUES (?, ?, ?, ?, ?, ?, ?);';
             console.log(ans.password);
             pool.query(query, [ans.fio, ans.email, ans.login, ans.password, ans.group, ans.role, ans.bday], function (err, data) {
                 if (err) return console.log(err);
@@ -57,7 +57,7 @@ router.post('/', (req, res) => {
 })
 router.delete('/', (req, res) => {
     if (req.body) {
-        query = 'DELETE FROM us.user WHERE login = ? AND id > 0;';
+        query = 'DELETE FROM mydb.user WHERE login = ? AND id > 0;';
         pool.query(query, [req.body[0]], function (err, data) {
             if (err) {
                 res.sendStatus(500);
@@ -82,7 +82,7 @@ router.put('/', (req, res) => {
             ans[key] = null;
         }
     }
-    let query = 'UPDATE us.user SET fio = ?, email = ?, login = ?, gr = ?, role = ?, bday = ? WHERE login = ? AND id > 0;';
+    let query = 'UPDATE mydb.user SET fio = ?, email = ?, login = ?, gr = ?, role = ?, bday = ? WHERE login = ? AND id > 0;';
     pool.query(query, [ans.fio, ans.email, ans.login, ans.group, ans.role, ans.bday, ans.currentLogin], function (err, data) {
         if (err) return console.log(err);
         res.sendStatus(200);

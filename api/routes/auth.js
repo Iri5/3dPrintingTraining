@@ -7,7 +7,7 @@ const pool = require('../db')
 
 router.post('/', (req, res) => {
     let {login, pass} = req.body;
-    let query = 'SELECT * FROM us.user where login = ?;'
+    let query = 'SELECT * FROM mydb.user where login = ?;'
     pool.query(query, [login], function (err, data) {
         if (err) return console.log(err);
         if (data.length == 0) {

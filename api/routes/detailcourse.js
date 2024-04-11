@@ -12,14 +12,14 @@ router.get('/', urlencodedParser, (req, res) => {
         if (err) return console.log(err);
         res.render('course', {title: data[0].title, description: data[0].description, link: data[0].link, id: data[0].id})
     });*/
-    let query = `SELECT us.test.id AS t_id, us.test.title AS t_title, us.course.title AS c_title, us.course.description 
-    AS c_desc, us.course.start_date AS c_start, us.course.end_date AS c_end, us.course.link, us.course.id AS c_id
-     FROM us.test JOIN us.course_test ON us.test.id = us.course_test.test_id JOIN us.course ON us.course.id = 
-     us.course_test.course_id WHERE course_id = ?;`;
+    let query = `SELECT mydb.test.id AS t_id, mydb.test.title AS t_title, mydb.course.title AS c_title, mydb.course.description 
+    AS c_desc, mydb.course.start_date AS c_start, mydb.course.end_date AS c_end, mydb.course.link, mydb.course.id AS c_id
+     FROM mydb.test JOIN mydb.course_test ON mydb.test.id = mydb.course_test.test_id JOIN mydb.course ON mydb.course.id = 
+     mydb.course_test.course_id WHERE course_id = ?;`;
     pool.query(query, [req.query.courseID], function (err, data) {
         if (err) return console.log(err);
         if (data.length == 0) {
-            query = 'SELECT * FROM us.course WHERE id = ?';
+            query = 'SELECT * FROM mydb.course WHERE id = ?';
             pool.query(query, [req.query.courseID], function (err, data) {
                 if (err) return console.log(err);
                 res.render('course1', { title: data[0].title, description: data[0].description, link: data[0].link, id: data[0].id, t_id: null })

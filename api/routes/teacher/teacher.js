@@ -6,13 +6,13 @@ const pool = require('../../db');
 router.get('/', (req, res) => {
     console.log(req.params)
     console.log('wsedrftgbhnj')
-    let query = 'SELECT id, title, description FROM us.course;'
+    let query = 'SELECT id, title, description FROM mydb.course;'
     pool.query(query, function (err, data) {
         if (err) return console.log(err);
         if (data.length != 0) {
             let infoClient = {};
             infoClient.courses = data;
-            query = 'SELECT id, fio, gr FROM us.user WHERE role = 1';
+            query = 'SELECT id, fio, gr FROM mydb.user WHERE role = 1';
             pool.query(query, function (err, data) {
                 if (err) return console.log(err);
                 if (data.length != 0) {
@@ -28,7 +28,7 @@ router.get('/', (req, res) => {
 router.get('/courseid', (req, res) => {
     console.log(req.query);
     console.log('course')
-    let query = 'SELECT title, description FROM us.course WHERE id=?;'
+    let query = 'SELECT title, description FROM mydb.course WHERE id=?;'
     pool.query(query, req.query.id, function (err, data) {
         if (err) return console.log(err);
         if (data.length != 0) {
