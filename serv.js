@@ -55,7 +55,7 @@ const printerRouter = require('./api/routes/printer');
 const filamentRouter = require('./api/routes/filament');
 const componentRouter = require('./api/routes/component');
 const modelRouter = require('./api/routes/model');
-
+const testRouter = require('./api/routes/test');
 
 app.use('/auth', authRouter);
 app.use('/admin', adminRouter);
@@ -66,6 +66,7 @@ app.use('/printer', printerRouter);
 app.use('/filament', filamentRouter);
 app.use('/component', componentRouter);
 app.use('/model', modelRouter);
+app.use('/test', testRouter);
 
 //АВТОРИЗАЦИЯ
 /*app.get('/auth', jsonParser, (req, res) => {
@@ -150,20 +151,7 @@ app.get('/course-info', (req, res) => {
         else res.sendStatus(403);
     })
 })*/
-app.put('/course', jsonParser, (req, res) => {
-    console.log('put');
-    if (!req.body) {
-        return res.sendStatus(400);
-    }
-    let ans = req.body;
-    console.log(ans);
-    let query = 'UPDATE us.course SET title = ?, description = ? WHERE id = ?;';
-    pool.query(query, [ans.title, ans.description, ans.id], function (err, data) {
-        if (err) return console.log(err);
-        res.sendStatus(200);
-    });
 
-})
 
 app.get('/course/:courseID', urlencodedParser, (req, res) => {
     console.log("ge" + req.params['courseID']);

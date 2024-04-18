@@ -27,4 +27,16 @@ router.post('/', (req, res) => {
         res.redirect('/teach');
     });
 })
+router.put('/', (req, res) => {
+    if (!req.body) {
+        return res.sendStatus(400);
+    }
+    let ans = req.body;
+    console.log(ans);
+    let query = 'UPDATE mydb.course SET title = ?, description = ? WHERE id = ?;';
+    pool.query(query, [ans.title, ans.description, ans.id], function (err, data) {
+        if (err) return console.log(err);
+        res.sendStatus(200);
+    });
+})
 module.exports = router;

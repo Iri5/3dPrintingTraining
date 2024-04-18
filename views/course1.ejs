@@ -105,9 +105,12 @@
                     <div class="course-test__title">Тесты</div>
                     <div class="course-test__addbtn"></div>
                 </div>
+                <% if (t_id==null){%>
+                    <div>ТЕСТОВ НЕТ </div>
+                <%}%>
                 <% if (t_id!=null){%>
 
-                    <table class="table course-test__table">
+                    <table id="tests" class="table course-test__table">
                         <tr>
                             <th>Название</th>
                             <th></th>
@@ -119,7 +122,7 @@
                                     <%= t_title[i] %>
                                 </td>
                                 <td class="td20px">
-                                    <div data-action="show" class="eye-icon"></div>
+                                    <div data-action="show" class="eye-icon"><a  href=""></a></div>
                                 </td>
                                 <td class="td20px">
                                     <div data-action="delete" class="delete-icon"></div>
@@ -133,10 +136,55 @@
             </div>
 
         </div>
+        <div class="modal_container">
+            <div id="addTest" class="modal">
+                <button id="add-test" class="modalBtn add-test_button" style="display: none;"></button>
+                <div class="modal_content-form modal__add-test">
+                    <div class="modal_header">
+                        <div class="modal_close modal_close_white"></div>
+                        Добавить новый тест
+                    </div>
+                    <div class="modal_body">
+                        <form id="addtest-form" action="/test" method="post">
+                            <input name="courseid" type="number" style="display: none;" value="0">
+                            <div class="input-area">
+                                <label>Название</label>
+                                <input type="text" name="title" placeholder="Введите название теста" required
+                                    maxlength="255">
+                            </div>
+                            <div class="input-area">
+                                <label>Описание</label>
+                                <textarea name="description" placeholder="Введите описание теста"
+                                    required> </textarea>
+                            </div>
+                            <div class="input-area">
+                                <label>Дата начала</label>
+                                <input type="date" name="start" >
+                            </div>
+                            <div class="input-area">
+                                <label>Дата окончания</label>
+                                <input type="date" name="end">
+                            </div>
+                            <div class="input-area">
+                                <label>Длительность</label>
+                                <input type="number" name="duration">
+                            </div>
+                            <button class="form_addtest_button form_button" type="submit"
+                                name="form_addtest_submit">Сохранить
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
         <script src="js/common/modal.js" defer></script>
         <script src="js/common/logout.js"></script>
         <script src="js/teach/course/editCourse.js"></script>
         <script src="js/teach/addMaterial.js"></script>
+        <script src="js/teach/course/test/addTest.js"></script>
+        <script src="js/teach/course/test/deleteTest.js"></script>
+        <script src="js/teach/course/test/clickInTests.js"></script>
         <script>
             document.addEventListener("DOMContentLoaded", ready);
             function ready() {
