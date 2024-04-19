@@ -31,9 +31,6 @@ router.get('/', urlencodedParser, (req, res) => {
                 t_id.push(i.t_id);
                 t_title.push(i.t_title);
             })
-            console.log('data');
-
-            console.log(data);
             res.render('course1', {
                 title: data[0].c_title, 
                 description: data[0].c_desc, 

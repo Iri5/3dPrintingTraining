@@ -12,7 +12,7 @@ courseTable.addEventListener('click', (e) => {
             localStorage.setItem('currenttestid', id);
         }
         else {
-            localStorage.currentId = id;
+            localStorage.currenttestid = id;
         }
        let a = target.querySelector('a');
        a.href = `/test/${localStorage.currenttestid}`;

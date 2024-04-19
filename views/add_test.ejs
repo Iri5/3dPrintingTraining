@@ -58,25 +58,62 @@
 
 <body>
     <div class="block">
-        <h1 id="title_test">
-            <%= title%>
-        </h1>
-
-        <div class="dropdown">
-            <button class="dropbtn" id="btnAddQue">Добавить вопрос</button>
-            <div class="dropdown-content">
-                <a href="#">Единичный выбор</a>
-                <a href="#">Множественный выбор</a>
-                <a href="#">Короткий ответ</a>
-            </div>
+        <div style="width: 600px; background-color: pink;">
+            <form id="editTest" action="" method="post" style="display: flex; flex-direction: column; width: 70%;">
+                <input name="t_id" type="text" value="<%= t_id%>" style="display: none;"> 
+                <label>Название</label>
+                <input name="title" type="text" value="<%= title%>">
+                <label for="">Описание</label>
+                <textarea name="description" id="" cols="30" rows="10"><%= description%></textarea>
+                <label for="">Старт</label>
+                <input name="start" type="date" value="<%= start%>">
+                <label for="">Конец</label>
+                <input name="end" type="date" value="<%= end%>">
+                <label for="">Продолжительность</label>
+                <input name="duration" type="number" value="<%= duration%>">
+                <button type="submit">Сохранить изменения</button>
+            </form>
         </div>
-        <div class="que">
-
-
-        </div>
+        
+        <% if (questions != null) {%>
+            <% for(let i=0; i<questions.length; i++){ %>
+                <div style="border: 1px solid black;">
+                    <p>Текст вопроса: <%= questions[i].question.que_text%>
+                    </p>
+                    <p>Количество вариантов ответа: <%= questions[i].question.count_var%>
+                    </p>
+                    <p>Тип вопроса: <%= questions[i].question.type%>
+                    </p>
+                    <p>Балл за вопрос: <%= questions[i].question.score%>
+                    </p>
+    
+                    <% for(let j=0; j<questions[i].question.ans.length; j++){ %>
+                        <div style="border: 1px solid red;">
+                            <p>Текст ответа: <%= questions[i].question.ans[j].text%>
+                            </p>
+                            <p>Правильность: <%= questions[i].question.ans[j].right%>
+                            </p>
+                        </div>
+                        <%} %>
+                </div>
+                <%} %>
+        <%} else {%>
+            <h1>ВОПРОСОВ НЕТ</h1>
+        <%}%>
+                
+                <div class="dropdown">
+                    <button class="dropbtn" id="btnAddQue">Добавить вопрос</button>
+                    <div class="dropdown-content">
+                        <a href="#">Единичный выбор</a>
+                        <a href="#">Множественный выбор</a>
+                        <a href="#">Короткий ответ</a>
+                    </div>
+                </div>
+                <div class="que">
+                </div>
     </div>
     <div class="win_test">
-        
+
     </div>
     <div class="modal-container">
         <button class="modalBtn" id="add_test_button" style="width: 100px;">add one</button>
@@ -89,7 +126,7 @@
                 <div class="modal-body">
                     <!--<p>Какой-то текст в теле модального окна</p>
                     <p>Ещё другой текст...</p>-->
-    
+
                     <!--<div class="form_addperson_block_content">-->
                     <div class="size">
                         <p id="name">Добавление нового вопроса с единичный выбором</p>
@@ -104,19 +141,19 @@
                             </div>
                             <div class="variants" class="area">
                                 <div>
-    
+
                                     <input type="radio" name="check_ans" value="1" />
                                     <label>Правильный</label>
-    
+
                                     <input type="text" name="ans_1" placeholder="Вариант ответа" autocomplete="off">
                                 </div>
                                 <div>
-    
+
                                     <input type="radio" name="check_ans" value="2" checked />
                                     <label>Правильный</label>
                                     <input type="text" name="ans_2" placeholder="Вариант ответа" autocomplete="off">
                                 </div>
-    
+
                             </div>
                             <button id="add_new_var">Добавить вариант ответа</button>
                             <button class="form_addperson_button" type="submit"
@@ -125,7 +162,7 @@
                     </form>
                     <!--</div>-->
                 </div>
-    
+
             </div>
         </div>
     </div>
@@ -141,7 +178,7 @@
                 <div class="modal-body">
                     <!--<p>Какой-то текст в теле модального окна</p>
                     <p>Ещё другой текст...</p>-->
-    
+
                     <!--<div class="form_addperson_block_content">-->
                     <div class="size">
                         <p id="name">Добавление нового вопроса с коротким ответом</p>
@@ -156,19 +193,19 @@
                             </div>
                             <div class="area">
                                 <label>Ответ</label>
-                                <input type="text" name="answer"  >
+                                <input type="text" name="answer">
                             </div>
                             <div class="variants" class="area">
-                                
-    
+
+
                             </div>
-                            <button class="form_addperson_button" type="submit"
-                                name="form_addcurse_submit">Добавить вопрос с коротким ответом</button>
+                            <button class="form_addperson_button" type="submit" name="form_addcurse_submit">Добавить
+                                вопрос с коротким ответом</button>
                     </div>
                     </form>
                     <!--</div>-->
                 </div>
-    
+
             </div>
         </div>
     </div>
@@ -184,7 +221,7 @@
                 <div class="modal-body">
                     <!--<p>Какой-то текст в теле модального окна</p>
                     <p>Ещё другой текст...</p>-->
-    
+
                     <!--<div class="form_addperson_block_content">-->
                     <div class="size">
                         <p id="name">Добавление нового вопроса со множественным выбором</p>
@@ -199,19 +236,19 @@
                             </div>
                             <div class="variants_more" class="area">
                                 <div>
-    
+
                                     <input type="checkbox" name="check_ans" value="1" />
                                     <label>Правильный</label>
-    
+
                                     <input type="text" name="ans_1" placeholder="Вариант ответа" autocomplete="off">
                                 </div>
                                 <div>
-    
+
                                     <input type="checkbox" name="check_ans" value="2" checked />
                                     <label>Правильный</label>
                                     <input type="text" name="ans_2" placeholder="Вариант ответа" autocomplete="off">
                                 </div>
-    
+
                             </div>
                             <button id="add_new_var_more">Добавить вариант ответа</button>
                             <button class="form_addperson_button" type="submit"
@@ -220,11 +257,11 @@
                     </form>
                     <!--</div>-->
                 </div>
-    
+
             </div>
         </div>
     </div>
-    
+
     <script defer>
         let count_radio = 2;
         let add_var = document.getElementById('add_new_var');
@@ -347,6 +384,7 @@
 
     </script>
     <script src="../admin.js" defer></script>
+    <script src="../js/teach/course/test/editTest.js" defer></script>
 </body>
 
 </html>
