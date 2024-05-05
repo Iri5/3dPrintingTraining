@@ -1,0 +1,169 @@
+@import '_dropdown';
+.test__info {
+    margin-top: 60px;
+    margin-right: 50px;
+    margin-left: 50px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    form {
+        
+    }
+
+    input {
+        @include inputText(400px, 25px, 16px);
+    }
+
+    input[type='date'],
+    input[type='number'] {
+        width: 100px;
+        padding-left: 5px;
+        font-size: 12px;
+    }
+
+    textarea {
+        width: 400px;
+        height: 50px;
+        border-radius: 5px;
+        border: 1px solid $base-color;
+        font-size: 16px;
+        padding-left: 20px;
+        color: $base-color;
+
+        &::placeholder {
+            color: $dark-thirdly;
+        }
+
+        &:focus {
+            background-color: $base-color-trans;
+            border: 1px solid $base-color;
+            border-color: $base-color;
+            border-radius: 5px;
+            outline: 0;
+        }
+    }
+
+    button {
+        @include buttonDefault(30px, 200px, 14px);
+        justify-self: center;
+        align-self: center;
+    }
+
+    .col {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 5px;
+    }
+    .col:last-child{
+        justify-content: end;
+    }
+    .area{
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+}
+.test__questions{
+    margin-top: 50px;
+}
+.test__questions{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.question__container{
+    width: 40%;
+    border: 1px solid $base-color;
+    border-radius: 25px;
+    margin: 0 50px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    form{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    input {
+        @include inputText(400px, 25px, 16px);
+    }
+
+    input[type='date'],
+    input[type='number'] {
+        width: 100px;
+        padding-left: 5px;
+        font-size: 12px;
+    }
+
+    textarea {
+        width: 100%;
+        height: 50px;
+        border-radius: 5px;
+        border: 1px solid $base-color;
+        font-size: 16px;
+        padding-left: 20px;
+        color: $base-color;
+
+        &::placeholder {
+            color: $dark-thirdly;
+        }
+
+        &:focus {
+            background-color: $base-color-trans;
+            border: 1px solid $base-color;
+            border-color: $base-color;
+            border-radius: 5px;
+            outline: 0;
+        }
+    }
+
+    button {
+        @include buttonDefault(30px, 200px, 14px);
+        justify-self: center;
+        align-self: center;
+    }
+    .score{
+        align-self: end;
+        input{
+            align-self: flex-end;
+        }
+    }
+    .col {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 5px;
+    }
+    .row{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .col:last-child{
+        justify-content: end;
+    }
+    .area{
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+    .radio-row{
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+    }
+    input[type='radio'], input[type='checkbox']{
+        width: 20px;
+        height: 20px;
+    }
+    .add-button{
+        @include buttonOutline(30px, 220px, 14px);
+        padding-left: 25px;
+        align-self: start;
+        background-image: url(../../../img/Add.svg);
+        background-repeat: no-repeat;
+        background-position: left center;
+    }
+}

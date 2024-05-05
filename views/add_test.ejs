@@ -5,118 +5,188 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../scssA/style.css">
-    <style>
-        .dropbtn {
-            background-color: #4CAF50;
-            color: white;
-            padding: 16px;
-            font-size: 16px;
-            border: none;
-        }
-
-        /* The container <div> - needed to position the dropdown content */
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        /* Dropdown Content (Hidden by Default) */
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #f1f1f1;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-            z-index: 1;
-        }
-
-        /* Links inside the dropdown */
-        .dropdown-content a {
-            color: black;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-        }
-
-        /* Change color of dropdown links on hover */
-        .dropdown-content a:hover {
-            background-color: #ddd;
-        }
-
-        /* Show the dropdown menu on hover */
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-
-        /* Change the background color of the dropdown button when the dropdown content is shown */
-        .dropdown:hover .dropbtn {
-            background-color: #3e8e41;
-        }
-    </style>
+    <link rel="stylesheet" href="../scssAuth/style.css">
+    
 </head>
 
 <body>
-    <div class="block">
-        <div style="width: 600px; background-color: pink;">
-            <form id="editTest" action="" method="post" style="display: flex; flex-direction: column; width: 70%;">
-                <input name="t_id" type="text" value="<%= t_id%>" style="display: none;"> 
-                <label>Название</label>
-                <input name="title" type="text" value="<%= title%>">
-                <label for="">Описание</label>
-                <textarea name="description" id="" cols="30" rows="10"><%= description%></textarea>
-                <label for="">Старт</label>
-                <input name="start" type="date" value="<%= start%>">
-                <label for="">Конец</label>
-                <input name="end" type="date" value="<%= end%>">
-                <label for="">Продолжительность</label>
-                <input name="duration" type="number" value="<%= duration%>">
-                <button type="submit">Сохранить изменения</button>
-            </form>
+    <header class="head">
+        <div class="role">
+            Преподаватель
         </div>
-        
-        <% if (questions != null) {%>
-            <% for(let i=0; i<questions.length; i++){ %>
-                <div style="border: 1px solid black;">
-                    <p>Текст вопроса: <%= questions[i].question.que_text%>
-                    </p>
-                    <p>Количество вариантов ответа: <%= questions[i].question.count_var%>
-                    </p>
-                    <p>Тип вопроса: <%= questions[i].question.type%>
-                    </p>
-                    <p>Балл за вопрос: <%= questions[i].question.score%>
-                    </p>
-    
-                    <% for(let j=0; j<questions[i].question.ans.length; j++){ %>
-                        <div style="border: 1px solid red;">
-                            <p>Текст ответа: <%= questions[i].question.ans[j].text%>
-                            </p>
-                            <p>Правильность: <%= questions[i].question.ans[j].right%>
-                            </p>
-                        </div>
-                        <%} %>
+        <div class="container-teach-header">
+            <ul class="menu-teach-header">
+                <li><a href="/">Главная</a></li>
+                <li><a href="/modeling_admin">Модели</a></li>
+            </ul>
+            <div class="logout"></div>
+        </div>
+
+    </header>
+    <div class="block test__container">
+        <div>
+            <form class="test__info" id="editTest" action="" method="post">
+                <input name="t_id" type="text" value="<%= t_id%>" style="display: none;">
+                <div class="col">
+                    <div class="area">
+                        <label>Название</label>
+                        <input name="title" type="text" value="<%= title%>">
+                    </div>
+                    <div class="area">
+                        <label for="">Описание</label>
+                        <textarea name="description" id="" rows="5"><%= description%></textarea>
+                    </div>
+
                 </div>
-                <%} %>
-        <%} else {%>
-            <h1>ВОПРОСОВ НЕТ</h1>
-        <%}%>
-                
-                <div class="dropdown">
-                    <button class="dropbtn" id="btnAddQue">Добавить вопрос</button>
-                    <div class="dropdown-content">
-                        <a href="#">Единичный выбор</a>
-                        <a href="#">Множественный выбор</a>
-                        <a href="#">Короткий ответ</a>
+                <div class="col">
+                    <div class="area">
+                        <label for="">Продолжительность</label>
+                        <input name="duration" type="number" value="<%= duration%>">
                     </div>
                 </div>
-                <div class="que">
+                <div class="col">
+                    <div class="area">
+                        <label for="">Старт</label>
+                        <input name="start" type="date" value="<%= start%>">
+                    </div>
+                    <div class="area">
+                        <label for="">Конец</label>
+                        <input name="end" type="date" value="<%= end%>">
+                    </div>
                 </div>
+                <div class="col">
+
+
+                    <button type="submit">Сохранить изменения</button>
+                </div>
+
+            </form>
+        </div>
+        <div class="test__questions">
+            <% if (questions !=null) {%>
+                <% for(let i=0; i<questions.length; i++){ %>
+                    <div class="question__container">
+                        <% if (questions[i].question.type==1){%>
+                            <h3>Вопрос с единичным выбором</h3>
+
+                            <form id="jjj" action="">
+                                <input class="simple" type="number" name="id" value="<%=questions[i].id%>" style="display: none;">
+                                <input class="simple" type="number" name="type" value="1" style="display: none;">
+                                <div class="area">
+                                    <label for="">Текст вопроса</label>
+                                    <textarea class="simple" name="que_text" id=""
+                                        rows="3"><%= questions[i].question.que_text%></textarea>
+                                </div>
+                                <div class="area score">
+                                    <label for="">Число баллов</label>
+                                    <input class="simple" type="number" name="score" value="<%= questions[i].question.score%>">
+                                </div>
+                                <p>Варианты ответа:</p>
+
+                                <% for(let j=0; j<questions[i].question.ans.length; j++){ %>
+                                    <div class="radio-row radio-container">
+
+                                        <% if (questions[i].question.ans[j].right==1) {%>
+                                            <input type="radio" id="<%= j%>" name="variant"
+                                                value="<%= questions[i].question.ans[j].text%>" checked>
+                                            <%} else {%>
+                                                <input type="radio" id="<%= j%>" name="variant"
+                                                    value="<%= questions[i].question.ans[j].text%>">
+                                                <%}%>
+                                                    
+                                                    <input forradio="<%=i%><%=j%>" name="vartext" type="text" value="<%= questions[i].question.ans[j].text%>">
+                                    </div>
+                                    <%} %>
+                                        <button type="button" class="add-button add-radio-button">Добавить вариант ответа</button>
+                                        <div class="row">
+                                            <button type="submit" name="action" value="save">Сохранить</button>
+                                            <button type="submit" name="action" value="delete">Удалить</button>
+                                        </div>
+
+
+                            </form>
+                            <%} else if (questions[i].question.type==2) {%>
+                                <h3>Вопрос с множественным выбором</h3>
+                                <form action="">
+                                    <input class="simple" type="number" name="id" value="<%=questions[i].id%>" style="display: none;">
+                                    <input class="simple" type="number" name="type" value="2" style="display: none;">
+                                    <div class="area">
+                                        <label for="">Текст вопроса</label>
+                                        <textarea class="simple" name="que_text" id=""
+                                            rows="3"><%= questions[i].question.que_text%></textarea>
+                                    </div>
+                                    <div class="area score">
+                                        <label for="">Число баллов</label>
+                                        <input class="simple" name="score" type="number" value="<%= questions[i].question.score%>">
+                                    </div>
+                                    <p>Варианты ответа:</p>
+                                    <% for(let j=0; j<questions[i].question.ans.length; j++){ %>
+                                        <div class="radio-row check-container">
+                                            <% if (questions[i].question.ans[j].right==1) {%>
+                                                <input type="checkbox" id="<%= j%>" name="variant"
+                                                    value="<%= questions[i].question.ans[j].text%>" checked>
+                                                <%} else {%>
+                                                    <input type="checkbox" id="<%= j%>" name="variant"
+                                                        value="<%= questions[i].question.ans[j].text%>">
+                                                    <%}%>
+                                                        
+                                                        <input forcheck="<%=i%><%=j%>" type="text" name="vartext"
+                                                            value="<%= questions[i].question.ans[j].text%>">
+                                        </div>
+                                        <%} %>
+                                        <button type="button" class="add-button add-check-button">Добавить вариант ответа</button>
+                                        <div class="row">
+                                            <button type="submit" name="action" value="save">Сохранить</button>
+                                            <button type="submit" name="action" value="delete">Удалить</button>
+                                        </div>
+                                </form>
+                                <%} else if (questions[i].question.type==3){%>
+                                    <h3>Вопрос с коротким ответом</h3>
+                                    <form action="">
+                                        <input class="simple" type="number" name="id" value="<%= questions[i].id%>" style="display: none;">
+                                        <input class="simple" type="number" name="type" value="3" style="display: none;">
+                                        <div class="area">
+                                            <label for="">Текст вопроса</label>
+                                            <textarea class="simple" name="que_text" id=""
+                                                rows="3"><%= questions[i].question.que_text%></textarea>
+                                        </div>
+                                        <div class="area score">
+                                            <label for="">Число баллов</label>
+                                            <input class="simple" name="score" type="number" value="<%= questions[i].question.score%>">
+                                        </div>
+                                        <p>Ответ:</p>
+                                        <input type="text" answer name="ans" value="<%= questions[i].question.ans[0].text%>">
+                                        
+                                        <div class="row">
+                                            <button type="submit" name="action" value="save">Сохранить</button>
+                                            <button type="submit" name="action" value="delete">Удалить</button>
+                                        </div>
+                                    </form>
+                                    <%}%>
+                    </div>
+                    <%} %>
+                        <%} else {%>
+                            <h1>ВОПРОСОВ НЕТ</h1>
+                            <%}%>
+
+        </div>
+
+        <div class="dropdown">
+            <button class="dropbtn" id="btnAddQuestion">Добавить вопрос</button>
+            <div class="dropdown-content">
+                <button class="add-question-btn" qtype="1">Единичный выбор</button>
+                <button class="add-question-btn" qtype="2">Множественный выбор</button>
+                <button class="add-question-btn" qtype="3">Короткий ответ</button>
+            </div>
+        </div>
+        <div class="que">
+        </div>
     </div>
     <div class="win_test">
 
     </div>
     <div class="modal-container">
-        <button class="modalBtn" id="add_test_button" style="width: 100px;">add one</button>
+        <button class="modalBtn" id="add_test_button" style="display: none; width: 100px;">add one</button>
         <div id="modalAddQue" class="modal ">
             <div class="modal-content  form_addperson_block_content">
                 <div class="modal-header">
@@ -168,7 +238,7 @@
     </div>
 
     <div class="modal-container">
-        <button class="modalBtn" id="add_test_short_button" style="width: 100px;">add short</button>
+        <button class="modalBtn" id="add_test_short_button" style="display: none; width: 100px;">add short</button>
         <div id="modalAddQueShort" class="modal ">
             <div class="modal-content  form_addperson_block_content">
                 <div class="modal-header">
@@ -210,8 +280,8 @@
         </div>
     </div>
 
-    <div class="modal-container">
-        <button class="modalBtn" id="add_test_button_more" style="width: 100px;">add more</button>
+    <div class="modal_container">
+        <button class="modalBtn" id="add_test_button_more" style="display: none; width: 100px;">add more</button>
         <div id="modalAddQueMore" class="modal ">
             <div class="modal-content  form_addperson_block_content">
                 <div class="modal-header">
@@ -262,129 +332,17 @@
         </div>
     </div>
 
-    <script defer>
-        let count_radio = 2;
-        let add_var = document.getElementById('add_new_var');
-        console.log(add_var);
-        let block_variants = document.querySelector(".variants");
-        console.log(block_variants);
 
-        add_var.onclick = function (e) {
-            e.preventDefault();
-            count_radio++;
-            let div = document.createElement('div');
-            div.className = "alert";
-            div.innerHTML = `<input type='radio' name='check_ans' value='${count_radio}' checked /> 
-            <label>Правильный</label>
-            <input type='text' name='ans_${count_radio}' placeholder='Вариант ответа'>`;
-            block_variants.append(div);
-        }
-        let count_check = 2;
-        let add_var_more = document.getElementById('add_new_var_more');
-        console.log(add_var_more);
-        let block_variants_check = document.querySelector(".variants_more");
-        console.log(block_variants_check);
 
-        add_var_more.onclick = function (e) {
-            e.preventDefault();
-            count_radio++;
-            let div = document.createElement('div');
-            div.className = "alert";
-            div.innerHTML = `<input type='checkbox' name='check_ans' value='${count_check}' checked /> 
-            <label>Правильный</label>
-            <input type='text' name='ans_${count_check}' placeholder='Вариант ответа'>`;
-            block_variants_check.append(div);
-        }
-        let form_add_que_more = document.getElementById('form_add_que_more');
-        form_add_que_more.onsubmit = async (e) => {
-            e.preventDefault();
-            let count = block_variants_check.childElementCount;
 
-            let question = {
-                type: 2,
-                que_text: form_add_que_more.text.value,
-                score: form_add_que_more.count.value,
-                count_var: count,
-                ans: []
-            };
-            for (let div of block_variants_check.children) {
-                let text = div.lastElementChild.value;
-                let check = null;
-                if (div.firstElementChild.checked) {
-                    check = 1;
-                } else {
-                    check = 0
-                }
-                question.ans.push({ text: text, val: check })
-
-                console.log(div.firstElementChild.checked)
-
-            }
-            console.log(question);
-            let jsonquestion = JSON.stringify(question);
-            /*fetch('/add-question-more', {
-                method: 'POST',
-                headers: {
-                    "Content-Type": "application/json; charset=UTF-8"
-                },
-                body: jsonquestion
-            })
-                .then(function () {
-                    console.log("я обновляю");
-                    document.location.reload;
-                    console.log("я обновил");
-                });*/
-        }
-        let form_add_que = document.getElementById('form_add_que');
-        form_add_que.onsubmit = async (e) => {
-            e.preventDefault();
-            let count = block_variants.childElementCount;
-
-            let question = {
-                type: 1,
-                que_text: form_add_que.text.value,
-                score: form_add_que.count.value,
-                count_var: count,
-                ans: []
-            };
-            for (let div of block_variants.children) {
-                let text = div.lastElementChild.value;
-                let check = null;
-                if (div.firstElementChild.checked) {
-                    check = 1;
-                } else {
-                    check = 0
-                }
-                question.ans.push({ text: text, val: check })
-
-                console.log(div.firstElementChild.checked)
-
-            }
-            let t = document.querySelector("#title_test");
-            console.log(t.innerHTML.trim());
-            let toSend = {
-                title: t.innerHTML.trim(),
-            }
-            toSend.que = question;
-            console.log(question);
-            let jsonquestion = JSON.stringify(toSend);
-            fetch('/add-question-one', {
-                method: 'POST',
-                headers: {
-                    "Content-Type": "application/json; charset=UTF-8"
-                },
-                body: jsonquestion
-            })
-                .then(function () {
-                    console.log("я обновляю");
-                    document.location.reload;
-                    console.log("я обновил");
-                });
-        }
-
-    </script>
-    <script src="../admin.js" defer></script>
+    <script src="../js/common/modal.js" defer></script>
     <script src="../js/teach/course/test/editTest.js" defer></script>
+    <script src="../js/teach/course/test/changeLabel.js" defer></script>
+    <script src="../js/teach/course/test/addVariant.js" defer></script>
+    <script src="../js/teach/course/test/addQuestion.js" defer></script>
+    <script src="../js/teach/course/test/submitQuestion.js" defer></script>
+
+
 </body>
 
 </html>

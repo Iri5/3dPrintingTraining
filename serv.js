@@ -56,7 +56,7 @@ const filamentRouter = require('./api/routes/filament');
 const componentRouter = require('./api/routes/component');
 const modelRouter = require('./api/routes/model');
 const testRouter = require('./api/routes/test');
-
+const questionRouter = require('./api/routes/question');
 app.use('/auth', authRouter);
 app.use('/admin', adminRouter);
 app.use('/teach', teacherRouter);
@@ -67,7 +67,7 @@ app.use('/filament', filamentRouter);
 app.use('/component', componentRouter);
 app.use('/model', modelRouter);
 app.use('/test', testRouter);
-
+app.use('/question', questionRouter );
 //АВТОРИЗАЦИЯ
 /*app.get('/auth', jsonParser, (req, res) => {
     console.log("Зашел в автоизацию")

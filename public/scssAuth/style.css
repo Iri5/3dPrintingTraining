@@ -1806,6 +1806,308 @@ td[atrname=equation] {
   row-gap: 20px;
 }
 
+.dropbtn {
+  background-color: #03045E;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  margin-left: 50px;
+  margin-top: 15px;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  left: 225px;
+  bottom: 0;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content button {
+  outline: none;
+  outline-offset: none;
+  border-style: solid;
+  width: 100%;
+  border: none;
+  border-radius: 0;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content button:hover {
+  background-color: rgba(1, 186, 179, 0.5);
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+  background-color: rgba(1, 186, 179, 0.5);
+}
+
+.test__info {
+  margin-top: 60px;
+  margin-right: 50px;
+  margin-left: 50px;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+.test__info input {
+  width: 400px;
+  height: 25px;
+  border-radius: 5px;
+  border: 1px solid #03045E;
+  font-size: 16px;
+  padding-left: 20px;
+  color: #03045E;
+}
+.test__info input::-moz-placeholder {
+  color: #0077B6;
+}
+.test__info input::placeholder {
+  color: #0077B6;
+}
+.test__info input:focus {
+  background-color: rgba(1, 186, 179, 0.1);
+  border: 1px solid #03045E;
+  border-color: #03045E;
+  border-radius: 5px;
+  outline: 0;
+}
+.test__info input[type=date],
+.test__info input[type=number] {
+  width: 100px;
+  padding-left: 5px;
+  font-size: 12px;
+}
+.test__info textarea {
+  width: 400px;
+  height: 50px;
+  border-radius: 5px;
+  border: 1px solid #03045E;
+  font-size: 16px;
+  padding-left: 20px;
+  color: #03045E;
+}
+.test__info textarea::-moz-placeholder {
+  color: #0077B6;
+}
+.test__info textarea::placeholder {
+  color: #0077B6;
+}
+.test__info textarea:focus {
+  background-color: rgba(1, 186, 179, 0.1);
+  border: 1px solid #03045E;
+  border-color: #03045E;
+  border-radius: 5px;
+  outline: 0;
+}
+.test__info button {
+  height: 30px;
+  width: 200px;
+  background-color: #03045E;
+  color: white;
+  border: 0px;
+  border-radius: 5px;
+  font-size: 14px;
+  justify-self: center;
+  align-self: center;
+}
+.test__info button:hover {
+  background-color: #0077B6;
+  cursor: pointer;
+}
+.test__info button:disabled {
+  background-color: #CAF0F8;
+}
+.test__info .col {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 5px;
+}
+.test__info .col:last-child {
+  justify-content: end;
+}
+.test__info .area {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.test__questions {
+  margin-top: 50px;
+}
+
+.test__questions {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.question__container {
+  width: 40%;
+  border: 1px solid #03045E;
+  border-radius: 25px;
+  margin: 0 50px;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.question__container form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.question__container input {
+  width: 400px;
+  height: 25px;
+  border-radius: 5px;
+  border: 1px solid #03045E;
+  font-size: 16px;
+  padding-left: 20px;
+  color: #03045E;
+}
+.question__container input::-moz-placeholder {
+  color: #0077B6;
+}
+.question__container input::placeholder {
+  color: #0077B6;
+}
+.question__container input:focus {
+  background-color: rgba(1, 186, 179, 0.1);
+  border: 1px solid #03045E;
+  border-color: #03045E;
+  border-radius: 5px;
+  outline: 0;
+}
+.question__container input[type=date],
+.question__container input[type=number] {
+  width: 100px;
+  padding-left: 5px;
+  font-size: 12px;
+}
+.question__container textarea {
+  width: 100%;
+  height: 50px;
+  border-radius: 5px;
+  border: 1px solid #03045E;
+  font-size: 16px;
+  padding-left: 20px;
+  color: #03045E;
+}
+.question__container textarea::-moz-placeholder {
+  color: #0077B6;
+}
+.question__container textarea::placeholder {
+  color: #0077B6;
+}
+.question__container textarea:focus {
+  background-color: rgba(1, 186, 179, 0.1);
+  border: 1px solid #03045E;
+  border-color: #03045E;
+  border-radius: 5px;
+  outline: 0;
+}
+.question__container button {
+  height: 30px;
+  width: 200px;
+  background-color: #03045E;
+  color: white;
+  border: 0px;
+  border-radius: 5px;
+  font-size: 14px;
+  justify-self: center;
+  align-self: center;
+}
+.question__container button:hover {
+  background-color: #0077B6;
+  cursor: pointer;
+}
+.question__container button:disabled {
+  background-color: #CAF0F8;
+}
+.question__container .score {
+  align-self: end;
+}
+.question__container .score input {
+  align-self: flex-end;
+}
+.question__container .col {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 5px;
+}
+.question__container .row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.question__container .col:last-child {
+  justify-content: end;
+}
+.question__container .area {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.question__container .radio-row {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+.question__container input[type=radio], .question__container input[type=checkbox] {
+  width: 20px;
+  height: 20px;
+}
+.question__container .add-button {
+  height: 30px;
+  width: 220px;
+  background-color: white;
+  color: #03045E;
+  border: 0px;
+  border-radius: 5px;
+  font-size: 14px;
+  padding-left: 25px;
+  align-self: start;
+  background-image: url(../../../img/Add.svg);
+  background-repeat: no-repeat;
+  background-position: left center;
+}
+.question__container .add-button:hover {
+  background-color: #CAF0F8;
+  cursor: pointer;
+}
+.question__container .add-button:disabled {
+  color: #CAF0F8;
+}
+
 * {
   margin: 0;
   box-sizing: border-box;
