@@ -26,7 +26,8 @@
     <div class="block test__container">
         <div>
             <form class="test__info" id="editTest" action="" method="post">
-                <input name="t_id" type="text" value="<%= t_id%>" style="display: none;">
+                <div class="row-form">
+                    <input name="t_id" type="text" value="<%= t_id%>" style="display: none;">
                 <div class="col">
                     <div class="area">
                         <label>Название</label>
@@ -40,23 +41,23 @@
                 </div>
                 <div class="col">
                     <div class="area">
-                        <label for="">Продолжительность</label>
+                        <label for="">Продолжительность, мин</label>
                         <input name="duration" type="number" value="<%= duration%>">
                     </div>
                 </div>
                 <div class="col">
                     <div class="area">
-                        <label for="">Старт</label>
+                        <label for="">Дата начала</label>
                         <input name="start" type="date" value="<%= start%>">
                     </div>
                     <div class="area">
-                        <label for="">Конец</label>
+                        <label for="">Дата окончания</label>
                         <input name="end" type="date" value="<%= end%>">
                     </div>
                 </div>
+                </div>
+                
                 <div class="col">
-
-
                     <button type="submit">Сохранить изменения</button>
                 </div>
 
@@ -78,7 +79,7 @@
                                         rows="3"><%= questions[i].question.que_text%></textarea>
                                 </div>
                                 <div class="area score">
-                                    <label for="">Число баллов</label>
+                                    <label for="">Кол-во баллов</label>
                                     <input class="simple" type="number" name="score" value="<%= questions[i].question.score%>">
                                 </div>
                                 <p>Варианты ответа:</p>
@@ -116,7 +117,7 @@
                                             rows="3"><%= questions[i].question.que_text%></textarea>
                                     </div>
                                     <div class="area score">
-                                        <label for="">Число баллов</label>
+                                        <label for="">Кол-во баллов</label>
                                         <input class="simple" name="score" type="number" value="<%= questions[i].question.score%>">
                                     </div>
                                     <p>Варианты ответа:</p>
@@ -151,7 +152,7 @@
                                                 rows="3"><%= questions[i].question.que_text%></textarea>
                                         </div>
                                         <div class="area score">
-                                            <label for="">Число баллов</label>
+                                            <label for="">Кол-во баллов</label>
                                             <input class="simple" name="score" type="number" value="<%= questions[i].question.score%>">
                                         </div>
                                         <p>Ответ:</p>

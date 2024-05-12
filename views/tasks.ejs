@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="scssAuth/style.css">
+</head>
+<body>
+    <header class="head">
+        <div class="role">
+            Преподаватель
+        </div>
+        <div class="container-teach-header">
+            <ul class="menu-teach-header">
+                <li><a href="/">Главная</a></li>
+                <li><a href="/modeling_admin">Модели</a></li>
+                <li><a href="/tasks">Практика</a></li>
+            </ul>
+            <div class="logout"></div>
+        </div>
+    </header>
+    <div class="tasks__content teach__content_course">
+        <div class="tasks-table__container">
+            <div class="course-table__head">
+                <div class="course-table__name">Задания</div>
+
+                <div class="modal_container">
+                    <button id="add-course" class="modalBtn add-course_button">Добавить</button>
+                    <div class="modal">
+                        <div class="modal_content-form modal__new-course">
+                            <div class="modal_header">
+                                <div class="modal_close modal_close_white"></div>
+                                Добавление нового практического задания
+                            </div>
+                            <div class="modal_body">
+                                <form id="add-form" action="/course" method="post">
+                                    <div class="input-area">
+                                        <label>Название</label>
+                                        <input type="text" name="title" placeholder="Введите название курса" required
+                                            maxlength="255">
+                                    </div>
+                                    <div class="input-area">
+                                        <label>Описание</label>
+                                        <textarea name="description" placeholder="Введите описание курса"
+                                            required> </textarea>
+                                    </div>
+                                    <button class="form_addcourse_button form_button" type="submit"
+                                        name="form_addcourse_submit">Сохранить
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <table id="courses" class="menu table tasks">
+                <tr>
+                    <th>№</th>
+                    <th>Текст</th>
+                    <th>Модель</th>
+
+                    <th></th>
+                    <th></th>
+                </tr>
+                <% for(let i=0; i<tasks.length; i++){ %>
+                    <tr taskId="<%= tasks[i].id %>">
+                        <td class="name">
+                            <%= tasks[i].number %>
+                        </td>
+                        <td><%= tasks[i].text%></td>
+                        <td modelId="<%= tasks[i].model_id %>"><%= tasks[i].title%></td>
+
+                        <td>
+                            <div taskId="<%= tasks[i].id %>" data-action="show" class="eye-icon" title="Редактировать"></div>
+                        </td>
+                        <td>
+                            <div taskId="<%= tasks[i].id %>" data-action="delete" class="delete-icon" title="Удалить"></div>
+                        </td>
+
+                    </tr>
+                    <%} %>
+            </table>
+        </div>
+        <div class="course-info">
+            <div class="course-info__title">
+
+            </div>
+            <div class="course-info__description"></div>
+            <button class="course-info__button course-info__button_hidden"><a href="#"></a>Страница курса</button>
+        </div>
+
+    </div>
+    <div class="modal_container">
+        <button id="add-course" class="modalBtn add-course_button">Добавить</button>
+        <div class="modal" >
+            <div class="modal_content-form modal__new-course">
+                <div class="modal_header">
+                    <div class="modal_close modal_close_white"></div>
+                    Практическое задание
+                </div>
+                <div class="modal_body">
+                    <form id="add-form" action="/task" method="post">
+                        <input type="number" value="" name="id" style="display: none;">
+                        <input type="number" value="" name="model_id" style="display: none;">
+                        <div class="input-area">
+                            <label>Номер</label>
+                            <input type="number" name="number" placeholder="" required>
+                        </div>
+                        <div class="input-area">
+                            <label>Текст</label>
+                            <textarea name="text" placeholder=""
+                                required> </textarea>
+                        </div>
+                        <div class="input-area">
+                            <label>Модель</label>
+                            <textarea name="title" placeholder=""
+                                required> </textarea>
+                        </div>
+                        <fieldset class="task_row"> 
+                            <legend>Первый фактор</legend>
+                            
+                            <div class="input-area">
+                                <label>От</label>
+                                <input type="number" required> 
+                            </div>
+                            <div class="input-area">
+                                <label>До</label>
+                                <input type="number" required> 
+                            </div>
+                        </fieldset>
+                        <fieldset class="task_row"> 
+                            <legend>Второй фактор</legend>
+                            
+                            <div class="input-area">
+                                <label>От</label>
+                                <input type="number" required> 
+                            </div>
+                            <div class="input-area">
+                                <label>До</label>
+                                <input type="number" required> 
+                            </div>
+                        </fieldset>
+                        
+                        <button class="form_addcourse_button form_button" type="submit"
+                            name="form_addcourse_submit">Сохранить
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/teach/clickShowTask.js" defer></script>
+</body>
+</html>

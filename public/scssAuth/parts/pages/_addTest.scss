@@ -4,19 +4,26 @@
     margin-right: 50px;
     margin-left: 50px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    align-items: start;
     gap: 20px;
     form {
         
     }
-
+    .row-form{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items:flex-start;
+        gap: 20px
+    }
     input {
         @include inputText(400px, 25px, 16px);
     }
 
     input[type='date'],
     input[type='number'] {
-        width: 100px;
+        width: 130px;
         padding-left: 5px;
         font-size: 12px;
     }

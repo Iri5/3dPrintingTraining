@@ -1,0 +1,15 @@
+.preview__container{
+    position: relative;
+    margin-top: 80px;
+    width: 100vw;
+    overflow-x: hidden;
+    padding-right: 100px;
+    padding-left: 100px;
+    margin-bottom: 50px;
+}
+.preview__body{
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}

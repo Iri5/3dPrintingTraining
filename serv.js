@@ -57,6 +57,9 @@ const componentRouter = require('./api/routes/component');
 const modelRouter = require('./api/routes/model');
 const testRouter = require('./api/routes/test');
 const questionRouter = require('./api/routes/question');
+const tasksRouter = require('./api/routes/tasks');
+const taskRouter = require('./api/routes/task');
+const previewRouter = require('./api/routes/preview');
 app.use('/auth', authRouter);
 app.use('/admin', adminRouter);
 app.use('/teach', teacherRouter);
@@ -68,6 +71,9 @@ app.use('/component', componentRouter);
 app.use('/model', modelRouter);
 app.use('/test', testRouter);
 app.use('/question', questionRouter );
+app.use('/tasks', tasksRouter);
+app.use('/task', taskRouter);
+app.use('/preview', previewRouter);
 //АВТОРИЗАЦИЯ
 /*app.get('/auth', jsonParser, (req, res) => {
     console.log("Зашел в автоизацию")

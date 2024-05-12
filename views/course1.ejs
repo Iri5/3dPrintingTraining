@@ -68,7 +68,7 @@
                         <!--if link {-->
                         <% if (link!=null) { %>
                             <div link="<%=link%>" class="course-material__edit-icon"></div>
-                            <div class="course-material__show-icon"></div>
+                            <div link="<%=link%>" class="course-material__show-icon" id="previewMaterial"><a href="/preview/<%=link%>" id="apreview"></a></div>
                             <div class="course-material__delete-icon"></div>
                             <%} else { %>
                                 <!--} else {-->
@@ -185,6 +185,8 @@
         <script src="js/teach/course/test/addTest.js"></script>
         <script src="js/teach/course/test/deleteTest.js"></script>
         <script src="js/teach/course/test/clickInTests.js"></script>
+        <script src="js/teach/previewMaterial.js"></script>
+
         <script>
             document.addEventListener("DOMContentLoaded", ready);
             function ready() {

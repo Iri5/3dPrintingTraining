@@ -38,7 +38,7 @@ function CreateSingleAnsQuestion(insertId) {
                     rows="3"></textarea>
             </div>
             <div class="area score">
-                <label for="">Число баллов</label>
+                <label for="">Кол-во баллов</label>
                 <input class="simple" name="score" type="number" value="">
             </div>
             <p>Варианты ответа:</p>
@@ -78,7 +78,7 @@ function CreateMultipleAnsQuestion(insertId) {
                 <textarea class="simple" name="que_text" id="" rows="3"></textarea>
             </div>
             <div class="area score">
-                <label for="">Число баллов</label>
+                <label for="">Кол-во баллов</label>
                 <input class="simple" name="score" type="number" value="">
             </div>
             <p>Варианты ответа:</p>
@@ -117,7 +117,7 @@ function CreateShortAnsQuestion(insertId) {
                 <textarea class="simple" name="que_text" id="" rows="3"></textarea>
             </div>
             <div class="area score">
-                <label for="">Число баллов</label>
+                <label for="">Кол-во баллов</label>
                 <input class="simple" name="score" type="number" value="">
             </div>
             <p>Ответ:</p>
