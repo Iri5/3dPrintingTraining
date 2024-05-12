@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router();
 const pool = require('../db');
 router.get('/', (req, res) => {
+    console.log('Path: /task Method: GET')
     const taskId = req.headers.currentid;
 
     query = `SELECT mydb.practical_task.answers, mydb.practical_task.number, 
@@ -16,7 +17,6 @@ router.get('/', (req, res) => {
             res.sendStatus(500);
             return console.log(err);
         }
-        console.log(data)
         let info = {
             id: taskId,
             number: data[0].number,
@@ -29,7 +29,6 @@ router.get('/', (req, res) => {
             ftitle: data[0].ctitle,
             stitle: data[1].ctitle,
         }
-        console.log(info)
         let Jdata = JSON.stringify(info);
         res.send(Jdata)
         //res.render('tasks', {tasks: data});

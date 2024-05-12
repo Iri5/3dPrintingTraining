@@ -3,14 +3,13 @@ const router = express.Router();
 const pool = require('../db');
 const urlencodedParser = express.urlencoded({ extended: false });
 router.delete("/", (req, res) => {
-
+    console.log('Path: /model Method: DELETE')
     if (req.body) {
 
         query = 'DELETE FROM mydb.model WHERE  id = ?;';
         pool.query(query, [req.body.myId], function (err, data) {
             if (err) {
                 res.sendStatus(500);
-                console.log("error");
                 return console.log(err);
             }
             //res.redirect('/admin');
@@ -22,13 +21,11 @@ router.delete("/", (req, res) => {
     }
 })
 router.put('/', (req, res) => {
+    console.log('Path: /model Method: PUT')
     if (!req.body) {
         return res.sendStatus(400);
     }
     let ans = req.body;
-    console.log(ans.title);
-    console.log(ans);
-
     for (key in ans) {
         if (ans[key] == '') {
             ans[key] = null;
@@ -41,7 +38,7 @@ router.put('/', (req, res) => {
     });
 })
 router.post("/", urlencodedParser, (request, response) => {
-    console.log(request.body.title);
+    console.log('Path: /model Method: POST')
     if (!request.body) {
         return response.sendStatus(400);
     }

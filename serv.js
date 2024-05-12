@@ -37,13 +37,15 @@ app.listen(3001, () => {
 app.set('view engine', 'ejs');
 app.use(express.static('public'))
 app.get('/', (req, res) => {
+    console.log('Path: / will render file index');
     res.render('index');
 })
 app.get('/material', (req, res) => {
-    console.log("mat");
+    console.log('Path: /material will render file addMaterial.ejs');
     res.render('addMaterial');
 })
 app.get('/index.html', (req, res) => {
+    console.log('Path: /index.html will render file index.ejs');
     res.render('index');
 })
 const authRouter = require('./api/routes/auth');
@@ -160,6 +162,7 @@ app.get('/course-info', (req, res) => {
 
 
 app.get('/course/:courseID', urlencodedParser, (req, res) => {
+    console.log('Path: /course/:courseID will render file teach.ejs');
     console.log("ge" + req.params['courseID']);
     res.render('teach');
 })
@@ -189,6 +192,7 @@ app.post('/teach-uploadimg', (req, res) => {
 
 //Найти курс по ИД
 app.post('/teach-getcoursebyid', urlencodedParser, (req, res) => {
+    console.log('Path: /teach-getcoursebyid will send id FROM us.course WHERE title = ?');
     if (!req.body) {
         return res.sendStatus(400);
     }
@@ -200,6 +204,7 @@ app.post('/teach-getcoursebyid', urlencodedParser, (req, res) => {
     });
 })
 app.get('/add_test/', (req, res) => {
+    console.log('Path: /add_test/ will render add_test.ejs');
     console.log("i am here")
     if (!req.body) {
         return res.sendStatus(400);
@@ -216,6 +221,8 @@ app.get('/add_test/', (req, res) => {
 })
 //Переход на страницу с информацией о курсе
 app.get('/teach-showcurse', (req, res) => {
+    console.log('Path: /teach-showcurse will render course.ejs');
+
     if (!req.body) {
         return res.sendStatus(400);
     }
@@ -258,7 +265,7 @@ app.get('/teach-showcurse', (req, res) => {
 })
 //Добавление материала к курсу
 app.post('/teach-addmaterial', jsonParser, (req, res) => {
-    console.log('teach-addmaterial');
+    console.log('Path: /teach-addmaterial will create material file');
     if (req.body) {
         let result = req.body;
         console.log(result);
@@ -268,9 +275,9 @@ app.post('/teach-addmaterial', jsonParser, (req, res) => {
                 console.error(err);
                 return;
             }
-            let link = `materials/${result.course}`;
-            let query = 'UPDATE us.course SET link = ? WHERE id = ?;'
-            pool.query(query, [link, result.course], function (err, data) {
+            let link = `${result.course}.ejs`;
+            let query = 'INSERT INTO mydb.material (type, link, course_id) VALUES (?, ?, ?) ;'
+            pool.query(query, ['HTML', link, result.course], function (err, data) {
                 if (err) return console.log(err);
             });
             //файл записан успешно
@@ -283,6 +290,7 @@ app.post('/teach-addmaterial', jsonParser, (req, res) => {
 })
 //Создание нового теста
 app.post('/add_test', urlencodedParser, (req, res) => {
+    console.log('Path: /add_test');
     if (!req.body) {
         console.log("пусто")
         return res.sendStatus(400);
@@ -311,6 +319,8 @@ app.post('/add_test', urlencodedParser, (req, res) => {
     });
 })
 app.post('/add-question-one', jsonParser, (req, res) => {
+    console.log('Path: /add-question-one');
+
     console.log("addddddddd")
     if (!req.body) {
         console.log("пусто")
@@ -343,6 +353,7 @@ app.post('/add-question-one', jsonParser, (req, res) => {
 
 //ОБУЧАЕМЫЙ
 app.get('/user', (req, res) => {
+    console.log('Path: /user');
     let query = 'SELECT id, fio, email, login, gr, bday FROM us.user;'
     pool.query(query, function (err, data) {
         if (err) return console.log(err);

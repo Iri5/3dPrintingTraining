@@ -4,6 +4,7 @@ const pool = require('../db');
 const bcrypt = require('bcrypt');
 
 router.get('/', (req, res) => {
+    console.log('Path: /admin Method: GET')
     let query = 'SELECT fio, email, login, gr, role, bday FROM mydb.user;'
     pool.query(query, function (err, data) {
         if (err) return console.log(err);
@@ -29,6 +30,7 @@ router.get('/', (req, res) => {
     });
 })
 router.post('/', (req, res) => {
+    console.log('Path: /admin Method: POST')
     if (!req.body) {
         return res.sendStatus(400);
     }
@@ -42,12 +44,8 @@ router.post('/', (req, res) => {
         if (err) {
             console.log(err);
         } else {
-            console.log('hash');
-            console.log(hash);
             ans.password = hash;
-            console.log(ans.password);
             let query = 'INSERT INTO mydb.user (fio, email, login, pass, gr, role, bday) VALUES (?, ?, ?, ?, ?, ?, ?);';
-            console.log(ans.password);
             pool.query(query, [ans.fio, ans.email, ans.login, ans.password, ans.group, ans.role, ans.bday], function (err, data) {
                 if (err) return console.log(err);
                 res.redirect('/admin');
@@ -56,12 +54,12 @@ router.post('/', (req, res) => {
     })
 })
 router.delete('/', (req, res) => {
+    console.log('Path: /admin Method: DELETE')
     if (req.body) {
         query = 'DELETE FROM mydb.user WHERE login = ? AND id > 0;';
         pool.query(query, [req.body[0]], function (err, data) {
             if (err) {
                 res.sendStatus(500);
-                console.log("error");
                 return console.log(err);
             }
             res.sendStatus(200);
@@ -73,6 +71,7 @@ router.delete('/', (req, res) => {
     }
 })
 router.put('/', (req, res) => {
+    console.log('Path: /admin Method: PUT')
     if (!req.body) {
         return res.sendStatus(400);
     }

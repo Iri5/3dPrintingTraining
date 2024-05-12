@@ -3,7 +3,7 @@ const router = express.Router();
 const pool = require('../db');
 const urlencodedParser = express.urlencoded({ extended: false });
 router.get('/', urlencodedParser, (req, res) => {
-
+    console.log('Path: /detailcourse Method: GET')
     if (!req.body) {
         return res.sendStatus(400);
     }
@@ -32,11 +32,10 @@ router.get('/', urlencodedParser, (req, res) => {
             query = 'SELECT * FROM mydb.course WHERE id = ?';
             pool.query(query, [req.query.courseID], function (err, data) {
                 if (err) return console.log(err);
-                console.log(data)
                 query = 'SELECT * FROM mydb.material WHERE course_id = ?'
                 pool.query(query, [req.query.courseID], function (err, material) {
                     if (err) return console.log(err);
-                    if (data.length == 0){
+                    if (material.length == 0){
                         res.render('course1', { title: data[0].title, description: data[0].description, link: null, id: data[0].id, t_id: null })
                     } else {
                         res.render('course1', { title: data[0].title, description: data[0].description, link: material[0].link, id: data[0].id, t_id: null })
@@ -63,7 +62,6 @@ router.get('/', urlencodedParser, (req, res) => {
                             t_id: t_id
                         },)
                     } else {
-                        console.log(material)
                         res.render('course1', {
                             title: data[0].c_title, 
                             description: data[0].c_desc, 

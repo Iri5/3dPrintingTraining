@@ -3,7 +3,7 @@ const router = express.Router();
 const pool = require('../db');
 const urlencodedParser = express.urlencoded({ extended: false });
 router.post("/", urlencodedParser, (request, response) => {
-    console.log(request.body.title);
+    console.log('Path: /filament Method: POST')
     if (!request.body) {
         return response.sendStatus(400);
     }
@@ -20,22 +20,19 @@ router.post("/", urlencodedParser, (request, response) => {
     });
 })
 router.delete("/", (req, res) => {
-    console.log("зашел")
-    console.log(req.body.myId)
+    console.log('Path: /filament Method: DELETE')
     if (req.body) {
 
         query = 'DELETE FROM mydb.model WHERE filament_id = ?;';
         pool.query(query, [req.body.myId], function (err, data) {
             if (err) {
                 res.sendStatus(500);
-                console.log("error");
                 return console.log(err);
             }
             query = 'DELETE FROM mydb.filament WHERE id = ?;';
             pool.query(query, [req.body.myId], function (err, data) {
                 if (err) {
                     res.sendStatus(500);
-                    console.log("error");
                     return console.log(err);
                 }
                 res.sendStatus(200);
@@ -49,14 +46,11 @@ router.delete("/", (req, res) => {
     }
 })
 router.put('/', (req, res) => {
-    console.log("done1")
+    console.log('Path: /filament Method: PUT')
     if (!req.body) {
         return res.sendStatus(400);
     }
     let ans = req.body;
-    console.log(ans.title);
-    console.log(ans);
-
     for (key in ans) {
         if (ans[key] == '') {
             ans[key] = null;

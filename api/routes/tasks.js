@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router();
 const pool = require('../db');
 router.get('/', (req, res) => {
+    console.log('Path: /tasks Method: GET')
 
     query = `SELECT mydb.practical_task.id, mydb.practical_task.number, 
     mydb.practical_task.text, mydb.practical_task.model_id, mydb.model.title 

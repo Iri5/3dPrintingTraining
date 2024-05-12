@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router();
 const pool = require('../db');
 router.delete('/', (req, res) => {
+    console.log('Path: /course Method: DELETE')
     if (req.headers.currentid) {
         query = 'DELETE FROM mydb.course WHERE id = ?;';
         pool.query(query, [req.headers.currentid], function (err, data) {
@@ -17,6 +18,7 @@ router.delete('/', (req, res) => {
     }
 })
 router.post('/', (req, res) => {
+    console.log('Path: /course Method: POST')
     if (!req.body) {
         return res.sendStatus(400);
     }
@@ -28,11 +30,11 @@ router.post('/', (req, res) => {
     });
 })
 router.put('/', (req, res) => {
+    console.log('Path: /course Method: PUT')
     if (!req.body) {
         return res.sendStatus(400);
     }
     let ans = req.body;
-    console.log(ans);
     let query = 'UPDATE mydb.course SET title = ?, description = ? WHERE id = ?;';
     pool.query(query, [ans.title, ans.description, ans.id], function (err, data) {
         if (err) return console.log(err);

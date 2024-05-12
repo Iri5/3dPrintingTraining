@@ -6,9 +6,9 @@ const jsonParser = express.json();
 const pool = require('../db')
 
 router.post('/', (req, res) => {
+    console.log('Path: /auth Method: POST')
     let { login, pass } = req.body;
     let query = 'SELECT * FROM mydb.user where login = ?;'
-    console.log(login);
     pool.query(query, [login], function (err, data) {
         if (err) return console.log(err);
         if (data.length == 0) {
@@ -20,7 +20,6 @@ router.post('/', (req, res) => {
                     console.log("Auth failed: ")
                 }
                 if (result) {
-                    console.log(result);
                     res.status(200).json({
                         role: data[0].role,
                         id: data[0].id

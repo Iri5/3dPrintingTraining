@@ -4,8 +4,7 @@ const pool = require('../../db');
 
 
 router.get('/', (req, res) => {
-    console.log(req.params)
-    console.log('wsedrftgbhnj')
+    console.log('Path: /teacher')
     let query = 'SELECT id, title, description FROM mydb.course;'
     pool.query(query, function (err, data) {
         if (err) return console.log(err);
@@ -26,8 +25,7 @@ router.get('/', (req, res) => {
     })
 })
 router.get('/courseid', (req, res) => {
-    console.log(req.query);
-    console.log('course')
+    console.log('Path: /courseid');
     let query = 'SELECT title, description FROM mydb.course WHERE id=?;'
     pool.query(query, req.query.id, function (err, data) {
         if (err) return console.log(err);
@@ -40,8 +38,7 @@ router.get('/courseid', (req, res) => {
     })
 })
 router.get('/:?userid', (req, res) => {
-    console.log(req.params);
-    console.log('user')
+    console.log('Path: /:?userid');
     /*let query = 'SELECT title, description FROM us.course WHERE id=?;'
     pool.query(query, req.headers.currentid, function (err, data) {
         if (err) return console.log(err);

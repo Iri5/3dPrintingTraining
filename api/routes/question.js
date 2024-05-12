@@ -3,8 +3,8 @@ const router = express.Router();
 const pool = require('../db');
 const urlencodedParser = express.urlencoded({ extended: false });
 router.post("/", (request, response) => {
+    console.log('Path: /question Method: POST')
     let ans = request.body;
-    console.log(ans);
     if (!request.body) {
         return response.sendStatus(400);
     }
@@ -16,8 +16,6 @@ router.post("/", (request, response) => {
     //response.send(sendData);
     pool.query(query, [ans.type, ans.testId], function (err, data) {
         if (err) return console.log(err);
-        console.log('inserted id')
-        console.log(data.insertId);
         response.status = 200;
         let sendData = JSON.stringify({
             id: data.insertId
@@ -28,16 +26,9 @@ router.post("/", (request, response) => {
     });
 })
 router.put("/", (request, response) => {
+    console.log('Path: /question Method: PUT')
     let ans = request.body;
-    console.log('put question');
-
-    console.log(ans);
-    console.log(ans.id);
-    console.log(ans.type);
-    console.log(ans.score);
-    console.log(ans.que_text);
-    console.log(ans.count_var);
-    console.log(ans.ans);
+    
     if (!request.body) {
         return response.sendStatus(400);
     }
@@ -56,8 +47,6 @@ router.put("/", (request, response) => {
         }
         answer.ans.push(obj);
     }
-    console.log(answer);
-    console.log(JSON.stringify(answer));
     let query = 'UPDATE mydb.question SET question = ? WHERE id = ?;';
     //response.status = 200;
     //let sendData = JSON.stringify({
@@ -72,8 +61,8 @@ router.put("/", (request, response) => {
     });
 })
 router.delete("/", (request, response) => {
+    console.log('Path: /question Method: DELETE')
     let ans = request.body;
-    console.log(ans);
     if (!request.body) {
         return response.sendStatus(400);
     }
