@@ -41,4 +41,13 @@ router.put('/', (req, res) => {
         res.sendStatus(200);
     });
 })
+router.get('/', (req, res) => {
+    console.log('Path: /course Method: GET')
+    let query = 'SELECT * FROM mydb.course;';
+    pool.query(query, [], function (err, data) {
+        if (err) return console.log(err);
+        let courses = JSON.stringify(data)
+        res.send(courses);
+    });
+})
 module.exports = router;

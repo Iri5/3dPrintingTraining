@@ -28,6 +28,5 @@ courseTable.addEventListener('click', (e) => {
             localStorage.currentId = id;
         }
         DeleteCourse(id);
-        alert("delete");
     }
 })

@@ -153,7 +153,9 @@
                             <%= info.students[i].gr %>
                         </td>
                         <td>
-                            <div data-action="show" class="eye-icon" title="Редактировать"></div>
+                            <div studId="<%=info.students[i].id%>" data-action="show" class="eye-icon" title="Перейти">
+                                <a href="/student/<%=info.students[i].id%>"></a>
+                            </div>
                         </td>
                     </tr>
                     <%} %>
@@ -176,6 +178,7 @@
     <script src="js/common/logout.js"></script>
     <script src="js/teach/deleteCourse.js"></script>
     <script src="js/teach/navVisual.js"></script>
+    <script src="js/teach/clickToGoToStudent.js"></script>
 
     <script src="js/teach/clickInUsers.js" defer></script>
     <script src="js/teach/fillCourseInfo.js" defer></script>

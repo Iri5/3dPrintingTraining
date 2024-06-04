@@ -1,0 +1,22 @@
+.student__container{
+    margin-top: 80px;
+    margin-right: 50px;
+    margin-left: 50px;
+}
+.add_education_btn{
+    @include buttonDefault(30px, 200px, 16px);
+    margin-top: 30px;
+}
+.select_course_btn{
+    @include buttonDefault(40px, 100%, 16px);
+    justify-self: center;
+}
+.select_practic_btn{
+    @include buttonDefault(40px, 100%, 16px);
+}
+.save_select_course_btn{
+    @include buttonDefault(40px, 100%, 16px);
+}
+.save_select_practic_btn{
+    @include buttonDefault(40px, 100%, 16px);
+}

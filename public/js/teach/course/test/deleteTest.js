@@ -1,5 +1,4 @@
 async function DeleteTest(id) {
-    alert('deleteee');
     fetch('/test', {
         method: 'DELETE',
         headers: {

@@ -15,3 +15,11 @@
     flex-direction: column;
     row-gap: 20px;
 }
+.blockTask {
+    border-radius: 10px;
+    background-color: #CDCDDF;
+    padding: 10px;
+}
+.buttonSaveTask{
+    @include buttonDefault($height: 30px, $width: 100%, $fsize: 14px)
+}

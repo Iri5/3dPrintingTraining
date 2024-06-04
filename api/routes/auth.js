@@ -20,29 +20,15 @@ router.post('/', (req, res) => {
                     console.log("Auth failed: ")
                 }
                 if (result) {
+                    console.log(data[0].role);
+                    console.log(data[0].id)
                     res.status(200).json({
                         role: data[0].role,
                         id: data[0].id
                     })
-                    /*switch (data[0].role) {
-                        case '3':
-                            console.log("admin")
-                            res.status = 200;
-                            res.redirect('/admin');
-                            break;
-                        case '2':
-                            res.status = 200;
-                            res.redirect('/teach');
-                            break;
-                        case '1':
-                            currentUserLogin = user.login;
-                            res.status = 200;
-                            res.redirect('/user');
-                            break;
-                    }*/
+                    
                 }
             })
-
         }
     });
 })

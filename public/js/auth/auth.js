@@ -37,13 +37,20 @@ async function handleFormSubmit(event) {
             //console.log(redirected);
             console.log(url);
             window.location.href = url;
+        } else if (user.role == 1){
+            const a = document.createElement('a');
+            a.href = `/user/${user.id}`;
+            a.click();
+            /*const {url} = await fetch('/teach');
+            //console.log(redirected);
+            console.log(url);
+            window.location.href = url;*/
         }
 
         if (response.redirected) {
             window.location.href = url;
         }
     } else if (response.status === 205){
-        alert('Запрос прошел');
     }
 }
 const form = document.querySelector(".auth__form");

@@ -23,28 +23,54 @@
     <div class="tasks__content teach__content_course">
         <div class="tasks-table__container">
             <div class="course-table__head">
-                <div class="course-table__name">Задания</div>
+                <div class="course-table__name">Сценарии</div>
 
                 <div class="modal_container">
-                    <button id="add-course" class="modalBtn add-course_button">Добавить</button>
+                    <button id="add-practical-task" class="modalBtn add-course_button">Создать</button>
                     <div class="modal">
                         <div class="modal_content-form modal__new-course">
                             <div class="modal_header">
                                 <div class="modal_close modal_close_white"></div>
-                                Добавление нового практического задания
+                                Добавление сценария обучения
                             </div>
                             <div class="modal_body">
-                                <form id="add-form" action="/course" method="post">
+                                <form id="add-task" action="/task" method="post">
                                     <div class="input-area">
-                                        <label>Название</label>
-                                        <input type="text" name="title" placeholder="Введите название курса" required
-                                            maxlength="255">
+                                        <label>Номер</label>
+                                        <input type="number" name="number" placeholder="">
                                     </div>
                                     <div class="input-area">
-                                        <label>Описание</label>
-                                        <textarea name="description" placeholder="Введите описание курса"
-                                            required> </textarea>
+                                        <label>Текст</label>
+                                        <textarea name="text" placeholder=""> </textarea>
                                     </div>
+                                    <div class="input-area">
+                                        <label>Модель</label>
+                                        <select name="model" id="model_add_task"></select>
+                                    </div>
+                                    <fieldset class="task_row first_factor_fieldset"> 
+                                        <legend class="first_factor_legend">Первый фактор</legend>
+                                        
+                                        <div class="input-area">
+                                            <label>От</label>
+                                            <input name="first_factor_from" type="number" required> 
+                                        </div>
+                                        <div class="input-area">
+                                            <label>До</label>
+                                            <input name="first_factor_to" type="number" required> 
+                                        </div>
+                                    </fieldset>
+                                    <fieldset class="task_row"> 
+                                        <legend class="second_factor_legend">Второй фактор</legend>
+                                        
+                                        <div class="input-area">
+                                            <label>От</label>
+                                            <input name="second_factor_from" type="number" required> 
+                                        </div>
+                                        <div class="input-area">
+                                            <label>До</label>
+                                            <input name="second_factor_to" type="number" required> 
+                                        </div>
+                                    </fieldset>
                                     <button class="form_addcourse_button form_button" type="submit"
                                         name="form_addcourse_submit">Сохранить
                                     </button>
@@ -54,7 +80,7 @@
                     </div>
                 </div>
             </div>
-            <table id="courses" class="menu table tasks">
+            <table id="courses" class="menu table tasks table_tasks">
                 <tr>
                     <th>№</th>
                     <th>Текст</th>
@@ -92,56 +118,49 @@
 
     </div>
     <div class="modal_container">
-        <button id="add-course" class="modalBtn add-course_button">Добавить</button>
-        <div class="modal" >
+        <div class="modal " id="modal_edit_task">
             <div class="modal_content-form modal__new-course">
                 <div class="modal_header">
                     <div class="modal_close modal_close_white"></div>
                     Практическое задание
                 </div>
                 <div class="modal_body">
-                    <form id="add-form" action="/task" method="post">
-                        <input type="number" value="" name="id" style="display: none;">
-                        <input type="number" value="" name="model_id" style="display: none;">
-                        <div class="input-area">
-                            <label>Номер</label>
-                            <input type="number" name="number" placeholder="" required>
-                        </div>
+                    <form action="/task1" method="post" id="edit_practical_task_form">
+                        <input type="number" name="id" style="display: none;">
+                        
                         <div class="input-area">
                             <label>Текст</label>
-                            <textarea name="text" placeholder=""
-                                required> </textarea>
+                            <textarea name="text" placeholder=""> </textarea>
                         </div>
                         <div class="input-area">
                             <label>Модель</label>
-                            <textarea name="title" placeholder=""
-                                required> </textarea>
+                            <div class="model_title"></div>
+                            <!--select name="model" id="model_add_task"></select>-->
                         </div>
-                        <fieldset class="task_row"> 
-                            <legend>Первый фактор</legend>
+                        <fieldset class="task_row first_factor_fieldset"> 
+                            <legend class="first_factor_legend">Первый фактор</legend>
                             
                             <div class="input-area">
                                 <label>От</label>
-                                <input type="number" required> 
+                                <input name="first_factor_from" type="number" required> 
                             </div>
                             <div class="input-area">
                                 <label>До</label>
-                                <input type="number" required> 
+                                <input name="first_factor_to" type="number" required> 
                             </div>
                         </fieldset>
                         <fieldset class="task_row"> 
-                            <legend>Второй фактор</legend>
+                            <legend class="second_factor_legend">Второй фактор</legend>
                             
                             <div class="input-area">
                                 <label>От</label>
-                                <input type="number" required> 
+                                <input name="second_factor_from" type="number" required> 
                             </div>
                             <div class="input-area">
                                 <label>До</label>
-                                <input type="number" required> 
+                                <input name="second_factor_to" type="number" required> 
                             </div>
                         </fieldset>
-                        
                         <button class="form_addcourse_button form_button" type="submit"
                             name="form_addcourse_submit">Сохранить
                         </button>
@@ -151,5 +170,8 @@
         </div>
     </div>
     <script src="js/teach/clickShowTask.js" defer></script>
+    <script src="../js/common/logout.js"></script>
+    <script src="js/common/modal.js" defer></script>
+    <script src="js/teach/clickAddTask.js" defer></script>
 </body>
 </html>

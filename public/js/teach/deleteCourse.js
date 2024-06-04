@@ -1,5 +1,4 @@
 async function DeleteCourse(id) {
-    alert('deleteee');
     fetch('/course', {
         method: 'DELETE',
         headers: {

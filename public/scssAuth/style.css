@@ -1486,7 +1486,6 @@ body {
 }
 
 .table-culc {
-  overflow-x: auto;
   width: 70%;
   font-size: 14px;
 }
@@ -1804,6 +1803,29 @@ td[atrname=equation] {
   display: flex;
   flex-direction: column;
   row-gap: 20px;
+}
+
+.blockTask {
+  border-radius: 10px;
+  background-color: #CDCDDF;
+  padding: 10px;
+}
+
+.buttonSaveTask {
+  height: 30px;
+  width: 100%;
+  background-color: #03045E;
+  color: white;
+  border: 0px;
+  border-radius: 5px;
+  font-size: 14px;
+}
+.buttonSaveTask:hover {
+  background-color: #0077B6;
+  cursor: pointer;
+}
+.buttonSaveTask:disabled {
+  background-color: #CAF0F8;
 }
 
 .dropbtn {
@@ -2143,6 +2165,109 @@ td[atrname=equation] {
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
+}
+
+.student__container {
+  margin-top: 80px;
+  margin-right: 50px;
+  margin-left: 50px;
+}
+
+.add_education_btn {
+  height: 30px;
+  width: 200px;
+  background-color: #03045E;
+  color: white;
+  border: 0px;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-top: 30px;
+}
+.add_education_btn:hover {
+  background-color: #0077B6;
+  cursor: pointer;
+}
+.add_education_btn:disabled {
+  background-color: #CAF0F8;
+}
+
+.select_course_btn {
+  height: 40px;
+  width: 100%;
+  background-color: #03045E;
+  color: white;
+  border: 0px;
+  border-radius: 5px;
+  font-size: 16px;
+  justify-self: center;
+}
+.select_course_btn:hover {
+  background-color: #0077B6;
+  cursor: pointer;
+}
+.select_course_btn:disabled {
+  background-color: #CAF0F8;
+}
+
+.select_practic_btn {
+  height: 40px;
+  width: 100%;
+  background-color: #03045E;
+  color: white;
+  border: 0px;
+  border-radius: 5px;
+  font-size: 16px;
+}
+.select_practic_btn:hover {
+  background-color: #0077B6;
+  cursor: pointer;
+}
+.select_practic_btn:disabled {
+  background-color: #CAF0F8;
+}
+
+.save_select_course_btn {
+  height: 40px;
+  width: 100%;
+  background-color: #03045E;
+  color: white;
+  border: 0px;
+  border-radius: 5px;
+  font-size: 16px;
+}
+.save_select_course_btn:hover {
+  background-color: #0077B6;
+  cursor: pointer;
+}
+.save_select_course_btn:disabled {
+  background-color: #CAF0F8;
+}
+
+.save_select_practic_btn {
+  height: 40px;
+  width: 100%;
+  background-color: #03045E;
+  color: white;
+  border: 0px;
+  border-radius: 5px;
+  font-size: 16px;
+}
+.save_select_practic_btn:hover {
+  background-color: #0077B6;
+  cursor: pointer;
+}
+.save_select_practic_btn:disabled {
+  background-color: #CAF0F8;
+}
+
+.user__container {
+  margin-top: 80px;
+  margin-right: 50px;
+  margin-left: 50px;
+}
+
+.aaa {
+  margin-top: 30px;
 }
 
 * {

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="../scssAuth/style.css">
+</head>
+
+<body>
+    <header class="head">
+        <div class="role">
+            Преподаватель
+        </div>
+        <div class="container-teach-header">
+            <ul class="menu-teach-header">
+                <li><a href="/">Главная</a></li>
+                <li><a href="/modeling_admin">Модели</a></li>
+                <li><a href="/tasks">Практика</a></li>
+            </ul>
+            <div class="logout"></div>
+        </div>
+    </header>
+    <div class="student__container">
+        <h1><%=data.fio%></h1>
+        <h2>Группа <%=data.gr%></h2>
+        <div class="students-table__container">
+            <div class="students-table__head">
+                <div class="students-table__name">Обучения</div>
+            </div>
+            <button class="add_education_btn ">Назначить обучение</button>
+            <table id="students" class="menu table">
+                <tr>
+                    <th>Курс</th>
+                    <th>Практическое задание</th>
+                    <th>Тестирование</th>
+                    <th>Практика</th>
+                </tr>
+                <% for(let i=0; i<data.educations.length; i++){ %>
+                    <tr edit="<%= data.educations[i].education_id %>">
+                        <td class="fio">
+                            <% if (data.educations[i].course_title === null) {%>
+                                -
+                                <%} else{%>
+                            <%= data.educations[i].course_title %>
+                            <%} %>
+                        </td>
+                        <td>
+                            <% if (data.educations[i].course_title === null) {%>
+                                -
+                                <%} else{%>
+                                    <%= data.educations[i].practical_task_text %>
+                            <%} %>
+                            
+                        </td>
+                        
+                        <td>
+                            
+                            <% if (data.educations[i].education_test_score === null) {%>
+                                -
+                                <%} else{%>
+                                    <%= data.educations[i].education_test_score %>
+                                <%} %>
+                        </td>
+                        <td>
+                            <% if (data.educations[i].education_pract_score === null) {%>
+                                -
+                                <%} else if (data.educations[i].education_pract_score == 0){%>
+                            Незачет
+                                <%} else {%>
+                                    Зачет
+                                    <%}%>
+                           
+                        </td>
+                        <td>
+                            <div education-id="<%=data.educations[i].education_id %>" data-action="edit" class="eye-icon"
+                                title="Просмотр"></div>
+                        </td>
+                    </tr>
+                    <%} %>
+            </table>
+        </div>
+
+    </div>
+    <div class="modal_container">
+        <div class="modal " id="modal_add_education">
+            <div class="modal_content-form modal__new-course">
+                <div class="modal_header">
+                    <div class="modal_close modal_close_white"></div>
+                    Обучение
+                </div>
+                <div class="modal_body">
+                    <form action="/task1" method="post" id="add_education_form">
+                        <input type="number" name="id" style="display: none;">
+                        <button type="button" class="select_course_btn">Выбрать курс</button>
+                        <button type="button" class="select_practic_btn">Выбрать практическое задание</button>
+                        <!--<button class=" form_button" type="submit">Сохранить
+                        </button>-->
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal_container">
+        <div class="modal " id="modal_add_education_course">
+            <div class="modal_content-form modal__new-course">
+                <div class="modal_header">
+                    <div class="modal_close modal_close_white"></div>
+                    Назначение курса
+                </div>
+                <div class="modal_body">
+                    <form action="/task1" method="post" id="add_course_education_form">
+                        <input type="number" name="id" style="display: none;">
+                        <select name="course"></select>
+                        <button type="button" class="save_select_course_btn">Сохранить</button>
+                        <!--<button class=" form_button" type="submit">Сохранить
+                        </button>-->
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal_container">
+        <div class="modal " id="modal_add_education_practic">
+            <div class="modal_content-form modal__new-course">
+                <div class="modal_header">
+                    <div class="modal_close modal_close_white"></div>
+                    Назначение курса
+                </div>
+                <div class="modal_body">
+                    <form action="/task1" method="post" id="add_practic_education_form">
+                        <input type="number" name="id" style="display: none;">
+                        <select name="practic"></select>
+                        <button type="button" class="save_select_practic_btn">Сохранить</button>
+                        <!--<button class=" form_button" type="submit">Сохранить
+                        </button>-->
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/common/logout.js"></script>
+    <script src="../js/common/modal.js"></script>
+    <script src="../js/teach/clickAddEducation.js"></script>
+</body>
+
+</html>

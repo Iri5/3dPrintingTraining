@@ -54,4 +54,84 @@ router.post("/", urlencodedParser, (request, response) => {
         response.redirect('/modeling_admin');
     });
 })
+router.get("/", urlencodedParser, (request, response) => {
+    console.log('Path: /model Method: GET');
+    let query = 'SELECT * FROM mydb.model;';
+    pool.query(query, [], function (err, data) {
+        if (err) return console.log(err);
+        let models = [];
+        data.forEach(elem => {
+            let model = {
+                id: elem.id,
+                title: elem.title,
+                first: elem.first_factor_id,
+                second: elem.second_factor_id
+            }
+            models.push(model);
+        })
+        let Jdata = JSON.stringify(models);
+        console.log(models)
+        response.send(Jdata);
+    });
+})
+router.get("/factors/:id", urlencodedParser, (request, response) => {
+    console.log('Path: /model/factors/:id Method: GET');
+    const id = request.params.id;
+    let query = 'SELECT first_factor_id, second_factor_id FROM mydb.model WHERE id = ?;';
+    pool.query(query, [id], function (err, data) {
+        if (err) return console.log(err);
+        let models = [];
+        console.log(`SELECT first_factor_id, second_factor_id FROM mydb.model WHERE id = ${id};`)
+        console.log(data)
+        const first_factor_id = data[0].first_factor_id;
+        const second_factor_id = data[0].second_factor_id;
+        query = 'SELECT * FROM mydb.component WHERE id = ? OR id = ?';
+        pool.query(query, [first_factor_id, second_factor_id], function (err, data) {
+            if (err) return console.log(err);
+            console.log(`SELECT * FROM mydb.component WHERE id = ${first_factor_id} OR id = ${second_factor_id};`)
+            console.log(data);
+            let info = {
+                first_id: first_factor_id,
+                first_title: null,
+                first_designation: null,
+                first_units: null,
+                second_id: second_factor_id,
+                second_title: null,
+                second_designation: null,
+                second_units: null,
+            }
+            if (data[0].id == first_factor_id){
+                info.first_title = data[0].title;
+                info.first_designation = data[0].designation;
+                info.first_units = data[0].units;
+                info.second_title = data[1].title;
+                info.second_designation = data[1].designation;
+                info.second_units = data[1].units;
+            } else {
+                info.first_title = data[1].title;
+                info.first_designation = data[1].designation;
+                info.first_units = data[1].units;
+                info.second_title = data[0].title;
+                info.second_designation = data[0].designation;
+                info.second_units = data[0].units;
+            }
+            console.log('info');
+            console.log(info);
+            let Jinfo = JSON.stringify(info);
+            response.send(Jinfo);
+        })
+        /*data.forEach(elem => {
+            let model = {
+                id: elem.id,
+                title: elem.title,
+                first: elem.first_factor_id,
+                second: elem.second_factor_id
+            }
+            models.push(model);
+        })
+        let Jdata = JSON.stringify(models);
+        console.log(models)
+        response.send(Jdata);*/
+    });
+})
 module.exports = router;

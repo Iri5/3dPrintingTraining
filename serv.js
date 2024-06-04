@@ -62,6 +62,9 @@ const questionRouter = require('./api/routes/question');
 const tasksRouter = require('./api/routes/tasks');
 const taskRouter = require('./api/routes/task');
 const previewRouter = require('./api/routes/preview');
+const studentRouter = require('./api/routes/student');
+const userRouter = require('./api/routes/user');
+const educationRouter = require('./api/routes/education');
 app.use('/auth', authRouter);
 app.use('/admin', adminRouter);
 app.use('/teach', teacherRouter);
@@ -72,10 +75,13 @@ app.use('/filament', filamentRouter);
 app.use('/component', componentRouter);
 app.use('/model', modelRouter);
 app.use('/test', testRouter);
-app.use('/question', questionRouter );
+app.use('/question', questionRouter);
 app.use('/tasks', tasksRouter);
 app.use('/task', taskRouter);
 app.use('/preview', previewRouter);
+app.use('/student', studentRouter);
+app.use('/user', userRouter);
+app.use('/education', educationRouter);
 //АВТОРИЗАЦИЯ
 /*app.get('/auth', jsonParser, (req, res) => {
     console.log("Зашел в автоизацию")
@@ -352,7 +358,7 @@ app.post('/add-question-one', jsonParser, (req, res) => {
 })
 
 //ОБУЧАЕМЫЙ
-app.get('/user', (req, res) => {
+/*app.get('/user', (req, res) => {
     console.log('Path: /user');
     let query = 'SELECT id, fio, email, login, gr, bday FROM us.user;'
     pool.query(query, function (err, data) {
@@ -363,7 +369,7 @@ app.get('/user', (req, res) => {
         }
         else res.sendStatus(403);
     })
-})
+})*/
 
 const poolModeling = mysql.createPool({
     host: 'localhost',
@@ -443,3 +449,41 @@ app.get("/printers-filaments", (request, response) => {
     });
 })
 
+app.put("/practical_answer", (req, res) => {
+    console.log('Path: /practical_answer Method: PUT')
+    let ans = req.body;
+    console.log(ans)
+    if (!req.body) {
+        return response.sendStatus(400);
+    }
+    let prAns = {
+        firstfactor: ans.firstfactor,
+        secondfactor: ans.secondfactor
+    }
+    let prAnsJson = JSON.stringify(prAns)
+    console.log(prAns)
+    let taskId = ans.taskId;
+    let answerId = ans.answerId;
+    let educationId = ans.educationId;
+    let query = 'UPDATE mydb.practical_answer SET answer = ? WHERE id = ?';
+    let queryTask = 'SELECT * FROM mydb.practical_task WHERE id = ?';
+    let queryEducation = 'UPDATE mydb.education SET pract_score = ? WHERE id = ?';
+    pool.query(query, [prAnsJson, answerId], function (err, data){
+        if (err) return console.log(err);
+    })
+    pool.query(queryTask, [taskId], function (err, data) {
+        if (err) return console.log(err);
+        console.log(data[0].answers);
+        let right = data[0].answers;
+        let score = 0;
+        if ((prAns.firstfactor >= right.firstfactor.min) && (prAns.firstfactor <= right.firstfactor.max)
+            && (prAns.secondfactor >= right.secondfactor.min) && (prAns.secondfactor <= right.secondfactor.max)) {
+            score = 1;
+        }
+        pool.query(queryEducation, [score, educationId], function (err, data) {
+            if (err) return console.log(err);
+            res.sendStatus(200);
+        })
+    });
+    
+})

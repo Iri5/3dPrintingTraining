@@ -47,7 +47,8 @@ btn.addEventListener('click', () => {
             let eq = localStorage.currentEquip
             
             let result = math.evaluate(eq, scope);
-            result1 = Math.round(result * 10000) / 10000;
+            //result1 = Math.round(result * 10000) / 10000;
+            result1 = result.toFixed(2);
             
             stroke.push(result1);
         }
