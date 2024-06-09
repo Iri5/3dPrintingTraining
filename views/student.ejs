@@ -27,10 +27,11 @@
         <h1><%=data.fio%></h1>
         <h2>Группа <%=data.gr%></h2>
         <div class="students-table__container">
-            <div class="students-table__head">
-                <div class="students-table__name">Обучения</div>
+            <div class="students-table__head courese-test__title-container" >
+                <div class="students-table__name course-test__title">Обучения</div>
+                <button class="add_education_btn ">Назначить обучение</button>
             </div>
-            <button class="add_education_btn ">Назначить обучение</button>
+            <% if (data.educations != null) {%>
             <table id="students" class="menu table">
                 <tr>
                     <th>Курс</th>
@@ -81,6 +82,7 @@
                     </tr>
                     <%} %>
             </table>
+            <%}%>
         </div>
 
     </div>
@@ -127,7 +129,7 @@
             <div class="modal_content-form modal__new-course">
                 <div class="modal_header">
                     <div class="modal_close modal_close_white"></div>
-                    Назначение курса
+                    Назначение практического задания
                 </div>
                 <div class="modal_body">
                     <form action="/task1" method="post" id="add_practic_education_form">

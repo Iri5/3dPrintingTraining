@@ -33,7 +33,7 @@ function FillEditTask(task){
     let firstFactorLegend = modal.querySelector('.first_factor_legend');
     firstFactorLegend.innerHTML = `${task.ftitle}`;
     let secondFactorLegend = modal.querySelector('.second_factor_legend')
-    secondFactorLegend.innerHTML = task.stitleж
+    secondFactorLegend.innerHTML = task.stitle;
     let first_factor_from = modal.querySelector('input[name=first_factor_from]');
     first_factor_from.value = task.answers.firstfactor.min;
     let first_factor_to = modal.querySelector('input[name=first_factor_to]');

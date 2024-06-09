@@ -5,6 +5,7 @@ const pool = require('../db');
 router.get('/:studid', (req, res) => {
     console.log('Path: /student/:studid');
     const id = req.params.studid;
+    console.log(id);
     let query1 = ''
     let query = 'SELECT fio, gr FROM mydb.user WHERE id=?;'
     pool.query(query, id, function (err, data) {
@@ -16,7 +17,6 @@ router.get('/:studid', (req, res) => {
                 gr: data[0].gr,
                 educations: [],
             }
-            
             query = `SELECT 
                         mydb.education.id AS education_id, 
                         mydb.education.start AS education_start, 
@@ -40,7 +40,11 @@ router.get('/:studid', (req, res) => {
             pool.query(query, id, function (err, data) {
                 if (data.length != 0) {
                     sendData.educations = data;
-                    console.log(sendData);
+                    res.status = 200;
+                    res.render('student', { data: sendData});
+                }
+                else {
+                    sendData.educations = null;
                     res.status = 200;
                     res.render('student', { data: sendData});
                 }

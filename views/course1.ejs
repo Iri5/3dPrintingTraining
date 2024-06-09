@@ -102,11 +102,14 @@
             </div>
             <div class="course-test">
                 <div class="courese-test__title-container">
-                    <div class="course-test__title">Тесты</div>
-                    <div class="course-test__addbtn"></div>
+                    <div class="course-test__title">Тестирование</div>
+                    <% if (t_id==null){%>
+                        <div class="course-test__addbtn"></div>
+                    <%}%>
+                    
                 </div>
                 <% if (t_id==null){%>
-                    <div>ТЕСТОВ НЕТ </div>
+                    <div>Тестирование еще не добавлено </div>
                 <%}%>
                 <% if (t_id!=null){%>
 
