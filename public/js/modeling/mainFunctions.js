@@ -54,6 +54,8 @@ function Clear() {
     if (del != null) {
         del.remove();
     }
+    let saveBtn = document.querySelector('.buttonSaveTask');
+    saveBtn.remove();
     let div = document.querySelector('#myDiv');
     div.style.display = 'none';
     let show = document.querySelector('.surface-plot_show-btn');
