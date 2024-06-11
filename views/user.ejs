@@ -31,12 +31,13 @@
             <% if (data.educations[0].practical_task_id && !(data.educations[0].education_pract_score)) { %>
                 <div class="aaa">
                     <a href="/modeling" 
-                    id="apractic"
+                    class="apractic"
                     tasktext="<%=data.educations[0].practical_task_text%>"
                     ansid="<%=data.educations[0].practical_ans_id%>"
                     taskid="<%=data.educations[0].practical_task_id%>"
                     userid="<%=data.user_id%>"
-                    edid="<%=data.educations[0].education_id%>">
+                    edid="<%=data.educations[0].education_id%>"
+                    courseid="<%=data.educations[0].course_id%>">
                     Выполнить практическое задание
                 </a>
                 </div>
@@ -44,13 +45,14 @@
                 <%}%>
                 <% if (data.educations[0].link) { %>
                     <div class="aaa">
-                        <a href="/preview/<%= data.educations[0].link%>" 
-                            id="apractic"
+                        <a href="/study/<%= data.educations[0].link%>" 
+                            class="apractic"
                             tasktext="<%=data.educations[0].practical_task_text%>"
                             ansid="<%=data.educations[0].practical_ans_id%>"
                             taskid="<%=data.educations[0].practical_task_id%>"
                             userid="<%=data.user_id%>"
-                            edid="<%=data.educations[0].education_id%>">
+                            edid="<%=data.educations[0].education_id%>"
+                            courseid="<%=data.educations[0].course_id%>">
                             Ознакомиться с материалами
                         </a>
                     </div>

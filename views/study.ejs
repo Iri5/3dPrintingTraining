@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../scssAuth/style.css">
+</head>
+<body class="preview__body">
+    <header class="head">
+        <div class="role">
+            
+        </div>
+        <div class="container-teach-header">
+            <ul class="menu-teach-header">
+                <li><a href="/">Главная</a></li>
+            </ul>
+            <div class="logout"></div>
+        </div>
+    </header>
+    <div class="preview__container">
+        <%- include (link)%>
+
+        <button class="getTested_btn">
+            <a class="gettestedlink" href="">Пройти тест</a>
+        </button>
+    </div>
+    <script>
+        let btn = document.querySelector('.getTested_btn');
+        btn.addEventListener('click', ()=>{
+            let link  = document.querySelector('.gettestedlink');
+            link.href = `/study/test/${localStorage.courseId}`;
+            link.click();
+        })
+    </script>
+</body>
+</html>

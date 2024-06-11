@@ -20,3 +20,11 @@
 .save_select_practic_btn{
     @include buttonDefault(40px, 100%, 16px);
 }
+.getTested_btn{
+    @include buttonDefault(40px, 200px, 16px);
+    margin-top: 20px;
+}
+.gettestedlink{
+    color: white;
+    text-decoration: none;
+}

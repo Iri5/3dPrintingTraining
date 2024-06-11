@@ -65,6 +65,7 @@ const previewRouter = require('./api/routes/preview');
 const studentRouter = require('./api/routes/student');
 const userRouter = require('./api/routes/user');
 const educationRouter = require('./api/routes/education');
+const studyRouter = require('./api/routes/study');
 app.use('/auth', authRouter);
 app.use('/admin', adminRouter);
 app.use('/teach', teacherRouter);
@@ -82,6 +83,7 @@ app.use('/preview', previewRouter);
 app.use('/student', studentRouter);
 app.use('/user', userRouter);
 app.use('/education', educationRouter);
+app.use('/study', studyRouter);
 //АВТОРИЗАЦИЯ
 /*app.get('/auth', jsonParser, (req, res) => {
     console.log("Зашел в автоизацию")

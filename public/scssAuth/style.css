@@ -2259,6 +2259,29 @@ td[atrname=equation] {
   background-color: #CAF0F8;
 }
 
+.getTested_btn {
+  height: 40px;
+  width: 200px;
+  background-color: #03045E;
+  color: white;
+  border: 0px;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-top: 20px;
+}
+.getTested_btn:hover {
+  background-color: #0077B6;
+  cursor: pointer;
+}
+.getTested_btn:disabled {
+  background-color: #CAF0F8;
+}
+
+.gettestedlink {
+  color: white;
+  text-decoration: none;
+}
+
 .user__container {
   margin-top: 80px;
   margin-right: 50px;

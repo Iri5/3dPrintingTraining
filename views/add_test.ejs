@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../scssAuth/style.css">
-    
+
 </head>
 
 <body>
@@ -28,35 +28,35 @@
             <form class="test__info" id="editTest" action="" method="post">
                 <div class="row-form">
                     <input name="t_id" type="text" value="<%= t_id%>" style="display: none;">
-                <div class="col">
-                    <div class="area">
-                        <label>Название</label>
-                        <input name="title" type="text" value="<%= title%>">
-                    </div>
-                    <div class="area">
-                        <label for="">Описание</label>
-                        <textarea name="description" id="" rows="5"><%= description%></textarea>
-                    </div>
+                    <div class="col">
+                        <div class="area">
+                            <label>Название</label>
+                            <input name="title" type="text" value="<%= title%>">
+                        </div>
+                        <div class="area">
+                            <label for="">Описание</label>
+                            <textarea name="description" id="" rows="5"><%= description%></textarea>
+                        </div>
 
-                </div>
-                <div class="col">
-                    <div class="area">
-                        <label for="">Продолжительность, мин</label>
-                        <input name="duration" type="number" value="<%= duration%>">
+                    </div>
+                    <div class="col">
+                        <div class="area">
+                            <label for="">Продолжительность, мин</label>
+                            <input name="duration" type="number" value="<%= duration%>">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="area">
+                            <label for="">Дата начала</label>
+                            <input name="start" type="date" value="<%= start%>">
+                        </div>
+                        <div class="area">
+                            <label for="">Дата окончания</label>
+                            <input name="end" type="date" value="<%= end%>">
+                        </div>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="area">
-                        <label for="">Дата начала</label>
-                        <input name="start" type="date" value="<%= start%>">
-                    </div>
-                    <div class="area">
-                        <label for="">Дата окончания</label>
-                        <input name="end" type="date" value="<%= end%>">
-                    </div>
-                </div>
-                </div>
-                
+
                 <div class="col">
                     <button type="submit">Сохранить изменения</button>
                 </div>
@@ -71,7 +71,8 @@
                             <h3>Вопрос с единичным выбором</h3>
 
                             <form id="jjj" action="">
-                                <input class="simple" type="number" name="id" value="<%=questions[i].id%>" style="display: none;">
+                                <input class="simple" type="number" name="id" value="<%=questions[i].id%>"
+                                    style="display: none;">
                                 <input class="simple" type="number" name="type" value="1" style="display: none;">
                                 <div class="area">
                                     <label for="">Текст вопроса</label>
@@ -80,7 +81,8 @@
                                 </div>
                                 <div class="area score">
                                     <label for="">Кол-во баллов</label>
-                                    <input class="simple" type="number" name="score" value="<%= questions[i].question.score%>">
+                                    <input class="simple" type="number" name="score"
+                                        value="<%= questions[i].question.score%>">
                                 </div>
                                 <p>Варианты ответа:</p>
 
@@ -94,11 +96,13 @@
                                                 <input type="radio" id="<%= j%>" name="variant"
                                                     value="<%= questions[i].question.ans[j].text%>">
                                                 <%}%>
-                                                    
-                                                    <input forradio="<%=i%><%=j%>" name="vartext" type="text" value="<%= questions[i].question.ans[j].text%>">
+
+                                                    <input forradio="<%=i%><%=j%>" name="vartext" type="text"
+                                                        value="<%= questions[i].question.ans[j].text%>">
                                     </div>
                                     <%} %>
-                                        <button type="button" class="add-button add-radio-button">Добавить вариант ответа</button>
+                                        <button type="button" class="add-button add-radio-button">Добавить вариант
+                                            ответа</button>
                                         <div class="row">
                                             <button type="submit" name="action" value="save">Сохранить</button>
                                             <button type="submit" name="action" value="delete">Удалить</button>
@@ -109,7 +113,8 @@
                             <%} else if (questions[i].question.type==2) {%>
                                 <h3>Вопрос с множественным выбором</h3>
                                 <form action="">
-                                    <input class="simple" type="number" name="id" value="<%=questions[i].id%>" style="display: none;">
+                                    <input class="simple" type="number" name="id" value="<%=questions[i].id%>"
+                                        style="display: none;">
                                     <input class="simple" type="number" name="type" value="2" style="display: none;">
                                     <div class="area">
                                         <label for="">Текст вопроса</label>
@@ -118,7 +123,8 @@
                                     </div>
                                     <div class="area score">
                                         <label for="">Кол-во баллов</label>
-                                        <input class="simple" name="score" type="number" value="<%= questions[i].question.score%>">
+                                        <input class="simple" name="score" type="number"
+                                            value="<%= questions[i].question.score%>">
                                     </div>
                                     <p>Варианты ответа:</p>
                                     <% for(let j=0; j<questions[i].question.ans.length; j++){ %>
@@ -130,22 +136,25 @@
                                                     <input type="checkbox" id="<%= j%>" name="variant"
                                                         value="<%= questions[i].question.ans[j].text%>">
                                                     <%}%>
-                                                        
+
                                                         <input forcheck="<%=i%><%=j%>" type="text" name="vartext"
                                                             value="<%= questions[i].question.ans[j].text%>">
                                         </div>
                                         <%} %>
-                                        <button type="button" class="add-button add-check-button">Добавить вариант ответа</button>
-                                        <div class="row">
-                                            <button type="submit" name="action" value="save">Сохранить</button>
-                                            <button type="submit" name="action" value="delete">Удалить</button>
-                                        </div>
+                                            <button type="button" class="add-button add-check-button">Добавить вариант
+                                                ответа</button>
+                                            <div class="row">
+                                                <button type="submit" name="action" value="save">Сохранить</button>
+                                                <button type="submit" name="action" value="delete">Удалить</button>
+                                            </div>
                                 </form>
                                 <%} else if (questions[i].question.type==3){%>
                                     <h3>Вопрос с коротким ответом</h3>
                                     <form action="">
-                                        <input class="simple" type="number" name="id" value="<%= questions[i].id%>" style="display: none;">
-                                        <input class="simple" type="number" name="type" value="3" style="display: none;">
+                                        <input class="simple" type="number" name="id" value="<%= questions[i].id%>"
+                                            style="display: none;">
+                                        <input class="simple" type="number" name="type" value="3"
+                                            style="display: none;">
                                         <div class="area">
                                             <label for="">Текст вопроса</label>
                                             <textarea class="simple" name="que_text" id=""
@@ -153,11 +162,13 @@
                                         </div>
                                         <div class="area score">
                                             <label for="">Кол-во баллов</label>
-                                            <input class="simple" name="score" type="number" value="<%= questions[i].question.score%>">
+                                            <input class="simple" name="score" type="number"
+                                                value="<%= questions[i].question.score%>">
                                         </div>
                                         <p>Ответ:</p>
-                                        <input type="text" answer name="ans" value="<%= questions[i].question.ans[0].text%>">
-                                        
+                                        <input type="text" answer name="ans"
+                                            value="<%= questions[i].question.ans[0].text%>">
+
                                         <div class="row">
                                             <button type="submit" name="action" value="save">Сохранить</button>
                                             <button type="submit" name="action" value="delete">Удалить</button>

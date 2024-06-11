@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Document</title>
+    <link rel="stylesheet" href="../scssAuth/style.css">
+</head>
+<body>
+    <header class="head">
+        <div class="role">
+            Обучаемый
+        </div>
+        <div class="container-user-header">
+            
+            <div class="logout"></div>
+        </div>
+        
+    </header>
+    <h1> <%= testInfo.title %></h1>
+    <!--<% if (questions !=null) {%>
+        <% for(let i=0; i<questions.length; i++){ %>
+            <div class="question__container">
+                <% if (questions[i].question.type==1){%>
+                    <h3>Вопрос с единичным выбором</h3>
+
+                    <form id="" action="">
+                        <input class="simple" 
+                                type="number" 
+                                name="id" 
+                                value="<%=questions[i].id%>"
+                                style="display: none;">
+                        <input class="simple" 
+                                type="number" 
+                                name="type" 
+                                value="1" 
+                                style="display: none;">
+                        <div class="area">
+                            <label for="">Текст вопроса</label>
+                            <textarea class="simple" 
+                                        name="que_text" 
+                                        id=""
+                                        rows="3">   
+                                <%= questions[i].question.que_text%>
+                            </textarea>
+                        </div>
+                        <div class="area score">
+                            <label for="">Кол-во баллов</label>
+                            <input class="simple" 
+                                    type="number" 
+                                    name="score"
+                                    value="<%= questions[i].question.score%>">
+                        </div>
+                        <p>Варианты ответа:</p>
+
+                        <% for(let j=0; j<questions[i].question.ans.length; j++){ %>
+                            <div class="radio-row radio-container">
+                                <% if (questions[i].question.ans[j].right==1) {%>
+                                    <input type="radio" 
+                                            id="<%= j%>" 
+                                            name="variant"
+                                            value="<%= questions[i].question.ans[j].text%>" checked>
+                                    <%} else {%>
+                                        <input type="radio" 
+                                                id="<%= j%>"    
+                                                name="variant"
+                                            v   alue="<%= questions[i].question.ans[j].text%>">
+                                        <%}%>
+
+                                            <input forradio="<%=i%><%=j%>" 
+                                                    name="vartext" 
+                                                    type="text"
+                                                    value="<%= questions[i].question.ans[j].text%>">
+                            </div>
+                            <%} %>
+                    </form>
+                    <%} else if (questions[i].question.type==2) {%>
+                        <h3>Вопрос с множественным выбором</h3>
+                        <form action="">
+                            <input class="simple" 
+                                    type="number" 
+                                    name="id" 
+                                    value="<%=questions[i].id%>"
+                                    style="display: none;">
+                            <input class="simple" 
+                                    type="number" 
+                                    name="type" 
+                                    value="2" 
+                                    style="display: none;">
+                            <div class="area">
+                                <label for="">Текст вопроса</label>
+                                <textarea class="simple"    
+                                            name="que_text" 
+                                            id=""
+                                            rows="3">
+                                    <%= questions[i].question.que_text%>
+                                </textarea>
+                            </div>
+                            <div class="area score">
+                                <label for="">Кол-во баллов</label>
+                                <input class="simple" 
+                                        name="score" 
+                                        type="number"
+                                        value="<%= questions[i].question.score%>">
+                            </div>
+                            <p>Варианты ответа:</p>
+                            <% for(let j=0; j<questions[i].question.ans.length; j++){ %>
+                                <div class="radio-row check-container">
+                                    <% if (questions[i].question.ans[j].right==1) {%>
+                                        <input type="checkbox" 
+                                                id="<%= j%>" 
+                                                name="variant"
+                                                value="<%= questions[i].question.ans[j].text%>" checked>
+                                        <%} else {%>
+                                            <input type="checkbox" 
+                                                    id="<%= j%>" 
+                                                    name="variant"
+                                                    value="<%= questions[i].question.ans[j].text%>">
+                                            <%}%>
+
+                                                <input forcheck="<%=i%><%=j%>" 
+                                                        type="text" 
+                                                        name="vartext"
+                                                        value="<%= questions[i].question.ans[j].text%>">
+                                </div>
+                                <%} %>
+                                    
+                        </form>
+                        <%} else if (questions[i].question.type==3){%>
+                            <h3>Вопрос с коротким ответом</h3>
+                            <form action="">
+                                <input class="simple" 
+                                        type="number" 
+                                        name="id" 
+                                        value="<%= questions[i].id%>"
+                                        style="display: none;">
+                                <input class="simple" 
+                                        type="number" 
+                                        name="type" 
+                                        value="3"
+                                        style="display: none;">
+                                <div class="area">
+                                    <label for="">Текст вопроса</label>
+                                    <textarea class="simple" 
+                                                name="que_text" 
+                                                id=""
+                                                rows="3">
+                                        <%= questions[i].question.que_text%>
+                                    </textarea>
+                                </div>
+                                <div class="area score">
+                                    <label for="">Кол-во баллов</label>
+                                    <input class="simple" 
+                                            name="score" 
+                                            type="number"
+                                            value="<%= questions[i].question.score%>">
+                                </div>
+                                <p>Ответ:</p>
+                                <input type="text" 
+                                        answer 
+                                        name="ans"
+                                        value="<%= questions[i].question.ans[0].text%>">
+                            </form>
+                            <%}%>
+            </div>
+            <%} %>
+        -->
+    <script src="../js/common/logout.js"></script>
+</body>
+</html>
