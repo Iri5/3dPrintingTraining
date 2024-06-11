@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", LoadModels);
+let protocol = [];
+
 async function LoadModels() {
     const taskText = localStorage.getItem('taskText');
     if (taskText) {
@@ -185,10 +187,28 @@ function AddProcessing(nameClass) {
 
 function onChangeTBar(e) {
     let target = e.target;
+    console.log(target);
     let comp = target.getAttribute('comp');
     let text = document.querySelector(`input[comp=${comp}][type='number']`)
     text.value = target.value;
+    let type = target.getAttribute('type');
+    
+    
+    let time = new Date();
 
+    let action = {
+        time: `${time.getHours()}:${time.getMinutes()+1}:${time.getSeconds()}`,
+        date: `${time.getDate()}.${time.getMonth()+1}.${time.getFullYear()}`,
+        message: null,
+    };
+    if (type == 'range'){
+        let msg = `Изменение в трэкбаре ${comp} на ${target.value}`;
+        action.message = msg;
+    } else if (type == 'number') {
+        let msg = `Изменение в поле для ввода ${comp} на ${target.value}`;
+        action.message = msg;
+    }
+    protocol.push(action);
     Culculate(240, 20)
 }
 function Culculate(firstFactor, secondFactor) {
@@ -222,6 +242,21 @@ function Culculate(firstFactor, secondFactor) {
     let resDiv = document.querySelector("div[comp=result]");
     result1 = Math.round(result * 1000) / 1000;
     resDiv.innerHTML = result1;
+    let time = new Date();
+    let action = {
+        time: `${time.getHours()}:${time.getMinutes()+1}:${time.getSeconds()}`,
+        date: `${time.getDate()}.${time.getMonth()+1}.${time.getFullYear()}`,
+        message: null,
+    }
+    console.log('scope');
+    let msg = ` Произведен расчет\n`
+    let str = '';
+    for (key in scope){
+        str += `${key}: ${scope[key]}\n`
+    }
+    msg += str;
+    action.message = msg;
+    protocol.push(action);
     console.log(`CALCULATE
                 firstFactor: ${firstFactor},
                 secondFactor: ${secondFactor},
@@ -231,6 +266,7 @@ function Culculate(firstFactor, secondFactor) {
                 result: ${result1}`)
 }
 function clickBtnSaveTask() {
+    console.log(protocol);
     const ffactorInput = document.querySelector('#ffactor');
     const firstfactor = ffactorInput.value;
     const sfactorInput = document.querySelector('#sfactor');
@@ -247,7 +283,8 @@ function clickBtnSaveTask() {
         educationId: educationId,
         answerId: answerId,
         taskId: taskId,
-        userId: userId
+        userId: userId,
+        protocol: protocol
     }
     fetch('/practical_answer', {
         method: 'PUT',

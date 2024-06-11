@@ -452,6 +452,8 @@ app.get("/printers-filaments", (request, response) => {
 app.put("/practical_answer", (req, res) => {
     console.log('Path: /practical_answer Method: PUT')
     let ans = req.body;
+    console.log('protocol');
+    console.log(ans.protocol);
     console.log(ans)
     if (!req.body) {
         return response.sendStatus(400);
@@ -462,13 +464,14 @@ app.put("/practical_answer", (req, res) => {
     }
     let prAnsJson = JSON.stringify(prAns)
     console.log(prAns)
+    let protocolJSON = JSON.stringify(ans.protocol);
     let taskId = ans.taskId;
     let answerId = ans.answerId;
     let educationId = ans.educationId;
-    let query = 'UPDATE mydb.practical_answer SET answer = ? WHERE id = ?';
+    let query = 'UPDATE mydb.practical_answer SET answer = ?, protocol = ? WHERE id = ?';
     let queryTask = 'SELECT * FROM mydb.practical_task WHERE id = ?';
     let queryEducation = 'UPDATE mydb.education SET pract_score = ? WHERE id = ?';
-    pool.query(query, [prAnsJson, answerId], function (err, data){
+    pool.query(query, [prAnsJson, protocolJSON, answerId], function (err, data){
         if (err) return console.log(err);
     })
     pool.query(queryTask, [taskId], function (err, data) {

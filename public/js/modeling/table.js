@@ -31,6 +31,18 @@ btn.addEventListener('click', () => {
         to: tableForm.secondto.value,
         step: tableForm.secondstep.value,
     };
+    let time = new Date();
+    let action = {
+        time: `${time.getHours()}:${time.getMinutes()+1}:${time.getSeconds()}`,
+        date: `${time.getDate()}.${time.getMonth()+1}.${time.getFullYear()}`,
+        message: null,
+    }
+    let msg = `Построение таблицы:
+    ${firstFactorTitle}: от ${tableForm.firstfrom.value} до ${tableForm.firstto.value} с шагом ${tableForm.firststep.value}
+    ${secondFactorTitle}: от ${tableForm.secondfrom.value} до ${tableForm.secondto.value} с шагом ${tableForm.secondstep.value}
+    `;
+    action.message = msg;
+    protocol.push(action);
     let dataSet = [
     ];
     let count = 0;

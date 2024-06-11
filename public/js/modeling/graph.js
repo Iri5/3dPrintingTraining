@@ -2,7 +2,13 @@
 let te = 'Te';
 let show = document.querySelector('.surface-plot_show-btn');
 show.addEventListener('click', () => {
-
+    let time = new Date();
+    let action = {
+        time: `${time.getHours()}:${time.getMinutes()+1}:${time.getSeconds()}`,
+        date: `${time.getDate()}.${time.getMonth()+1}.${time.getFullYear()}`,
+        message: 'Нажатие на кнопку "Показать 3D график"',
+    }
+    protocol.push(action);
     let factorsDOM = document.querySelectorAll(`input[type='range']`);
     let firstFactor = {
         title: factorsDOM[0].getAttribute('comp'),

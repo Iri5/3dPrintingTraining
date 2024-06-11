@@ -30,18 +30,18 @@ router.get('/:userid', (req, res) => {
                         mydb.practical_answer.practical_task_id AS practical_task_id,
                         mydb.practical_task.text AS practical_task_text
                     FROM mydb.education 
-                    JOIN mydb.course 
+                    LEFT JOIN mydb.course 
                     ON mydb.course.id = mydb.education.course_id
-                    JOIN mydb.practical_answer 
+                    LEFT JOIN mydb.practical_answer 
                     ON mydb.practical_answer.id = mydb.education.practical_id
-                    JOIN mydb.practical_task 
+                    LEFT JOIN mydb.practical_task 
                     ON mydb.practical_task.id = mydb.practical_answer.practical_task_id  
-                    JOIN mydb.material
+                    LEFT JOIN mydb.material
                     ON mydb.material.course_id = mydb.course.id
                     WHERE user_id = ?`
             pool.query(query, id, function (err, data) {
                 console.log(data);
-                console.log(data[0].link);
+                //console.log(data[0].link);
                 if (data.length != 0) {
                     sendData.educations = data;
                     console.log(sendData);
