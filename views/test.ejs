@@ -1,172 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Document</title>
-    <link rel="stylesheet" href="../scssAuth/style.css">
+    <link rel="stylesheet" href="../../scssAuth/style.css">
 </head>
+
 <body>
     <header class="head">
         <div class="role">
             Обучаемый
         </div>
         <div class="container-user-header">
-            
+
             <div class="logout"></div>
         </div>
-        
+
     </header>
-    <h1> <%= testInfo.title %></h1>
-    <!--<% if (questions !=null) {%>
-        <% for(let i=0; i<questions.length; i++){ %>
-            <div class="question__container">
-                <% if (questions[i].question.type==1){%>
-                    <h3>Вопрос с единичным выбором</h3>
-
-                    <form id="" action="">
-                        <input class="simple" 
-                                type="number" 
-                                name="id" 
-                                value="<%=questions[i].id%>"
-                                style="display: none;">
-                        <input class="simple" 
-                                type="number" 
-                                name="type" 
-                                value="1" 
-                                style="display: none;">
-                        <div class="area">
-                            <label for="">Текст вопроса</label>
-                            <textarea class="simple" 
-                                        name="que_text" 
-                                        id=""
-                                        rows="3">   
-                                <%= questions[i].question.que_text%>
-                            </textarea>
-                        </div>
-                        <div class="area score">
-                            <label for="">Кол-во баллов</label>
-                            <input class="simple" 
-                                    type="number" 
-                                    name="score"
-                                    value="<%= questions[i].question.score%>">
-                        </div>
-                        <p>Варианты ответа:</p>
-
-                        <% for(let j=0; j<questions[i].question.ans.length; j++){ %>
-                            <div class="radio-row radio-container">
-                                <% if (questions[i].question.ans[j].right==1) {%>
-                                    <input type="radio" 
-                                            id="<%= j%>" 
-                                            name="variant"
-                                            value="<%= questions[i].question.ans[j].text%>" checked>
-                                    <%} else {%>
-                                        <input type="radio" 
-                                                id="<%= j%>"    
-                                                name="variant"
-                                            v   alue="<%= questions[i].question.ans[j].text%>">
-                                        <%}%>
-
-                                            <input forradio="<%=i%><%=j%>" 
-                                                    name="vartext" 
-                                                    type="text"
-                                                    value="<%= questions[i].question.ans[j].text%>">
-                            </div>
-                            <%} %>
-                    </form>
-                    <%} else if (questions[i].question.type==2) {%>
-                        <h3>Вопрос с множественным выбором</h3>
-                        <form action="">
-                            <input class="simple" 
-                                    type="number" 
-                                    name="id" 
-                                    value="<%=questions[i].id%>"
+    <div class="test-page-container">
+        <h1 id="testTitle" testid="<%= testInfo.id%>">
+            <%= testInfo.title %>
+        </h1>
+        <h2>
+            <%= testInfo.description %>
+        </h2>
+        <% if (queInfo !=null) {%>
+            <% for(let i=0; i<queInfo.length; i++){ %>
+                <div class="question__container_on_test">
+                    <% if (queInfo[i].type==1){%>
+                        <div class="question">
+                            <form id="" action="">
+                                <input class="simple" type="number" name="id" value="<%=queInfo[i].que_id%>"
                                     style="display: none;">
-                            <input class="simple" 
-                                    type="number" 
-                                    name="type" 
-                                    value="2" 
-                                    style="display: none;">
-                            <div class="area">
-                                <label for="">Текст вопроса</label>
-                                <textarea class="simple"    
-                                            name="que_text" 
-                                            id=""
-                                            rows="3">
-                                    <%= questions[i].question.que_text%>
-                                </textarea>
-                            </div>
-                            <div class="area score">
-                                <label for="">Кол-во баллов</label>
-                                <input class="simple" 
-                                        name="score" 
-                                        type="number"
-                                        value="<%= questions[i].question.score%>">
-                            </div>
-                            <p>Варианты ответа:</p>
-                            <% for(let j=0; j<questions[i].question.ans.length; j++){ %>
-                                <div class="radio-row check-container">
-                                    <% if (questions[i].question.ans[j].right==1) {%>
-                                        <input type="checkbox" 
-                                                id="<%= j%>" 
-                                                name="variant"
-                                                value="<%= questions[i].question.ans[j].text%>" checked>
-                                        <%} else {%>
-                                            <input type="checkbox" 
-                                                    id="<%= j%>" 
-                                                    name="variant"
-                                                    value="<%= questions[i].question.ans[j].text%>">
-                                            <%}%>
-
-                                                <input forcheck="<%=i%><%=j%>" 
-                                                        type="text" 
-                                                        name="vartext"
-                                                        value="<%= questions[i].question.ans[j].text%>">
-                                </div>
-                                <%} %>
-                                    
-                        </form>
-                        <%} else if (questions[i].question.type==3){%>
-                            <h3>Вопрос с коротким ответом</h3>
-                            <form action="">
-                                <input class="simple" 
-                                        type="number" 
-                                        name="id" 
-                                        value="<%= questions[i].id%>"
-                                        style="display: none;">
-                                <input class="simple" 
-                                        type="number" 
-                                        name="type" 
-                                        value="3"
-                                        style="display: none;">
+                                <input class="simple" type="number" name="type" value="1" style="display: none;">
                                 <div class="area">
-                                    <label for="">Текст вопроса</label>
-                                    <textarea class="simple" 
-                                                name="que_text" 
-                                                id=""
-                                                rows="3">
-                                        <%= questions[i].question.que_text%>
-                                    </textarea>
+                                    <div class="simple">
+                                        <%= queInfo[i].question.que_text%>
+                                    </div>
                                 </div>
-                                <div class="area score">
-                                    <label for="">Кол-во баллов</label>
-                                    <input class="simple" 
-                                            name="score" 
-                                            type="number"
-                                            value="<%= questions[i].question.score%>">
-                                </div>
-                                <p>Ответ:</p>
-                                <input type="text" 
-                                        answer 
-                                        name="ans"
-                                        value="<%= questions[i].question.ans[0].text%>">
+                                <% for(let j=0; j<queInfo[i].question.ans.length; j++){ %>
+                                    <div class="radio-row radio-container">
+                                        <label text="<%= queInfo[i].question.ans[j].text%>">
+                                            <input type="radio" id="<%= j%>" name="variant"
+                                            value="<%= queInfo[i].question.ans[j].text%>">
+                                            <%= queInfo[i].question.ans[j].text%>
+                                        </label>
+                                    </div>
+                                <%} %>
                             </form>
-                            <%}%>
-            </div>
-            <%} %>
-        -->
+                        </div>
+                    <%} else if (queInfo[i].type==2) {%>
+                            <div class="question">
+                                <form action="">
+                                    <input class="simple" type="number" name="id" value="<%=queInfo[i].que_id%>"
+                                        style="display: none;">
+                                    <input class="simple" type="number" name="type" value="2" style="display: none;">
+                                    <div class="area">
+                                        <div class="simple" name="que_text" id="" rows="3">
+                                            <%= queInfo[i].question.que_text%>
+                                        </div>
+                                    </div>
+                                    <% for(let j=0; j<queInfo[i].question.ans.length; j++){ %>
+                                        <div class="radio-row check-container">
+                                            <label text="<%= queInfo[i].question.ans[j].text%>">
+                                                <input type="checkbox" name="variant"
+                                                value="<%= queInfo[i].question.ans[j].text%>">
+                                                <%= queInfo[i].question.ans[j].text%>
+                                            </label>
+                                        </div>
+                                        <%} %>
+                                </form>
+                            </div>
+                    <%} else if (queInfo[i].type==3){%>
+                                <div class="question">
+                                    <form action="">
+                                        <input class="simple" type="number" name="id" value="<%= queInfo[i].que_id%>"
+                                            style="display: none;">
+                                        <input class="simple" type="number" name="type" value="3" style="display: none;">
+                                        <div class="area">
+                                            <div class="simple" name="que_text" id="" rows="3">
+                                                <%= queInfo[i].question.que_text%>
+                                            </div>
+                                        </div>
+                                        <input type="text" answer name="ans" value="">
+                                    </form>
+                                </div>
+                    <%}%>
+                </div>
+                <%} %>
+                <%} %>
+                <button class="complete-test">Завершить тестирование</button>
+    </div>
+    <script>
+        let completeBtn = document.querySelector('.complete-test');
+        completeBtn.addEventListener('click', getQuestions);
+        async function getQuestions(){
+            let testTitle = document.querySelector('#testTitle');
+            let testId = testTitle.getAttribute('testid');
+            let educationId = localStorage.educationId;
+            let questions = document.querySelectorAll('.question');
+            let test = {
+                id: testId,
+                educationId: educationId,
+                questions: []
+            }
+            questions.forEach(que => {
+                
+                let questionIdInput = que.querySelector('input[name=id]');
+                let questionId = questionIdInput.value;
+                let typeInput = que.querySelector('input[name=type]');
+                let type = typeInput.value;
+                let answers = [];
+                if (type == 3) {
+                    let textInput = que.querySelector('input[name=ans]');
+                    let ans = {
+                        text: textInput.value,
+                        right: 1
+                    };
+                    answers.push(ans);
+                } else {
+                    let labels = que.querySelectorAll('label');
+                    labels.forEach(label => {
+                        let ans = {
+                            text: label.getAttribute('text'),
+                            right: 0
+                        }
+                        let input = label.querySelector('input');
+                        if (input.checked){
+                            ans.right = 1;
+                        }
+                        answers.push(ans);
+                    })
+                }
+                let question = {
+                    id: questionId,
+                    type: type,
+                    ans: answers
+                }
+                test.questions.push(question);
+            })
+            console.log(test);
+            let Jtest = JSON.stringify(test);
+            const result = await fetch(`/complete-test`, {
+                method: 'post',
+                headers: {
+                "Content-Type": "application/json; charset=UTF-8",
+                },
+                body: Jtest
+            })
+            if (result.status == 200) {
+                window.location.href = `/student/${localStorage.studentid}`;
+            }
+        }
+    </script>
     <script src="../js/common/logout.js"></script>
 </body>
+
 </html>
