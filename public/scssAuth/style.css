@@ -2259,6 +2259,23 @@ td[atrname=equation] {
   background-color: #CAF0F8;
 }
 
+.save_protocol_score_btn {
+  height: 40px;
+  width: 100%;
+  background-color: #03045E;
+  color: white;
+  border: 0px;
+  border-radius: 5px;
+  font-size: 16px;
+}
+.save_protocol_score_btn:hover {
+  background-color: #0077B6;
+  cursor: pointer;
+}
+.save_protocol_score_btn:disabled {
+  background-color: #CAF0F8;
+}
+
 .getTested_btn {
   height: 40px;
   width: 200px;
@@ -2453,14 +2470,42 @@ td[atrname=equation] {
   background-color: #CAF0F8;
 }
 
+.education_container {
+  background-color: rgba(1, 186, 179, 0.1);
+  border: 1px solid #03045E;
+  border-color: #03045E;
+  border-radius: 10px;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px 10px;
+}
+.education_container a {
+  text-decoration: none;
+}
+
+.educations_container {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.protocol_table {
+  border: 1px solid #dddddd;
+  border-collapse: collapse;
+}
+.protocol_table td {
+  border: 1px solid #03045E;
+  vertical-align: top;
+}
+
 .user__container {
   margin-top: 80px;
   margin-right: 50px;
   margin-left: 50px;
-}
-
-.aaa {
-  margin-top: 30px;
 }
 
 * {

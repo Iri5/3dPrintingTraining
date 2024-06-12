@@ -1,0 +1,174 @@
+Date : 2024-06-12 23:26:45
+Directory : c:\Users\Пользователь\Desktop\site
+Total : 116 files,  11276 codes, 509 comments, 800 blanks, all 12585 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| CSS        |          3 |      2,680 |         16 |        186 |      2,882 |
+| HTML       |         26 |      2,487 |        180 |        205 |      2,872 |
+| JavaScript |         42 |      2,466 |        281 |        145 |      2,892 |
+| SCSS       |         35 |      2,021 |         32 |        254 |      2,307 |
+| JSON       |          2 |      1,596 |          0 |          2 |      1,598 |
+| XML        |          8 |         26 |          0 |          8 |         34 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++-------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                      | files      | code       | comment    | blank      | total      |
++-------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                         |        116 |     11,276 |        509 |        800 |     12,585 |
+| . (Files)                                                                                 |          3 |      1,940 |        130 |         25 |      2,095 |
+| public                                                                                    |         87 |      6,849 |        199 |        570 |      7,618 |
+| public (Files)                                                                            |          1 |         11 |         30 |          1 |         42 |
+| public\img                                                                                |          8 |         26 |          0 |          8 |         34 |
+| public\js                                                                                 |         40 |      2,111 |        121 |        121 |      2,353 |
+| public\js (Files)                                                                         |          1 |         18 |         15 |          1 |         34 |
+| public\js\admin                                                                           |          4 |        135 |          0 |          6 |        141 |
+| public\js\auth                                                                            |          1 |         49 |          6 |          2 |         57 |
+| public\js\common                                                                          |          2 |         62 |          0 |          0 |         62 |
+| public\js\modeling                                                                        |          6 |        647 |         30 |         57 |        734 |
+| public\js\teach                                                                           |         26 |      1,200 |         70 |         55 |      1,325 |
+| public\js\teach (Files)                                                                   |         11 |        444 |         28 |         25 |        497 |
+| public\js\teach\course                                                                    |          9 |        429 |          0 |         11 |        440 |
+| public\js\teach\course (Files)                                                            |          1 |         24 |          0 |          0 |         24 |
+| public\js\teach\course\test                                                               |          8 |        405 |          0 |         11 |        416 |
+| public\js\teach\mmAdmin                                                                   |          6 |        327 |         42 |         19 |        388 |
+| public\scss                                                                               |          2 |        162 |          4 |         31 |        197 |
+| public\scssA                                                                              |          2 |        529 |          2 |         81 |        612 |
+| public\scssAuth                                                                           |         34 |      4,010 |         42 |        328 |      4,380 |
+| public\scssAuth (Files)                                                                   |          2 |      2,384 |         18 |        149 |      2,551 |
+| public\scssAuth\parts                                                                     |         32 |      1,626 |         24 |        179 |      1,829 |
+| public\scssAuth\parts (Files)                                                             |          5 |        229 |         13 |         32 |        274 |
+| public\scssAuth\parts\mixins                                                              |          6 |        135 |          3 |         16 |        154 |
+| public\scssAuth\parts\modeling                                                            |          6 |        379 |          2 |         62 |        443 |
+| public\scssAuth\parts\pages                                                               |         15 |        883 |          6 |         69 |        958 |
+| views                                                                                     |         26 |      2,487 |        180 |        205 |      2,872 |
+| views (Files)                                                                             |         15 |      2,401 |        180 |        204 |      2,785 |
+| views\blocks                                                                              |          1 |          7 |          0 |          1 |          8 |
+| views\materials                                                                           |         10 |         79 |          0 |          0 |         79 |
++-------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                                                  | language   | code       | comment    | blank      | total      |
++-------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| c:\Users\Пользователь\Desktop\site\package-lock.json                                      | JSON       |      1,574 |          0 |          1 |      1,575 |
+| c:\Users\Пользователь\Desktop\site\package.json                                           | JSON       |         22 |          0 |          1 |         23 |
+| c:\Users\Пользователь\Desktop\site\public\img\Add.svg                                     | XML        |          3 |          0 |          1 |          4 |
+| c:\Users\Пользователь\Desktop\site\public\img\CloseModal.svg                              | XML        |          3 |          0 |          1 |          4 |
+| c:\Users\Пользователь\Desktop\site\public\img\CloseModalWhite.svg                         | XML        |          3 |          0 |          1 |          4 |
+| c:\Users\Пользователь\Desktop\site\public\img\Delete.svg                                  | XML        |          3 |          0 |          1 |          4 |
+| c:\Users\Пользователь\Desktop\site\public\img\Edit.svg                                    | XML        |          3 |          0 |          1 |          4 |
+| c:\Users\Пользователь\Desktop\site\public\img\Exit.svg                                    | XML        |          3 |          0 |          1 |          4 |
+| c:\Users\Пользователь\Desktop\site\public\img\Eye.svg                                     | XML        |          4 |          0 |          1 |          5 |
+| c:\Users\Пользователь\Desktop\site\public\img\PDF.svg                                     | XML        |          4 |          0 |          1 |          5 |
+| c:\Users\Пользователь\Desktop\site\public\js\admin\addUser.js                             | JavaScript |         19 |          0 |          1 |         20 |
+| c:\Users\Пользователь\Desktop\site\public\js\admin\deleteUser.js                          | JavaScript |         18 |          0 |          1 |         19 |
+| c:\Users\Пользователь\Desktop\site\public\js\admin\editUser.js                            | JavaScript |         86 |          0 |          4 |         90 |
+| c:\Users\Пользователь\Desktop\site\public\js\admin\isLoginNew.js                          | JavaScript |         12 |          0 |          0 |         12 |
+| c:\Users\Пользователь\Desktop\site\public\js\auth\auth.js                                 | JavaScript |         49 |          6 |          2 |         57 |
+| c:\Users\Пользователь\Desktop\site\public\js\common\logout.js                             | JavaScript |          4 |          0 |          0 |          4 |
+| c:\Users\Пользователь\Desktop\site\public\js\common\modal.js                              | JavaScript |         58 |          0 |          0 |         58 |
+| c:\Users\Пользователь\Desktop\site\public\js\loadEducationInfoToLS.js                     | JavaScript |         18 |         15 |          1 |         34 |
+| c:\Users\Пользователь\Desktop\site\public\js\modeling\charts.js                           | JavaScript |        177 |          0 |          7 |        184 |
+| c:\Users\Пользователь\Desktop\site\public\js\modeling\dotable.js                          | JavaScript |         20 |          0 |          1 |         21 |
+| c:\Users\Пользователь\Desktop\site\public\js\modeling\graph.js                            | JavaScript |         99 |          1 |          8 |        108 |
+| c:\Users\Пользователь\Desktop\site\public\js\modeling\mainFunctions.js                    | JavaScript |        260 |         24 |         28 |        312 |
+| c:\Users\Пользователь\Desktop\site\public\js\modeling\math.js                             | JavaScript |          1 |          2 |          0 |          3 |
+| c:\Users\Пользователь\Desktop\site\public\js\modeling\table.js                            | JavaScript |         90 |          3 |         13 |        106 |
+| c:\Users\Пользователь\Desktop\site\public\js\teach\addMaterial.js                         | JavaScript |          8 |          0 |          0 |          8 |
+| c:\Users\Пользователь\Desktop\site\public\js\teach\app.js                                 | JavaScript |         18 |         16 |          2 |         36 |
+| c:\Users\Пользователь\Desktop\site\public\js\teach\clickAddEducation.js                   | JavaScript |        160 |         12 |          8 |        180 |
+| c:\Users\Пользователь\Desktop\site\public\js\teach\clickAddTask.js                        | JavaScript |         46 |          0 |          2 |         48 |
+| c:\Users\Пользователь\Desktop\site\public\js\teach\clickInUsers.js                        | JavaScript |         28 |          0 |          4 |         32 |
+| c:\Users\Пользователь\Desktop\site\public\js\teach\clickShowTask.js                       | JavaScript |        104 |          0 |          4 |        108 |
+| c:\Users\Пользователь\Desktop\site\public\js\teach\clickToGoToStudent.js                  | JavaScript |         10 |          0 |          0 |         10 |
+| c:\Users\Пользователь\Desktop\site\public\js\teach\course\editCourse.js                   | JavaScript |         24 |          0 |          0 |         24 |
+| c:\Users\Пользователь\Desktop\site\public\js\teach\course\test\addQuestion.js             | JavaScript |        133 |          0 |          3 |        136 |
+| c:\Users\Пользователь\Desktop\site\public\js\teach\course\test\addTest.js                 | JavaScript |          7 |          0 |          0 |          7 |
+| c:\Users\Пользователь\Desktop\site\public\js\teach\course\test\addVariant.js              | JavaScript |         32 |          0 |          2 |         34 |
+| c:\Users\Пользователь\Desktop\site\public\js\teach\course\test\changeLabel.js             | JavaScript |         29 |          0 |          1 |         30 |
+| c:\Users\Пользователь\Desktop\site\public\js\teach\course\test\clickInTests.js            | JavaScript |         27 |          0 |          4 |         31 |
+| c:\Users\Пользователь\Desktop\site\public\js\teach\course\test\deleteTest.js              | JavaScript |         17 |          0 |          0 |         17 |
+| c:\Users\Пользователь\Desktop\site\public\js\teach\course\test\editTest.js                | JavaScript |         41 |          0 |          0 |         41 |
+| c:\Users\Пользователь\Desktop\site\public\js\teach\course\test\submitQuestion.js          | JavaScript |        119 |          0 |          1 |        120 |
+| c:\Users\Пользователь\Desktop\site\public\js\teach\deleteCourse.js                        | JavaScript |         17 |          0 |          1 |         18 |
+| c:\Users\Пользователь\Desktop\site\public\js\teach\fillCourseInfo.js                      | JavaScript |         23 |          0 |          0 |         23 |
+| c:\Users\Пользователь\Desktop\site\public\js\teach\mmAdmin\click_buttons.js               | JavaScript |        122 |          0 |          6 |        128 |
+| c:\Users\Пользователь\Desktop\site\public\js\teach\mmAdmin\delete.js                      | JavaScript |         21 |          0 |          3 |         24 |
+| c:\Users\Пользователь\Desktop\site\public\js\teach\mmAdmin\editBase.js                    | JavaScript |         95 |         38 |          7 |        140 |
+| c:\Users\Пользователь\Desktop\site\public\js\teach\mmAdmin\fillSelectInModelAdd.js        | JavaScript |         37 |          0 |          0 |         37 |
+| c:\Users\Пользователь\Desktop\site\public\js\teach\mmAdmin\fillSelectInModelEdit.js       | JavaScript |         19 |          0 |          0 |         19 |
+| c:\Users\Пользователь\Desktop\site\public\js\teach\mmAdmin\getInfoDataBase.js             | JavaScript |         33 |          4 |          3 |         40 |
+| c:\Users\Пользователь\Desktop\site\public\js\teach\navVisual.js                           | JavaScript |         25 |          0 |          1 |         26 |
+| c:\Users\Пользователь\Desktop\site\public\js\teach\previewMaterial.js                     | JavaScript |          5 |          0 |          3 |          8 |
+| c:\Users\Пользователь\Desktop\site\public\scssA\style.css                                 | CSS        |        261 |          0 |         31 |        292 |
+| c:\Users\Пользователь\Desktop\site\public\scssA\style.scss                                | SCSS       |        268 |          2 |         50 |        320 |
+| c:\Users\Пользователь\Desktop\site\public\scssAuth\parts\_fonts.scss                      | SCSS       |         12 |          1 |          1 |         14 |
+| c:\Users\Пользователь\Desktop\site\public\scssAuth\parts\_header.scss                     | SCSS       |         23 |          0 |          3 |         26 |
+| c:\Users\Пользователь\Desktop\site\public\scssAuth\parts\_modal.scss                      | SCSS       |        157 |         10 |         26 |        193 |
+| c:\Users\Пользователь\Desktop\site\public\scssAuth\parts\_nav.scss                        | SCSS       |         23 |          0 |          0 |         23 |
+| c:\Users\Пользователь\Desktop\site\public\scssAuth\parts\_vars.scss                       | SCSS       |         14 |          2 |          2 |         18 |
+| c:\Users\Пользователь\Desktop\site\public\scssAuth\parts\mixins\_buttons.scss             | SCSS       |         32 |          1 |          5 |         38 |
+| c:\Users\Пользователь\Desktop\site\public\scssAuth\parts\mixins\_font.scss                | SCSS       |         10 |          1 |          1 |         12 |
+| c:\Users\Пользователь\Desktop\site\public\scssAuth\parts\mixins\_icon.scss                | SCSS       |         12 |          0 |          1 |         13 |
+| c:\Users\Пользователь\Desktop\site\public\scssAuth\parts\mixins\_input.scss               | SCSS       |         28 |          1 |          4 |         33 |
+| c:\Users\Пользователь\Desktop\site\public\scssAuth\parts\mixins\_radio.scss               | SCSS       |         35 |          0 |          5 |         40 |
+| c:\Users\Пользователь\Desktop\site\public\scssAuth\parts\mixins\_table.scss               | SCSS       |         18 |          0 |          0 |         18 |
+| c:\Users\Пользователь\Desktop\site\public\scssAuth\parts\modeling\_chart.scss             | SCSS       |         52 |          0 |         12 |         64 |
+| c:\Users\Пользователь\Desktop\site\public\scssAuth\parts\modeling\_generated.scss         | SCSS       |        176 |          2 |         23 |        201 |
+| c:\Users\Пользователь\Desktop\site\public\scssAuth\parts\modeling\_main.scss              | SCSS       |         22 |          0 |          3 |         25 |
+| c:\Users\Пользователь\Desktop\site\public\scssAuth\parts\modeling\_plot.scss              | SCSS       |         13 |          0 |          0 |         13 |
+| c:\Users\Пользователь\Desktop\site\public\scssAuth\parts\modeling\_settingsContainer.scss | SCSS       |         37 |          0 |          6 |         43 |
+| c:\Users\Пользователь\Desktop\site\public\scssAuth\parts\modeling\_table.scss             | SCSS       |         79 |          0 |         18 |         97 |
+| c:\Users\Пользователь\Desktop\site\public\scssAuth\parts\pages\_addMaterial.scss          | SCSS       |         10 |          0 |          0 |         10 |
+| c:\Users\Пользователь\Desktop\site\public\scssAuth\parts\pages\_addTest.scss              | SCSS       |        164 |          0 |         12 |        176 |
+| c:\Users\Пользователь\Desktop\site\public\scssAuth\parts\pages\_admin.scss                | SCSS       |         37 |          0 |          3 |         40 |
+| c:\Users\Пользователь\Desktop\site\public\scssAuth\parts\pages\_auth.scss                 | SCSS       |         64 |          0 |         11 |         75 |
+| c:\Users\Пользователь\Desktop\site\public\scssAuth\parts\pages\_course.scss               | SCSS       |        132 |          0 |          5 |        137 |
+| c:\Users\Пользователь\Desktop\site\public\scssAuth\parts\pages\_dropdown.scss             | SCSS       |         48 |          6 |          5 |         59 |
+| c:\Users\Пользователь\Desktop\site\public\scssAuth\parts\pages\_modelingAdmin.scss        | SCSS       |         90 |          0 |         17 |        107 |
+| c:\Users\Пользователь\Desktop\site\public\scssAuth\parts\pages\_preview.scss              | SCSS       |         15 |          0 |          0 |         15 |
+| c:\Users\Пользователь\Desktop\site\public\scssAuth\parts\pages\_student.scss              | SCSS       |        136 |          0 |          8 |        144 |
+| c:\Users\Пользователь\Desktop\site\public\scssAuth\parts\pages\_tasks.scss                | SCSS       |         10 |          0 |          0 |         10 |
+| c:\Users\Пользователь\Desktop\site\public\scssAuth\parts\pages\_teachCourse.scss          | SCSS       |         64 |          0 |          3 |         67 |
+| c:\Users\Пользователь\Desktop\site\public\scssAuth\parts\pages\_teachHeader.scss          | SCSS       |         24 |          0 |          1 |         25 |
+| c:\Users\Пользователь\Desktop\site\public\scssAuth\parts\pages\_teachStudents.scss        | SCSS       |         57 |          0 |          3 |         60 |
+| c:\Users\Пользователь\Desktop\site\public\scssAuth\parts\pages\_user.scss                 | SCSS       |          8 |          0 |          0 |          8 |
+| c:\Users\Пользователь\Desktop\site\public\scssAuth\parts\pages\_userHeader.scss           | SCSS       |         24 |          0 |          1 |         25 |
+| c:\Users\Пользователь\Desktop\site\public\scssAuth\style.css                              | CSS        |      2,342 |         16 |        142 |      2,500 |
+| c:\Users\Пользователь\Desktop\site\public\scssAuth\style.scss                             | SCSS       |         42 |          2 |          7 |         51 |
+| c:\Users\Пользователь\Desktop\site\public\scss\style.css                                  | CSS        |         77 |          0 |         13 |         90 |
+| c:\Users\Пользователь\Desktop\site\public\scss\style.scss                                 | SCSS       |         85 |          4 |         18 |        107 |
+| c:\Users\Пользователь\Desktop\site\public\test.js                                         | JavaScript |         11 |         30 |          1 |         42 |
+| c:\Users\Пользователь\Desktop\site\serv.js                                                | JavaScript |        344 |        130 |         23 |        497 |
+| c:\Users\Пользователь\Desktop\site\views\addMaterial.ejs                                  | HTML       |         42 |          3 |         16 |         61 |
+| c:\Users\Пользователь\Desktop\site\views\add_test.ejs                                     | HTML       |        304 |         13 |         43 |        360 |
+| c:\Users\Пользователь\Desktop\site\views\admin.ejs                                        | HTML       |        211 |          0 |         14 |        225 |
+| c:\Users\Пользователь\Desktop\site\views\blocks\header.ejs                                | HTML       |          7 |          0 |          1 |          8 |
+| c:\Users\Пользователь\Desktop\site\views\course.ejs                                       | HTML       |         70 |         80 |         13 |        163 |
+| c:\Users\Пользователь\Desktop\site\views\course1.ejs                                      | HTML       |        178 |         21 |         14 |        213 |
+| c:\Users\Пользователь\Desktop\site\views\index.ejs                                        | HTML       |         47 |          0 |          5 |         52 |
+| c:\Users\Пользователь\Desktop\site\views\materials\1.ejs                                  | HTML       |         38 |          0 |          0 |         38 |
+| c:\Users\Пользователь\Desktop\site\views\materials\2.ejs                                  | HTML       |          1 |          0 |          0 |          1 |
+| c:\Users\Пользователь\Desktop\site\views\materials\4.ejs                                  | HTML       |         15 |          0 |          0 |         15 |
+| c:\Users\Пользователь\Desktop\site\views\materials\5.ejs                                  | HTML       |         10 |          0 |          0 |         10 |
+| c:\Users\Пользователь\Desktop\site\views\materials\65.ejs                                 | HTML       |          1 |          0 |          0 |          1 |
+| c:\Users\Пользователь\Desktop\site\views\materials\67.ejs                                 | HTML       |          1 |          0 |          0 |          1 |
+| c:\Users\Пользователь\Desktop\site\views\materials\72.ejs                                 | HTML       |          1 |          0 |          0 |          1 |
+| c:\Users\Пользователь\Desktop\site\views\materials\77.ejs                                 | HTML       |          1 |          0 |          0 |          1 |
+| c:\Users\Пользователь\Desktop\site\views\materials\78.ejs                                 | HTML       |          1 |          0 |          0 |          1 |
+| c:\Users\Пользователь\Desktop\site\views\materials\79.ejs                                 | HTML       |         10 |          0 |          0 |         10 |
+| c:\Users\Пользователь\Desktop\site\views\modeling.ejs                                     | HTML       |        172 |          8 |         14 |        194 |
+| c:\Users\Пользователь\Desktop\site\views\modeling_admin.ejs                               | HTML       |        651 |         20 |         31 |        702 |
+| c:\Users\Пользователь\Desktop\site\views\preview.ejs                                      | HTML       |         26 |          0 |          1 |         27 |
+| c:\Users\Пользователь\Desktop\site\views\student.ejs                                      | HTML       |        136 |          6 |          9 |        151 |
+| c:\Users\Пользователь\Desktop\site\views\study.ejs                                        | HTML       |         35 |          0 |          2 |         37 |
+| c:\Users\Пользователь\Desktop\site\views\tasks.ejs                                        | HTML       |        165 |          1 |         11 |        177 |
+| c:\Users\Пользователь\Desktop\site\views\teac.ejs                                         | HTML       |        148 |         28 |         18 |        194 |
+| c:\Users\Пользователь\Desktop\site\views\test.ejs                                         | HTML       |        155 |          0 |          7 |        162 |
+| c:\Users\Пользователь\Desktop\site\views\user.ejs                                         | HTML       |         61 |          0 |          6 |         67 |
+| Total                                                                                     |            |     11,276 |        509 |        800 |     12,585 |
++-------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+

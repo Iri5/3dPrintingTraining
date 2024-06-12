@@ -20,6 +20,9 @@
 .save_select_practic_btn{
     @include buttonDefault(40px, 100%, 16px);
 }
+.save_protocol_score_btn{
+    @include buttonDefault(40px, 100%, 16px);
+}
 .getTested_btn{
     @include buttonDefault(40px, 200px, 16px);
     margin-top: 20px;
@@ -141,4 +144,33 @@
     @include buttonDefault(40px, 300px, 16px);
     margin-top: 20px;
     margin-bottom: 20px;
+}
+.education_container{
+    background-color: $base-color-trans;
+    border: 1px solid $base-color;
+    border-color: $base-color;
+    border-radius: 10px;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px 10px;
+    a{
+        text-decoration: none;
+    }
+}
+.educations_container{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.protocol_table{
+    border: 1px solid #dddddd;
+    border-collapse: collapse;
+    td{
+        border: 1px solid $base-color;
+        vertical-align: top;
+    }
 }

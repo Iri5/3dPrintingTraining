@@ -28,39 +28,59 @@
         <% if (data.educations.length == 0) { %>
             <h3>Нет назначенных курсов</h3>
         <%} else {%>
-            <% if (data.educations[0].practical_task_id && !(data.educations[0].education_pract_score)) { %>
-                <div class="aaa">
-                    <a href="/modeling" 
-                    class="apractic"
-                    tasktext="<%=data.educations[0].practical_task_text%>"
-                    ansid="<%=data.educations[0].practical_ans_id%>"
-                    taskid="<%=data.educations[0].practical_task_id%>"
-                    userid="<%=data.user_id%>"
-                    edid="<%=data.educations[0].education_id%>"
-                    courseid="<%=data.educations[0].course_id%>">
-                    Выполнить практическое задание
-                </a>
-                </div>
+            <div class="educations_container">
+                <% for (let i = 0; i <data.educations.length; i++) {%>
+                    <div class="education_container">
+                        
+                            <% if ((data.educations[i].course_id) && !(data.educations[i].education_test_score)) { %>
+                                <div class="aaa">
+                                    <a href="/study/<%= data.educations[0].link%>" 
+                                        class="apractic"
+                                        tasktext="<%=data.educations[0].practical_task_text%>"
+                                        ansid="<%=data.educations[0].practical_ans_id%>"
+                                        taskid="<%=data.educations[0].practical_task_id%>"
+                                        userid="<%=data.user_id%>"
+                                        edid="<%=data.educations[0].education_id%>"
+                                        courseid="<%=data.educations[0].course_id%>">
+                                        Ознакомиться с материалами
+                                    </a>
+                                </div>
+                                
+                                <%}%>
+                                <% if (data.educations[i].practical_task_id && !(data.educations[i].education_pract_score)) { %>
+                                    <div class="aaa">
+                                        <a href="/modeling" 
+                                        class="apractic"
+                                        tasktext="<%=data.educations[0].practical_task_text%>"
+                                        ansid="<%=data.educations[0].practical_ans_id%>"
+                                        taskid="<%=data.educations[0].practical_task_id%>"
+                                        userid="<%=data.user_id%>"
+                                        edid="<%=data.educations[0].education_id%>"
+                                        courseid="<%=data.educations[0].course_id%>">
+                                        Выполнить практическое задание
+                                    </a>
+                                    </div>
+                                    
+                                    <%}%>
+                            </div>
+                        <%}%>
+            </div>
+            
                 
-                <%}%>
-                <% if (data.educations[0].link) { %>
-                    <div class="aaa">
-                        <a href="/study/<%= data.educations[0].link%>" 
-                            class="apractic"
-                            tasktext="<%=data.educations[0].practical_task_text%>"
-                            ansid="<%=data.educations[0].practical_ans_id%>"
-                            taskid="<%=data.educations[0].practical_task_id%>"
-                            userid="<%=data.user_id%>"
-                            edid="<%=data.educations[0].education_id%>"
-                            courseid="<%=data.educations[0].course_id%>">
-                            Ознакомиться с материалами
-                        </a>
-                    </div>
-                    
-                    <%}%>
+            
             <%}%>
     </div>
-    
+    <script>
+        document.addEventListener('DOMContentLoaded', ()=>{
+            let education_containers = document.querySelectorAll('.education_container');
+            education_containers.forEach(elem => {
+                if (elem.innerHTML.trim() == ''){
+                    elem.style.display = 'none';
+                }
+            })
+        })
+        
+    </script>
     <script src="../js/common/logout.js"></script>
     <script src="../js/loadEducationInfoToLS.js"></script>
 </body>

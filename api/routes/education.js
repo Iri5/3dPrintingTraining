@@ -1,6 +1,25 @@
 const express = require('express')
 const router = express.Router();
 const pool = require('../db');
+router.get('/:educationId', (req, res) => {
+    console.log('Path: /education/:educationId Method: GET');
+    const id = req.params.educationId;
+    let query = `SELECT * FROM mydb.education
+                INNER JOIN mydb.practical_answer ON (education.practical_id = practical_answer.id)
+                where mydb.education.id = ?`;
+    pool.query(query, [id], function (err, data) {
+        if (err) {
+            res.sendStatus(500);
+            return console.log(err);
+        } else {
+            
+            let Jinfo = JSON.stringify(data);
+            console.log(Jinfo)
+            res.send(Jinfo);
+            //res.redirect('/tasks');
+        }
+    })
+})
 router.post('/', (req, res) => {
     console.log('Path: /education Method: POST');
     if (!req.body) return;

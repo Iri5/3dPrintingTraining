@@ -24,65 +24,68 @@
         </div>
     </header>
     <div class="student__container">
-        <h1><%=data.fio%></h1>
-        <h2>Группа <%=data.gr%></h2>
+        <h1>
+            <%=data.fio%>
+        </h1>
+        <h2>Группа <%=data.gr%>
+        </h2>
         <div class="students-table__container">
-            <div class="students-table__head courese-test__title-container" >
+            <div class="students-table__head courese-test__title-container">
                 <div class="students-table__name course-test__title">Обучения</div>
                 <button class="add_education_btn ">Назначить обучение</button>
             </div>
-            <% if (data.educations != null) {%>
-            <table id="students" class="menu table">
-                <tr>
-                    <th>Курс</th>
-                    <th>Практическое задание</th>
-                    <th>Тестирование</th>
-                    <th>Практика</th>
-                </tr>
-                <% for(let i=0; i<data.educations.length; i++){ %>
-                    <tr edit="<%= data.educations[i].education_id %>">
-                        <td class="fio">
-                            <% if (data.educations[i].course_title === null) {%>
-                                -
-                                <%} else{%>
-                            <%= data.educations[i].course_title %>
-                            <%} %>
-                        </td>
-                        <td>
-                            <% if (data.educations[i].course_title === null) {%>
-                                -
-                                <%} else{%>
-                                    <%= data.educations[i].practical_task_text %>
-                            <%} %>
-                            
-                        </td>
-                        
-                        <td>
-                            
-                            <% if (data.educations[i].education_test_score === null) {%>
-                                -
-                                <%} else{%>
-                                    <%= data.educations[i].education_test_score %>
-                                <%} %>
-                        </td>
-                        <td>
-                            <% if (data.educations[i].education_pract_score === null) {%>
-                                -
-                                <%} else if (data.educations[i].education_pract_score == 0){%>
-                            Незачет
-                                <%} else {%>
-                                    Зачет
-                                    <%}%>
-                           
-                        </td>
-                        <td>
-                            <div education-id="<%=data.educations[i].education_id %>" data-action="edit" class="eye-icon"
-                                title="Просмотр"></div>
-                        </td>
+            <% if (data.educations !=null) {%>
+                <table id="students" class="menu table">
+                    <tr>
+                        <th>Курс</th>
+                        <th>Практическое задание</th>
+                        <th>Тестирование</th>
+                        <th>Практика</th>
                     </tr>
-                    <%} %>
-            </table>
-            <%}%>
+                    <% for(let i=0; i<data.educations.length; i++){ %>
+                        <tr edit="<%= data.educations[i].education_id %>">
+                            <td class="fio">
+                                <% if (data.educations[i].course_title===null) {%>
+                                    -
+                                    <%} else{%>
+                                        <%= data.educations[i].course_title %>
+                                            <%} %>
+                            </td>
+                            <td>
+                                <% if (data.educations[i].course_title===null) {%>
+                                    -
+                                    <%} else{%>
+                                        <%= data.educations[i].practical_task_text %>
+                                            <%} %>
+
+                            </td>
+
+                            <td>
+
+                                <% if (data.educations[i].education_test_score===null) {%>
+                                    -
+                                    <%} else{%>
+                                        <%= data.educations[i].education_test_score %>
+                                            <%} %>
+                            </td>
+                            <td>
+                                <% if (data.educations[i].education_pract_score===null) {%>
+                                    -
+                                    <%} else if (data.educations[i].education_pract_score==0){%>
+                                        Незачет
+                                        <%} else {%>
+                                            Зачет
+                                            <%}%>
+
+                            </td>
+                            <td>
+                                <div education-id="<%=data.educations[i].education_id %>" data-action="edit"
+                                    class="eye-icon" title="Просмотр"></div>
+                            </td>
+                        </tr>
+                        <%} %>
+                </table>
+                <%}%>
         </div>
 
     </div>
@@ -143,6 +146,68 @@
             </div>
         </div>
     </div>
+    <div class="modal_container">
+        <div class="modal " id="modal_show_protocol">
+            <div class="modal_content-form modal__new-course">
+                <div class="modal_header">
+                    <div class="modal_close modal_close_white"></div>
+                    Протокол обучения
+                </div>
+                <div class="modal_body">
+                    <form action="/pract_score_new" method="post" id="show_protocol_form">
+                        <input type="number" name="id" style="display: none;">
+                        <input type="number" name="studid" style="display: none;">
+                        <table class="protocol_table"></table>
+                        <select name="practic_score">
+                            <option value="1.00">Зачет</option>
+                            <option value="0.00">Незачет</option>
+                        </select>
+                        <button type="submit" class="save_protocol_score_btn">Сохранить</button>
+                        <!--<button class=" form_button" type="submit">Сохранить
+                        </button>-->
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let table = document.querySelector('#students');
+        table.addEventListener('click', GetProtocol)
+        async function GetProtocol(e) {
+            if (e.target.hasAttribute('education-id')) {
+                let id = e.target.getAttribute('education-id');
+                
+                const result = await fetch(`/education/${id}`, {
+                    method: 'get',
+                    headers: {
+                        "Content-Type": "application/json; charset=UTF-8",
+                    },
+                })
+                const result1 = await result.json();
+                console.log(result1);
+                
+                let protocolForm = document.querySelector('#show_protocol_form');
+                let inputId = protocolForm.querySelector('input[name=id]');
+                inputId.value = id;
+                let studInput = protocolForm.querySelector('input[name=studid]');
+                studInput.value = result1[0].user_id;
+                let h3 = protocolForm.querySelector('h3');
+                if (h3) h3.remove();
+                let data = document.createElement('h3');
+                data.innerHTML = result1[0].protocol[0].date;
+                inputId.after(data);
+                let tableProtocol = protocolForm.querySelector('table');
+                tableProtocol.innerHTML = '';
+                result1[0].protocol.forEach(elem=>{
+                    let tr = document.createElement('tr');
+                    tr.innerHTML = `<td>${elem.time}</td>
+                    <td>${elem.message}</td>`
+                    tableProtocol.append(tr);
+                })
+                ModalWorkWithoutBtn('modal_show_protocol');
+            }
+        }
+    </script>
     <script src="../js/common/logout.js"></script>
     <script src="../js/common/modal.js"></script>
     <script src="../js/teach/clickAddEducation.js"></script>

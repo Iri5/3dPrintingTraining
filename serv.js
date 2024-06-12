@@ -200,7 +200,16 @@ app.post('/teach-uploadimg', (req, res) => {
     let jsonans = JSON.stringify(ans);
     res.send(jsonans);
 });
-
+app.post('/pract_score_new', urlencodedParser, (req, res) => {
+    console.log(req.body);
+    let query = 'UPDATE mydb.education SET education.pract_score = ? WHERE education.id = ?';
+    pool.query(query, [req.body.practic_score, req.body.id], function(err, data){
+        if (err) console.log(err);
+        res.status = 200;
+        res.redirect(`/student/${req.body.studid}`);
+        ///student/:studid
+    })
+})
 //Найти курс по ИД
 app.post('/teach-getcoursebyid', urlencodedParser, (req, res) => {
     console.log('Path: /teach-getcoursebyid will send id FROM us.course WHERE title = ?');

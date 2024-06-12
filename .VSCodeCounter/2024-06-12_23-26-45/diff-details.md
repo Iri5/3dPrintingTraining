@@ -1,0 +1,131 @@
+# Diff Details
+
+Date : 2024-06-12 23:26:45
+
+Directory c:\\Users\\Пользователь\\Desktop\\site
+
+Total : 116 files,  11276 codes, 509 comments, 800 blanks, all 12585 lines
+
+[Summary](results.md) / [Details](details.md) / [Diff Summary](diff.md) / Diff Details
+
+## Files
+| filename | language | code | comment | blank | total |
+| :--- | :--- | ---: | ---: | ---: | ---: |
+| [package-lock.json](/package-lock.json) | JSON | 1,574 | 0 | 1 | 1,575 |
+| [package.json](/package.json) | JSON | 22 | 0 | 1 | 23 |
+| [public/img/Add.svg](/public/img/Add.svg) | XML | 3 | 0 | 1 | 4 |
+| [public/img/CloseModal.svg](/public/img/CloseModal.svg) | XML | 3 | 0 | 1 | 4 |
+| [public/img/CloseModalWhite.svg](/public/img/CloseModalWhite.svg) | XML | 3 | 0 | 1 | 4 |
+| [public/img/Delete.svg](/public/img/Delete.svg) | XML | 3 | 0 | 1 | 4 |
+| [public/img/Edit.svg](/public/img/Edit.svg) | XML | 3 | 0 | 1 | 4 |
+| [public/img/Exit.svg](/public/img/Exit.svg) | XML | 3 | 0 | 1 | 4 |
+| [public/img/Eye.svg](/public/img/Eye.svg) | XML | 4 | 0 | 1 | 5 |
+| [public/img/PDF.svg](/public/img/PDF.svg) | XML | 4 | 0 | 1 | 5 |
+| [public/js/admin/addUser.js](/public/js/admin/addUser.js) | JavaScript | 19 | 0 | 1 | 20 |
+| [public/js/admin/deleteUser.js](/public/js/admin/deleteUser.js) | JavaScript | 18 | 0 | 1 | 19 |
+| [public/js/admin/editUser.js](/public/js/admin/editUser.js) | JavaScript | 86 | 0 | 4 | 90 |
+| [public/js/admin/isLoginNew.js](/public/js/admin/isLoginNew.js) | JavaScript | 12 | 0 | 0 | 12 |
+| [public/js/auth/auth.js](/public/js/auth/auth.js) | JavaScript | 49 | 6 | 2 | 57 |
+| [public/js/common/logout.js](/public/js/common/logout.js) | JavaScript | 4 | 0 | 0 | 4 |
+| [public/js/common/modal.js](/public/js/common/modal.js) | JavaScript | 58 | 0 | 0 | 58 |
+| [public/js/loadEducationInfoToLS.js](/public/js/loadEducationInfoToLS.js) | JavaScript | 18 | 15 | 1 | 34 |
+| [public/js/modeling/charts.js](/public/js/modeling/charts.js) | JavaScript | 177 | 0 | 7 | 184 |
+| [public/js/modeling/dotable.js](/public/js/modeling/dotable.js) | JavaScript | 20 | 0 | 1 | 21 |
+| [public/js/modeling/graph.js](/public/js/modeling/graph.js) | JavaScript | 99 | 1 | 8 | 108 |
+| [public/js/modeling/mainFunctions.js](/public/js/modeling/mainFunctions.js) | JavaScript | 260 | 24 | 28 | 312 |
+| [public/js/modeling/math.js](/public/js/modeling/math.js) | JavaScript | 1 | 2 | 0 | 3 |
+| [public/js/modeling/table.js](/public/js/modeling/table.js) | JavaScript | 90 | 3 | 13 | 106 |
+| [public/js/teach/addMaterial.js](/public/js/teach/addMaterial.js) | JavaScript | 8 | 0 | 0 | 8 |
+| [public/js/teach/app.js](/public/js/teach/app.js) | JavaScript | 18 | 16 | 2 | 36 |
+| [public/js/teach/clickAddEducation.js](/public/js/teach/clickAddEducation.js) | JavaScript | 160 | 12 | 8 | 180 |
+| [public/js/teach/clickAddTask.js](/public/js/teach/clickAddTask.js) | JavaScript | 46 | 0 | 2 | 48 |
+| [public/js/teach/clickInUsers.js](/public/js/teach/clickInUsers.js) | JavaScript | 28 | 0 | 4 | 32 |
+| [public/js/teach/clickShowTask.js](/public/js/teach/clickShowTask.js) | JavaScript | 104 | 0 | 4 | 108 |
+| [public/js/teach/clickToGoToStudent.js](/public/js/teach/clickToGoToStudent.js) | JavaScript | 10 | 0 | 0 | 10 |
+| [public/js/teach/course/editCourse.js](/public/js/teach/course/editCourse.js) | JavaScript | 24 | 0 | 0 | 24 |
+| [public/js/teach/course/test/addQuestion.js](/public/js/teach/course/test/addQuestion.js) | JavaScript | 133 | 0 | 3 | 136 |
+| [public/js/teach/course/test/addTest.js](/public/js/teach/course/test/addTest.js) | JavaScript | 7 | 0 | 0 | 7 |
+| [public/js/teach/course/test/addVariant.js](/public/js/teach/course/test/addVariant.js) | JavaScript | 32 | 0 | 2 | 34 |
+| [public/js/teach/course/test/changeLabel.js](/public/js/teach/course/test/changeLabel.js) | JavaScript | 29 | 0 | 1 | 30 |
+| [public/js/teach/course/test/clickInTests.js](/public/js/teach/course/test/clickInTests.js) | JavaScript | 27 | 0 | 4 | 31 |
+| [public/js/teach/course/test/deleteTest.js](/public/js/teach/course/test/deleteTest.js) | JavaScript | 17 | 0 | 0 | 17 |
+| [public/js/teach/course/test/editTest.js](/public/js/teach/course/test/editTest.js) | JavaScript | 41 | 0 | 0 | 41 |
+| [public/js/teach/course/test/submitQuestion.js](/public/js/teach/course/test/submitQuestion.js) | JavaScript | 119 | 0 | 1 | 120 |
+| [public/js/teach/deleteCourse.js](/public/js/teach/deleteCourse.js) | JavaScript | 17 | 0 | 1 | 18 |
+| [public/js/teach/fillCourseInfo.js](/public/js/teach/fillCourseInfo.js) | JavaScript | 23 | 0 | 0 | 23 |
+| [public/js/teach/mmAdmin/click_buttons.js](/public/js/teach/mmAdmin/click_buttons.js) | JavaScript | 122 | 0 | 6 | 128 |
+| [public/js/teach/mmAdmin/delete.js](/public/js/teach/mmAdmin/delete.js) | JavaScript | 21 | 0 | 3 | 24 |
+| [public/js/teach/mmAdmin/editBase.js](/public/js/teach/mmAdmin/editBase.js) | JavaScript | 95 | 38 | 7 | 140 |
+| [public/js/teach/mmAdmin/fillSelectInModelAdd.js](/public/js/teach/mmAdmin/fillSelectInModelAdd.js) | JavaScript | 37 | 0 | 0 | 37 |
+| [public/js/teach/mmAdmin/fillSelectInModelEdit.js](/public/js/teach/mmAdmin/fillSelectInModelEdit.js) | JavaScript | 19 | 0 | 0 | 19 |
+| [public/js/teach/mmAdmin/getInfoDataBase.js](/public/js/teach/mmAdmin/getInfoDataBase.js) | JavaScript | 33 | 4 | 3 | 40 |
+| [public/js/teach/navVisual.js](/public/js/teach/navVisual.js) | JavaScript | 25 | 0 | 1 | 26 |
+| [public/js/teach/previewMaterial.js](/public/js/teach/previewMaterial.js) | JavaScript | 5 | 0 | 3 | 8 |
+| [public/scssA/style.css](/public/scssA/style.css) | CSS | 261 | 0 | 31 | 292 |
+| [public/scssA/style.scss](/public/scssA/style.scss) | SCSS | 268 | 2 | 50 | 320 |
+| [public/scssAuth/parts/_fonts.scss](/public/scssAuth/parts/_fonts.scss) | SCSS | 12 | 1 | 1 | 14 |
+| [public/scssAuth/parts/_header.scss](/public/scssAuth/parts/_header.scss) | SCSS | 23 | 0 | 3 | 26 |
+| [public/scssAuth/parts/_modal.scss](/public/scssAuth/parts/_modal.scss) | SCSS | 157 | 10 | 26 | 193 |
+| [public/scssAuth/parts/_nav.scss](/public/scssAuth/parts/_nav.scss) | SCSS | 23 | 0 | 0 | 23 |
+| [public/scssAuth/parts/_vars.scss](/public/scssAuth/parts/_vars.scss) | SCSS | 14 | 2 | 2 | 18 |
+| [public/scssAuth/parts/mixins/_buttons.scss](/public/scssAuth/parts/mixins/_buttons.scss) | SCSS | 32 | 1 | 5 | 38 |
+| [public/scssAuth/parts/mixins/_font.scss](/public/scssAuth/parts/mixins/_font.scss) | SCSS | 10 | 1 | 1 | 12 |
+| [public/scssAuth/parts/mixins/_icon.scss](/public/scssAuth/parts/mixins/_icon.scss) | SCSS | 12 | 0 | 1 | 13 |
+| [public/scssAuth/parts/mixins/_input.scss](/public/scssAuth/parts/mixins/_input.scss) | SCSS | 28 | 1 | 4 | 33 |
+| [public/scssAuth/parts/mixins/_radio.scss](/public/scssAuth/parts/mixins/_radio.scss) | SCSS | 35 | 0 | 5 | 40 |
+| [public/scssAuth/parts/mixins/_table.scss](/public/scssAuth/parts/mixins/_table.scss) | SCSS | 18 | 0 | 0 | 18 |
+| [public/scssAuth/parts/modeling/_chart.scss](/public/scssAuth/parts/modeling/_chart.scss) | SCSS | 52 | 0 | 12 | 64 |
+| [public/scssAuth/parts/modeling/_generated.scss](/public/scssAuth/parts/modeling/_generated.scss) | SCSS | 176 | 2 | 23 | 201 |
+| [public/scssAuth/parts/modeling/_main.scss](/public/scssAuth/parts/modeling/_main.scss) | SCSS | 22 | 0 | 3 | 25 |
+| [public/scssAuth/parts/modeling/_plot.scss](/public/scssAuth/parts/modeling/_plot.scss) | SCSS | 13 | 0 | 0 | 13 |
+| [public/scssAuth/parts/modeling/_settingsContainer.scss](/public/scssAuth/parts/modeling/_settingsContainer.scss) | SCSS | 37 | 0 | 6 | 43 |
+| [public/scssAuth/parts/modeling/_table.scss](/public/scssAuth/parts/modeling/_table.scss) | SCSS | 79 | 0 | 18 | 97 |
+| [public/scssAuth/parts/pages/_addMaterial.scss](/public/scssAuth/parts/pages/_addMaterial.scss) | SCSS | 10 | 0 | 0 | 10 |
+| [public/scssAuth/parts/pages/_addTest.scss](/public/scssAuth/parts/pages/_addTest.scss) | SCSS | 164 | 0 | 12 | 176 |
+| [public/scssAuth/parts/pages/_admin.scss](/public/scssAuth/parts/pages/_admin.scss) | SCSS | 37 | 0 | 3 | 40 |
+| [public/scssAuth/parts/pages/_auth.scss](/public/scssAuth/parts/pages/_auth.scss) | SCSS | 64 | 0 | 11 | 75 |
+| [public/scssAuth/parts/pages/_course.scss](/public/scssAuth/parts/pages/_course.scss) | SCSS | 132 | 0 | 5 | 137 |
+| [public/scssAuth/parts/pages/_dropdown.scss](/public/scssAuth/parts/pages/_dropdown.scss) | SCSS | 48 | 6 | 5 | 59 |
+| [public/scssAuth/parts/pages/_modelingAdmin.scss](/public/scssAuth/parts/pages/_modelingAdmin.scss) | SCSS | 90 | 0 | 17 | 107 |
+| [public/scssAuth/parts/pages/_preview.scss](/public/scssAuth/parts/pages/_preview.scss) | SCSS | 15 | 0 | 0 | 15 |
+| [public/scssAuth/parts/pages/_student.scss](/public/scssAuth/parts/pages/_student.scss) | SCSS | 136 | 0 | 8 | 144 |
+| [public/scssAuth/parts/pages/_tasks.scss](/public/scssAuth/parts/pages/_tasks.scss) | SCSS | 10 | 0 | 0 | 10 |
+| [public/scssAuth/parts/pages/_teachCourse.scss](/public/scssAuth/parts/pages/_teachCourse.scss) | SCSS | 64 | 0 | 3 | 67 |
+| [public/scssAuth/parts/pages/_teachHeader.scss](/public/scssAuth/parts/pages/_teachHeader.scss) | SCSS | 24 | 0 | 1 | 25 |
+| [public/scssAuth/parts/pages/_teachStudents.scss](/public/scssAuth/parts/pages/_teachStudents.scss) | SCSS | 57 | 0 | 3 | 60 |
+| [public/scssAuth/parts/pages/_user.scss](/public/scssAuth/parts/pages/_user.scss) | SCSS | 8 | 0 | 0 | 8 |
+| [public/scssAuth/parts/pages/_userHeader.scss](/public/scssAuth/parts/pages/_userHeader.scss) | SCSS | 24 | 0 | 1 | 25 |
+| [public/scssAuth/style.css](/public/scssAuth/style.css) | CSS | 2,342 | 16 | 142 | 2,500 |
+| [public/scssAuth/style.scss](/public/scssAuth/style.scss) | SCSS | 42 | 2 | 7 | 51 |
+| [public/scss/style.css](/public/scss/style.css) | CSS | 77 | 0 | 13 | 90 |
+| [public/scss/style.scss](/public/scss/style.scss) | SCSS | 85 | 4 | 18 | 107 |
+| [public/test.js](/public/test.js) | JavaScript | 11 | 30 | 1 | 42 |
+| [serv.js](/serv.js) | JavaScript | 344 | 130 | 23 | 497 |
+| [views/addMaterial.ejs](/views/addMaterial.ejs) | HTML | 42 | 3 | 16 | 61 |
+| [views/add_test.ejs](/views/add_test.ejs) | HTML | 304 | 13 | 43 | 360 |
+| [views/admin.ejs](/views/admin.ejs) | HTML | 211 | 0 | 14 | 225 |
+| [views/blocks/header.ejs](/views/blocks/header.ejs) | HTML | 7 | 0 | 1 | 8 |
+| [views/course.ejs](/views/course.ejs) | HTML | 70 | 80 | 13 | 163 |
+| [views/course1.ejs](/views/course1.ejs) | HTML | 178 | 21 | 14 | 213 |
+| [views/index.ejs](/views/index.ejs) | HTML | 47 | 0 | 5 | 52 |
+| [views/materials/1.ejs](/views/materials/1.ejs) | HTML | 38 | 0 | 0 | 38 |
+| [views/materials/2.ejs](/views/materials/2.ejs) | HTML | 1 | 0 | 0 | 1 |
+| [views/materials/4.ejs](/views/materials/4.ejs) | HTML | 15 | 0 | 0 | 15 |
+| [views/materials/5.ejs](/views/materials/5.ejs) | HTML | 10 | 0 | 0 | 10 |
+| [views/materials/65.ejs](/views/materials/65.ejs) | HTML | 1 | 0 | 0 | 1 |
+| [views/materials/67.ejs](/views/materials/67.ejs) | HTML | 1 | 0 | 0 | 1 |
+| [views/materials/72.ejs](/views/materials/72.ejs) | HTML | 1 | 0 | 0 | 1 |
+| [views/materials/77.ejs](/views/materials/77.ejs) | HTML | 1 | 0 | 0 | 1 |
+| [views/materials/78.ejs](/views/materials/78.ejs) | HTML | 1 | 0 | 0 | 1 |
+| [views/materials/79.ejs](/views/materials/79.ejs) | HTML | 10 | 0 | 0 | 10 |
+| [views/modeling.ejs](/views/modeling.ejs) | HTML | 172 | 8 | 14 | 194 |
+| [views/modeling_admin.ejs](/views/modeling_admin.ejs) | HTML | 651 | 20 | 31 | 702 |
+| [views/preview.ejs](/views/preview.ejs) | HTML | 26 | 0 | 1 | 27 |
+| [views/student.ejs](/views/student.ejs) | HTML | 136 | 6 | 9 | 151 |
+| [views/study.ejs](/views/study.ejs) | HTML | 35 | 0 | 2 | 37 |
+| [views/tasks.ejs](/views/tasks.ejs) | HTML | 165 | 1 | 11 | 177 |
+| [views/teac.ejs](/views/teac.ejs) | HTML | 148 | 28 | 18 | 194 |
+| [views/test.ejs](/views/test.ejs) | HTML | 155 | 0 | 7 | 162 |
+| [views/user.ejs](/views/user.ejs) | HTML | 61 | 0 | 6 | 67 |
+
+[Summary](results.md) / [Details](details.md) / [Diff Summary](diff.md) / Diff Details
