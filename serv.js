@@ -31,7 +31,7 @@ const pool = mysql.createPool({
     database: 'us',
     password: 'irina'
 });
-app.listen(443, () => {
+app.listen(3001, '213.171.29.92', () => {
     console.log('Server started: http://localhost:3001');
 })
 app.set('view engine', 'ejs');
