@@ -15,7 +15,7 @@ router.get('/:userid', (req, res) => {
                 gr: data[0].gr,
                 educations: [],
             }
-            
+            console.log(sendData);
             query = `SELECT 
                         mydb.education.id AS education_id, 
                         mydb.education.start AS education_start, 
@@ -45,6 +45,10 @@ router.get('/:userid', (req, res) => {
                 if (data.length != 0) {
                     sendData.educations = data;
                     console.log(sendData);
+                    res.status = 200;
+                    res.render('user', { data: sendData});
+                }
+                else {
                     res.status = 200;
                     res.render('user', { data: sendData});
                 }

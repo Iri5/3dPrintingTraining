@@ -23,7 +23,7 @@
 
 
     </script>
-    <script src="js/teach/app.js" defer></script>
+    <script src="../js/teach/putMaterial.js" defer></script>
 </head>
 
 <body>
@@ -37,7 +37,9 @@
 
 
             <form id='form-tiny' method="post" action="/mydata">
-                <textarea id="mytextarea"></textarea>
+                <textarea id="mytextarea">
+                    <%- include (link)%>
+                </textarea>
             </form>
             <button id="tiny-button" class="new-button">Сохранить</button>
         </div>

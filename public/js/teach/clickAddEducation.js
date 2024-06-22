@@ -28,8 +28,37 @@ async function ClickAddEducation() {
     inputId.value = result1.insert;
     ModalWorkWithoutBtn('modal_add_education')
 }
-
-
+async function ClickSelectCourseBtn1(e) {
+    ModalWorkWithoutBtn('modal_add_education_course');
+    const form = document.querySelector('#add_course_education_form');
+    let courses = await GetCoursesFetch();
+    let selectCourse = form.querySelector('select');
+    selectCourse.innerHTML = '';
+    courses.forEach(element => {
+        let option = document.createElement('option');
+        option.value = element.id;
+        option.innerHTML = element.title;
+        selectCourse.append(option);
+    });
+    let inputIdCourse = form.querySelector('input[name=id]');
+    inputIdCourse.value = document.querySelector('#education_id_on_show').value;
+}
+async function ClickSelectPracticBtn1(e) {
+    ModalWorkWithoutBtn('modal_add_education_practic');
+    const form = document.querySelector('#add_practic_education_form');
+    let practics = await GetPracticsFetch();
+    let selectPractics = form.querySelector('select');
+    selectPractics.innerHTML = '';
+    practics.forEach(element => {
+        let option = document.createElement('option');
+        option.value = element.id;
+        option.innerHTML = '№' + element.number;
+        option.title = element.text
+        selectPractics.append(option);
+    });
+    let inputIdPractic = form.querySelector('input[name=id]');
+    inputIdPractic.value = document.querySelector('#education_id_on_show').value;
+}
 async function ClickSelectCourseBtn(e) {
     ModalWorkWithoutBtn('modal_add_education_course');
     const form = document.querySelector('#add_course_education_form');

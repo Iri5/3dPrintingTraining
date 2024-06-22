@@ -67,8 +67,10 @@
                     <div class="course-material__icons">
                         <!--if link {-->
                         <% if (link!=null) { %>
-                            <div link="<%=link%>" class="course-material__edit-icon"></div>
-                            <div link="<%=link%>" class="course-material__show-icon" id="previewMaterial"><a href="/preview/<%=link%>" id="apreview"></a></div>
+                            <div courseid="<%=id%>" link="<%=link%>" class="course-material__edit-icon"><a
+                                    href="/putmat/<%=link%>"></a></div>
+                            <div link="<%=link%>" class="course-material__show-icon" id="previewMaterial"><a
+                                    href="/preview/<%=link%>" id="apreview"></a></div>
                             <div class="course-material__delete-icon"></div>
                             <%} else { %>
                                 <!--} else {-->
@@ -79,7 +81,7 @@
                 </div>
 
                 <!--if pdf {-->
-                    
+
                 <div class="pdf-container">
                     <!--<div class="pdf">
                         <div class="pdf__icon"></div>
@@ -105,37 +107,37 @@
                     <div class="course-test__title">Тестирование</div>
                     <% if (t_id==null){%>
                         <div class="course-test__addbtn"></div>
-                    <%}%>
-                    
+                        <%}%>
+
                 </div>
                 <% if (t_id==null){%>
                     <div>Тестирование еще не добавлено </div>
-                <%}%>
-                <% if (t_id!=null){%>
-
-                    <table id="tests" class="table course-test__table">
-                        <tr>
-                            <th>Название</th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                        <% for(let i=0; i<t_title.length; i++){ %>
-                            <tr testId="<%=t_id[i]%>">
-                                <td>
-                                    <%= t_title[i] %>
-                                </td>
-                                <td class="td20px">
-                                    <div data-action="show" class="eye-icon"><a  href=""></a></div>
-                                </td>
-                                <td class="td20px">
-                                    <div data-action="delete" class="delete-icon"></div>
-                                </td>
-                            </tr>
-                            </button>
-                            <%} %>
-
-                    </table>
                     <%}%>
+                        <% if (t_id!=null){%>
+
+                            <table id="tests" class="table course-test__table">
+                                <tr>
+                                    <th>Название</th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                                <% for(let i=0; i<t_title.length; i++){ %>
+                                    <tr testId="<%=t_id[i]%>">
+                                        <td>
+                                            <%= t_title[i] %>
+                                        </td>
+                                        <td class="td20px">
+                                            <div data-action="show" class="eye-icon"><a href=""></a></div>
+                                        </td>
+                                        <td class="td20px">
+                                            <div data-action="delete" class="delete-icon"></div>
+                                        </td>
+                                    </tr>
+                                    </button>
+                                    <%} %>
+
+                            </table>
+                            <%}%>
             </div>
 
         </div>
@@ -157,12 +159,11 @@
                             </div>
                             <div class="input-area">
                                 <label>Описание</label>
-                                <textarea name="description" placeholder="Введите описание теста"
-                                    required> </textarea>
+                                <textarea name="description" placeholder="Введите описание теста" required> </textarea>
                             </div>
                             <div class="input-area">
                                 <label>Дата начала</label>
-                                <input type="date" name="start" >
+                                <input type="date" name="start">
                             </div>
                             <div class="input-area">
                                 <label>Дата окончания</label>
@@ -180,7 +181,7 @@
                 </div>
             </div>
         </div>
-    </div>
+        </div>
         <script src="js/common/modal.js" defer></script>
         <script src="js/common/logout.js"></script>
         <script src="js/teach/course/editCourse.js"></script>
@@ -198,15 +199,31 @@
                 editForm.description.value = '<%= description %>';
             }
 
-            let addMaterial = document.querySelector('.course-material__add-icon');
-            addMaterial.addEventListener('click', () =>{
-                let titleCourse = document.querySelector('.course__title');
-                titleCourse = titleCourse.innerHTML.trim();
-                localStorage.titleCourse = titleCourse;
-                let a = addMaterial.querySelector('a');
-                a.click();
-            })
+            let addMaterialIcon = document.querySelector('.course-material__add-icon');
+            if (addMaterialIcon) {
+                addMaterialIcon.addEventListener('click', () => {
+                    let titleCourse = document.querySelector('.course__title');
+                    titleCourse = titleCourse.innerHTML.trim();
+                    localStorage.titleCourse = titleCourse;
+                    let a = addMaterialIcon.querySelector('a');
+                    a.click();
+                })
+            }
 
+            let edit = document.querySelector('.course-material__edit-icon');
+            console.log(edit)
+            document.querySelector('.course-material__edit-icon').addEventListener('click', (e) => {
+                let link = e.target.getAttribute('link');
+                let id = localStorage.currentId;
+                e.target.querySelector('a').click();
+            })
+            let del = document.querySelector('.course-material__delete-icon');
+            del.addEventListener('click', F);
+            async function F() {
+                let id = localStorage.currentId;
+                const { status } = await fetch( `/delmat/${id}`)
+                if (status == 200) window.location.reload();
+            }
         </script>
 </body>
 

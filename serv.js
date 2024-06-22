@@ -31,7 +31,7 @@ const pool = mysql.createPool({
     database: 'us',
     password: 'irina'
 });
-app.listen(3001, '0.0.0.0', () => {
+app.listen(3001, () => {
     console.log('Server started: http://localhost:3001');
 })
 app.set('view engine', 'ejs');
@@ -43,6 +43,13 @@ app.get('/', (req, res) => {
 app.get('/material', (req, res) => {
     console.log('Path: /material will render file addMaterial.ejs');
     res.render('addMaterial');
+})
+app.get('/putmat/:link', (req, res) => {
+    let link = req.params.link;
+    console.log(link);
+    let path = `materials/${link}`
+    console.log('Path: /material will render file addMaterial.ejs');
+    res.render('putMaterial', { link: path });
 })
 app.get('/index.html', (req, res) => {
     console.log('Path: /index.html will render file index.ejs');
@@ -201,9 +208,10 @@ app.post('/teach-uploadimg', (req, res) => {
     res.send(jsonans);
 });
 app.post('/pract_score_new', urlencodedParser, (req, res) => {
+    console.log('Path: /pract_score_new')
     console.log(req.body);
     let query = 'UPDATE mydb.education SET education.pract_score = ? WHERE education.id = ?';
-    pool.query(query, [req.body.practic_score, req.body.id], function(err, data){
+    pool.query(query, [req.body.practic_score, req.body.id], function (err, data) {
         if (err) console.log(err);
         res.status = 200;
         res.redirect(`/student/${req.body.studid}`);
@@ -307,6 +315,48 @@ app.post('/teach-addmaterial', jsonParser, (req, res) => {
         res.sendStatus(400);
     }
     res.sendStatus(200);
+})
+app.post('/teach-addmaterial-update', jsonParser, (req, res) => {
+    console.log('Path: /teach-addmaterial-update will create material file');
+    if (req.body) {
+        let result = req.body;
+        console.log(result);
+        let path = __dirname + `/views/materials/${result.course}.ejs`;
+        fs.writeFile(path, result.content, (err) => {
+            if (err) {
+                console.error(err);
+                return;
+            }
+            let link = `${result.course}.ejs`;
+            let query = 'UPDATE  mydb.material SET  link = ? WHERE course_id = ?;'
+            //let query = 'INSERT INTO mydb.material (type, link, course_id) VALUES (?, ?, ?) ;'
+            pool.query(query, [link, result.course], function (err, data) {
+                if (err) return console.log(err);
+            });
+            //файл записан успешно
+        })
+    }
+    else {
+        res.sendStatus(400);
+    }
+    res.sendStatus(200);
+})
+app.get('/delmat/:id', jsonParser, (req, res) => {
+    console.log('Path: //delmat/:id ');
+    let id = req.params.id;
+
+
+    let query = 'DELETE FROM  mydb.material  WHERE course_id = ?;'
+    //let query = 'INSERT INTO mydb.material (type, link, course_id) VALUES (?, ?, ?) ;'
+    pool.query(query, [id], function (err, data) {
+        if (err) return console.log(err);
+        res.sendStatus(200);
+    });
+    //файл записан успешно
+
+
+
+    
 })
 //Создание нового теста
 app.post('/add_test', urlencodedParser, (req, res) => {
@@ -485,7 +535,7 @@ app.put("/practical_answer", (req, res) => {
     let query = 'UPDATE mydb.practical_answer SET answer = ?, protocol = ? WHERE id = ?';
     let queryTask = 'SELECT * FROM mydb.practical_task WHERE id = ?';
     let queryEducation = 'UPDATE mydb.education SET pract_score = ? WHERE id = ?';
-    pool.query(query, [prAnsJson, protocolJSON, answerId], function (err, data){
+    pool.query(query, [prAnsJson, protocolJSON, answerId], function (err, data) {
         if (err) return console.log(err);
     })
     pool.query(queryTask, [taskId], function (err, data) {
@@ -502,5 +552,5 @@ app.put("/practical_answer", (req, res) => {
             res.sendStatus(200);
         })
     });
-    
+
 })

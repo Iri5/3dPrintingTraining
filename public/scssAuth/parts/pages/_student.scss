@@ -174,3 +174,6 @@
         vertical-align: top;
     }
 }
+#student_group, #student_test_score, #student_practic_score, #course_container, #practic_container{
+    border-bottom: 1px solid $base-color;
+}

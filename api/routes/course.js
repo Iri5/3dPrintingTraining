@@ -50,4 +50,14 @@ router.get('/', (req, res) => {
         res.send(courses);
     });
 })
+router.get('/:courseid', (req, res) => {
+    console.log('Path: /course/:courseid Method: GET')
+    const id = req.params.courseid;
+    let query = 'SELECT * FROM mydb.course WHERE id = ?';
+    pool.query(query, [id], function (err, data) {
+        if (err) return console.log(err);
+        let courses = JSON.stringify(data)
+        res.send(courses);
+    });
+})
 module.exports = router;

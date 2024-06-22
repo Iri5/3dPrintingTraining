@@ -5,7 +5,7 @@ router.get('/:educationId', (req, res) => {
     console.log('Path: /education/:educationId Method: GET');
     const id = req.params.educationId;
     let query = `SELECT * FROM mydb.education
-                INNER JOIN mydb.practical_answer ON (education.practical_id = practical_answer.id)
+                LEFT JOIN mydb.practical_answer ON (education.practical_id = practical_answer.id)
                 where mydb.education.id = ?`;
     pool.query(query, [id], function (err, data) {
         if (err) {
@@ -16,6 +16,21 @@ router.get('/:educationId', (req, res) => {
             let Jinfo = JSON.stringify(data);
             console.log(Jinfo)
             res.send(Jinfo);
+            //res.redirect('/tasks');
+        }
+    })
+})
+router.delete('/:educationId', (req, res) => {
+    console.log('Path: /education/:educationId Method: DELETE');
+    const id = req.params.educationId;
+    let query = `DELETE FROM mydb.education
+                WHERE mydb.education.id = ?`;
+    pool.query(query, [id], function (err, data) {
+        if (err) {
+            res.sendStatus(500);
+            return console.log(err);
+        } else {
+            res.sendStatus(200);
             //res.redirect('/tasks');
         }
     })
@@ -103,6 +118,20 @@ router.put('/practic', (req, res) => {
                 res.sendStatus(200);
             }
         })
+    })
+})
+router.get('/practic/:id', (req, res) => {
+    const id = req.params.id;
+    console.log('Path: /education/practic/:id Method: GET');
+
+    console.log(id);
+    let query = 'SELECT * FROM mydb.practical_task WHERE id = ?';
+    pool.query(query, [id], function (err, data) {
+        if (err) return console.log(err);
+        let id = data.insertId;
+        let courses = JSON.stringify(data)
+        console.log(courses);
+        res.send(courses);
     })
 })
 module.exports = router;

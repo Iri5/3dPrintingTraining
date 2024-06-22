@@ -2502,6 +2502,10 @@ td[atrname=equation] {
   vertical-align: top;
 }
 
+#student_group, #student_test_score, #student_practic_score, #course_container, #practic_container {
+  border-bottom: 1px solid #03045E;
+}
+
 .user__container {
   margin-top: 80px;
   margin-right: 50px;

@@ -24,10 +24,10 @@
         </div>
     </header>
     <div class="student__container">
-        <h1>
+        <h1 id="h1_student_fio">
             <%=data.fio%>
         </h1>
-        <h2>Группа <%=data.gr%>
+        <h2 id="h2_student_group">Группа <%=data.gr%>
         </h2>
         <div class="students-table__container">
             <div class="students-table__head courese-test__title-container">
@@ -79,8 +79,16 @@
 
                             </td>
                             <td>
-                                <div education-id="<%=data.educations[i].education_id %>" data-action="edit"
+                                <div education-id="<%=data.educations[i].education_id %>" data-action="show"
                                     class="eye-icon" title="Просмотр"></div>
+                            </td>
+                            <td>
+                                <div education-id="<%=data.educations[i].education_id %>" data-action="delete"
+                                    class="delete-icon" title="Просмотр"></div>
+                            </td>
+                            <td>
+                                <div education-id="<%=data.educations[i].education_id %>" data-action="edit"
+                                    class="edit-icon" title="Просмотр"></div>
                             </td>
                         </tr>
                         <%} %>
@@ -109,7 +117,7 @@
         </div>
     </div>
     <div class="modal_container">
-        <div class="modal " id="modal_add_education_course">
+        <div class="modal " id="modal_add_education_course" style="z-index: 60;"    >
             <div class="modal_content-form modal__new-course">
                 <div class="modal_header">
                     <div class="modal_close modal_close_white"></div>
@@ -128,8 +136,8 @@
         </div>
     </div>
     <div class="modal_container">
-        <div class="modal " id="modal_add_education_practic">
-            <div class="modal_content-form modal__new-course">
+        <div class="modal " id="modal_add_education_practic" style="z-index: 60;">
+            <div class="modal_content-form modal__new-course" >
                 <div class="modal_header">
                     <div class="modal_close modal_close_white"></div>
                     Назначение практического задания
@@ -170,41 +178,182 @@
             </div>
         </div>
     </div>
+    <div class="modal_container">
+        <div class="modal " id="modal_show_education_student">
+            <div class="modal_content-form modal__new-course">
+                <div class="modal_header">
+                    <div class="modal_close modal_close_white"></div>
+                    Обучение
+                </div>
+                <div class="modal_body">
+                    <form action="/pract_score_new" method="post" id="add_course_education_form">
+                        <input id="education_id_on_show" type="number" name="id" style="display: none;">
+                        <input id="user_id_on_show" type="number" name="studid" style="display: none;">
+                        <div id="student_fio"></div>
+                        <div id="student_group"></div>
+                        <div id="student_test_score"></div>
+                        <div id="student_practic_score"></div>
+                        <div id="label_course">Курс:</div>
+                        <div id="course_container"></div>
+                        <div id="label_practic">Практика:</div>
+                        <div id="practic_container"></div>
+                        <div id="protocol_label">Протокол выполнения практико-ориентированного задания</div>
+                        <div id="protocol_container">
+                            <div id="date_practic"></div>
+                            <table class="protocol_table"></table>
+                        </div>
+                        <select name="practic_score">
+                            <option value="1.00">Зачет</option>
+                            <option value="0.00">Незачет</option>
+                        </select>
+                        <button type="submit" class="save_protocol_score_btn">Сохранить</button>
+                        <!--<button class=" form_button" type="submit">Сохранить
+                        </button>-->
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     <script>
         let table = document.querySelector('#students');
         table.addEventListener('click', GetProtocol)
         async function GetProtocol(e) {
             if (e.target.hasAttribute('education-id')) {
                 let id = e.target.getAttribute('education-id');
-                
-                const result = await fetch(`/education/${id}`, {
-                    method: 'get',
-                    headers: {
-                        "Content-Type": "application/json; charset=UTF-8",
-                    },
-                })
-                const result1 = await result.json();
-                console.log(result1);
-                
-                let protocolForm = document.querySelector('#show_protocol_form');
-                let inputId = protocolForm.querySelector('input[name=id]');
-                inputId.value = id;
-                let studInput = protocolForm.querySelector('input[name=studid]');
-                studInput.value = result1[0].user_id;
-                let h3 = protocolForm.querySelector('h3');
-                if (h3) h3.remove();
-                let data = document.createElement('h3');
-                data.innerHTML = result1[0].protocol[0].date;
-                inputId.after(data);
-                let tableProtocol = protocolForm.querySelector('table');
-                tableProtocol.innerHTML = '';
-                result1[0].protocol.forEach(elem=>{
-                    let tr = document.createElement('tr');
-                    tr.innerHTML = `<td>${elem.time}</td>
+                let action = e.target.getAttribute('data-action');
+                if (action == 'show') {
+                    const result = await fetch(`/education/${id}`, {
+                        method: 'get',
+                        headers: {
+                            "Content-Type": "application/json; charset=UTF-8",
+                        },
+                    })
+                    const result1 = await result.json();
+                    console.log(result1);
+                    let protocolForm = document.querySelector('#show_protocol_form');
+                    let inputId = protocolForm.querySelector('input[name=id]');
+                    inputId.value = id;
+                    let studInput = protocolForm.querySelector('input[name=studid]');
+                    studInput.value = result1[0].user_id;
+                    let h3 = protocolForm.querySelector('h3');
+                    if (h3) h3.remove();
+                    let data = document.createElement('h3');
+                    data.innerHTML = result1[0].protocol[0].date;
+                    inputId.after(data);
+                    let tableProtocol = protocolForm.querySelector('table');
+                    tableProtocol.innerHTML = '';
+                    result1[0].protocol.forEach(elem => {
+                        let tr = document.createElement('tr');
+                        tr.innerHTML = `<td>${elem.time}</td>
                     <td>${elem.message}</td>`
-                    tableProtocol.append(tr);
-                })
-                ModalWorkWithoutBtn('modal_show_protocol');
+                        tableProtocol.append(tr);
+                    })
+                    ModalWorkWithoutBtn('modal_show_protocol');
+                }
+                if (action == 'delete') {
+                    const result = await fetch(`/education/${id}`, {
+                        method: 'delete',
+                        headers: {
+                            "Content-Type": "application/json; charset=UTF-8",
+                        },
+                    })
+
+                    window.location.reload();
+                }
+                if (action == 'edit') {
+                    document.querySelector('#protocol_container > table').innerHTML = '';
+                    document.querySelector('#date_practic').innerHTML = '';
+                    document.querySelector('#practic_container').innerHTML = '';
+                    document.querySelector('#course_container').innerHTML = '';
+                    document.querySelector('#student_practic_score').innerHTML = '';
+                    document.querySelector('#student_test_score').innerHTML = '';
+
+
+                    let h1fio = document.querySelector('#h1_student_fio').innerHTML.trim();
+                    let h2group = document.querySelector('#h2_student_group').innerHTML.trim();
+                    document.querySelector('#student_fio').innerHTML = h1fio;
+                    document.querySelector('#student_group').innerHTML = h2group;
+                    document.querySelector('#education_id_on_show').value = id;
+                    const result = await fetch(`/education/${id}`, {
+                        method: 'get',
+                        headers: {
+                            "Content-Type": "application/json; charset=UTF-8",
+                        },
+                    })
+                    const result1 = await result.json();
+                    console.log(result1);
+                    document.querySelector('#user_id_on_show').value = result1[0].user_id;
+                    let test_score = '';
+                    if (result1[0].test_score != null) {
+                        test_score = result1[0].test_score
+                    } else test_score = '-';
+                    let pract_score = '';
+                    if (result1[0].pract_score == null) {
+                        pract_score = '-'
+                    } else if (result1[0].pract_score == 1) {
+                        pract_score = 'Зачтено'
+                    } else if (result1[0].pract_score == 0) {
+                        pract_score = 'Незачтено'
+                    }
+                    document.querySelector('#student_test_score').innerHTML = "Тестирование: " + test_score;
+                    document.querySelector('#student_practic_score').innerHTML = "Практическое задание: " + pract_score;
+                    if (result1[0].course_id != null) {
+                        const course = await fetch(`/course/${result1[0].course_id}`, {
+                            method: 'get',
+                            headers: {
+                                "Content-Type": "application/json; charset=UTF-8",
+                            },
+
+                        })
+                        const course1 = await course.json();
+                        console.log(course1);
+                        //label_course
+                        document.querySelector('#course_container').innerHTML = course1[0].title;
+                    } else {
+                        document.querySelector('#course_container').innerHTML = '<button type="button" class="select_course_btn">Выбрать курс</button>';
+                        document.querySelector('#course_container > button').addEventListener('click', ClickSelectCourseBtn1)
+                    }
+                    if (result1[0].practical_task_id != null) {
+                        const course = await fetch(`/education/practic/${result1[0].practical_task_id}`, {
+                            method: 'get',
+                            headers: {
+                                "Content-Type": "application/json; charset=UTF-8",
+                            },
+
+                        })
+                        const course1 = await course.json();
+                        console.log(course1);
+                        //label_course
+                        document.querySelector('#practic_container').innerHTML = course1[0].text;
+                    } else {
+                        document.querySelector('#practic_container').innerHTML = '<button type="button" class="select_practic_btn">Выбрать практическое задание</button>';
+                        document.querySelector('#practic_container > button').addEventListener('click', ClickSelectPracticBtn1)
+                    }
+                    if (result1[0].pract_score != null) {
+                        const result = await fetch(`/education/${id}`, {
+                            method: 'get',
+                            headers: {
+                                "Content-Type": "application/json; charset=UTF-8",
+                            },
+                        })
+                        const result1 = await result.json();
+                        console.log(result1);
+                        if (result1) {
+                            document.querySelector('#date_practic').innerHTML = 'Дата выполнения: ' + result1[0].protocol[0].date;
+                            let tableProtocol = document.querySelector('#protocol_container > table');
+                            tableProtocol.innerHTML = '';
+                            result1[0].protocol.forEach(elem => {
+                                let tr = document.createElement('tr');
+                                tr.innerHTML = `<td>${elem.time}</td>
+                    <td>${elem.message}</td>`
+                                tableProtocol.append(tr);
+                            })
+                        }
+                    }
+                    ModalWorkWithoutBtn('modal_show_education_student');
+                }
+
+
             }
         }
     </script>
