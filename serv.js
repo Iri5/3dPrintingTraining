@@ -8,7 +8,7 @@ const { dirname } = require('path');
 const bodyParser = require('body-parser');
 const router = express.Router();
 const bcrypt = require('bcrypt');
-const pool = require('../db');
+const pool = require('./api/db');
 // this comment made by me
 
 /*bcrypt.hash(pass, 10, (err, hash) => {
