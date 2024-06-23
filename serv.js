@@ -94,89 +94,6 @@ app.use('/education', educationRouter);
 app.use('/study', studyRouter);
 app.use('/complete-test', completeTestRouter);
 
-//АВТОРИЗАЦИЯ
-/*app.get('/auth', jsonParser, (req, res) => {
-    console.log("Зашел в автоизацию")
-    let user = JSON.parse(req.headers.senddata);
-    console.log("Зашел в автоизацию")
-    let query = 'SELECT * FROM us.user where login = ?;'
-    pool.query(query, [user.login], function (err, data) {
-        if (err) return console.log(err);
-        if (data.length == 0) {
-            console.log("Пользователь не найден")
-            res.sendStatus(403)
-        }
-        else {
-            console.log("Пользователь найден")
-            console.log(data)
-            bcrypt.compare(user.pass, data[0].pass, (err, result) => {
-                if (err) {
-                    console.log("Auth failed: ")
-                    
-                } 
-                if (result){
-                    console.log("Они совпали!")
-                    res.sendStatus(403)
-                    /*switch (data[0].role) {
-                        case '3':
-                            console.log("admin")
-                            res.status = 200;
-                            res.redirect('/admin');
-                            break;
-                        case '2':
-                            res.status = 200;
-                            res.redirect('/teach');
-                            break;
-                        case '1':
-                            currentUserLogin = user.login;
-                            res.status = 200;
-                            res.redirect('/user');
-                            break;
-                    }
-                }
-            })
-            
-        }
-    });
-})*/
-
-
-
-//ПРЕПОДАВАТЕЛЬ
-
-/*app.get('/teach', (req, res) => {
-    let query = 'SELECT id, title, description FROM us.course;'
-    pool.query(query, function (err, data) {
-        if (err) return console.log(err);
-        if (data.length != 0) {
-            let infoClient = {};
-            infoClient.courses = data;
-            query = 'SELECT id, fio, gr FROM us.user WHERE role = 1';
-            pool.query(query, function (err, data) {
-                if (err) return console.log(err);
-                if (data.length != 0) {
-                    infoClient.students = data;
-                    res.status = 200;
-                    res.render('teac', { info: infoClient });
-                }
-            })
-        }
-        else res.sendStatus(403);
-    })
-})
-
-app.get('/course-info', (req, res) => {
-    let query = 'SELECT title, description FROM us.course WHERE id=?;'
-    pool.query(query, req.headers.currentid, function (err, data) {
-        if (err) return console.log(err);
-        if (data.length != 0) {
-            res.status = 200;
-            let Jdata = JSON.stringify(data);
-            res.send(Jdata);
-        }
-        else res.sendStatus(403);
-    })
-})*/
 
 
 app.get('/course/:courseID', urlencodedParser, (req, res) => {
@@ -219,7 +136,7 @@ app.post('/pract_score_new', urlencodedParser, (req, res) => {
     })
 })
 //Найти курс по ИД
-app.post('/teach-getcoursebyid', urlencodedParser, (req, res) => {
+/*app.post('/teach-getcoursebyid', urlencodedParser, (req, res) => {
     console.log('Path: /teach-getcoursebyid will send id FROM us.course WHERE title = ?');
     if (!req.body) {
         return res.sendStatus(400);
@@ -230,8 +147,8 @@ app.post('/teach-getcoursebyid', urlencodedParser, (req, res) => {
         let id = data[0].id;
         res.send([id]);
     });
-})
-app.get('/add_test/', (req, res) => {
+})*/
+/*app.get('/add_test/', (req, res) => {
     console.log('Path: /add_test/ will render add_test.ejs');
     console.log("i am here")
     if (!req.body) {
@@ -246,20 +163,21 @@ app.get('/add_test/', (req, res) => {
         //let id = data[0].id;
         res.render('add_test', { title: data[0].title });
     });
-})
+})*/
 //Переход на страницу с информацией о курсе
+/*
 app.get('/teach-showcurse', (req, res) => {
     console.log('Path: /teach-showcurse will render course.ejs');
 
     if (!req.body) {
         return res.sendStatus(400);
-    }
+    }*/
     /*let query = 'SELECT * FROM us.course WHERE title = ? ;'
     pool.query(query, [req.query.titlecourse], function (err, data) {
         if (err) return console.log(err);
         res.render('course', {title: data[0].title, description: data[0].description, link: data[0].link, id: data[0].id})
     });*/
-    console.log(req.query.titlecourse)
+    /*console.log(req.query.titlecourse)
     let query = `SELECT us.test.id AS t_id, us.test.title AS t_title, us.course.title AS c_title, us.course.description 
     AS c_desc, us.course.start_date AS c_start, us.course.end_date AS c_end, us.course.link, us.course.id AS c_id
      FROM us.test JOIN us.course_test ON us.test.id = us.course_test.test_id JOIN us.course ON us.course.id = 
@@ -290,7 +208,7 @@ app.get('/teach-showcurse', (req, res) => {
 
     })
 
-})
+})*/
 //Добавление материала к курсу
 app.post('/teach-addmaterial', jsonParser, (req, res) => {
     console.log('Path: /teach-addmaterial will create material file');
@@ -359,6 +277,7 @@ app.get('/delmat/:id', jsonParser, (req, res) => {
     
 })
 //Создание нового теста
+/*
 app.post('/add_test', urlencodedParser, (req, res) => {
     console.log('Path: /add_test');
     if (!req.body) {
@@ -387,7 +306,8 @@ app.post('/add_test', urlencodedParser, (req, res) => {
 
         res.render('add_test', { title: ans.title, description: ans.description });
     });
-})
+})*/
+/*
 app.post('/add-question-one', jsonParser, (req, res) => {
     console.log('Path: /add-question-one');
 
@@ -408,18 +328,18 @@ app.post('/add-question-one', jsonParser, (req, res) => {
     pool.query(query, [question, title], function (err, data) {
         if (err) return console.log(err);
         res.render('add_test', { title: ans.title, description: ans.description });
-    });
-    /*let query = 'INSERT INTO us.test (title, description, start_date, end_date, duration) VALUES (?, ?, ?, ?, ?);'
-    pool.query(query, [ans.title, ans.description, ans.start, ans.end, ans.duration], function (err, data) {
-        if (err) return console.log(err);
-        res.render('add_test', { title: ans.title, description: ans.description});
     });*/
     /*let query = 'INSERT INTO us.test (title, description, start_date, end_date, duration) VALUES (?, ?, ?, ?, ?);'
     pool.query(query, [ans.title, ans.description, ans.start, ans.end, ans.duration], function (err, data) {
         if (err) return console.log(err);
         res.render('add_test', { title: ans.title, description: ans.description});
     });*/
-})
+    /*let query = 'INSERT INTO us.test (title, description, start_date, end_date, duration) VALUES (?, ?, ?, ?, ?);'
+    pool.query(query, [ans.title, ans.description, ans.start, ans.end, ans.duration], function (err, data) {
+        if (err) return console.log(err);
+        res.render('add_test', { title: ans.title, description: ans.description});
+    });*/
+/*})*/
 
 //ОБУЧАЕМЫЙ
 /*app.get('/user', (req, res) => {
