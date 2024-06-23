@@ -24,8 +24,8 @@ const pool = require('./api/db');
 
 let currentUserLogin = null;
 app.use(bodyParser.urlencoded({ extended: false }));
-/*app.use(bodyParser.json({ extended: false }));
-const pool = mysql.createPool({
+app.use(bodyParser.json({ extended: false }));
+/*const pool = mysql.createPool({
     host: 'localhost',
     user: 'root',
     database: 'us',

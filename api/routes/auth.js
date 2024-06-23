@@ -8,8 +8,10 @@ const pool = require('../db')
 router.post('/', (req, res) => {
     console.log('Path: /auth Method: POST')
     let { login, pass } = req.body;
+    console.log(req.body);
     let query = 'SELECT * FROM mydb.user where login = ?;'
     pool.query(query, [login], function (err, data) {
+        console.log(data);
         if (err) return console.log(err);
         if (data.length == 0) {
             res.sendStatus(403)
