@@ -24,13 +24,13 @@ const bcrypt = require('bcrypt');
 
 let currentUserLogin = null;
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json({ extended: false }));
+/*app.use(bodyParser.json({ extended: false }));
 const pool = mysql.createPool({
     host: 'localhost',
     user: 'root',
     database: 'us',
     password: 'irina'
-});
+});*/
 app.listen(3001, () => {
     console.log('Server started: http://localhost:3001');
 })
